@@ -11,8 +11,8 @@ from sklearn import metrics
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
 
-from cgcnn_bandgap_ionic_cond_shear_moduli.cgcnn_pretrained.cgcnn.data import CIFData, collate_pool
-from cgcnn_bandgap_ionic_cond_shear_moduli.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
+from cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.data import CIFData, collate_pool
+from cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
 
 parser = argparse.ArgumentParser(description='Crystal gated neural networks')
 parser.add_argument('modelpath', help='path to the trained model.')

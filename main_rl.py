@@ -7,12 +7,12 @@ import numpy as np
 
 from env.sei_predictor import SEIPredictor
 from env.cei_predictor import CEIPredictor
-from env.cgcnn_bandgap_ionic_cond_shear_moduli.cgcnn_pretrained import cgcnn_predict
+from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained import cgcnn_predict
 
 
-from env.cgcnn_bandgap_ionic_cond_shear_moduli.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
-from env.cgcnn_bandgap_ionic_cond_shear_moduli.cgcnn_pretrained.cgcnn.data import CIFData, collate_pool
-from env.cgcnn_bandgap_ionic_cond_shear_moduli.main import Normalizer
+from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
+from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.data import CIFData, collate_pool
+from env.cgcnn_bandgap_ionic_cond_bulk_moduli.main import Normalizer
 
 
 print("Running main_rl.py:", __file__)
@@ -148,13 +148,13 @@ def format_cgcnn_prediction_only(results, property_name):
 
 
 if __name__ == "__main__":
-    cif_path = r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_shear_moduli\CIF_OBELiX\cifs\test_CIF.cif"
+    cif_path = r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\CIF_OBELiX\cifs\test_CIF.cif"
 
     if not os.path.isfile(cif_path):
         print(f"Error: CIF file not found at {cif_path}")
         sys.exit(1)
 
-    dataset_root = r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_shear_moduli\CIF_OBELiX"
+    dataset_root = r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\CIF_OBELiX"
 
     # Run and save results without printing yet
     try:
@@ -171,7 +171,7 @@ if __name__ == "__main__":
 
     try:
         bandgap_results = run_cgcnn_prediction(
-            r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_shear_moduli\cgcnn_pretrained\band-gap.pth.tar",
+            r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\cgcnn_pretrained\band-gap.pth.tar",
             cif_path
         )
     except Exception as e:
@@ -179,13 +179,13 @@ if __name__ == "__main__":
         print(f"CGCNN Bandgap prediction failed: {e}")
 
     try:
-        shear_results = run_cgcnn_prediction(
-            r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_shear_moduli\cgcnn_pretrained\shear-moduli.pth.tar",
+        bulk_results = run_cgcnn_prediction(
+            r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\cgcnn_pretrained\bulk-moduli.pth.tar",
             cif_path
         )
     except Exception as e:
-        shear_results = None
-        print(f"CGCNN Shear Moduli prediction failed: {e}")
+        bulk_results = None
+        print(f"CGCNN Bulk Moduli prediction failed: {e}")
 
     try:
         finetuned_checkpoint_path = r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\checkpoint.pth.tar"
@@ -221,7 +221,7 @@ if __name__ == "__main__":
 
     print(format_cgcnn_prediction_only(bandgap_results, "Bandgap"))
     print()
-    print(format_cgcnn_prediction_only(shear_results, "Shear Moduli"))
+    print(format_cgcnn_prediction_only(bulk_results, "Bulk Moduli"))
     print()
     print(format_cgcnn_prediction_only(finetuned_results, "Fine-tuned CGCNN (Ionic Conductivity)"))
     print()
