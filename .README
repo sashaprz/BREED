@@ -1,3 +1,19 @@
+CGCNN
 https://github.com/txie-93/cgcnn/blob/master/pre-trained/bulk-moduli.pth.tar
 
-materials project
+
+Materials Project
+
+
+CrystaLLM
+https://github.com/lantunes/CrystaLLM
+@article{antunes2024crystal,
+  title={Crystal structure generation with autoregressive large language modeling},
+  author={Antunes, Luis M and Butler, Keith T and Grau-Crespo, Ricardo},
+  journal={Nature Communications},
+  volume={15},
+  number={1},
+  pages={10570},
+  year={2024},
+  publisher={Nature Publishing Group}
+}
