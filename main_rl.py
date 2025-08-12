@@ -3,6 +3,9 @@ import sys
 import torch
 import pandas as pd
 import numpy as np
+import json
+import argparse
+from typing import List, Dict, Any
 
 
 from env.sei_predictor import SEIPredictor
@@ -13,9 +16,6 @@ from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained import cgcnn_pred
 from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
 from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.data import CIFData, collate_pool
 from env.cgcnn_bandgap_ionic_cond_bulk_moduli.main import Normalizer
-
-
-print("Running main_rl.py:", __file__)
 
 
 def run_sei_prediction(cif_file_path: str):
@@ -131,97 +131,220 @@ def run_finetuned_cgcnn_prediction(checkpoint_path: str, dataset_root: str, cif_
     return results
 
 
-def format_cgcnn_prediction_only(results, property_name):
-    if results is None:
-        return f"{property_name} prediction failed or no results"
+def extract_composition_from_cif(cif_file_path: str) -> str:
+    """Extract composition from CIF file"""
+    try:
+        with open(cif_file_path, 'r') as f:
+            lines = f.readlines()
+        
+        # Look for data_ line which often contains composition info
+        for line in lines:
+            if line.startswith('data_'):
+                composition = line.replace('data_', '').strip()
+                if composition:
+                    return composition
+        
+        # Fallback: use filename
+        return os.path.splitext(os.path.basename(cif_file_path))[0]
+    except:
+        return os.path.splitext(os.path.basename(cif_file_path))[0]
 
-    if not results.get('predictions'):
-        return f"No predictions available for {property_name}"
 
-    prediction = results['predictions'][0]
+def predict_single_cif(cif_file_path: str) -> Dict[str, Any]:
+    """Run all predictions on a single CIF file and return consolidated results"""
+    
+    # Configuration paths - adjust these to your actual paths
+    dataset_root = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\CIF_OBELiX"
+    bandgap_model = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\cgcnn_pretrained\band-gap.pth.tar"
+    bulk_model = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\cgcnn_pretrained\bulk-moduli.pth.tar"
+    finetuned_model = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\checkpoint.pth.tar"
+    
+    results = {
+        "composition": extract_composition_from_cif(cif_file_path),
+        "bandgap": 0.0,
+        "sei_score": 0.0,
+        "cei_score": 0.0,
+        "ionic_conductivity": 0.0,
+        "bulk_modulus": 0.0,
+        "prediction_status": {
+            "sei": "failed",
+            "cei": "failed", 
+            "bandgap": "failed",
+            "bulk_modulus": "failed",
+            "ionic_conductivity": "failed"
+        }
+    }
+    
+    print(f"Processing CIF: {os.path.basename(cif_file_path)}")
+    
+    # SEI Prediction
+    try:
+        sei_results = run_sei_prediction(cif_file_path)
+        if sei_results is not None and 'sei_score' in sei_results:
+            results["sei_score"] = float(sei_results['sei_score'])
+            results["prediction_status"]["sei"] = "success"
+            print(f"  SEI Score: {results['sei_score']:.3f}")
+        else:
+            print(f"  SEI prediction failed or no score returned")
+    except Exception as e:
+        print(f"  SEI prediction failed: {e}")
+    
+    # CEI Prediction
+    try:
+        cei_results = run_cei_prediction(cif_file_path)
+        if cei_results is not None and 'cei_score' in cei_results:
+            results["cei_score"] = float(cei_results['cei_score'])
+            results["prediction_status"]["cei"] = "success"
+            print(f"  CEI Score: {results['cei_score']:.3f}")
+        else:
+            print(f"  CEI prediction failed or no score returned")
+    except Exception as e:
+        print(f"  CEI prediction failed: {e}")
+    
+    # Bandgap Prediction
+    try:
+        bandgap_results = run_cgcnn_prediction(bandgap_model, cif_file_path)
+        if bandgap_results is not None and 'predictions' in bandgap_results and len(bandgap_results['predictions']) > 0:
+            results["bandgap"] = float(bandgap_results['predictions'][0])
+            results["prediction_status"]["bandgap"] = "success"
+            print(f"  Bandgap: {results['bandgap']:.3f} eV")
+        else:
+            print(f"  Bandgap prediction failed or no predictions returned")
+    except Exception as e:
+        print(f"  Bandgap prediction failed: {e}")
+    
+    # Bulk Modulus Prediction
+    try:
+        bulk_results = run_cgcnn_prediction(bulk_model, cif_file_path)
+        if bulk_results is not None and 'predictions' in bulk_results and len(bulk_results['predictions']) > 0:
+            results["bulk_modulus"] = float(bulk_results['predictions'][0])
+            results["prediction_status"]["bulk_modulus"] = "success"
+            print(f"  Bulk Modulus: {results['bulk_modulus']:.1f} GPa")
+        else:
+            print(f"  Bulk modulus prediction failed or no predictions returned")
+    except Exception as e:
+        print(f"  Bulk modulus prediction failed: {e}")
+    
+    # Ionic Conductivity Prediction (Fine-tuned model)
+    try:
+        finetuned_results = run_finetuned_cgcnn_prediction(finetuned_model, dataset_root, cif_file_path)
+        if finetuned_results is not None and 'predictions' in finetuned_results and len(finetuned_results['predictions']) > 0:
+            results["ionic_conductivity"] = float(finetuned_results['predictions'][0])
+            results["prediction_status"]["ionic_conductivity"] = "success"
+            print(f"  Ionic Conductivity: {results['ionic_conductivity']:.2e} S/cm")
+        else:
+            print(f"  Ionic conductivity prediction failed or no predictions returned")
+    except Exception as e:
+        print(f"  Ionic conductivity prediction failed: {e}")
+    
+    return results
 
-    output = f"Prediction for {property_name}: {prediction:.4f}\n"
-    if 'mae' in results and results['mae'] is not None:
-        output += f"Model MAE: {results['mae']:.4f}\n"
 
-    return output
+def main():
+    parser = argparse.ArgumentParser(description='Run ML property predictions on CIF files')
+    parser.add_argument('--cif_files', nargs='+', required=True, 
+                       help='List of CIF files to process')
+    parser.add_argument('--output', required=True,
+                       help='Output JSON file path')
+    
+    args = parser.parse_args()
+    
+    print(f"Running ML predictions on {len(args.cif_files)} CIF files...")
+    print(f"Output will be saved to: {args.output}")
+    
+    # Process all CIF files
+    all_results = {}
+    
+    for i, cif_file in enumerate(args.cif_files, 1):
+        print(f"\n[{i}/{len(args.cif_files)}] Processing: {cif_file}")
+        
+        if not os.path.isfile(cif_file):
+            print(f"  Warning: CIF file not found: {cif_file}")
+            # Create default failed result
+            all_results[os.path.basename(cif_file)] = {
+                "composition": "unknown",
+                "bandgap": 0.0,
+                "sei_score": 0.0,
+                "cei_score": 0.0,
+                "ionic_conductivity": 0.0,
+                "bulk_modulus": 0.0,
+                "prediction_status": {
+                    "sei": "file_not_found",
+                    "cei": "file_not_found",
+                    "bandgap": "file_not_found",
+                    "bulk_modulus": "file_not_found",
+                    "ionic_conductivity": "file_not_found"
+                }
+            }
+            continue
+        
+        try:
+            result = predict_single_cif(cif_file)
+            # Use basename as key to match GA expectations
+            all_results[os.path.basename(cif_file)] = result
+        except Exception as e:
+            print(f"  Error processing {cif_file}: {e}")
+            # Create default failed result
+            all_results[os.path.basename(cif_file)] = {
+                "composition": extract_composition_from_cif(cif_file),
+                "bandgap": 0.0,
+                "sei_score": 0.0,
+                "cei_score": 0.0,
+                "ionic_conductivity": 0.0,
+                "bulk_modulus": 0.0,
+                "prediction_status": {
+                    "sei": "error",
+                    "cei": "error",
+                    "bandgap": "error",
+                    "bulk_modulus": "error",
+                    "ionic_conductivity": "error"
+                }
+            }
+    
+    # Save results to JSON file
+    try:
+        with open(args.output, 'w') as f:
+            json.dump(all_results, f, indent=2)
+        print(f"\nResults saved to {args.output}")
+        
+        # Print summary
+        successful_predictions = 0
+        total_properties = 0
+        for result in all_results.values():
+            if 'prediction_status' in result:
+                for prop, status in result['prediction_status'].items():
+                    total_properties += 1
+                    if status == "success":
+                        successful_predictions += 1
+        
+        print(f"Summary: {successful_predictions}/{total_properties} property predictions successful")
+        print(f"Success rate: {100*successful_predictions/total_properties if total_properties > 0 else 0:.1f}%")
+        
+    except Exception as e:
+        print(f"Error saving results: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
-    cif_path = r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\CIF_OBELiX\cifs\test_CIF.cif"
-
-    if not os.path.isfile(cif_path):
-        print(f"Error: CIF file not found at {cif_path}")
-        sys.exit(1)
-
-    dataset_root = r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\CIF_OBELiX"
-
-    # Run and save results without printing yet
-    try:
-        sei_results = run_sei_prediction(cif_path)
-    except Exception as e:
-        sei_results = None
-        print(f"SEI prediction failed: {e}")
-
-    try:
-        cei_results = run_cei_prediction(cif_path)
-    except Exception as e:
-        cei_results = None
-        print(f"CEI prediction failed: {e}")
-
-    try:
-        bandgap_results = run_cgcnn_prediction(
-            r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\cgcnn_pretrained\band-gap.pth.tar",
-            cif_path
-        )
-    except Exception as e:
-        bandgap_results = None
-        print(f"CGCNN Bandgap prediction failed: {e}")
-
-    try:
-        bulk_results = run_cgcnn_prediction(
-            r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\cgcnn_pretrained\bulk-moduli.pth.tar",
-            cif_path
-        )
-    except Exception as e:
-        bulk_results = None
-        print(f"CGCNN Bulk Moduli prediction failed: {e}")
-
-    try:
-        finetuned_checkpoint_path = r"C:\Users\Sasha\OneDrive\vscode\fr8\RL-electrolyte-design\env\checkpoint.pth.tar"
-        finetuned_results = run_finetuned_cgcnn_prediction(finetuned_checkpoint_path, dataset_root, cif_path)
-    except Exception as e:
-        finetuned_results = None
-        print(f"Fine-tuned CGCNN prediction failed: {e}")
-
-    # Final consolidated print of all results:
-    print("\n=== Final Prediction Summary ===\n")
-
-    if sei_results is not None:
-        print(f"SEI Score: {sei_results.get('sei_score', 'N/A')}")
-        if 'overall_properties' in sei_results:
-            print("Overall SEI Properties:")
-            for prop, val in sei_results['overall_properties'].items():
-                print(f"  {prop}: {val:.3f}")
+    # Check if being called with command line arguments (from GA)
+    if len(sys.argv) > 1 and '--cif_files' in sys.argv:
+        main()
     else:
-        print("SEI Prediction: Failed or no results")
-
-    print()
-
-    if cei_results is not None:
-        print(f"CEI Score: {cei_results.get('cei_score', 'N/A')}")
-        if 'overall_properties' in cei_results:
-            print("Overall CEI Properties:")
-            for prop, val in cei_results['overall_properties'].items():
-                print(f"  {prop}: {val:.3f}")
-    else:
-        print("CEI Prediction: Failed or no results")
-
-    print()
-
-    print(format_cgcnn_prediction_only(bandgap_results, "Bandgap"))
-    print()
-    print(format_cgcnn_prediction_only(bulk_results, "Bulk Moduli"))
-    print()
-    print(format_cgcnn_prediction_only(finetuned_results, "Fine-tuned CGCNN (Ionic Conductivity)"))
-    print()
+        # Original standalone mode for testing
+        print("Running in standalone test mode...")
+        cif_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\CIF_OBELiX\cifs\test_CIF.cif"
+        
+        if not os.path.isfile(cif_path):
+            print(f"Error: CIF file not found at {cif_path}")
+            sys.exit(1)
+        
+        result = predict_single_cif(cif_path)
+        
+        print("\n=== Final Prediction Summary ===\n")
+        print(f"Composition: {result['composition']}")
+        print(f"SEI Score: {result['sei_score']:.3f}")
+        print(f"CEI Score: {result['cei_score']:.3f}")
+        print(f"Bandgap: {result['bandgap']:.3f} eV")
+        print(f"Bulk Modulus: {result['bulk_modulus']:.1f} GPa")
+        print(f"Ionic Conductivity: {result['ionic_conductivity']:.2e} S/cm")
+        print(f"\nPrediction Status: {result['prediction_status']}")
