@@ -1,11 +1,11 @@
 data_Li1.3Al0.3Ti1.7(PO4)3
-_cell_length_a    9.3419
-_cell_length_b    14.1736
-_cell_length_c    13.3518
-_cell_angle_alpha 85.94
-_cell_angle_beta  89.58
-_cell_angle_gamma 87.84
-_space_group_name_H-M_alt 'P1'
+_cell_length_a     13.3924
+_cell_length_b     8.8576
+_cell_length_c     12.1916
+_cell_angle_alpha  89.29
+_cell_angle_beta   91.30
+_cell_angle_gamma  88.32
+_space_group_name_H-M 'P1'
 loop_
 _atom_site_label
 _atom_site_fract_x

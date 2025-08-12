@@ -1,0 +1,14 @@
+data_Offspring
+_cell_length_a 14.5834
+_cell_length_b 9.8504
+_cell_length_c 10.7068
+_cell_angle_alpha 90.78
+_cell_angle_beta 93.91
+_cell_angle_gamma 89.94
+_space_group_name_H-M_alt 'P1'
+loop_
+_atom_site_label
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Li1 0.0 0.0 0.0

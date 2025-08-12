@@ -1,11 +1,11 @@
-data_Li6.4La3Zr1.4Ta0.6O12
-_cell_length_a    11.8783
-_cell_length_b    10.9383
-_cell_length_c    9.0482
-_cell_angle_alpha 88.81
-_cell_angle_beta  88.33
-_cell_angle_gamma 89.18
-_space_group_name_H-M_alt 'P1'
+data_Li6.4La3Zr1.4Ta0.6
+_cell_length_a     10.1671
+_cell_length_b     9.2502
+_cell_length_c     12.0571
+_cell_angle_alpha  88.17
+_cell_angle_beta   94.61
+_cell_angle_gamma  88.44
+_space_group_name_H-M 'P1'
 loop_
 _atom_site_label
 _atom_site_fract_x

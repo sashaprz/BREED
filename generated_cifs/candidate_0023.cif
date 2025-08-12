@@ -1,11 +1,11 @@
-data_LiPON
-_cell_length_a    8.2422
-_cell_length_b    12.4531
-_cell_length_c    10.5401
-_cell_angle_alpha 92.52
-_cell_angle_beta  88.00
-_cell_angle_gamma 85.17
-_space_group_name_H-M_alt 'P1'
+data_Li3N
+_cell_length_a     10.9677
+_cell_length_b     13.7286
+_cell_length_c     12.0377
+_cell_angle_alpha  93.34
+_cell_angle_beta   86.03
+_cell_angle_gamma  91.14
+_space_group_name_H-M 'P1'
 loop_
 _atom_site_label
 _atom_site_fract_x

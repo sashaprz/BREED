@@ -1,11 +1,11 @@
-data_Li10GeP2S12
-_cell_length_a    14.7560
-_cell_length_b    13.8008
-_cell_length_c    10.6528
-_cell_angle_alpha 86.73
-_cell_angle_beta  87.01
-_cell_angle_gamma 88.70
-_space_group_name_H-M_alt 'P1'
+data_Li7La3Zr2O12
+_cell_length_a     13.2083
+_cell_length_b     14.4422
+_cell_length_c     13.8082
+_cell_angle_alpha  89.89
+_cell_angle_beta   94.69
+_cell_angle_gamma  87.52
+_space_group_name_H-M 'P1'
 loop_
 _atom_site_label
 _atom_site_fract_x
