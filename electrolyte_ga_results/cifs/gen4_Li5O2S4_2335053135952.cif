@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li5(S2O)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.19719504
+_cell_length_b   7.05199062
+_cell_length_c   5.23347580
+_cell_angle_alpha   79.86045048
+_cell_angle_beta   90.91573228
+_cell_angle_gamma   57.36543105
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5(S2O)2
+_chemical_formula_sum   'Li5 S4 O2'
+_cell_volume   127.25635971
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.69831508  0.96450351  0.21832658  1
+  Li  Li1  1  -0.69831508  -0.96450351  -0.21832658  1
+  Li  Li2  1  0.56692794  0.27135152  0.52965515  1
+  Li  Li3  1  0.43307206  0.72864848  0.47034485  1
+  Li  Li4  1  0.50000000  0.50000000  0.50000000  1
+  O  O5  1  0.56061498  0.85548528  0.29861928  1
+  O  O6  1  0.43938502  0.14451472  0.70138072  1
+  S  S7  1  0.00000000  0.00000000  0.50000000  1
+  S  S8  1  0.00000000  0.50000000  0.50000000  1
+  S  S9  1  0.50000000  0.00000000  0.00000000  1
+  S  S10  1  0.50000000  0.50000000  0.00000000  1

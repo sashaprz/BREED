@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li4S4Cl3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.18158743
+_cell_length_b   6.64590655
+_cell_length_c   6.57347396
+_cell_angle_alpha   99.79136941
+_cell_angle_beta   65.63347675
+_cell_angle_gamma   81.20779265
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li4S4Cl3
+_chemical_formula_sum   'Li4 S4 Cl3'
+_cell_volume   234.81439621
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cl  Cl0  1  0.50000000  0.00000000  0.50000000  1
+  Cl  Cl1  1  0.19692491  0.07165608  0.48205102  1
+  Cl  Cl2  1  0.80307509  0.92834392  0.51794898  1
+  Li  Li3  1  0.73625473  0.50601392  0.49170885  1
+  Li  Li4  1  -0.73625473  -0.50601392  -0.49170885  1
+  Li  Li5  1  0.50000000  0.00000000  0.00000000  1
+  Li  Li6  1  0.00000000  0.00000000  0.00000000  1
+  S  S7  1  0.10073842  0.51555030  0.42818130  1
+  S  S8  1  0.89926158  0.48444970  0.57181870  1
+  S  S9  1  0.63646538  0.62364526  0.77536864  1
+  S  S10  1  0.36353462  0.37635474  0.22463136  1

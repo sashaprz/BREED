@@ -1,0 +1,31 @@
+# generated using pymatgen
+data_Li2Ti3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.82016224
+_cell_length_b   6.07914865
+_cell_length_c   7.04391542
+_cell_angle_alpha   139.31524622
+_cell_angle_beta   118.73045485
+_cell_angle_gamma   45.28218610
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Ti3
+_chemical_formula_sum   'Li2 Ti3'
+_cell_volume   154.10538058
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.50000000  1
+  Ti  Ti2  1  0.00000000  0.50000000  0.00000000  1
+  Ti  Ti3  1  0.00000000  0.50000000  0.50000000  1
+  Ti  Ti4  1  0.50000000  0.00000000  0.50000000  1

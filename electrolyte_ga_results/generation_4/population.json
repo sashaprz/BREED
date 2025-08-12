@@ -1,0 +1,2295 @@
+[
+  {
+    "id": 0,
+    "composition": {
+      "Li": 2,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 3.885335593266636,
+      "b": 3.130398261815976,
+      "c": 7.614909632452866,
+      "alpha": 116.50386216631343,
+      "beta": 79.99692157898139,
+      "gamma": 83.63665918590902
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 0,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen0_Li2O4_2335053074256.cif"
+  },
+  {
+    "id": 1,
+    "composition": {
+      "Li": 7,
+      "P": 1
+    },
+    "lattice_params": {
+      "a": 9.003883940598023,
+      "b": 4.833096072932353,
+      "c": 5.312403597343787,
+      "alpha": 64.6314105747002,
+      "beta": 84.81682001119404,
+      "gamma": 136.44101029253656
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 0,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen0_Li7P1_2335053608464.cif"
+  },
+  {
+    "id": 2,
+    "composition": {
+      "Li": 1,
+      "La": 3
+    },
+    "lattice_params": {
+      "a": 9.116201051795917,
+      "b": 8.993210830526975,
+      "c": 4.729811274048982,
+      "alpha": 61.489421807282575,
+      "beta": 133.4611356444881,
+      "gamma": 148.00873633848065
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 0,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen0_La3Li1_2335030318032.cif"
+  },
+  {
+    "id": 3,
+    "composition": {
+      "Li": 1,
+      "O": 2,
+      "P": 1,
+      "Al": 3
+    },
+    "lattice_params": {
+      "a": 5.33729617060349,
+      "b": 3.451252215820639,
+      "c": 7.066455690081824,
+      "alpha": 104.06014350894735,
+      "beta": 49.87904946243712,
+      "gamma": 76.99215726744177
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 0,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen0_Al3Li1O2P1_2334991223568.cif"
+  },
+  {
+    "id": 4,
+    "composition": {
+      "Li": 7,
+      "O": 4,
+      "S": 4
+    },
+    "lattice_params": {
+      "a": 4.597119170026143,
+      "b": 7.7534437961054685,
+      "c": 7.654988257893119,
+      "alpha": 58.4563960167864,
+      "beta": 95.52379156115383,
+      "gamma": 120.79878468607734
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 0,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen0_Li7O4S4_2334947286288.cif"
+  },
+  {
+    "id": 5,
+    "composition": {
+      "Li": 5,
+      "O": 3
+    },
+    "lattice_params": {
+      "a": 5.691250012319707,
+      "b": 7.520373966802092,
+      "c": 3.4127637063551473,
+      "alpha": 108.71736869331359,
+      "beta": 77.71613191796091,
+      "gamma": 79.25757960110766
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 0,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen0_Li5O3_2334983541392.cif"
+  },
+  {
+    "id": 6,
+    "composition": {
+      "Li": 2,
+      "S": 8,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 9.42143037478968,
+      "b": 5.5829367891760775,
+      "c": 3.1305570028412704,
+      "alpha": 92.02828535814449,
+      "beta": 85.07919840735543,
+      "gamma": 114.50853177670994
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335053958032,
+      2335029219536
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O4S8_2334986366736.cif"
+  },
+  {
+    "id": 7,
+    "composition": {
+      "Li": 4,
+      "P": 4,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 6.461586800831306,
+      "b": 2.4573954834082468,
+      "c": 7.12763362906392,
+      "alpha": 117.59448306114935,
+      "beta": 84.2254296993329,
+      "gamma": 124.6911220828872
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335053083280,
+      2335055905232
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li4O4P4_2334996214224.cif"
+  },
+  {
+    "id": 8,
+    "composition": {
+      "O": 8,
+      "Li": 4,
+      "F": 4,
+      "S": 1
+    },
+    "lattice_params": {
+      "a": 3.8687855927068284,
+      "b": 9.207757380922226,
+      "c": 5.108721985336872,
+      "alpha": 69.61531183537267,
+      "beta": 105.57600545953574,
+      "gamma": 81.39280430348228
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335053956304,
+      2335054429648
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_F4Li4O8S1_2335024655184.cif"
+  },
+  {
+    "id": 9,
+    "composition": {
+      "Li": 6,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 5.999800451754131,
+      "b": 4.646877117401347,
+      "c": 4.793707239301356,
+      "alpha": 124.13510259797731,
+      "beta": 95.9101514854954,
+      "gamma": 110.0846321609125
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335055647696,
+      2335053996944
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li6O4_2335032195920.cif"
+  },
+  {
+    "id": 10,
+    "composition": {
+      "Li": 6,
+      "O": 8
+    },
+    "lattice_params": {
+      "a": 5.397064918906032,
+      "b": 6.861709944695755,
+      "c": 4.737458017002897,
+      "alpha": 86.96947552378326,
+      "beta": 103.58721081395882,
+      "gamma": 110.70292248575822
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335032319376,
+      2335053761616
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li6O8_2334996338384.cif"
+  },
+  {
+    "id": 11,
+    "composition": {
+      "Li": 5,
+      "La": 1,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 5.141733933456124,
+      "b": 5.264987172865261,
+      "c": 8.733993921979035,
+      "alpha": 80.98844840325127,
+      "beta": 119.27768624243376,
+      "gamma": 106.93256107546954
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335054839312,
+      2335054664656
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_La1Li5O2_2335053083472.cif"
+  },
+  {
+    "id": 12,
+    "composition": {
+      "Li": 5,
+      "O": 3
+    },
+    "lattice_params": {
+      "a": 6.974521277231656,
+      "b": 3.105665105131164,
+      "c": 6.533676398074683,
+      "alpha": 90.64975992285481,
+      "beta": 74.59838827550307,
+      "gamma": 97.82477293139085
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335054499344,
+      2334996289488
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li5O3_2335029219664.cif"
+  },
+  {
+    "id": 13,
+    "composition": {
+      "Zr": 1,
+      "Li": 3,
+      "O": 3
+    },
+    "lattice_params": {
+      "a": 3.775386607070704,
+      "b": 5.768331208250917,
+      "c": 4.916785550022147,
+      "alpha": 96.9636244443884,
+      "beta": 128.20638636676213,
+      "gamma": 95.72929698153449
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2334996352080,
+      2335054278160
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li3O3Zr1_2335028824208.cif"
+  },
+  {
+    "id": 14,
+    "composition": {
+      "Li": 3,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 5.808388803230065,
+      "b": 9.279421783328118,
+      "c": 6.351932895508825,
+      "alpha": 141.0323911678303,
+      "beta": 82.37492342205331,
+      "gamma": 127.00801726401038
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335054034640,
+      2335055513232
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li3O4_2335054276048.cif"
+  },
+  {
+    "id": 15,
+    "composition": {
+      "P": 1,
+      "Li": 2,
+      "S": 4,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 7.056568075510856,
+      "b": 4.43195134450192,
+      "c": 7.396393430005202,
+      "alpha": 47.6442304870056,
+      "beta": 86.77469687305374,
+      "gamma": 109.34004406741242
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335032317968,
+      2335054694032
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O2P1S4_2334981285584.cif"
+  },
+  {
+    "id": 16,
+    "composition": {
+      "Li": 3,
+      "La": 3,
+      "O": 9
+    },
+    "lattice_params": {
+      "a": 7.773951620754739,
+      "b": 8.897675446384662,
+      "c": 6.246266941561261,
+      "alpha": 92.19353198677628,
+      "beta": 124.16867819578404,
+      "gamma": 103.34104542383218
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335030318032,
+      2335055274064
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_La3Li3O9_2335030207440.cif"
+  },
+  {
+    "id": 17,
+    "composition": {
+      "Li": 6,
+      "O": 10
+    },
+    "lattice_params": {
+      "a": 5.722154916275293,
+      "b": 3.4154554546978004,
+      "c": 10.61266525637626,
+      "alpha": 100.90341541928987,
+      "beta": 89.97388114294623,
+      "gamma": 86.29340578945666
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335029878800,
+      2335054503248
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li6O10_2335024653648.cif"
+  },
+  {
+    "id": 18,
+    "composition": {
+      "P": 1,
+      "Al": 3,
+      "Li": 3,
+      "S": 4,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 4.85486657428835,
+      "b": 11.50250725767251,
+      "c": 7.524228646295694,
+      "alpha": 61.51672581964493,
+      "beta": 116.71644969876745,
+      "gamma": 117.59165935452826
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2334996203408,
+      2335024030352
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Al3Li3O4P1S4_2335028823888.cif"
+  },
+  {
+    "id": 19,
+    "composition": {
+      "Li": 4,
+      "S": 2
+    },
+    "lattice_params": {
+      "a": 8.748405157728804,
+      "b": 7.6706951247343,
+      "c": 4.623752085213038,
+      "alpha": 81.36640458518379,
+      "beta": 39.49649496526374,
+      "gamma": 57.24881581386544
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2334996203408,
+      2335053956304
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li4S2_2334986820240.cif"
+  },
+  {
+    "id": 20,
+    "composition": {
+      "Zr": 1,
+      "Li": 4,
+      "O": 5
+    },
+    "lattice_params": {
+      "a": 6.722781494248923,
+      "b": 5.823854942841744,
+      "c": 6.548241590986941,
+      "alpha": 62.85197034081201,
+      "beta": 55.17761289529922,
+      "gamma": 86.8962404931195
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335055274064,
+      2334994806992
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li4O5Zr1_2335027802768.cif"
+  },
+  {
+    "id": 21,
+    "composition": {
+      "P": 1,
+      "Al": 3,
+      "Li": 4,
+      "O": 7
+    },
+    "lattice_params": {
+      "a": 4.976399191110234,
+      "b": 6.814437359550197,
+      "c": 6.946202964184475,
+      "alpha": 101.46013471177633,
+      "beta": 69.05089992325888,
+      "gamma": 120.58828405558135
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335024030352,
+      2335032319376
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Al3Li4O7P1_2334996351760.cif"
+  },
+  {
+    "id": 22,
+    "composition": {
+      "Li": 3,
+      "Ti": 3,
+      "O": 6
+    },
+    "lattice_params": {
+      "a": 4.836257125861507,
+      "b": 6.005541055296608,
+      "c": 5.274353825182916,
+      "alpha": 79.95179509738001,
+      "beta": 78.6709737931977,
+      "gamma": 87.92075071374718
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335054104208,
+      2335055104144
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li3O6Ti3_2335054275152.cif"
+  },
+  {
+    "id": 23,
+    "composition": {
+      "Li": 5,
+      "O": 3
+    },
+    "lattice_params": {
+      "a": 4.035255841307806,
+      "b": 5.068173152574368,
+      "c": 4.930366490919883,
+      "alpha": 89.41166201365573,
+      "beta": 110.84556650614911,
+      "gamma": 109.72908159395382
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2334983541392,
+      2335054664656
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li5O3_2335029882960.cif"
+  },
+  {
+    "id": 24,
+    "composition": {
+      "Li": 5,
+      "S": 4,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 4.197195040669202,
+      "b": 7.05199061906921,
+      "c": 5.233475802246151,
+      "alpha": 79.86045047670349,
+      "beta": 90.915732278055,
+      "gamma": 57.3654310530723
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2334996203408,
+      2335055182160
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li5O2S4_2335053135952.cif"
+  },
+  {
+    "id": 25,
+    "composition": {
+      "Li": 3,
+      "Zr": 2
+    },
+    "lattice_params": {
+      "a": 5.584131048455296,
+      "b": 3.5187339491993366,
+      "c": 8.205230803305373,
+      "alpha": 60.423436092035004,
+      "beta": 102.88017761223429,
+      "gamma": 110.54603374573861
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335055596624,
+      2335053804432
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li3Zr2_2335053082896.cif"
+  },
+  {
+    "id": 26,
+    "composition": {
+      "Li": 4,
+      "O": 10
+    },
+    "lattice_params": {
+      "a": 4.760537961235396,
+      "b": 5.183763272540002,
+      "c": 7.616741561288848,
+      "alpha": 76.73492379381854,
+      "beta": 52.7740960397845,
+      "gamma": 80.27826041957134
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335054122064,
+      2335055400016
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li4O10_2335024649232.cif"
+  },
+  {
+    "id": 27,
+    "composition": {
+      "Li": 5,
+      "Cl": 5,
+      "S": 4
+    },
+    "lattice_params": {
+      "a": 5.002933819880327,
+      "b": 7.977855554475767,
+      "c": 7.229276054220884,
+      "alpha": 80.58902462508478,
+      "beta": 112.85499983499106,
+      "gamma": 64.62545643141802
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335054270288,
+      2334947286288
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Cl5Li5S4_2335052977104.cif"
+  },
+  {
+    "id": 28,
+    "composition": {
+      "Zr": 1,
+      "Li": 2,
+      "O": 3
+    },
+    "lattice_params": {
+      "a": 6.032964974012155,
+      "b": 6.5023151114570545,
+      "c": 4.835045347879525,
+      "alpha": 51.47837941767748,
+      "beta": 94.79001085820036,
+      "gamma": 59.11823500653812
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2334996352080,
+      2335055513232
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O3Zr1_2335029084368.cif"
+  },
+  {
+    "id": 29,
+    "composition": {
+      "Li": 3,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 4.694024799591954,
+      "b": 5.73657077299748,
+      "c": 3.3619647297554915,
+      "alpha": 96.60939952268794,
+      "beta": 134.86626009780568,
+      "gamma": 53.96875559630735
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335055513232,
+      2335054278160
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li3O2_2335053607440.cif"
+  },
+  {
+    "id": 30,
+    "composition": {
+      "Ti": 2,
+      "Li": 3,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 6.293152464669618,
+      "b": 4.7795130991475325,
+      "c": 7.853716452472254,
+      "alpha": 129.1646191672135,
+      "beta": 67.07834809539716,
+      "gamma": 99.66136825613557
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335054450128,
+      2335054634896
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li3O4Ti2_2334996414096.cif"
+  },
+  {
+    "id": 31,
+    "composition": {
+      "Li": 2,
+      "S": 7,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 3.830405640935164,
+      "b": 7.12487228571177,
+      "c": 9.416705883269238,
+      "alpha": 77.83823629096703,
+      "beta": 48.933357759106904,
+      "gamma": 76.27797226453221
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335053792656,
+      2335021017936
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O2S7_2335053086352.cif"
+  },
+  {
+    "id": 32,
+    "composition": {
+      "P": 4,
+      "Li": 1,
+      "O": 5
+    },
+    "lattice_params": {
+      "a": 4.801791841219766,
+      "b": 7.05789375480488,
+      "c": 4.519576475967067,
+      "alpha": 90.70719990053142,
+      "beta": 86.76169490380421,
+      "gamma": 119.07820264660329
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335054107344,
+      2334987476560
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li1O5P4_2334996364304.cif"
+  },
+  {
+    "id": 33,
+    "composition": {
+      "Li": 6,
+      "S": 8,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 6.42743950450907,
+      "b": 6.42743950450907,
+      "c": 5.389856253787764,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 90.0
+    },
+    "space_group": 136,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335027801744,
+      2335055695312
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li6O2S8_2335053084752.cif"
+  },
+  {
+    "id": 34,
+    "composition": {
+      "Li": 2,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 5.064126841546719,
+      "b": 2.558581962525627,
+      "c": 4.986079049967314,
+      "alpha": 73.81460323737907,
+      "beta": 102.62147000760257,
+      "gamma": 67.37082829235936
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335054033552,
+      2335053792656
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O2_2335032368208.cif"
+  },
+  {
+    "id": 35,
+    "composition": {
+      "Al": 2,
+      "Li": 4,
+      "S": 6
+    },
+    "lattice_params": {
+      "a": 9.248395344633641,
+      "b": 6.8287440332821205,
+      "c": 4.0168123976626715,
+      "alpha": 81.8592638692611,
+      "beta": 99.26004971190335,
+      "gamma": 72.73112064719105
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335054122064,
+      2335029011152
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Al2Li4S6_2335032195536.cif"
+  },
+  {
+    "id": 36,
+    "composition": {
+      "Al": 2,
+      "Li": 4,
+      "S": 3,
+      "O": 6
+    },
+    "lattice_params": {
+      "a": 5.055206912602463,
+      "b": 6.97281922588795,
+      "c": 8.114878464970266,
+      "alpha": 93.00888200407704,
+      "beta": 92.8880567762866,
+      "gamma": 54.42416699895923
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335029011152,
+      2335054104208
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Al2Li4O6S3_2335053074448.cif"
+  },
+  {
+    "id": 37,
+    "composition": {
+      "P": 3,
+      "Li": 4,
+      "O": 6
+    },
+    "lattice_params": {
+      "a": 4.665981539286445,
+      "b": 5.642653762559632,
+      "c": 9.646326689948987,
+      "alpha": 131.65946162243677,
+      "beta": 78.42993230989376,
+      "gamma": 79.05260170378772
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335055400016,
+      2335053085264
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li4O6P3_2335054266832.cif"
+  },
+  {
+    "id": 38,
+    "composition": {
+      "Li": 3,
+      "F": 4,
+      "S": 1
+    },
+    "lattice_params": {
+      "a": 5.15777055097185,
+      "b": 6.676838713482223,
+      "c": 4.279254362952539,
+      "alpha": 80.78989341734076,
+      "beta": 64.51636605824527,
+      "gamma": 114.47665225882592
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 5,
+    "parent_ids": [
+      2335053956304,
+      2335053083280
+    ],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_F4Li3S1_2334996356048.cif"
+  },
+  {
+    "id": 39,
+    "composition": {
+      "Li": 8,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 4.423304361809513,
+      "b": 4.1418617684925225,
+      "c": 6.729442975891316,
+      "alpha": 90.0,
+      "beta": 88.82413782499897,
+      "gamma": 90.0
+    },
+    "space_group": 14,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li8O4_2335054500816.cif"
+  },
+  {
+    "id": 40,
+    "composition": {
+      "Li": 6,
+      "Ti": 2
+    },
+    "lattice_params": {
+      "a": 4.552571207584668,
+      "b": 4.552571207584668,
+      "c": 10.830428476260101,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 90.0
+    },
+    "space_group": 136,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li6Ti2_2335055236176.cif"
+  },
+  {
+    "id": 41,
+    "composition": {
+      "Li": 2,
+      "La": 2
+    },
+    "lattice_params": {
+      "a": 5.22747591487025,
+      "b": 5.22747591487025,
+      "c": 5.431788809645644,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 119.99999999999999
+    },
+    "space_group": 194,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_La2Li2_2335053152016.cif"
+  },
+  {
+    "id": 42,
+    "composition": {
+      "Li": 2,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 4.267883999654718,
+      "b": 4.752977102015652,
+      "c": 3.4434189554490766,
+      "alpha": 90.0,
+      "beta": 116.42531123007588,
+      "gamma": 90.0
+    },
+    "space_group": 14,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O4_2335055194832.cif"
+  },
+  {
+    "id": 43,
+    "composition": {
+      "Li": 5,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 6.977095552989567,
+      "b": 3.8271836754091826,
+      "c": 4.49732710923165,
+      "alpha": 109.33186626859846,
+      "beta": 99.16528960999422,
+      "gamma": 105.29274017599082
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li5O4_2335032675856.cif"
+  },
+  {
+    "id": 44,
+    "composition": {
+      "Li": 5,
+      "O": 3
+    },
+    "lattice_params": {
+      "a": 7.172147401181421,
+      "b": 4.624841375507658,
+      "c": 3.422503230886731,
+      "alpha": 82.90755791831172,
+      "beta": 95.68784295180349,
+      "gamma": 77.47871957053927
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li5O3_2334996108688.cif"
+  },
+  {
+    "id": 45,
+    "composition": {
+      "Li": 4,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 6.114846115088367,
+      "b": 4.7435733094901,
+      "c": 4.532469315161296,
+      "alpha": 90.0,
+      "beta": 65.14831056145117,
+      "gamma": 90.0
+    },
+    "space_group": 14,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li4O4_2335054744656.cif"
+  },
+  {
+    "id": 46,
+    "composition": {
+      "Li": 5,
+      "Zr": 4
+    },
+    "lattice_params": {
+      "a": 9.131993610574007,
+      "b": 5.0685548147829005,
+      "c": 7.245895124892005,
+      "alpha": 56.752864364436306,
+      "beta": 130.65365870287746,
+      "gamma": 95.93197475196357
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li5Zr4_2335053893072.cif"
+  },
+  {
+    "id": 47,
+    "composition": {
+      "Li": 1,
+      "O": 11
+    },
+    "lattice_params": {
+      "a": 5.6088686851857235,
+      "b": 4.090724020617311,
+      "c": 7.697436001025858,
+      "alpha": 80.67040858058921,
+      "beta": 85.1938992105112,
+      "gamma": 94.63609210797563
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li1O11_2335032676368.cif"
+  },
+  {
+    "id": 48,
+    "composition": {
+      "Li": 4,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 4.549338348698475,
+      "b": 4.549338348698475,
+      "c": 4.549338348698475,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 90.0
+    },
+    "space_group": 225,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li4O4_2335054515280.cif"
+  },
+  {
+    "id": 49,
+    "composition": {
+      "Li": 1,
+      "O": 1
+    },
+    "lattice_params": {
+      "a": 3.1629973077132543,
+      "b": 3.410842422736763,
+      "c": 4.566101272410252,
+      "alpha": 66.25395618837406,
+      "beta": 128.6138419623983,
+      "gamma": 79.53146670112454
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li1O1_2334996203152.cif"
+  },
+  {
+    "id": 50,
+    "composition": {
+      "Li": 2,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 2.9731778197555836,
+      "b": 2.9731778197555836,
+      "c": 4.399768236151067,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 119.99999999999999
+    },
+    "space_group": 194,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O2_2335053991376.cif"
+  },
+  {
+    "id": 51,
+    "composition": {
+      "Li": 6,
+      "O": 6
+    },
+    "lattice_params": {
+      "a": 4.645070088284276,
+      "b": 4.645070088284276,
+      "c": 5.853884369824006,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 119.99999999999999
+    },
+    "space_group": 167,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li6O6_2335054475408.cif"
+  },
+  {
+    "id": 52,
+    "composition": {
+      "Li": 2,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 3.8207589900251797,
+      "b": 4.119972822694918,
+      "c": 3.4245684809298202,
+      "alpha": 59.50124391993488,
+      "beta": 110.4578656025086,
+      "gamma": 119.47198822772657
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O4_2335053990992.cif"
+  },
+  {
+    "id": 53,
+    "composition": {
+      "Li": 6,
+      "O": 8
+    },
+    "lattice_params": {
+      "a": 8.95677517139695,
+      "b": 4.462080955925977,
+      "c": 5.3652631013947225,
+      "alpha": 90.0,
+      "beta": 67.84699897899685,
+      "gamma": 90.0
+    },
+    "space_group": 14,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li6O8_2335055760464.cif"
+  },
+  {
+    "id": 54,
+    "composition": {
+      "Li": 2,
+      "O": 11,
+      "P": 3
+    },
+    "lattice_params": {
+      "a": 5.050041180675576,
+      "b": 5.671409388537529,
+      "c": 7.367440452147787,
+      "alpha": 103.30295174581443,
+      "beta": 98.7733109236839,
+      "gamma": 91.41494742725313
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O11P3_2335054632208.cif"
+  },
+  {
+    "id": 55,
+    "composition": {
+      "Li": 8,
+      "O": 8
+    },
+    "lattice_params": {
+      "a": 7.328135209930631,
+      "b": 3.2206386513973966,
+      "c": 8.090882100887178,
+      "alpha": 90.0,
+      "beta": 76.7130350807181,
+      "gamma": 90.0
+    },
+    "space_group": 14,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li8O8_2335027803792.cif"
+  },
+  {
+    "id": 56,
+    "composition": {
+      "Li": 4,
+      "O": 7,
+      "Ti": 1
+    },
+    "lattice_params": {
+      "a": 7.450456806762294,
+      "b": 8.616788528877672,
+      "c": 3.4409593249618546,
+      "alpha": 69.86062625119825,
+      "beta": 107.7032327604894,
+      "gamma": 69.08429820937843
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li4O7Ti1_2335053597776.cif"
+  },
+  {
+    "id": 57,
+    "composition": {
+      "Li": 3,
+      "Al": 2
+    },
+    "lattice_params": {
+      "a": 2.412479444361513,
+      "b": 11.497829701266777,
+      "c": 4.755872438640335,
+      "alpha": 98.11446625103513,
+      "beta": 118.9449656793674,
+      "gamma": 101.38153744877633
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Al2Li3_2335054902672.cif"
+  },
+  {
+    "id": 58,
+    "composition": {
+      "Li": 2,
+      "O": 12
+    },
+    "lattice_params": {
+      "a": 5.769911456672667,
+      "b": 8.63362973518583,
+      "c": 4.668633249395695,
+      "alpha": 88.51852972309925,
+      "beta": 96.23903651265208,
+      "gamma": 52.267106109139085
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O12_2335055078736.cif"
+  },
+  {
+    "id": 59,
+    "composition": {
+      "Li": 6,
+      "O": 12
+    },
+    "lattice_params": {
+      "a": 5.1985352574049575,
+      "b": 5.1985352574049575,
+      "c": 4.885842533280233,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 90.0
+    },
+    "space_group": 136,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li6O12_2335053902928.cif"
+  },
+  {
+    "id": 60,
+    "composition": {
+      "Li": 2,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 2.9638752102624646,
+      "b": 4.991252940029112,
+      "c": 4.028446469105663,
+      "alpha": 90.0,
+      "beta": 98.58944001076917,
+      "gamma": 90.0
+    },
+    "space_group": 14,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O2_2335029882768.cif"
+  },
+  {
+    "id": 61,
+    "composition": {
+      "Li": 3,
+      "Ti": 3
+    },
+    "lattice_params": {
+      "a": 4.664901045414541,
+      "b": 4.664901045414541,
+      "c": 5.711417361465463,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 119.99999999999999
+    },
+    "space_group": 166,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li3Ti3_2335053139024.cif"
+  },
+  {
+    "id": 62,
+    "composition": {
+      "Li": 3,
+      "O": 1
+    },
+    "lattice_params": {
+      "a": 3.365920552221282,
+      "b": 3.4111905815020136,
+      "c": 4.408230493518454,
+      "alpha": 89.95615788521977,
+      "beta": 89.7124664083234,
+      "gamma": 117.63450654017117
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li3O1_2335055171216.cif"
+  },
+  {
+    "id": 63,
+    "composition": {
+      "Li": 4,
+      "Zr": 3,
+      "La": 3
+    },
+    "lattice_params": {
+      "a": 4.6158518341025445,
+      "b": 8.537724443915472,
+      "c": 9.578316338286223,
+      "alpha": 117.06183529309057,
+      "beta": 70.73925377273885,
+      "gamma": 78.31094963647678
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_La3Li4Zr3_2334996293648.cif"
+  },
+  {
+    "id": 64,
+    "composition": {
+      "Li": 8,
+      "O": 8
+    },
+    "lattice_params": {
+      "a": 4.326203076829387,
+      "b": 10.265565284507685,
+      "c": 6.185583250017646,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 90.0
+    },
+    "space_group": 63,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li8O8_2335054468048.cif"
+  },
+  {
+    "id": 65,
+    "composition": {
+      "Li": 3,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 3.6580075635303975,
+      "b": 3.3211043014944224,
+      "c": 6.196899097613589,
+      "alpha": 68.49604708108588,
+      "beta": 112.23569921670486,
+      "gamma": 116.56359952536341
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li3O2_2335053144016.cif"
+  },
+  {
+    "id": 66,
+    "composition": {
+      "Li": 1,
+      "O": 3
+    },
+    "lattice_params": {
+      "a": 5.916731081791016,
+      "b": 4.687832382185777,
+      "c": 2.1765804905123503,
+      "alpha": 81.30087221993357,
+      "beta": 96.28419556075448,
+      "gamma": 89.0395400903401
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li1O3_2335054627216.cif"
+  },
+  {
+    "id": 67,
+    "composition": {
+      "Li": 1,
+      "La": 3
+    },
+    "lattice_params": {
+      "a": 5.963710544519796,
+      "b": 6.222530673076414,
+      "c": 4.738007199152997,
+      "alpha": 92.8756356909301,
+      "beta": 115.93486957602599,
+      "gamma": 73.92974009221183
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_La3Li1_2335053081488.cif"
+  },
+  {
+    "id": 68,
+    "composition": {
+      "Li": 4,
+      "P": 4
+    },
+    "lattice_params": {
+      "a": 13.128326632417634,
+      "b": 4.955953944323268,
+      "c": 3.523741810619694,
+      "alpha": 57.03231782271729,
+      "beta": 93.86135901484506,
+      "gamma": 97.11164931796061
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li4P4_2335053958224.cif"
+  },
+  {
+    "id": 69,
+    "composition": {
+      "Li": 8,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 2.927408152588129,
+      "b": 5.032209704116651,
+      "c": 6.8175615366749724,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 90.0
+    },
+    "space_group": 63,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li8O4_2335032677648.cif"
+  },
+  {
+    "id": 70,
+    "composition": {
+      "Li": 2,
+      "O": 10
+    },
+    "lattice_params": {
+      "a": 5.204057016634691,
+      "b": 5.204057016634691,
+      "c": 6.428775691124413,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 119.99999999999999
+    },
+    "space_group": 194,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O10_2335055554960.cif"
+  },
+  {
+    "id": 71,
+    "composition": {
+      "Li": 3,
+      "P": 4
+    },
+    "lattice_params": {
+      "a": 3.7396339588564085,
+      "b": 5.694487002588546,
+      "c": 8.281797225846617,
+      "alpha": 87.8146844007404,
+      "beta": 93.80312303850621,
+      "gamma": 74.12818463029316
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li3P4_2335055758032.cif"
+  },
+  {
+    "id": 72,
+    "composition": {
+      "Li": 4,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 7.633109712878949,
+      "b": 4.502428912248239,
+      "c": 3.5598070326295943,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 90.0
+    },
+    "space_group": 63,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li4O4_2335055614928.cif"
+  },
+  {
+    "id": 73,
+    "composition": {
+      "Li": 7,
+      "O": 12
+    },
+    "lattice_params": {
+      "a": 6.778846021677193,
+      "b": 4.624830375017615,
+      "c": 7.6886833974454465,
+      "alpha": 91.90729637249939,
+      "beta": 106.46229941093324,
+      "gamma": 86.32227659429259
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li7O12_2335055920016.cif"
+  },
+  {
+    "id": 74,
+    "composition": {
+      "Li": 6,
+      "O": 2
+    },
+    "lattice_params": {
+      "a": 4.866785050105882,
+      "b": 4.091612301587788,
+      "c": 5.663453810060857,
+      "alpha": 101.69263991396681,
+      "beta": 120.11570370306461,
+      "gamma": 75.2064024631253
+    },
+    "space_group": 1,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li6O2_2334996180752.cif"
+  },
+  {
+    "id": 75,
+    "composition": {
+      "Li": 2,
+      "P": 3
+    },
+    "lattice_params": {
+      "a": 3.451263333059196,
+      "b": 5.608977692812098,
+      "c": 5.622376863200512,
+      "alpha": 76.9252163390132,
+      "beta": 62.47994274033619,
+      "gamma": 99.94774402826333
+    },
+    "space_group": 2,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2P3_2335055254480.cif"
+  },
+  {
+    "id": 76,
+    "composition": {
+      "Li": 2,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 4.6260711839569755,
+      "b": 4.6260711839569755,
+      "c": 3.3613767779951718,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 119.99999999999999
+    },
+    "space_group": 194,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li2O4_2335032674640.cif"
+  },
+  {
+    "id": 77,
+    "composition": {
+      "Li": 8,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 4.379908500740902,
+      "b": 9.12550703256967,
+      "c": 4.542386369329765,
+      "alpha": 90.0,
+      "beta": 66.12928092095446,
+      "gamma": 90.0
+    },
+    "space_group": 15,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li8O4_2335056009680.cif"
+  },
+  {
+    "id": 78,
+    "composition": {
+      "Li": 8,
+      "O": 4
+    },
+    "lattice_params": {
+      "a": 4.814206790058462,
+      "b": 5.225889158901378,
+      "c": 7.804529647723853,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 90.0
+    },
+    "space_group": 62,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li8O4_2335053959888.cif"
+  },
+  {
+    "id": 79,
+    "composition": {
+      "Li": 6,
+      "O": 8
+    },
+    "lattice_params": {
+      "a": 4.810542693530272,
+      "b": 4.810542693530272,
+      "c": 6.189673700085723,
+      "alpha": 90.0,
+      "beta": 90.0,
+      "gamma": 90.0
+    },
+    "space_group": 136,
+    "properties": {
+      "ionic_conductivity": 0.0,
+      "bandgap": 0.0,
+      "sei_score": 0.0,
+      "cei_score": 0.0,
+      "bulk_modulus": 0.0
+    },
+    "fitness": 0.0,
+    "generation": 4,
+    "parent_ids": [],
+    "cif_path": "electrolyte_ga_results\\cifs\\gen4_Li6O8_2335054745040.cif"
+  }
+]

@@ -1,0 +1,3 @@
+[submodule "generator/Pyxtal"]
+	path = generator/Pyxtal
+	url = https://github.com/MaterSim/PyXtal
