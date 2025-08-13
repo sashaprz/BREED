@@ -1,0 +1,74 @@
+_wandb:
+    value:
+        cli_version: 0.21.1
+        e:
+            94agzkryk7hzd672rb1sva714ixk6d1b:
+                args:
+                    - data=mp_20
+                    - expname=general_model
+                cpu_count: 120
+                cpu_count_logical: 120
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "32212254720"
+                        used: "30344331264"
+                executable: /workspace/conda_envs/cdvae/bin/python
+                git:
+                    commit: f857f598d6f6cca5dc1ea0582d228f12dcc2c2ea
+                    remote: https://github.com/txie-93/cdvae.git
+                gpu: NVIDIA GeForce RTX 5090
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Blackwell
+                      cudaCores: 21760
+                      memoryTotal: "34190917632"
+                      name: NVIDIA GeForce RTX 5090
+                      uuid: GPU-441e3e0c-0cf4-7acc-7c82-d51a901a8abe
+                host: 4669fdf3c93b
+                memory:
+                    total: "1014509735936"
+                os: Linux-6.11.0-26-generic-x86_64-with-glibc2.17
+                program: cdvae/run.py
+                python: CPython 3.8.20
+                root: .
+                startedAt: "2025-08-13T11:59:33.576174Z"
+                writerId: 94agzkryk7hzd672rb1sva714ixk6d1b
+        m:
+            - "1": trainer/global_step
+              "6":
+                - 3
+              "7": []
+            - "2": '*'
+              "5": 1
+              "6":
+                - 1
+              "7": []
+        python_version: 3.8.20
+        t:
+            "1":
+                - 1
+                - 5
+                - 9
+                - 50
+                - 53
+                - 77
+                - 103
+            "2":
+                - 1
+                - 5
+                - 9
+                - 50
+                - 53
+                - 77
+                - 103
+            "3":
+                - 1
+                - 7
+                - 13
+                - 15
+                - 66
+            "4": 3.8.20
+            "5": 0.21.1
+            "12": 0.21.1
+            "13": linux-x86_64
