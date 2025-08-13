@@ -179,85 +179,85 @@ def predict_single_cif(cif_file_path: str, verbose:bool = True) -> Dict[str, Any
     if verbose:
         print(f"Processing CIF: {os.path.basename(cif_file_path)}")
     
-     # Run SEI Prediction (with appropriate printing control)
-        try:
-            sei_results = run_sei_prediction(cif_file_path)
-            if sei_results is not None and 'sei_score' in sei_results:
-                results["sei_score"] = float(sei_results['sei_score'])
-                results["prediction_status"]["sei"] = "success"
-                if verbose:
-                    print(f"  SEI Score: {results['sei_score']:.3f}")
-            else:
-                if verbose:
-                    print("  SEI prediction failed or no score returned")
-        except Exception as e:
+    # Run SEI Prediction (with appropriate printing control)
+    try:
+        sei_results = run_sei_prediction(cif_file_path)
+        if sei_results is not None and 'sei_score' in sei_results:
+            results["sei_score"] = float(sei_results['sei_score'])
+            results["prediction_status"]["sei"] = "success"
             if verbose:
-                print(f"  SEI prediction failed: {e}")
-        
-        # Similarly for CEI, Bandgap, Bulk Modulus, Ionic Conductivity:
-        # Wrap all prints related to them inside `if verbose:` blocks
-        
-        # CEI Prediction
-        try:
-            cei_results = run_cei_prediction(cif_file_path)
-            if cei_results is not None and 'cei_score' in cei_results:
-                results["cei_score"] = float(cei_results['cei_score'])
-                results["prediction_status"]["cei"] = "success"
-                if verbose:
-                    print(f"  CEI Score: {results['cei_score']:.3f}")
-            else:
-                if verbose:
-                    print("  CEI prediction failed or no score returned")
-        except Exception as e:
+                print(f"  SEI Score: {results['sei_score']:.3f}")
+        else:
             if verbose:
-                print(f"  CEI prediction failed: {e}")
-        
-        # Bandgap Prediction
-        try:
-            bandgap_results = run_cgcnn_prediction(bandgap_model, cif_file_path)
-            if bandgap_results is not None and 'predictions' in bandgap_results and len(bandgap_results['predictions']) > 0:
-                results["bandgap"] = float(bandgap_results['predictions'][0])
-                results["prediction_status"]["bandgap"] = "success"
-                if verbose:
-                    print(f"  Bandgap: {results['bandgap']:.3f} eV")
-            else:
-                if verbose:
-                    print("  Bandgap prediction failed or no predictions returned")
-        except Exception as e:
+                print("  SEI prediction failed or no score returned")
+    except Exception as e:
+        if verbose:
+            print(f"  SEI prediction failed: {e}")
+    
+    # Similarly for CEI, Bandgap, Bulk Modulus, Ionic Conductivity:
+    # Wrap all prints related to them inside `if verbose:` blocks
+    
+    # CEI Prediction
+    try:
+        cei_results = run_cei_prediction(cif_file_path)
+        if cei_results is not None and 'cei_score' in cei_results:
+            results["cei_score"] = float(cei_results['cei_score'])
+            results["prediction_status"]["cei"] = "success"
             if verbose:
-                print(f"  Bandgap prediction failed: {e}")
-        
-        # Bulk Modulus Prediction
-        try:
-            bulk_results = run_cgcnn_prediction(bulk_model, cif_file_path)
-            if bulk_results is not None and 'predictions' in bulk_results and len(bulk_results['predictions']) > 0:
-                results["bulk_modulus"] = float(bulk_results['predictions'][0])
-                results["prediction_status"]["bulk_modulus"] = "success"
-                if verbose:
-                    print(f"  Bulk Modulus: {results['bulk_modulus']:.1f} GPa")
-            else:
-                if verbose:
-                    print("  Bulk modulus prediction failed or no predictions returned")
-        except Exception as e:
+                print(f"  CEI Score: {results['cei_score']:.3f}")
+        else:
             if verbose:
-                print(f"  Bulk modulus prediction failed: {e}")
-        
-        # Ionic Conductivity Prediction (Fine-tuned model)
-        try:
-            finetuned_results = run_finetuned_cgcnn_prediction(finetuned_model, dataset_root, cif_file_path)
-            if finetuned_results is not None and 'predictions' in finetuned_results and len(finetuned_results['predictions']) > 0:
-                results["ionic_conductivity"] = float(finetuned_results['predictions'][0])
-                results["prediction_status"]["ionic_conductivity"] = "success"
-                if verbose:
-                    print(f"  Ionic Conductivity: {results['ionic_conductivity']:.2e} S/cm")
-            else:
-                if verbose:
-                    print("  Ionic conductivity prediction failed or no predictions returned")
-        except Exception as e:
+                print("  CEI prediction failed or no score returned")
+    except Exception as e:
+        if verbose:
+            print(f"  CEI prediction failed: {e}")
+    
+    # Bandgap Prediction
+    try:
+        bandgap_results = run_cgcnn_prediction(bandgap_model, cif_file_path)
+        if bandgap_results is not None and 'predictions' in bandgap_results and len(bandgap_results['predictions']) > 0:
+            results["bandgap"] = float(bandgap_results['predictions'][0])
+            results["prediction_status"]["bandgap"] = "success"
             if verbose:
-                print(f"  Ionic conductivity prediction failed: {e}")
-        
-        return results
+                print(f"  Bandgap: {results['bandgap']:.3f} eV")
+        else:
+            if verbose:
+                print("  Bandgap prediction failed or no predictions returned")
+    except Exception as e:
+        if verbose:
+            print(f"  Bandgap prediction failed: {e}")
+    
+    # Bulk Modulus Prediction
+    try:
+        bulk_results = run_cgcnn_prediction(bulk_model, cif_file_path)
+        if bulk_results is not None and 'predictions' in bulk_results and len(bulk_results['predictions']) > 0:
+            results["bulk_modulus"] = float(bulk_results['predictions'][0])
+            results["prediction_status"]["bulk_modulus"] = "success"
+            if verbose:
+                print(f"  Bulk Modulus: {results['bulk_modulus']:.1f} GPa")
+        else:
+            if verbose:
+                print("  Bulk modulus prediction failed or no predictions returned")
+    except Exception as e:
+        if verbose:
+            print(f"  Bulk modulus prediction failed: {e}")
+    
+    # Ionic Conductivity Prediction (Fine-tuned model)
+    try:
+        finetuned_results = run_finetuned_cgcnn_prediction(finetuned_model, dataset_root, cif_file_path)
+        if finetuned_results is not None and 'predictions' in finetuned_results and len(finetuned_results['predictions']) > 0:
+            results["ionic_conductivity"] = float(finetuned_results['predictions'][0])
+            results["prediction_status"]["ionic_conductivity"] = "success"
+            if verbose:
+                print(f"  Ionic Conductivity: {results['ionic_conductivity']:.2e} S/cm")
+        else:
+            if verbose:
+                print("  Ionic conductivity prediction failed or no predictions returned")
+    except Exception as e:
+        if verbose:
+            print(f"  Ionic conductivity prediction failed: {e}")
+    
+    return results
 
 
 def main():

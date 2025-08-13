@@ -1,0 +1,50 @@
+# generated using pymatgen
+data_K3Li2Zr4(Se2Cl3)3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.76961162
+_cell_length_b   7.76961162
+_cell_length_c   10.96469528
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   120.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   K3Li2Zr4(Se2Cl3)3
+_chemical_formula_sum   'K3 Li2 Zr4 Se6 Cl9'
+_cell_volume   573.22591873
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cl  Cl0  1  0.92976993  0.01252389  0.45106646  1
+  Cl  Cl1  1  -0.01252389  0.91724603  0.45106646  1
+  Cl  Cl2  1  -0.91724603  -0.92976993  0.45106646  1
+  Cl  Cl3  1  -0.01252389  -0.92976993  -0.45106646  1
+  Cl  Cl4  1  -0.91724603  0.01252389  -0.45106646  1
+  Cl  Cl5  1  0.92976993  0.91724603  -0.45106646  1
+  Cl  Cl6  1  0.28761956  0.71238044  0.50000000  1
+  Cl  Cl7  1  0.28761956  0.57523912  0.50000000  1
+  Cl  Cl8  1  0.42476088  0.71238044  0.50000000  1
+  K  K9  1  0.89513803  0.10486197  0.00000000  1
+  K  K10  1  0.89513803  0.79027606  0.00000000  1
+  K  K11  1  0.20972394  0.10486197  0.00000000  1
+  Li  Li12  1  0.66666667  0.33333333  0.59541240  1
+  Li  Li13  1  0.66666667  0.33333333  0.40458760  1
+  Se  Se14  1  0.20900506  0.45784475  0.28897282  1
+  Se  Se15  1  0.54215525  0.75116031  0.28897282  1
+  Se  Se16  1  0.24883969  0.79099494  0.28897282  1
+  Se  Se17  1  0.54215525  0.79099494  0.71102718  1
+  Se  Se18  1  0.24883969  0.45784475  0.71102718  1
+  Se  Se19  1  0.20900506  0.75116031  0.71102718  1
+  Zr  Zr20  1  0.66666667  0.33333333  0.00000000  1
+  Zr  Zr21  1  0.33333333  0.66666667  0.00000000  1
+  Zr  Zr22  1  0.66666667  0.33333333  0.22770908  1
+  Zr  Zr23  1  0.66666667  0.33333333  0.77229092  1

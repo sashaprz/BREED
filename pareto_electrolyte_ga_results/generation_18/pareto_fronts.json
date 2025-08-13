@@ -1,0 +1,1707 @@
+[
+  {
+    "front_index": 0,
+    "size": 80,
+    "candidates": [
+      {
+        "composition": {
+          "F": 64,
+          "Li": 64
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": Infinity
+      },
+      {
+        "composition": {
+          "Li": 34,
+          "F": 34
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 64
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 22,
+          "F": 22
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 44,
+          "F": 44
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 2,
+          "F": 2
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 64,
+          "F": 64
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 32,
+          "F": 32
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 42,
+          "F": 42
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 16,
+          "Ca": 24
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 64
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Te": 24,
+          "Li": 96
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 43,
+          "F": 43
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 25,
+          "F": 25
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 2,
+          "F": 2
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 6,
+          "F": 6
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 8,
+          "Li": 8
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 6,
+          "Li": 6
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 2,
+          "Li": 2
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 16,
+          "Ca": 24
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Te": 24,
+          "Li": 96
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 8,
+          "Li": 8
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 12,
+          "Li": 12
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Li": 48
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 12,
+          "Li": 12
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Ca": 18,
+          "F": 54,
+          "Li": 18
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 12,
+          "F": 12
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 12,
+          "Li": 12
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Se": 4,
+          "F": 8,
+          "Ca": 4,
+          "Li": 8
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Ca": 18,
+          "F": 54,
+          "Li": 18
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 12,
+          "Li": 12
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Ca": 18,
+          "F": 54,
+          "Li": 18
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Ca": 18,
+          "F": 54,
+          "Li": 18
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 12,
+          "F": 12
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 2,
+          "Li": 2
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 2,
+          "Li": 2
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 5,
+          "F": 5
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 6,
+          "Li": 6
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Te": 24,
+          "Li": 96
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Ca": 18,
+          "F": 54,
+          "Li": 18
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 12,
+          "Li": 12
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 9,
+          "F": 9
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 2,
+          "Li": 2
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 12,
+          "Li": 12
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 16,
+          "Ca": 24
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 9,
+          "F": 9
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 30,
+          "F": 30
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Li": 48
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 8,
+          "Li": 8
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 64
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 3,
+          "F": 3
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 12,
+          "Li": 12
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 36,
+          "F": 36
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Li": 48
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Te": 24,
+          "Li": 96
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 2,
+          "Li": 2
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 8,
+          "Li": 8
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 10,
+          "F": 10
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 64
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 64
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Te": 24,
+          "Li": 96
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 34,
+          "F": 34
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 64,
+          "F": 64
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Li": 48
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Ca": 18,
+          "F": 54,
+          "Li": 18
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 3,
+          "F": 3
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 2,
+          "Li": 2
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 3,
+          "F": 3
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 64
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 6,
+          "Li": 6
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Li": 48
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 16,
+          "F": 16
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 16,
+          "Ca": 24
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 48,
+          "Te": 24,
+          "Li": 96
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 28,
+          "F": 28
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 42,
+          "F": 42
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 30,
+          "F": 30
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 8,
+          "F": 8
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "Li": 8,
+          "F": 8
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      },
+      {
+        "composition": {
+          "F": 64,
+          "Li": 16,
+          "Ca": 24
+        },
+        "properties": {
+          "ionic_conductivity": 0.0,
+          "bandgap": 0.0,
+          "sei_score": 0.7949999999999999,
+          "cei_score": 0.7825,
+          "bulk_modulus": 0.0
+        },
+        "objectives": [
+          10.0,
+          1.0,
+          0.1050000000000001,
+          0.0675,
+          1.0
+        ],
+        "crowding_distance": 0.0
+      }
+    ]
+  }
+]

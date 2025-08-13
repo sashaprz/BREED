@@ -1,0 +1,50 @@
+# generated using pymatgen
+data_Li2CaSeF2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.47159929
+_cell_length_b   12.36500405
+_cell_length_c   7.28945130
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2CaSeF2
+_chemical_formula_sum   'Li8 Ca4 Se4 F8'
+_cell_volume   403.04355392
+_cell_formula_units_Z   4
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ca  Ca0  1  0.88323550  0.25000000  0.07116423  1
+  Ca  Ca1  1  0.61676450  0.75000000  0.57116423  1
+  Ca  Ca2  1  0.11676450  0.75000000  0.92883577  1
+  Ca  Ca3  1  0.38323550  0.25000000  0.42883577  1
+  F  F4  1  0.17257869  0.42320307  0.25138249  1
+  F  F5  1  0.32742131  -0.42320307  0.75138249  1
+  F  F6  1  -0.17257869  0.92320307  -0.25138249  1
+  F  F7  1  0.67257869  0.07679693  0.24861751  1
+  F  F8  1  -0.17257869  -0.42320307  -0.25138249  1
+  F  F9  1  0.67257869  0.42320307  0.24861751  1
+  F  F10  1  0.17257869  0.07679693  0.25138249  1
+  F  F11  1  0.32742131  0.92320307  0.75138249  1
+  Li  Li12  1  0.22768393  0.25000000  0.71265758  1
+  Li  Li13  1  0.27231607  0.75000000  0.21265758  1
+  Li  Li14  1  0.77231607  0.75000000  0.28734242  1
+  Li  Li15  1  0.72768393  0.25000000  0.78734242  1
+  Li  Li16  1  0.92356295  0.25000000  0.52421143  1
+  Li  Li17  1  0.57643705  0.75000000  0.02421143  1
+  Li  Li18  1  0.07643705  0.75000000  0.47578857  1
+  Li  Li19  1  0.42356295  0.25000000  0.97578857  1
+  Se  Se20  1  0.00000000  0.00000000  0.50000000  1
+  Se  Se21  1  0.50000000  0.00000000  -0.00000000  1
+  Se  Se22  1  0.00000000  0.50000000  0.50000000  1
+  Se  Se23  1  0.50000000  0.50000000  0.00000000  1

@@ -1,0 +1,53 @@
+# generated using pymatgen
+data_Li2Te
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.86582505
+_cell_length_b   8.86582505
+_cell_length_c   8.71608335
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   120.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Te
+_chemical_formula_sum   'Li18 Te9'
+_cell_volume   593.32182031
+_cell_formula_units_Z   9
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.15270546  -0.15270546  0.60702832  1
+  Li  Li1  1  0.15270546  0.30541092  0.60702832  1
+  Li  Li2  1  -0.30541092  -0.15270546  0.60702832  1
+  Li  Li3  1  -0.15270546  0.15270546  -0.60702832  1
+  Li  Li4  1  0.30541092  0.15270546  -0.60702832  1
+  Li  Li5  1  -0.15270546  -0.30541092  -0.60702832  1
+  Li  Li6  1  0.81937213  0.18062787  0.94036165  1
+  Li  Li7  1  0.81937213  0.63874426  0.94036165  1
+  Li  Li8  1  0.36125574  0.18062787  0.94036165  1
+  Li  Li9  1  0.51396121  0.48603879  -0.27369499  1
+  Li  Li10  1  0.97207759  0.48603879  -0.27369499  1
+  Li  Li11  1  0.51396121  0.02792241  -0.27369499  1
+  Li  Li12  1  0.48603879  0.51396121  1.27369499  1
+  Li  Li13  1  0.48603879  0.97207759  1.27369499  1
+  Li  Li14  1  0.02792241  0.51396121  1.27369499  1
+  Li  Li15  1  0.18062787  0.81937213  0.05963835  1
+  Li  Li16  1  0.63874426  0.81937213  0.05963835  1
+  Li  Li17  1  0.18062787  0.36125574  0.05963835  1
+  Te  Te18  1  0.50000000  0.00000000  0.50000000  1
+  Te  Te19  1  0.00000000  0.50000000  0.50000000  1
+  Te  Te20  1  0.50000000  0.50000000  0.50000000  1
+  Te  Te21  1  0.16666667  0.33333333  0.83333333  1
+  Te  Te22  1  0.66666667  0.83333333  0.83333333  1
+  Te  Te23  1  0.16666667  0.83333333  0.83333333  1
+  Te  Te24  1  0.83333333  0.66666667  0.16666667  1
+  Te  Te25  1  0.33333333  0.16666667  0.16666667  1
+  Te  Te26  1  0.83333333  0.16666667  0.16666667  1
