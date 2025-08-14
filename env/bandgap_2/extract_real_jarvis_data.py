@@ -45,6 +45,11 @@ def extract_paired_bandgaps(dft_data, max_entries=None):
         if processed % 1000 == 0:
             print(f"   Processed {processed}/{len(dft_data)} entries... Found {len(paired_entries)} paired entries")
         
+        # Debug: Show first few entries in detail
+        if processed <= 20:
+            jid = entry.get('jid', 'unknown')
+            print(f"   DEBUG Entry {processed}: {jid}")
+        
         # Stop if max_entries reached
         if max_entries and len(paired_entries) >= max_entries:
             print(f"   Reached maximum of {max_entries} paired entries")
@@ -58,6 +63,20 @@ def extract_paired_bandgaps(dft_data, max_entries=None):
             hse_gap = entry.get("hse_gap", None)
             mbj_gap = entry.get("mbj_bandgap", None)  # meta-GGA TBmBJ
             gw_gap = entry.get("gw_bandgap", None)    # GW approximation
+            
+            # Convert "na" strings to None and ensure numeric values
+            def clean_value(val):
+                if val is None or val == "na" or val == "":
+                    return None
+                try:
+                    return float(val)
+                except (ValueError, TypeError):
+                    return None
+            
+            pbe_gap = clean_value(pbe_gap)
+            hse_gap = clean_value(hse_gap)
+            mbj_gap = clean_value(mbj_gap)
+            gw_gap = clean_value(gw_gap)
             
             # Choose the first available high-fidelity gap
             high_gap = None
@@ -73,37 +92,59 @@ def extract_paired_bandgaps(dft_data, max_entries=None):
                 high_gap = gw_gap
                 gap_type = "GW"
             
+            # Debug: Show detailed info for first few entries
+            if processed <= 20:
+                print(f"      PBE: {pbe_gap}, HSE: {hse_gap}, mBJ: {mbj_gap}, GW: {gw_gap}")
+                print(f"      High gap: {high_gap} ({gap_type})")
+                print(f"      Has paired data: {pbe_gap is not None and high_gap is not None}")
+            
             # Only proceed if we have both PBE and high-fidelity gaps
             if pbe_gap is not None and high_gap is not None:
                 
-                # Get crystal structure
-                atoms = Atoms.from_dict(entry["atoms"])
-                formula = atoms.composition.reduced_formula
+                if processed <= 20:
+                    print(f"      ✅ FOUND PAIRED DATA: {entry['jid']}")
                 
-                # Generate CIF file
-                cif_str = atoms.write_cif()
-                cif_filename = f"{entry['jid']}.cif"
-                cif_path = cif_dir / cif_filename
-                
-                # Save CIF file
-                with open(cif_path, "w") as f:
-                    f.write(cif_str)
-                
-                # Calculate correction
-                correction = high_gap - pbe_gap
-                
-                paired_entries.append({
-                    "material_id": entry["jid"],
-                    "formula": formula,
-                    "cif_path": str(cif_path),
-                    "pbe_bandgap": round(pbe_gap, 3),
-                    "hse_bandgap": round(high_gap, 3),
-                    "gap_type": gap_type,
-                    "correction": round(correction, 3),
-                    "formation_energy": entry.get("formation_energy_peratom", None),
-                    "total_energy": entry.get("total_energy", None),
-                    "spacegroup": entry.get("spg_symbol", None)
-                })
+                try:
+                    # Get crystal structure
+                    atoms = Atoms.from_dict(entry["atoms"])
+                    formula = atoms.composition.reduced_formula
+                    
+                    # Generate CIF file
+                    cif_str = atoms.write_cif()
+                    cif_filename = f"{entry['jid']}.cif"
+                    cif_path = cif_dir / cif_filename
+                    
+                    # Save CIF file (handle None case)
+                    if cif_str is not None:
+                        with open(cif_path, "w") as f:
+                            f.write(cif_str)
+                    else:
+                        # Create a placeholder CIF path if CIF generation fails
+                        cif_path = f"FAILED_{entry['jid']}.cif"
+                    
+                    # Calculate correction
+                    correction = high_gap - pbe_gap
+                    
+                    paired_entries.append({
+                        "material_id": entry["jid"],
+                        "formula": formula,
+                        "cif_path": str(cif_path),
+                        "pbe_bandgap": round(pbe_gap, 3),
+                        "hse_bandgap": round(high_gap, 3),
+                        "gap_type": gap_type,
+                        "correction": round(correction, 3),
+                        "formation_energy": entry.get("formation_energy_peratom", None),
+                        "total_energy": entry.get("total_energy", None),
+                        "spacegroup": entry.get("spg_symbol", None)
+                    })
+                    
+                    if processed <= 20:
+                        print(f"      ✅ SUCCESSFULLY ADDED: {entry['jid']} (Total: {len(paired_entries)})")
+                        
+                except Exception as e:
+                    if processed <= 20:
+                        print(f"      ❌ ERROR processing {entry['jid']}: {e}")
+                    continue
                 
         except Exception as e:
             # Skip problematic entries

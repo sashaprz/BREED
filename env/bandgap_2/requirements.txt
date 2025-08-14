@@ -2,6 +2,9 @@
 mp-api>=0.41.0
 pymatgen>=2023.1.1
 
+# JARVIS-DFT database access
+jarvis-tools>=2023.1.8
+
 # Data processing
 pandas>=1.5.0
 numpy>=1.21.0

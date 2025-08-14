@@ -1,0 +1,26 @@
+{
+  "total_entries": 19808,
+  "pbe_bandgap_stats": {
+    "mean": 0.972,
+    "min": 0.0,
+    "max": 17.968,
+    "std_dev": 1.602
+  },
+  "hse_bandgap_stats": {
+    "mean": 1.482,
+    "min": 0.0,
+    "max": 32.563,
+    "std_dev": 2.348
+  },
+  "correction_stats": {
+    "mean": 0.51,
+    "median": 0.0,
+    "min": -0.1,
+    "max": 26.547,
+    "std_dev": 0.994
+  },
+  "gap_type_distribution": {
+    "mBJ": 19752,
+    "HSE": 56
+  }
+}
