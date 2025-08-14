@@ -1,4 +1,0 @@
-crystal_id,structure_type,formula,num_atoms,volume,density,space_group,lattice_a,lattice_b,lattice_c,alpha,beta,gamma,cif_file
-cdvae_001,perovskite,BaTiO3,5,64.48120099999998,6.005234892048623,221,4.01,4.01,4.01,90.0,90.0,90.0,cdvae_001_perovskite.cif
-cdvae_002,spinel,MgAl2O2,5,527.514112,0.3471043772618254,166,8.08,8.08,8.08,90.0,90.0,90.0,cdvae_002_spinel.cif
-cdvae_003,layered,Li3Cl,4,65.93763098687762,1.4172255677577947,156,3.51,3.51,6.18,90.0,90.0,120.0,cdvae_003_layered.cif
