@@ -1,0 +1,34 @@
+# generated using pymatgen
+data_LiTa3Cl4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.29732140
+_cell_length_b   6.15356469
+_cell_length_c   6.52786926
+_cell_angle_alpha   71.19919961
+_cell_angle_beta   68.67497505
+_cell_angle_gamma   63.50596955
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiTa3Cl4
+_chemical_formula_sum   'Li1 Ta3 Cl4'
+_cell_volume   404.17230635
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.92350944  0.03628115  0.08983351  1
+  Ta  Ta1  1  0.13267610  0.19437986  0.38750417  1
+  Ta  Ta2  1  0.34246747  0.40358625  0.57284173  1
+  Ta  Ta3  1  0.45912734  0.67499059  0.03183638  1
+  Cl  Cl4  1  0.49858394  0.79780246  0.33244048  1
+  Cl  Cl5  1  0.53112481  0.04930492  0.58557752  1
+  Cl  Cl6  1  0.71551049  0.21496555  0.98000586  1
+  Cl  Cl7  1  0.78047120  0.45377668  0.37822513  1

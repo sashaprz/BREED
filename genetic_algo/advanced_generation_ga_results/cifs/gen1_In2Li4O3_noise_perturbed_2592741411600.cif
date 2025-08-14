@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_Li4In2O3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   11.70544942
+_cell_length_b   4.29040007
+_cell_length_c   11.19583369
+_cell_angle_alpha   68.32790024
+_cell_angle_beta   113.16321258
+_cell_angle_gamma   68.32578866
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li4In2O3
+_chemical_formula_sum   'Li4 In2 O3'
+_cell_volume   383.49448031
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.09255849  0.01682022  0.95630988  1
+  Li  Li1  1  0.03849059  0.26529237  0.27829353  1
+  Li  Li2  1  0.13802092  0.44257979  0.65659408  1
+  Li  Li3  1  0.38328599  0.61673371  0.85133359  1
+  In  In4  1  0.42950837  0.78283046  0.07053393  1
+  In  In5  1  0.62820554  0.84356686  0.44678827  1
+  O  O6  1  0.67495567  0.07006774  0.68731970  1
+  O  O7  1  0.85223425  0.19213590  0.10916391  1
+  O  O8  1  0.84900740  0.40093633  0.28376690  1

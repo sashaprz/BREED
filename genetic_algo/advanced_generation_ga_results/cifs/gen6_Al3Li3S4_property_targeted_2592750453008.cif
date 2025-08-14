@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li3Al3S4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   13.77788198
+_cell_length_b   13.77788198
+_cell_length_c   14.14522045
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3Al3S4
+_chemical_formula_sum   'Li3 Al3 S4'
+_cell_volume   2685.18765131
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.08252782  0.94512132  0.98174573  1
+  Li  Li1  1  0.12621665  0.19039060  0.28155326  1
+  Li  Li2  1  0.16915964  0.33700141  0.44876655  1
+  Al  Al3  1  0.30015310  0.54096795  0.72057538  1
+  Al  Al4  1  0.42821433  0.65818831  0.05158700  1
+  Al  Al5  1  0.59069053  0.81733737  0.33043593  1
+  S  S6  1  0.59394895  0.91651782  0.57088132  1
+  S  S7  1  0.77275372  0.12999678  0.83869914  1
+  S  S8  1  0.88905340  0.26335984  0.08214476  1
+  S  S9  1  0.95530388  0.49378384  0.37082863  1

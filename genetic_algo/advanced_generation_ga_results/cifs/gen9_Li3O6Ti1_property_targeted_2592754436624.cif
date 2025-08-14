@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li3TiO6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   14.26191274
+_cell_length_b   14.26191274
+_cell_length_c   15.62666005
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3TiO6
+_chemical_formula_sum   'Li3 Ti1 O6'
+_cell_volume   3178.49633029
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.07552118  0.02053425  0.07977196  1
+  Li  Li1  1  0.08297701  0.22279974  0.32885735  1
+  Li  Li2  1  0.11458952  0.25531587  0.56858211  1
+  Ti  Ti3  1  0.20482182  0.52841407  0.75282727  1
+  O  O4  1  0.30447033  0.64600803  0.09690875  1
+  O  O5  1  0.49693658  0.74927618  0.20984807  1
+  O  O6  1  0.64515307  0.92330271  0.50204881  1
+  O  O7  1  0.61156665  0.04833647  0.74555813  1
+  O  O8  1  0.74551732  0.23166816  0.05188668  1
+  O  O9  1  0.80848273  0.39066039  0.30422747  1

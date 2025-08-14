@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_Li5TiCl3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.88473857
+_cell_length_b   8.88473857
+_cell_length_c   8.82315822
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5TiCl3
+_chemical_formula_sum   'Li5 Ti1 Cl3'
+_cell_volume   696.48757622
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.08456101  0.97299573  0.07821673  1
+  Li  Li1  1  0.05027235  0.26656329  0.21427004  1
+  Li  Li2  1  0.15989502  0.27470423  0.62480531  1
+  Li  Li3  1  0.42857773  0.59365683  0.81821702  1
+  Li  Li4  1  0.38190817  0.79343897  0.19714995  1
+  Ti  Ti5  1  0.60965274  0.92197461  0.52330138  1
+  Cl  Cl6  1  0.64719378  0.05606411  0.81673403  1
+  Cl  Cl7  1  0.84380152  0.33368973  0.97341886  1
+  Cl  Cl8  1  0.92839077  0.38701614  0.36267128  1

@@ -1,0 +1,45 @@
+# generated using pymatgen
+data_K5La3In3(Br3Cl)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   11.53237324
+_cell_length_b   13.39388241
+_cell_length_c   12.82208178
+_cell_angle_alpha   78.17673432
+_cell_angle_beta   106.54219388
+_cell_angle_gamma   90.49967905
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   K5La3In3(Br3Cl)2
+_chemical_formula_sum   'K5 La3 In3 Br6 Cl2'
+_cell_volume   1855.68696903
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  K  K0  1  0.05746372  0.09764613  0.95017760  1
+  K  K1  1  0.13713220  0.00606283  0.13927016  1
+  K  K2  1  0.10319423  0.22029129  0.37129261  1
+  K  K3  1  0.10152108  0.32760840  0.37081743  1
+  K  K4  1  0.31012398  0.42966103  0.49916294  1
+  In  In5  1  0.28624039  0.33414124  0.71925315  1
+  In  In6  1  0.37284481  0.59308849  0.81040633  1
+  In  In7  1  0.39338302  0.63680513  0.05274071  1
+  La  La8  1  0.42352463  0.68443242  0.14436188  1
+  La  La9  1  0.38770634  0.84672139  0.16649482  1
+  La  La10  1  0.57285904  0.92571054  0.32386532  1
+  Br  Br11  1  0.54652794  0.93925121  0.42287405  1
+  Br  Br12  1  0.69130441  0.03528542  0.57531703  1
+  Br  Br13  1  0.76796897  0.12614451  0.79314799  1
+  Br  Br14  1  0.83434643  0.11195610  0.83517571  1
+  Br  Br15  1  0.84923186  0.28149258  0.00690265  1
+  Br  Br16  1  0.81087850  0.38961163  0.23076036  1
+  Cl  Cl17  1  0.80757005  0.41036668  0.24989429  1
+  Cl  Cl18  1  0.91960312  0.59816356  0.51962679  1

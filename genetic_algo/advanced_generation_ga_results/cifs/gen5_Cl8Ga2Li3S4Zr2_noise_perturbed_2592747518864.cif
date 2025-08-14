@@ -1,0 +1,45 @@
+# generated using pymatgen
+data_Li3Zr2Ga2(SCl2)4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   11.15487722
+_cell_length_b   3.73972023
+_cell_length_c   6.44753838
+_cell_angle_alpha   88.68216475
+_cell_angle_beta   93.69294784
+_cell_angle_gamma   97.29505922
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3Zr2Ga2(SCl2)4
+_chemical_formula_sum   'Li3 Zr2 Ga2 S4 Cl8'
+_cell_volume   266.20529470
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.99690231  0.06518933  0.97816498  1
+  Li  Li1  1  0.13179520  0.13728578  0.19666894  1
+  Li  Li2  1  0.01795002  0.17032967  0.19342608  1
+  Ga  Ga3  1  0.13253076  0.18499935  0.41158809  1
+  Ga  Ga4  1  0.18436707  0.43899400  0.55742989  1
+  Zr  Zr5  1  0.18791047  0.34227807  0.75751382  1
+  Zr  Zr6  1  0.25903149  0.54428465  0.82806489  1
+  S  S7  1  0.37700090  0.59854459  0.97973437  1
+  S  S8  1  0.46168231  0.60399466  0.16483767  1
+  S  S9  1  0.46544770  0.68489685  0.27893329  1
+  S  S10  1  0.45315954  0.91426795  0.33782137  1
+  Cl  Cl11  1  0.62384673  0.97554842  0.44226542  1
+  Cl  Cl12  1  0.54066292  0.05850533  0.66284480  1
+  Cl  Cl13  1  0.71836900  0.20501880  0.82737515  1
+  Cl  Cl14  1  0.68572106  0.24267859  0.85480284  1
+  Cl  Cl15  1  0.82333363  0.29366696  0.16318564  1
+  Cl  Cl16  1  0.76995399  0.38160486  0.23411361  1
+  Cl  Cl17  1  0.80586816  0.46072073  0.34101113  1
+  Cl  Cl18  1  0.04535402  0.55662211  0.38026988  1

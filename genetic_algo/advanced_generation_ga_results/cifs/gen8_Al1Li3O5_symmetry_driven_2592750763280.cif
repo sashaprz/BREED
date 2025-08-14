@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_Li3AlO5
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   11.25105550
+_cell_length_b   11.25105550
+_cell_length_c   12.47076032
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   120.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3AlO5
+_chemical_formula_sum   'Li3 Al1 O5'
+_cell_volume   1367.13089610
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.08740933  0.03065905  0.98737138  1
+  Li  Li1  1  0.01459618  0.17970712  0.22200782  1
+  Li  Li2  1  0.18721410  0.42077617  0.67211268  1
+  Al  Al3  1  0.30604677  0.56965061  0.95269332  1
+  O  O4  1  0.52087606  0.71124392  0.17723284  1
+  O  O5  1  0.64229543  0.88042461  0.45900447  1
+  O  O6  1  0.60893111  0.07483431  0.68605065  1
+  O  O7  1  0.78426999  0.28577669  0.03514308  1
+  O  O8  1  0.93124081  0.50070866  0.28592596  1

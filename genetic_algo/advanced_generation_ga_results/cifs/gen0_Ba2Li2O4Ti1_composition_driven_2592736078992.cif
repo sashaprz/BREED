@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_Ba2Li2TiO4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.02962157
+_cell_length_b   4.14949385
+_cell_length_c   4.30599091
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Ba2Li2TiO4
+_chemical_formula_sum   'Ba2 Li2 Ti1 O4'
+_cell_volume   72.00000000
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.02543043  0.06014848  0.04594630  1
+  Li  Li1  1  0.03469879  0.08914257  0.32643024  1
+  Ti  Ti2  1  0.26519012  0.38858379  0.56127528  1
+  O  O3  1  0.34828340  0.59831150  0.91800089  1
+  O  O4  1  0.44303813  0.75411464  0.20653178  1
+  O  O5  1  0.58493967  0.87931535  0.47742062  1
+  O  O6  1  0.64762332  0.08962102  0.66747897  1
+  Ba  Ba7  1  0.80173564  0.18380705  0.03857634  1
+  Ba  Ba8  1  0.79690595  0.46100046  0.26301932  1

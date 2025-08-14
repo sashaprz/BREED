@@ -1,0 +1,34 @@
+# generated using pymatgen
+data_LiZrGaN5
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   14.72657677
+_cell_length_b   3.52504351
+_cell_length_c   14.82393462
+_cell_angle_alpha   69.32769442
+_cell_angle_beta   78.86044981
+_cell_angle_gamma   71.74171844
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiZrGaN5
+_chemical_formula_sum   'Li1 Zr1 Ga1 N5'
+_cell_volume   680.78110372
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.02848201  0.07414465  0.03468813  1
+  Ga  Ga1  1  0.05425209  0.17839610  0.29007393  1
+  Zr  Zr2  1  0.28140127  0.33096795  0.67730912  1
+  N  N3  1  0.34797217  0.58041592  0.97418314  1
+  N  N4  1  0.56252539  0.78533015  0.22429654  1
+  N  N5  1  0.66522263  0.05496567  0.60002889  1
+  N  N6  1  0.83516906  0.28634029  0.88824716  1
+  N  N7  1  0.78391244  0.36146423  0.22165673  1

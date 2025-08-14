@@ -1,0 +1,46 @@
+# generated using pymatgen
+data_Li5TiGa2(SBr2)4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.34764278
+_cell_length_b   9.37123808
+_cell_length_c   14.30268692
+_cell_angle_alpha   60.38424803
+_cell_angle_beta   87.62580978
+_cell_angle_gamma   66.13616162
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5TiGa2(SBr2)4
+_chemical_formula_sum   'Li5 Ti1 Ga2 S4 Br8'
+_cell_volume   1289.37444585
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.91040988  0.96161100  0.01618799  1
+  Li  Li1  1  0.11276067  0.99199418  0.17861868  1
+  Li  Li2  1  0.15396112  0.06821582  0.25862334  1
+  Li  Li3  1  0.22926240  0.23846865  0.35802347  1
+  Li  Li4  1  0.25121983  0.35840465  0.45577457  1
+  Ti  Ti5  1  0.27345136  0.33674150  0.66203571  1
+  Ga  Ga6  1  0.25792516  0.56295895  0.88181577  1
+  Ga  Ga7  1  0.28366566  0.49753210  0.99638823  1
+  S  S8  1  0.44988910  0.56058823  0.11451928  1
+  S  S9  1  0.43243551  0.63520299  0.20167190  1
+  S  S10  1  0.57107163  0.80472610  0.25282204  1
+  S  S11  1  0.49162772  0.85495213  0.45219901  1
+  Br  Br12  1  0.65301172  0.98814261  0.51029709  1
+  Br  Br13  1  0.64481836  0.99402326  0.75457583  1
+  Br  Br14  1  0.67832413  0.04882708  0.91034895  1
+  Br  Br15  1  0.76567870  0.27050310  0.98515282  1
+  Br  Br16  1  0.81461287  0.19940947  0.10688341  1
+  Br  Br17  1  0.93813154  0.45505112  0.18812778  1
+  Br  Br18  1  0.89154700  0.38909158  0.40658069  1
+  Br  Br19  1  0.96329891  0.43991528  0.51229852  1

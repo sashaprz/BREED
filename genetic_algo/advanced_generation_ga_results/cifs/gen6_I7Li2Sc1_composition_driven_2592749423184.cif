@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li2ScI7
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.64158883
+_cell_length_b   4.64158883
+_cell_length_c   4.64158883
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2ScI7
+_chemical_formula_sum   'Li2 Sc1 I7'
+_cell_volume   100.00000000
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.99428551  0.92132736  0.07018822  1
+  Li  Li1  1  0.02480010  0.24883008  0.32257188  1
+  Sc  Sc2  1  0.17231434  0.41712882  0.42424795  1
+  I  I3  1  0.25741396  0.58366955  0.71006177  1
+  I  I4  1  0.48979033  0.60053267  0.96707939  1
+  I  I5  1  0.58096784  0.77989712  0.38319870  1
+  I  I6  1  0.62075463  0.91709998  0.49963218  1
+  I  I7  1  0.78230704  0.21229345  0.82216142  1
+  I  I8  1  0.79820046  0.36209163  0.04654109  1
+  I  I9  1  0.84486376  0.52781618  0.32684766  1

@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li3GaS7
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.04559150
+_cell_length_b   8.04559150
+_cell_length_c   8.79493898
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3GaS7
+_chemical_formula_sum   'Li3 Ga1 S7'
+_cell_volume   569.30996675
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.01366055  0.90960633  0.02484634  1
+  Li  Li1  1  0.12389940  0.19021722  0.26469257  1
+  Li  Li2  1  0.12350670  0.22927660  0.38920163  1
+  Ga  Ga3  1  0.23031330  0.37725263  0.70398328  1
+  S  S4  1  0.32827891  0.57376068  0.88439681  1
+  S  S5  1  0.37708565  0.76562530  0.20272229  1
+  S  S6  1  0.55105454  0.97419828  0.35040654  1
+  S  S7  1  0.68176726  0.96998004  0.56770563  1
+  S  S8  1  0.67414508  0.15427973  0.85981700  1
+  S  S9  1  0.76666368  0.28969198  0.23531828  1
+  S  S10  1  0.88753878  0.44294170  0.37464086  1

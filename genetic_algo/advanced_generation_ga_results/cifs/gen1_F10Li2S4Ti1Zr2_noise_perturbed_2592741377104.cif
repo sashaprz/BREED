@@ -1,0 +1,45 @@
+# generated using pymatgen
+data_Li2Zr2Ti(S2F5)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.81704230
+_cell_length_b   4.96458942
+_cell_length_c   14.42202563
+_cell_angle_alpha   67.94077113
+_cell_angle_beta   98.84489589
+_cell_angle_gamma   112.82801327
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Zr2Ti(S2F5)2
+_chemical_formula_sum   'Li2 Zr2 Ti1 S4 F10'
+_cell_volume   478.07287086
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.09072004  0.04837691  0.01617784  1
+  Li  Li1  1  0.08668855  0.03273102  0.12235468  1
+  Ti  Ti2  1  0.09753874  0.20233808  0.24578300  1
+  Zr  Zr3  1  0.23191215  0.33060898  0.34190274  1
+  Zr  Zr4  1  0.20074819  0.34730988  0.61535265  1
+  F  F5  1  0.19113758  0.37038225  0.62176137  1
+  F  F6  1  0.38994628  0.46409995  0.85154602  1
+  F  F7  1  0.28741583  0.54310268  0.00079959  1
+  F  F8  1  0.39558442  0.65382668  0.17802945  1
+  F  F9  1  0.42149639  0.84981347  0.14292730  1
+  F  F10  1  0.43900819  0.89926136  0.33382155  1
+  F  F11  1  0.63336754  0.97508044  0.54598789  1
+  F  F12  1  0.63486607  0.97094127  0.72367844  1
+  F  F13  1  0.76706613  0.17909349  0.73313233  1
+  F  F14  1  0.72421513  0.09995385  0.98552607  1
+  S  S15  1  0.70050282  0.19895975  0.14688776  1
+  S  S16  1  0.82025528  0.36719793  0.24451029  1
+  S  S17  1  0.93820672  0.34978212  0.35230333  1
+  S  S18  1  0.98005453  0.62523884  0.52574762  1

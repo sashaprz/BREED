@@ -1,0 +1,50 @@
+# generated using pymatgen
+data_Li6GaS10O7
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   9.92645510
+_cell_length_b   3.97501521
+_cell_length_c   6.42528210
+_cell_angle_alpha   105.90679520
+_cell_angle_beta   119.28514529
+_cell_angle_gamma   91.72449470
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li6GaS10O7
+_chemical_formula_sum   'Li6 Ga1 S10 O7'
+_cell_volume   208.54631029
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.91946509  0.03819450  0.06330157  1
+  Li  Li1  1  0.13853543  0.02623697  0.06676270  1
+  Li  Li2  1  0.06197044  0.21570422  0.16992926  1
+  Li  Li3  1  0.04641749  0.18013495  0.36534773  1
+  Li  Li4  1  0.23927195  0.36218140  0.39066543  1
+  Li  Li5  1  0.12543052  0.27851513  0.63729874  1
+  Ga  Ga6  1  0.32363397  0.31186920  0.71580046  1
+  S  S7  1  0.28156626  0.50053079  0.68846514  1
+  S  S8  1  0.37962116  0.61217207  0.80194092  1
+  S  S9  1  0.35590857  0.62605797  0.05852327  1
+  S  S10  1  0.46217204  0.72539308  0.17305280  1
+  S  S11  1  0.51247624  0.78989498  0.19018040  1
+  S  S12  1  0.51072688  0.75904953  0.23533029  1
+  S  S13  1  0.47238198  0.89760664  0.40182487  1
+  S  S14  1  0.64710306  0.97725840  0.60765135  1
+  S  S15  1  0.64016869  0.91662370  0.53654530  1
+  S  S16  1  0.74861646  0.03786315  0.65255898  1
+  O  O17  1  0.67314453  0.15686295  0.83553583  1
+  O  O18  1  0.82019368  0.22661629  0.89234561  1
+  O  O19  1  0.75712889  0.22832287  0.08264850  1
+  O  O20  1  0.79088317  0.34048055  0.12888333  1
+  O  O21  1  0.94401021  0.47766988  0.31561016  1
+  O  O22  1  0.89459203  0.46768169  0.49862040  1
+  O  O23  1  0.97032224  0.61571380  0.58674874  1

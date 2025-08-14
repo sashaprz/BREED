@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_Li3ZrO10
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.91953376
+_cell_length_b   8.91953376
+_cell_length_c   9.26657946
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3ZrO10
+_chemical_formula_sum   'Li3 Zr1 O10'
+_cell_volume   737.23129259
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.05090260  0.98223844  0.05606425  1
+  Li  Li1  1  0.05489804  0.17620975  0.23888910  1
+  Li  Li2  1  0.23237862  0.18033237  0.40099103  1
+  Zr  Zr3  1  0.27252988  0.26742370  0.46291695  1
+  O  O4  1  0.29181696  0.37581858  0.80304711  1
+  O  O5  1  0.43017788  0.59928777  0.98161143  1
+  O  O6  1  0.45319187  0.72159267  0.15427297  1
+  O  O7  1  0.47966094  0.74126874  0.38430108  1
+  O  O8  1  0.52522165  0.86168780  0.50282805  1
+  O  O9  1  0.55486043  0.08342786  0.63984280  1
+  O  O10  1  0.61659639  0.22584931  0.92670211  1
+  O  O11  1  0.75999576  0.17365566  0.04271166  1
+  O  O12  1  0.80108240  0.47322603  0.20199360  1
+  O  O13  1  0.84113870  0.47916162  0.37355270  1

@@ -1,0 +1,45 @@
+# generated using pymatgen
+data_Li2Ta3(PBr)7
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.73194809
+_cell_length_b   5.76688255
+_cell_length_c   5.81222812
+_cell_angle_alpha   77.51778453
+_cell_angle_beta   64.43040914
+_cell_angle_gamma   73.03509490
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Ta3(PBr)7
+_chemical_formula_sum   'Li2 Ta3 P7 Br7'
+_cell_volume   222.38230140
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.97533741  0.02056225  0.91392640  1
+  Li  Li1  1  0.07819000  0.17892104  0.06112758  1
+  Ta  Ta2  1  0.13922289  0.26372858  0.33069185  1
+  Ta  Ta3  1  0.23308707  0.24295799  0.41899371  1
+  Ta  Ta4  1  0.15634053  0.26198660  0.55641306  1
+  P  P5  1  0.31117495  0.51216148  0.74239999  1
+  P  P6  1  0.22461891  0.55449664  0.82476733  1
+  P  P7  1  0.33227766  0.66115832  0.91337112  1
+  P  P8  1  0.51144184  0.75355698  0.11956995  1
+  P  P9  1  0.41261930  0.78645226  0.30652817  1
+  P  P10  1  0.57397703  0.78305573  0.41985311  1
+  P  P11  1  0.67044014  0.02215396  0.52352834  1
+  Br  Br12  1  0.60596820  0.02337162  0.75193999  1
+  Br  Br13  1  0.62454331  0.09634308  0.80630462  1
+  Br  Br14  1  0.70114718  0.10743014  0.93766684  1
+  Br  Br15  1  0.79694933  0.37269091  0.09975224  1
+  Br  Br16  1  0.89203118  0.36471932  0.20149443  1
+  Br  Br17  1  0.90206349  0.45073530  0.43362576  1
+  Br  Br18  1  0.98555277  0.63114888  0.46265594  1

@@ -1,0 +1,33 @@
+# generated using pymatgen
+data_LiGeS5
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.30362295
+_cell_length_b   4.30362295
+_cell_length_c   4.21139691
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiGeS5
+_chemical_formula_sum   'Li1 Ge1 S5'
+_cell_volume   78.00000000
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.95454961  0.05630573  0.99195457  1
+  Ge  Ge1  1  0.06561661  0.26726251  0.38585869  1
+  S  S2  1  0.34894695  0.40594117  0.68735076  1
+  S  S3  1  0.47793903  0.73981553  0.02797414  1
+  S  S4  1  0.62253914  0.84977109  0.45663220  1
+  S  S5  1  0.71363475  0.22251577  0.81708957  1
+  S  S6  1  0.76546733  0.29240920  0.31800240  1

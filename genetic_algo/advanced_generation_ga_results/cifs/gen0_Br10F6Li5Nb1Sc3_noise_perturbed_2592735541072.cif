@@ -1,0 +1,51 @@
+# generated using pymatgen
+data_Li5Sc3Nb(Br5F3)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.57609743
+_cell_length_b   3.78001867
+_cell_length_c   11.49365739
+_cell_angle_alpha   76.60789737
+_cell_angle_beta   68.18624742
+_cell_angle_gamma   112.52659542
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5Sc3Nb(Br5F3)2
+_chemical_formula_sum   'Li5 Sc3 Nb1 Br10 F6'
+_cell_volume   421.65667973
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.93899775  0.94814254  0.01397239  1
+  Li  Li1  1  0.04632855  0.07523725  0.13896819  1
+  Li  Li2  1  0.12061871  0.09748971  0.14916141  1
+  Li  Li3  1  0.15363228  0.28378442  0.24247165  1
+  Li  Li4  1  0.15874430  0.30594929  0.42208668  1
+  Nb  Nb5  1  0.28137363  0.31300822  0.53198827  1
+  Sc  Sc6  1  0.16247612  0.45954531  0.70961638  1
+  Sc  Sc7  1  0.32880906  0.41950522  0.70490205  1
+  Sc  Sc8  1  0.32529360  0.52017383  0.82612974  1
+  F  F9  1  0.31208918  0.57804586  0.01866147  1
+  F  F10  1  0.42215054  0.67376551  0.13196347  1
+  F  F11  1  0.35160640  0.65883550  0.20431448  1
+  F  F12  1  0.52363788  0.80833563  0.33837233  1
+  F  F13  1  0.47399651  0.77777352  0.43555577  1
+  F  F14  1  0.64192996  0.92263480  0.44381524  1
+  Br  Br15  1  0.58181516  0.03340918  0.63964302  1
+  Br  Br16  1  0.70992830  0.00085887  0.66308146  1
+  Br  Br17  1  0.77678207  0.03537487  0.84606156  1
+  Br  Br18  1  0.73803675  0.11762586  0.98380131  1
+  Br  Br19  1  0.67646603  0.28606687  0.89559303  1
+  Br  Br20  1  0.79768040  0.36738821  0.08583894  1
+  Br  Br21  1  0.82544337  0.34686211  0.14224062  1
+  Br  Br22  1  0.97321061  0.50406035  0.23575285  1
+  Br  Br23  1  0.87151479  0.42636797  0.35986467  1
+  Br  Br24  1  0.96846671  0.50183484  0.41722568  1

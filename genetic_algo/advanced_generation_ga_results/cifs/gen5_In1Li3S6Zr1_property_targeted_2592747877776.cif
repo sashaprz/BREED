@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li3ZrInS6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   10.43772976
+_cell_length_b   10.43772976
+_cell_length_c   10.50962116
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3ZrInS6
+_chemical_formula_sum   'Li3 Zr1 In1 S6'
+_cell_volume   1144.98331525
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00105581  0.07650064  0.92508500  1
+  Li  Li1  1  0.09358893  0.24142448  0.23096893  1
+  Li  Li2  1  0.15097785  0.26015682  0.52581732  1
+  Zr  Zr3  1  0.20264264  0.45236580  0.69669966  1
+  S  S4  1  0.27049539  0.53461152  0.88705916  1
+  S  S5  1  0.53570169  0.64978409  0.20837301  1
+  S  S6  1  0.49695042  0.93979720  0.42105158  1
+  S  S7  1  0.68259812  0.96346282  0.56656402  1
+  S  S8  1  0.72056419  0.22671781  0.94110878  1
+  S  S9  1  0.74642501  0.24551607  0.09524068  1
+  In  In10  1  0.81434073  0.56556639  0.28737012  1

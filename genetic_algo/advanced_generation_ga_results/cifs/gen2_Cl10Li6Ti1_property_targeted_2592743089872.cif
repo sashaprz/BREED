@@ -1,0 +1,43 @@
+# generated using pymatgen
+data_Li6TiCl10
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   9.21985478
+_cell_length_b   9.21985478
+_cell_length_c   8.99776666
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li6TiCl10
+_chemical_formula_sum   'Li6 Ti1 Cl10'
+_cell_volume   764.86165284
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.02996434  0.95886502  0.96748349  1
+  Li  Li1  1  0.97840719  0.14632943  0.20423397  1
+  Li  Li2  1  0.04207956  0.28347509  0.23283879  1
+  Li  Li3  1  0.21808568  0.28015523  0.47208087  1
+  Li  Li4  1  0.15186502  0.33641632  0.61566365  1
+  Li  Li5  1  0.29349609  0.41790569  0.84944390  1
+  Ti  Ti6  1  0.42972036  0.64293165  0.85771691  1
+  Cl  Cl7  1  0.33183103  0.62514886  0.12831099  1
+  Cl  Cl8  1  0.41894039  0.75168087  0.21626862  1
+  Cl  Cl9  1  0.45243253  0.79997945  0.48528309  1
+  Cl  Cl10  1  0.58173937  0.88348778  0.45211382  1
+  Cl  Cl11  1  0.63653964  0.09982322  0.65519679  1
+  Cl  Cl12  1  0.77793894  0.10857200  0.90717206  1
+  Cl  Cl13  1  0.72000997  0.27765284  0.98549630  1
+  Cl  Cl14  1  0.75031945  0.38147520  0.08973898  1
+  Cl  Cl15  1  0.91022801  0.40263782  0.21479966  1
+  Cl  Cl16  1  0.99053323  0.61022445  0.47991871  1

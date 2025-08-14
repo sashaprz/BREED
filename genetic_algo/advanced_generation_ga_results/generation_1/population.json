@@ -2,221 +2,220 @@
   {
     "id": 0,
     "composition": {
-      "Li": 5,
-      "Ti": 1,
-      "Cl": 5,
-      "Y": 2
+      "Li": 3,
+      "Y": 1,
+      "Br": 8
     },
     "lattice_params": {
-      "a": 10.942577035472818,
-      "b": 10.942577035472818,
-      "c": 9.958413497214934,
+      "a": 5.1924941018511035,
+      "b": 5.1924941018511035,
+      "c": 5.1924941018511035,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
     },
-    "space_group": 221,
-    "generation_method": "property_targeted",
+    "space_group": 194,
+    "generation_method": "composition_driven",
     "properties": {
       "ionic_conductivity": 0.006656158165831267,
       "bandgap": 0.006618449496655484,
-      "sei_score": 0.615,
-      "cei_score": 0.525,
+      "sei_score": 0.52,
+      "cei_score": 0.44125,
       "bulk_modulus": 0.009930663637344433
     },
     "objectives": [
       0.8232236332543645,
       0.9977938501677815,
-      0.28500000000000003,
-      0.32499999999999996,
+      0.38,
+      0.40875,
       0.9998758667045331
     ],
     "pareto_rank": 0,
     "crowding_distance": Infinity,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Cl5Li5Ti1Y2_property_targeted_2345532714960.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Br8Li3Y1_composition_driven_2592735685008.cif"
   },
   {
     "id": 1,
     "composition": {
-      "Li": 5,
-      "Nb": 2,
-      "Cl": 8
+      "Na": 1,
+      "Sc": 2,
+      "S": 8
     },
     "lattice_params": {
-      "a": 10.894553496802772,
-      "b": 10.894553496802772,
-      "c": 10.792488736719989,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
+      "a": 8.965993795958287,
+      "b": 8.60829985170212,
+      "c": 12.298543385332891,
+      "alpha": 100.08375475471767,
+      "beta": 67.02178590983385,
+      "gamma": 80.76158940736363
     },
-    "space_group": 167,
-    "generation_method": "property_targeted",
+    "space_group": 194,
+    "generation_method": "noise_perturbed",
     "properties": {
       "ionic_conductivity": 0.0017023704699953334,
       "bandgap": 0.007991779778730498,
-      "sei_score": 0.6173,
-      "cei_score": 0.47750000000000004,
+      "sei_score": 0.6125,
+      "cei_score": 0.5837499999999999,
       "bulk_modulus": 0.009713949495765711
     },
     "objectives": [
       0.2310540772330767,
       0.9973360734070899,
-      0.28270000000000006,
-      0.37249999999999994,
+      0.2875,
+      0.2662500000000001,
       0.999878575631303
     ],
     "pareto_rank": 0,
-    "crowding_distance": 0.6178308587480631,
+    "crowding_distance": 0.5567149000900018,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Cl8Li5Nb2_property_targeted_2345532738256.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Na1S8Sc2_noise_perturbed_2592735852304.cif"
   },
   {
     "id": 2,
     "composition": {
       "Li": 6,
-      "La": 4,
-      "Zr": 1,
-      "O": 10
+      "La": 1,
+      "Zr": 2,
+      "O": 12
     },
     "lattice_params": {
-      "a": 5.152536567956727,
-      "b": 6.435737531270235,
-      "c": 6.815363632769565,
+      "a": 5.302228541856339,
+      "b": 5.302228541856339,
+      "c": 6.438158858551038,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
     },
-    "space_group": 227,
+    "space_group": 221,
     "generation_method": "composition_driven",
+    "properties": {
+      "ionic_conductivity": 0.004007786436869731,
+      "bandgap": 0.004490307889985488,
+      "sei_score": 0.7398333333333335,
+      "cei_score": 0.4328333333333334,
+      "bulk_modulus": 0.009650941992878954
+    },
+    "objectives": [
+      0.6029045712024681,
+      0.9985032307033381,
+      0.16016666666666657,
+      0.4171666666666666,
+      0.9998793632250891
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": 0.22951805408058024,
+    "generation": 0,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_La1Li6O12Zr2_composition_driven_2592735909392.cif"
+  },
+  {
+    "id": 3,
+    "composition": {
+      "Li": 1,
+      "Zr": 1,
+      "P": 4
+    },
+    "lattice_params": {
+      "a": 3.0315920797221483,
+      "b": 8.557505820138452,
+      "c": 3.0949498023225415,
+      "alpha": 77.86201845010041,
+      "beta": 99.84855496292808,
+      "gamma": 69.02567707419529
+    },
+    "space_group": 14,
+    "generation_method": "noise_perturbed",
     "properties": {
       "ionic_conductivity": 0.00246366491438883,
       "bandgap": 0.0010122097185552782,
-      "sei_score": 0.7424999999999999,
-      "cei_score": 0.4888333333333333,
+      "sei_score": 0.788,
+      "cei_score": 0.7795000000000001,
       "bulk_modulus": 0.00910362548150723
     },
     "objectives": [
       0.3915816386677098,
       0.9996625967604816,
-      0.15750000000000008,
-      0.3611666666666667,
+      0.11199999999999999,
+      0.0704999999999999,
       0.9998862046814813
     ],
     "pareto_rank": 0,
-    "crowding_distance": 0.4001054371401671,
+    "crowding_distance": 0.529590410043577,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_La4Li6O10Zr1_composition_driven_2345532959760.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li1P4Zr1_noise_perturbed_2592736043792.cif"
   },
   {
-    "id": 3,
+    "id": 4,
     "composition": {
       "Li": 6,
-      "Ti": 2,
-      "F": 8
+      "In": 3,
+      "Br": 9,
+      "F": 7
     },
     "lattice_params": {
-      "a": 9.167834675055065,
-      "b": 9.167834675055065,
-      "c": 8.578109401842715,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
+      "a": 10.59308555145023,
+      "b": 10.297098641771711,
+      "c": 6.707398952687247,
+      "alpha": 81.09856867368404,
+      "beta": 70.0826017177659,
+      "gamma": 95.07691459013904
     },
-    "space_group": 221,
-    "generation_method": "property_targeted",
+    "space_group": 227,
+    "generation_method": "noise_perturbed",
     "properties": {
       "ionic_conductivity": 0.003874778669733432,
       "bandgap": 0.0018037683305440779,
-      "sei_score": 0.784,
-      "cei_score": 0.7785000000000001,
+      "sei_score": 0.6501315789473685,
+      "cei_score": 0.5905468749999999,
       "bulk_modulus": 0.009044154001429007
     },
     "objectives": [
       0.588246900323957,
       0.9993987438898185,
-      0.11599999999999999,
-      0.0714999999999999,
+      0.24986842105263152,
+      0.25945312500000006,
       0.9998869480749821
     ],
     "pareto_rank": 0,
-    "crowding_distance": 0.7898917080989415,
+    "crowding_distance": 0.6115481473160743,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_F8Li6Ti2_property_targeted_2345532529616.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Br9F7In3Li6_noise_perturbed_2592735423504.cif"
   },
   {
-    "id": 4,
+    "id": 5,
     "composition": {
-      "Li": 3,
+      "Li": 2,
       "Ti": 1,
-      "P": 3,
-      "O": 14
+      "O": 3
     },
     "lattice_params": {
-      "a": 4.752593617313384,
-      "b": 4.752593617313384,
-      "c": 6.375307416782821,
+      "a": 6.192427257350026,
+      "b": 6.192427257350026,
+      "c": 6.192427257350026,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
     },
-    "space_group": 221,
-    "generation_method": "composition_driven",
+    "space_group": 225,
+    "generation_method": "symmetry_driven",
     "properties": {
       "ionic_conductivity": 0.009429828973205441,
       "bandgap": 0.00928351883781766,
-      "sei_score": 0.7490277777777778,
-      "cei_score": 0.4452083333333333,
+      "sei_score": 0.7390625,
+      "cei_score": 0.453125,
       "bulk_modulus": 0.008949103578115451
     },
     "objectives": [
       0.9745038161024722,
       0.9969054937207275,
-      0.15097222222222217,
-      0.40479166666666666,
+      0.16093750000000007,
+      0.396875,
       0.9998881362052735
     ],
     "pareto_rank": 0,
-    "crowding_distance": 0.13936263124435821,
+    "crowding_distance": Infinity,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li3O14P3Ti1_composition_driven_2345532527760.cif"
-  },
-  {
-    "id": 5,
-    "composition": {
-      "Li": 3,
-      "Ga": 3,
-      "Cl": 3
-    },
-    "lattice_params": {
-      "a": 9.68889206094977,
-      "b": 9.68889206094977,
-      "c": 10.066238078169771,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 227,
-    "generation_method": "property_targeted",
-    "properties": {
-      "ionic_conductivity": 0.0020004422460074105,
-      "bandgap": 0.003081831605878212,
-      "sei_score": 0.6625,
-      "cei_score": 0.47750000000000004,
-      "bulk_modulus": 0.008802350877179003
-    },
-    "objectives": [
-      0.30112601754837964,
-      0.9989727227980406,
-      0.23750000000000004,
-      0.37249999999999994,
-      0.9998899706140353
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": 0.4382520993217619,
-    "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Cl3Ga3Li3_property_targeted_2345532738832.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li2O3Ti1_symmetry_driven_2592735312464.cif"
   },
   {
     "id": 6,
@@ -226,265 +225,229 @@
       "O": 6
     },
     "lattice_params": {
-      "a": 7.218627595577807,
-      "b": 7.218627595577807,
-      "c": 7.218627595577807,
+      "a": 7.519737019598989,
+      "b": 7.519737019598989,
+      "c": 7.519737019598989,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
     },
-    "space_group": 221,
+    "space_group": 225,
     "generation_method": "symmetry_driven",
+    "properties": {
+      "ionic_conductivity": 0.0020004422460074105,
+      "bandgap": 0.003081831605878212,
+      "sei_score": 0.7389285714285715,
+      "cei_score": 0.4089285714285714,
+      "bulk_modulus": 0.008802350877179003
+    },
+    "objectives": [
+      0.30112601754837964,
+      0.9989727227980406,
+      0.16107142857142853,
+      0.44107142857142856,
+      0.9998899706140353
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": 0.26927646994555465,
+    "generation": 0,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li2O6Ti1_symmetry_driven_2592735741328.cif"
+  },
+  {
+    "id": 7,
+    "composition": {
+      "Li": 5,
+      "In": 4,
+      "Ta": 3,
+      "F": 9
+    },
+    "lattice_params": {
+      "a": 12.626920339629834,
+      "b": 10.159243197939505,
+      "c": 7.903719414130918,
+      "alpha": 82.97813909346517,
+      "beta": 91.34471326526374,
+      "gamma": 93.45129627862549
+    },
+    "space_group": 62,
+    "generation_method": "noise_perturbed",
     "properties": {
       "ionic_conductivity": 0.007111699471909198,
       "bandgap": 0.007183689190715013,
-      "sei_score": 0.7389285714285715,
-      "cei_score": 0.4089285714285714,
+      "sei_score": 0.76578125,
+      "cei_score": 0.7825,
       "bulk_modulus": 0.008617879872752997
     },
     "objectives": [
       0.8519733958180096,
       0.9976054369364283,
-      0.16107142857142853,
-      0.44107142857142856,
+      0.13421875000000005,
+      0.0675,
       0.9998922765015905
     ],
     "pareto_rank": 0,
-    "crowding_distance": Infinity,
+    "crowding_distance": 0.2745052159943535,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li2O6Ti1_symmetry_driven_2345532754256.cif"
-  },
-  {
-    "id": 7,
-    "composition": {
-      "Li": 6,
-      "Ga": 2,
-      "F": 9
-    },
-    "lattice_params": {
-      "a": 8.267151928556652,
-      "b": 8.267151928556652,
-      "c": 8.876922466653433,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 227,
-    "generation_method": "property_targeted",
-    "properties": {
-      "ionic_conductivity": 0.00525373563646538,
-      "bandgap": 0.0003573225910268464,
-      "sei_score": 0.7840909090909091,
-      "cei_score": 0.7825,
-      "bulk_modulus": 0.008553254353043386
-    },
-    "objectives": [
-      0.7204682156687676,
-      0.9998808924696577,
-      0.11590909090909096,
-      0.0675,
-      0.9998930843205869
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": Infinity,
-    "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_F9Ga2Li6_property_targeted_2345532790224.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_F9In4Li5Ta3_noise_perturbed_2592735952720.cif"
   },
   {
     "id": 8,
     "composition": {
-      "Li": 2,
-      "Ti": 1,
-      "O": 4,
-      "Ba": 1
+      "Li": 5,
+      "Al": 1,
+      "F": 9,
+      "Sc": 1
     },
     "lattice_params": {
-      "a": 3.7663829676057414,
-      "b": 3.7663829676057414,
-      "c": 4.370616843596977,
+      "a": 9.098562832993121,
+      "b": 9.098562832993121,
+      "c": 9.080233247842116,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
     },
-    "space_group": 221,
-    "generation_method": "composition_driven",
+    "space_group": 167,
+    "generation_method": "property_targeted",
     "properties": {
       "ionic_conductivity": 0.007636174824268961,
       "bandgap": 0.0074016486168793,
-      "sei_score": 0.7390000000000001,
-      "cei_score": 0.43250000000000005,
+      "sei_score": 0.7939999999999999,
+      "cei_score": 0.7819999999999999,
       "bulk_modulus": 0.008335141114723032
     },
     "objectives": [
       0.8828758626690076,
       0.9975327837943736,
-      0.16099999999999992,
-      0.4174999999999999,
+      0.1060000000000001,
+      0.06800000000000006,
       0.9998958107360659
     ],
     "pareto_rank": 0,
-    "crowding_distance": 0.23866628561946152,
+    "crowding_distance": 0.2345892708234264,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Ba1Li2O4Ti1_composition_driven_2345532882768.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Al1F9Li5Sc1_property_targeted_2592736727440.cif"
   },
   {
     "id": 9,
     "composition": {
-      "Li": 1,
-      "Y": 1,
-      "Cl": 6
+      "Li": 2,
+      "Ti": 2,
+      "O": 3,
+      "Ba": 2
     },
     "lattice_params": {
-      "a": 4.101954819225156,
-      "b": 4.101954819225156,
-      "c": 4.5168102587794605,
+      "a": 3.8235597927965594,
+      "b": 4.03907414918462,
+      "c": 5.050622284544141,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
     },
-    "space_group": 166,
+    "space_group": 225,
     "generation_method": "composition_driven",
     "properties": {
       "ionic_conductivity": 0.0008394711060847538,
       "bandgap": 0.004172663035327895,
-      "sei_score": 0.59,
-      "cei_score": 0.47750000000000004,
+      "sei_score": 0.7392500000000002,
+      "cei_score": 0.515,
       "bulk_modulus": 0.008029614814958673
     },
     "objectives": [
       0.07599424733284543,
       0.9986091123215574,
-      0.31000000000000005,
-      0.37249999999999994,
+      0.16074999999999984,
+      0.33499999999999996,
       0.9998996298148131
     ],
     "pareto_rank": 0,
-    "crowding_distance": Infinity,
+    "crowding_distance": 0.38490973261252587,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Cl6Li1Y1_composition_driven_2345532493968.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Ba2Li2O3Ti2_composition_driven_2592735458384.cif"
   },
   {
     "id": 10,
     "composition": {
-      "Li": 3,
-      "Ga": 3,
-      "F": 6,
-      "Y": 2
+      "Li": 5,
+      "Y": 1,
+      "F": 4
     },
     "lattice_params": {
-      "a": 8.363750525781331,
-      "b": 8.363750525781331,
-      "c": 8.653037270779379,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
+      "a": 8.448416089520025,
+      "b": 10.492943283518992,
+      "c": 7.673641164889826,
+      "alpha": 94.43195317459029,
+      "beta": 99.44527522020772,
+      "gamma": 113.80493796734126
     },
-    "space_group": 194,
-    "generation_method": "property_targeted",
-    "properties": {
-      "ionic_conductivity": 0.008664563993601744,
-      "bandgap": 0.0028697004081657154,
-      "sei_score": 0.7750000000000001,
-      "cei_score": 0.7825,
-      "bulk_modulus": 0.008010320470312401
-    },
-    "objectives": [
-      0.9377467136238544,
-      0.9990434331972781,
-      0.12499999999999989,
-      0.0675,
-      0.999899870994121
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": 0.1381060429067131,
-    "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_F6Ga3Li3Y2_property_targeted_2345532460944.cif"
-  },
-  {
-    "id": 11,
-    "composition": {
-      "Li": 3,
-      "Ti": 4,
-      "P": 3,
-      "O": 12
-    },
-    "lattice_params": {
-      "a": 5.830040685374608,
-      "b": 5.830040685374608,
-      "c": 4.942721159174672,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 136,
-    "generation_method": "composition_driven",
+    "space_group": 62,
+    "generation_method": "noise_perturbed",
     "properties": {
       "ionic_conductivity": 0.0037353734469581868,
       "bandgap": 0.002963292469197569,
-      "sei_score": 0.7486842105263158,
-      "cei_score": 0.5053289473684212,
+      "sei_score": 0.7949999999999999,
+      "cei_score": 0.7825,
       "bulk_modulus": 0.00752937322975341
     },
     "objectives": [
       0.5723340272613555,
       0.9990122358436008,
-      0.15131578947368418,
-      0.3446710526315788,
+      0.1050000000000001,
+      0.0675,
       0.999905882834628
     ],
     "pareto_rank": 0,
-    "crowding_distance": 0.27980839869996565,
+    "crowding_distance": Infinity,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li3O12P3Ti4_composition_driven_2345533001744.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_F4Li5Y1_noise_perturbed_2592736610704.cif"
   },
   {
-    "id": 12,
+    "id": 11,
     "composition": {
-      "Li": 6,
-      "La": 5,
-      "Zr": 1,
-      "O": 12
+      "Li": 1,
+      "In": 2,
+      "La": 2,
+      "Cl": 10
     },
     "lattice_params": {
-      "a": 5.845323844300837,
-      "b": 5.845323844300837,
-      "c": 7.697303207249405,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
+      "a": 10.105450337586012,
+      "b": 4.660940140284433,
+      "c": 8.805986206084278,
+      "alpha": 87.07825106920592,
+      "beta": 81.10889430233257,
+      "gamma": 83.77040346487067
     },
-    "space_group": 221,
-    "generation_method": "composition_driven",
+    "space_group": 12,
+    "generation_method": "noise_perturbed",
     "properties": {
       "ionic_conductivity": 0.0028374381959537657,
       "bandgap": 0.005101556379948521,
-      "sei_score": 0.7426388888888888,
-      "cei_score": 0.4888888888888889,
+      "sei_score": 0.6292857142857141,
+      "cei_score": 0.5258333333333333,
       "bulk_modulus": 0.007058206950565238
     },
     "objectives": [
       0.45292641065983696,
       0.9982994812066838,
-      0.15736111111111117,
-      0.3611111111111111,
+      0.2707142857142859,
+      0.3241666666666667,
       0.999911772413118
     ],
     "pareto_rank": 0,
-    "crowding_distance": 0.3203299416092697,
+    "crowding_distance": 0.3869736964292265,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_La5Li6O12Zr1_composition_driven_2345532900368.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Cl10In2La2Li1_noise_perturbed_2592736356048.cif"
   },
   {
-    "id": 13,
+    "id": 12,
     "composition": {
-      "Li": 1,
+      "Li": 4,
       "Ti": 1,
-      "O": 3
+      "O": 4
     },
     "lattice_params": {
-      "a": 5.779404118306149,
-      "b": 5.779404118306149,
-      "c": 5.779404118306149,
+      "a": 7.192368082871208,
+      "b": 7.192368082871208,
+      "c": 7.192368082871208,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
@@ -494,398 +457,71 @@
     "properties": {
       "ionic_conductivity": 0.0020831199433237186,
       "bandgap": 0.009258249548943914,
-      "sei_score": 0.7390625,
-      "cei_score": 0.45312499999999994,
+      "sei_score": 0.739,
+      "cei_score": 0.43249999999999994,
       "bulk_modulus": 0.007013362722756875
     },
     "objectives": [
       0.31871427677633246,
       0.9969139168170188,
-      0.16093750000000007,
-      0.39687500000000003,
+      0.16100000000000003,
+      0.41750000000000004,
       0.9999123329659655
     ],
     "pareto_rank": 0,
-    "crowding_distance": 0.2619699442745008,
+    "crowding_distance": 0.24948319074822806,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li1O3Ti1_symmetry_driven_2345532762448.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li4O4Ti1_symmetry_driven_2592736112016.cif"
   },
   {
-    "id": 14,
+    "id": 13,
     "composition": {
       "Li": 2,
-      "Si": 1,
-      "S": 7
+      "Ti": 2,
+      "O": 4,
+      "Sr": 2
     },
     "lattice_params": {
-      "a": 4.36749098953292,
-      "b": 4.85961749313922,
-      "c": 5.182729956840508,
+      "a": 3.538133538040362,
+      "b": 4.839048277190208,
+      "c": 4.906198449743272,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
     },
-    "space_group": 2,
+    "space_group": 136,
     "generation_method": "composition_driven",
     "properties": {
       "ionic_conductivity": 0.0008740192616359039,
       "bandgap": 0.004286920010381225,
-      "sei_score": 0.6087499999999999,
-      "cei_score": 0.5837499999999999,
+      "sei_score": 0.7391666666666665,
+      "cei_score": 0.48749999999999993,
       "bulk_modulus": 0.0068034727751629265
     },
     "objectives": [
       0.058478996278630735,
       0.9985710266632063,
-      0.2912500000000001,
-      0.2662500000000001,
+      0.1608333333333335,
+      0.36250000000000004,
       0.9999149565903105
     ],
     "pareto_rank": 0,
-    "crowding_distance": Infinity,
+    "crowding_distance": 0.27010831709325456,
     "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li2S7Si1_composition_driven_2345532858576.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li2O4Sr2Ti2_composition_driven_2592736316112.cif"
   },
   {
-    "id": 15,
+    "id": 14,
     "composition": {
-      "Li": 3,
-      "Ti": 2,
-      "P": 5,
-      "O": 11
+      "Li": 8,
+      "La": 4,
+      "Zr": 1,
+      "O": 9
     },
     "lattice_params": {
-      "a": 4.463965130766389,
-      "b": 5.345934594365305,
-      "c": 6.453217253435422,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 136,
-    "generation_method": "composition_driven",
-    "properties": {
-      "ionic_conductivity": 0.003020325099137006,
-      "bandgap": 0.007820787570465684,
-      "sei_score": 0.7559027777777776,
-      "cei_score": 0.5163194444444443,
-      "bulk_modulus": 0.006613586485800969
-    },
-    "objectives": [
-      0.4800536916864302,
-      0.9973930708098447,
-      0.14409722222222243,
-      0.33368055555555565,
-      0.9999173301689275
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": 0.35624958474222956,
-    "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li3O11P5Ti2_composition_driven_2345532878224.cif"
-  },
-  {
-    "id": 16,
-    "composition": {
-      "Li": 1,
-      "Ti": 1,
-      "P": 4,
-      "O": 8
-    },
-    "lattice_params": {
-      "a": 3.798126741144776,
-      "b": 4.471553420057966,
-      "c": 5.888058601861272,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 221,
-    "generation_method": "composition_driven",
-    "properties": {
-      "ionic_conductivity": 0.006440016384640709,
-      "bandgap": 0.0021607089730219077,
-      "sei_score": 0.7576923076923078,
-      "cei_score": 0.5151923076923077,
-      "bulk_modulus": 0.006565483733535856
-    },
-    "objectives": [
-      0.8088869722899359,
-      0.9992797636756593,
-      0.14230769230769225,
-      0.33480769230769225,
-      0.9999179314533307
-    ],
-    "pareto_rank": 1,
-    "crowding_distance": Infinity,
-    "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li1O8P4Ti1_composition_driven_2345532870800.cif"
-  },
-  {
-    "id": 17,
-    "composition": {
-      "Li": 2,
-      "Nb": 3,
-      "F": 7
-    },
-    "lattice_params": {
-      "a": 9.958924804965845,
-      "b": 9.958924804965845,
-      "c": 10.345654064323625,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 221,
-    "generation_method": "property_targeted",
-    "properties": {
-      "ionic_conductivity": 0.004047637648788348,
-      "bandgap": 0.006619418932148975,
-      "sei_score": 0.7744500000000001,
-      "cei_score": 0.7825,
-      "bulk_modulus": 0.006429576596490053
-    },
-    "objectives": [
-      0.607201626812127,
-      0.9977935270226169,
-      0.12554999999999994,
-      0.0675,
-      0.9999196302925439
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": 0.32258159391184293,
-    "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_F7Li2Nb3_property_targeted_2345532865104.cif"
-  },
-  {
-    "id": 18,
-    "composition": {
-      "Li": 2,
-      "Ta": 3,
-      "Cl": 4
-    },
-    "lattice_params": {
-      "a": 10.951544173405054,
-      "b": 10.951544173405054,
-      "c": 11.407085945159364,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 221,
-    "generation_method": "property_targeted",
-    "properties": {
-      "ionic_conductivity": 0.008451819181572777,
-      "bandgap": 0.008446034870245322,
-      "sei_score": 0.6639285714285715,
-      "cei_score": 0.47750000000000004,
-      "bulk_modulus": 0.005335568685009103
-    },
-    "objectives": [
-      0.9269501971728475,
-      0.9971846550432515,
-      0.2360714285714285,
-      0.37249999999999994,
-      0.9999333053914373
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": 0.8069573633167703,
-    "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Cl4Li2Ta3_property_targeted_2345532908688.cif"
-  },
-  {
-    "id": 19,
-    "composition": {
-      "Li": 1,
-      "Ge": 3,
-      "S": 7
-    },
-    "lattice_params": {
-      "a": 4.807987677551967,
-      "b": 4.807987677551967,
-      "c": 5.277559505963452,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 62,
-    "generation_method": "composition_driven",
-    "properties": {
-      "ionic_conductivity": 0.0038831855720307747,
-      "bandgap": 0.009323018453081935,
-      "sei_score": 0.6087499999999999,
-      "cei_score": 0.5837499999999999,
-      "bulk_modulus": 0.00440999480825883
-    },
-    "objectives": [
-      0.5891881453704664,
-      0.996892327182306,
-      0.2912500000000001,
-      0.2662500000000001,
-      0.9999448750648968
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": 1.1343946460053036,
-    "generation": 0,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Ge3Li1S7_composition_driven_2345532501456.cif"
-  },
-  {
-    "id": 20,
-    "composition": {
-      "Li": 1,
-      "Y": 2,
-      "Cl": 5
-    },
-    "lattice_params": {
-      "a": 4.2458759742385395,
-      "b": 4.2458759742385395,
-      "c": 4.881441222864152,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 194,
-    "generation_method": "composition_driven",
-    "properties": {
-      "ionic_conductivity": 0.007446904612434924,
-      "bandgap": 0.0011424181122932893,
-      "sei_score": 0.59,
-      "cei_score": 0.47750000000000004,
-      "bulk_modulus": 0.007426465578726481
-    },
-    "objectives": [
-      0.8719757909914199,
-      0.9996191939625688,
-      0.31000000000000005,
-      0.37249999999999994,
-      0.9999071691802659
-    ],
-    "pareto_rank": 1,
-    "crowding_distance": Infinity,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Cl5Li1Y2_composition_driven_2345534254480.cif"
-  },
-  {
-    "id": 21,
-    "composition": {
-      "Li": 2,
-      "Al": 1,
-      "O": 4
-    },
-    "lattice_params": {
-      "a": 4.504860003776221,
-      "b": 4.504860003776221,
-      "c": 6.878150438170638,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 120
-    },
-    "space_group": 191,
-    "generation_method": "symmetry_driven",
-    "properties": {
-      "ionic_conductivity": 0.0001556137550680078,
-      "bandgap": 0.00021111582662032089,
-      "sei_score": 0.748,
-      "cei_score": 0.43550000000000005,
-      "bulk_modulus": 0.001157910318381612
-    },
-    "objectives": [
-      0.8079520173327741,
-      0.9999296280577932,
-      0.15200000000000002,
-      0.4144999999999999,
-      0.9999855261210202
-    ],
-    "pareto_rank": 2,
-    "crowding_distance": 5.0,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Al1Li2O4_symmetry_driven_2345532709712.cif"
-  },
-  {
-    "id": 22,
-    "composition": {
-      "Li": 2,
-      "Ti": 1,
-      "O": 4,
-      "Sr": 1
-    },
-    "lattice_params": {
-      "a": 3.9578916096804053,
-      "b": 3.9578916096804053,
-      "c": 3.9578916096804053,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 136,
-    "generation_method": "composition_driven",
-    "properties": {
-      "ionic_conductivity": 0.002649851703860999,
-      "bandgap": 0.002398200351541483,
-      "sei_score": 0.7390000000000001,
-      "cei_score": 0.43250000000000005,
-      "bulk_modulus": 0.004015593497848614
-    },
-    "objectives": [
-      0.42322156978700454,
-      0.9992005998828195,
-      0.16099999999999992,
-      0.4174999999999999,
-      0.9999498050812768
-    ],
-    "pareto_rank": 1,
-    "crowding_distance": 0.7622466113819881,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li2O4Sr1Ti1_composition_driven_2345481214992.cif"
-  },
-  {
-    "id": 23,
-    "composition": {
-      "Li": 3,
-      "Ti": 1,
-      "P": 3,
-      "O": 11
-    },
-    "lattice_params": {
-      "a": 4.555872478965275,
-      "b": 4.555872478965275,
-      "c": 6.070541412766034,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 136,
-    "generation_method": "composition_driven",
-    "properties": {
-      "ionic_conductivity": 0.009489441579123096,
-      "bandgap": 0.009713819519367301,
-      "sei_score": 0.7510833333333333,
-      "cei_score": 0.46425,
-      "bulk_modulus": 0.007153474975116452
-    },
-    "objectives": [
-      0.9772406564482639,
-      0.996762060160211,
-      0.1489166666666667,
-      0.38575,
-      0.9999105815628111
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": Infinity,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3O11P3Ti1_composition_driven_2345535006672.cif"
-  },
-  {
-    "id": 24,
-    "composition": {
-      "Li": 7,
-      "La": 3,
-      "Zr": 2,
-      "O": 11
-    },
-    "lattice_params": {
-      "a": 5.837155923310492,
-      "b": 6.163693608518989,
-      "c": 6.476100568808536,
+      "a": 6.325748791821888,
+      "b": 6.325748791821888,
+      "c": 5.897773918079899,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
@@ -893,35 +529,220 @@
     "space_group": 229,
     "generation_method": "composition_driven",
     "properties": {
-      "ionic_conductivity": 0.005278760699442271,
-      "bandgap": 0.007007578346023799,
-      "sei_score": 0.7414843750000001,
-      "cei_score": 0.47984375,
-      "bulk_modulus": 0.007757381909708251
+      "ionic_conductivity": 0.003020325099137006,
+      "bandgap": 0.007820787570465684,
+      "sei_score": 0.7427678571428571,
+      "cei_score": 0.49874999999999997,
+      "bulk_modulus": 0.006613586485800969
     },
     "objectives": [
-      0.7225319746989416,
-      0.9976641405513255,
-      0.15851562499999994,
-      0.37015624999999996,
-      0.9999030327261286
+      0.4800536916864302,
+      0.9973930708098447,
+      0.15723214285714293,
+      0.35125,
+      0.9999173301689275
     ],
     "pareto_rank": 0,
-    "crowding_distance": 0.20099421897426523,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_La3Li7O11Zr2_composition_driven_2345535137616.cif"
+    "crowding_distance": 0.27259509444202784,
+    "generation": 0,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_La4Li8O9Zr1_composition_driven_2592736388624.cif"
   },
   {
-    "id": 25,
+    "id": 15,
     "composition": {
-      "Li": 4,
+      "Li": 2,
+      "La": 4,
+      "Cl": 5,
+      "P": 8
+    },
+    "lattice_params": {
+      "a": 4.221136799133507,
+      "b": 10.250837697349974,
+      "c": 7.716289751376889,
+      "alpha": 98.64202587103298,
+      "beta": 119.63733794481016,
+      "gamma": 66.43682749794722
+    },
+    "space_group": 225,
+    "generation_method": "noise_perturbed",
+    "properties": {
+      "ionic_conductivity": 0.004047637648788348,
+      "bandgap": 0.006619418932148975,
+      "sei_score": 0.7270588235294119,
+      "cei_score": 0.6898529411764707,
+      "bulk_modulus": 0.006429576596490053
+    },
+    "objectives": [
+      0.607201626812127,
+      0.9977935270226169,
+      0.17294117647058815,
+      0.1601470588235293,
+      0.9999196302925439
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": 0.89733586147964,
+    "generation": 0,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Cl5La4Li2P8_noise_perturbed_2592736207824.cif"
+  },
+  {
+    "id": 16,
+    "composition": {
+      "Li": 5,
+      "Nb": 1,
+      "Sc": 3,
+      "F": 6,
+      "Br": 10
+    },
+    "lattice_params": {
+      "a": 12.576097431917523,
+      "b": 3.7800186723260434,
+      "c": 11.493657390123479,
+      "alpha": 76.60789736716917,
+      "beta": 68.1862474171662,
+      "gamma": 112.52659541982467
+    },
+    "space_group": 136,
+    "generation_method": "noise_perturbed",
+    "properties": {
+      "ionic_conductivity": 0.002661875308876182,
+      "bandgap": 0.001221037350137128,
+      "sei_score": 0.6292058823529413,
+      "cei_score": 0.56921875,
+      "bulk_modulus": 0.005690004732456007
+    },
+    "objectives": [
+      0.4251877078120816,
+      0.9995929875499542,
+      0.27079411764705874,
+      0.28078125,
+      0.9999288749408443
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": 0.35650485946880195,
+    "generation": 0,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Br10F6Li5Nb1Sc3_noise_perturbed_2592735541072.cif"
+  },
+  {
+    "id": 17,
+    "composition": {
+      "Li": 6,
+      "Ta": 1,
+      "O": 8
+    },
+    "lattice_params": {
+      "a": 8.63930238787078,
+      "b": 8.63930238787078,
+      "c": 7.82175912360688,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 225,
+    "generation_method": "property_targeted",
+    "properties": {
+      "ionic_conductivity": 0.00029547936181921133,
+      "bandgap": 0.007985666073210164,
+      "sei_score": 0.741388888888889,
+      "cei_score": 0.35,
+      "bulk_modulus": 0.005512723088477009
+    },
+    "objectives": [
+      0.5294728476458199,
+      0.99733811130893,
+      0.15861111111111104,
+      0.5,
+      0.9999310909613941
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": 0.29595956574164095,
+    "generation": 0,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li6O8Ta1_property_targeted_2592736678544.cif"
+  },
+  {
+    "id": 18,
+    "composition": {
+      "Li": 6,
+      "Zr": 4,
+      "In": 1,
+      "S": 6,
+      "Br": 4
+    },
+    "lattice_params": {
+      "a": 7.173815862780986,
+      "b": 13.79493216251126,
+      "c": 6.988589790114645,
+      "alpha": 61.95763446425861,
+      "beta": 74.10862709313639,
+      "gamma": 61.83476548535412
+    },
+    "space_group": 194,
+    "generation_method": "noise_perturbed",
+    "properties": {
+      "ionic_conductivity": 0.008451819181572777,
+      "bandgap": 0.008446034870245322,
+      "sei_score": 0.6263333333333332,
+      "cei_score": 0.594107142857143,
+      "bulk_modulus": 0.005335568685009103
+    },
+    "objectives": [
+      0.9269501971728475,
+      0.9971846550432515,
+      0.27366666666666684,
+      0.25589285714285703,
+      0.9999333053914373
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": 0.6292408773907863,
+    "generation": 0,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Br4In1Li6S6Zr4_noise_perturbed_2592736494672.cif"
+  },
+  {
+    "id": 19,
+    "composition": {
+      "Li": 1,
       "Ti": 1,
       "O": 6
     },
     "lattice_params": {
-      "a": 4.3097327991630205,
-      "b": 4.3097327991630205,
-      "c": 4.3097327991630205,
+      "a": 6.316090178570382,
+      "b": 6.316090178570382,
+      "c": 6.316090178570382,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 225,
+    "generation_method": "symmetry_driven",
+    "properties": {
+      "ionic_conductivity": 0.0038831855720307747,
+      "bandgap": 0.009323018453081935,
+      "sei_score": 0.7389285714285715,
+      "cei_score": 0.4089285714285713,
+      "bulk_modulus": 0.00440999480825883
+    },
+    "objectives": [
+      0.5891881453704664,
+      0.996892327182306,
+      0.16107142857142853,
+      0.44107142857142867,
+      0.9999448750648968
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": Infinity,
+    "generation": 0,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen0_Li1O6Ti1_symmetry_driven_2592735298192.cif"
+  },
+  {
+    "id": 20,
+    "composition": {
+      "Li": 2,
+      "Ti": 1,
+      "O": 3
+    },
+    "lattice_params": {
+      "a": 6.999152127050611,
+      "b": 6.999152127050611,
+      "c": 6.999152127050611,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
@@ -929,36 +750,36 @@
     "space_group": 221,
     "generation_method": "symmetry_driven",
     "properties": {
-      "ionic_conductivity": 0.0037570195263130135,
-      "bandgap": 0.0070078996737669725,
-      "sei_score": 0.7389285714285715,
-      "cei_score": 0.4089285714285713,
-      "bulk_modulus": 0.004212993187852388
+      "ionic_conductivity": 0.004054888261881785,
+      "bandgap": 0.004432289259351429,
+      "sei_score": 0.7390625,
+      "cei_score": 0.453125,
+      "bulk_modulus": 0.006538549607671987
     },
     "objectives": [
-      0.574843452222809,
-      0.9976640334420778,
-      0.16107142857142853,
-      0.44107142857142867,
-      0.9999473375851519
+      0.6079788911201045,
+      0.9985225702468828,
+      0.16093750000000007,
+      0.396875,
+      0.9999182681299041
     ],
     "pareto_rank": 1,
-    "crowding_distance": Infinity,
+    "crowding_distance": 0.9021747850261731,
     "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li4O6Ti1_symmetry_driven_2345534947280.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li2O3Ti1_symmetry_driven_2592742482896.cif"
   },
   {
-    "id": 26,
+    "id": 21,
     "composition": {
-      "Li": 3,
-      "Ti": 2,
-      "P": 3,
-      "O": 14
+      "Li": 7,
+      "La": 3,
+      "Zr": 3,
+      "O": 10
     },
     "lattice_params": {
-      "a": 4.894245075747561,
-      "b": 4.894245075747561,
-      "c": 6.512581531033918,
+      "a": 5.384703825059032,
+      "b": 6.371154595304499,
+      "c": 7.141445402071726,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
@@ -966,35 +787,404 @@
     "space_group": 225,
     "generation_method": "composition_driven",
     "properties": {
-      "ionic_conductivity": 0.006009000660095784,
-      "bandgap": 0.006587806480145286,
-      "sei_score": 0.7485526315789475,
-      "cei_score": 0.46190789473684213,
-      "bulk_modulus": 0.008615449675943427
+      "ionic_conductivity": 0.008789436008712882,
+      "bandgap": 0.0038017421966833635,
+      "sei_score": 0.7415625,
+      "cei_score": 0.505625,
+      "bulk_modulus": 0.00428414442530765
     },
     "objectives": [
-      0.7788022517210007,
-      0.9978040645066182,
-      0.15144736842105255,
-      0.38809210526315785,
-      0.9998923068790507
+      0.9439610086161907,
+      0.9987327526011055,
+      0.1584375,
+      0.344375,
+      0.9999464481946836
+    ],
+    "pareto_rank": 1,
+    "crowding_distance": 0.6476775327670968,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_La3Li7O10Zr3_composition_driven_2592741962384.cif"
+  },
+  {
+    "id": 22,
+    "composition": {
+      "Li": 4,
+      "Ti": 1,
+      "O": 3
+    },
+    "lattice_params": {
+      "a": 5.447255263236876,
+      "b": 5.447255263236876,
+      "c": 5.447255263236876,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 221,
+    "generation_method": "symmetry_driven",
+    "properties": {
+      "ionic_conductivity": 0.0028251351966966745,
+      "bandgap": 0.007080165774928642,
+      "sei_score": 0.7390625,
+      "cei_score": 0.453125,
+      "bulk_modulus": 0.008379088058613964
+    },
+    "objectives": [
+      0.45103923579241645,
+      0.9976399447416905,
+      0.16093750000000007,
+      0.396875,
+      0.9998952613992673
     ],
     "pareto_rank": 0,
-    "crowding_distance": 0.21406977614258998,
+    "crowding_distance": 0.16284490159885956,
     "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3O14P3Ti2_composition_driven_2345534931472.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li4O3Ti1_symmetry_driven_2592737714512.cif"
+  },
+  {
+    "id": 23,
+    "composition": {
+      "Li": 2,
+      "Ti": 1,
+      "Zr": 2,
+      "F": 10,
+      "S": 4
+    },
+    "lattice_params": {
+      "a": 7.817042296768848,
+      "b": 4.9645894213743595,
+      "c": 14.42202562946768,
+      "alpha": 67.94077113381536,
+      "beta": 98.84489589499934,
+      "gamma": 112.82801326610601
+    },
+    "space_group": 221,
+    "generation_method": "noise_perturbed",
+    "properties": {
+      "ionic_conductivity": 0.007220307994606674,
+      "bandgap": 0.0015416546347519584,
+      "sei_score": 0.7414705882352942,
+      "cei_score": 0.7322058823529413,
+      "bulk_modulus": 0.00318575487763608
+    },
+    "objectives": [
+      0.8585557235398893,
+      0.9994861151217495,
+      0.1585294117647058,
+      0.11779411764705872,
+      0.9999601780640296
+    ],
+    "pareto_rank": 1,
+    "crowding_distance": Infinity,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_F10Li2S4Ti1Zr2_noise_perturbed_2592741377104.cif"
+  },
+  {
+    "id": 24,
+    "composition": {
+      "Li": 1,
+      "Ti": 1,
+      "O": 3,
+      "La": 2
+    },
+    "lattice_params": {
+      "a": 4.4479601811386305,
+      "b": 4.4479601811386305,
+      "c": 4.4479601811386305,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 225,
+    "generation_method": "composition_driven",
+    "properties": {
+      "ionic_conductivity": 0.0014575296677093142,
+      "bandgap": 0.0032468820454527353,
+      "sei_score": 0.7435416666666667,
+      "cei_score": 0.5579166666666666,
+      "bulk_modulus": 0.003008342517275768
+    },
+    "objectives": [
+      0.1636174034937028,
+      0.9989177059848492,
+      0.15645833333333337,
+      0.29208333333333336,
+      0.9999623957185341
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": Infinity,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_La2Li1O3Ti1_composition_driven_2592736729744.cif"
+  },
+  {
+    "id": 25,
+    "composition": {
+      "Li": 4,
+      "In": 2,
+      "O": 3
+    },
+    "lattice_params": {
+      "a": 11.705449419710018,
+      "b": 4.290400067501347,
+      "c": 11.195833694404019,
+      "alpha": 68.32790023705071,
+      "beta": 113.16321258037827,
+      "gamma": 68.32578866194227
+    },
+    "space_group": 141,
+    "generation_method": "noise_perturbed",
+    "properties": {
+      "ionic_conductivity": 0.0013746868000800935,
+      "bandgap": 0.008022496337166105,
+      "sei_score": 0.7242500000000001,
+      "cei_score": 0.35,
+      "bulk_modulus": 0.003305686615867701
+    },
+    "objectives": [
+      0.13820376253657107,
+      0.997325834554278,
+      0.17574999999999996,
+      0.5,
+      0.9999586789173016
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": Infinity,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_In2Li4O3_noise_perturbed_2592741411600.cif"
+  },
+  {
+    "id": 26,
+    "composition": {
+      "Li": 3,
+      "Ta": 1,
+      "S": 10,
+      "Y": 1
+    },
+    "lattice_params": {
+      "a": 11.066405214748123,
+      "b": 11.066405214748123,
+      "c": 10.338321126905164,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 194,
+    "generation_method": "property_targeted",
+    "properties": {
+      "ionic_conductivity": 0.002288837160934888,
+      "bandgap": 0.0007190962046505668,
+      "sei_score": 0.6227272727272728,
+      "cei_score": 0.5837499999999999,
+      "bulk_modulus": 0.004128582328563075
+    },
+    "objectives": [
+      0.3596148959410157,
+      0.9997603012651165,
+      0.2772727272727272,
+      0.2662500000000001,
+      0.999948392720893
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": Infinity,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3S10Ta1Y1_property_targeted_2592741415376.cif"
   },
   {
     "id": 27,
     "composition": {
-      "Na": 3,
-      "Ga": 4,
-      "N": 7
+      "Li": 2,
+      "Ti": 1,
+      "O": 4
     },
     "lattice_params": {
-      "a": 9.551754853483484,
-      "b": 9.059125961416854,
-      "c": 10.946051670979571,
+      "a": 5.600464815107248,
+      "b": 5.600464815107248,
+      "c": 5.600464815107248,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 225,
+    "generation_method": "symmetry_driven",
+    "properties": {
+      "ionic_conductivity": 0.0009792021006283624,
+      "bandgap": 0.0060442678510024,
+      "sei_score": 0.7390000000000001,
+      "cei_score": 0.43250000000000005,
+      "bulk_modulus": 0.005457596407477526
+    },
+    "objectives": [
+      0.00912766352946992,
+      0.9979852440496658,
+      0.16099999999999992,
+      0.4174999999999999,
+      0.9999317800449065
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": Infinity,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li2O4Ti1_symmetry_driven_2592742369552.cif"
+  },
+  {
+    "id": 28,
+    "composition": {
+      "Li": 1,
+      "Ti": 2,
+      "O": 4,
+      "Ba": 1
+    },
+    "lattice_params": {
+      "a": 4.286421387219804,
+      "b": 4.286421387219804,
+      "c": 3.5921478960620465,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 141,
+    "generation_method": "composition_driven",
+    "properties": {
+      "ionic_conductivity": 0.005343400127640071,
+      "bandgap": 0.00024339935243361156,
+      "sei_score": 0.7391666666666665,
+      "cei_score": 0.48749999999999993,
+      "bulk_modulus": 0.008733262607544095
+    },
+    "objectives": [
+      0.7278176964961536,
+      0.9999188668825222,
+      0.1608333333333335,
+      0.36250000000000004,
+      0.9998908342174057
+    ],
+    "pareto_rank": 1,
+    "crowding_distance": Infinity,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Ba1Li1O4Ti2_composition_driven_2592741194448.cif"
+  },
+  {
+    "id": 29,
+    "composition": {
+      "Li": 3,
+      "Ta": 1,
+      "Nb": 3,
+      "S": 8
+    },
+    "lattice_params": {
+      "a": 10.686775540850189,
+      "b": 12.045260111102076,
+      "c": 12.9089574350275,
+      "alpha": 82.90553245419028,
+      "beta": 64.96445214737693,
+      "gamma": 91.14180085289813
+    },
+    "space_group": 63,
+    "generation_method": "noise_perturbed",
+    "properties": {
+      "ionic_conductivity": 0.007117054205681872,
+      "bandgap": 0.0038847578776161633,
+      "sei_score": 0.6510000000000001,
+      "cei_score": 0.5837499999999999,
+      "bulk_modulus": 0.004691732187803225
+    },
+    "objectives": [
+      0.8523002735603633,
+      0.9987050807074613,
+      0.2489999999999999,
+      0.2662500000000001,
+      0.9999413533476524
+    ],
+    "pareto_rank": 1,
+    "crowding_distance": 0.9419826333739768,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3Nb3S8Ta1_noise_perturbed_2592740817232.cif"
+  },
+  {
+    "id": 30,
+    "composition": {
+      "Li": 3,
+      "P": 2,
+      "S": 9
+    },
+    "lattice_params": {
+      "a": 5.289572472694207,
+      "b": 5.289572472694207,
+      "c": 5.289572472694207,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 63,
+    "generation_method": "composition_driven",
+    "properties": {
+      "ionic_conductivity": 0.009274821395523178,
+      "bandgap": 0.0021988733326487584,
+      "sei_score": 0.6435227272727272,
+      "cei_score": 0.6201136363636364,
+      "bulk_modulus": 0.007220735971563428
+    },
+    "objectives": [
+      0.9673055551942995,
+      0.9992670422224504,
+      0.25647727272727283,
+      0.2298863636363636,
+      0.9999097408003556
+    ],
+    "pareto_rank": 1,
+    "crowding_distance": 1.131776534139002,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3P2S9_composition_driven_2592740568208.cif"
+  },
+  {
+    "id": 31,
+    "composition": {
+      "Li": 5,
+      "La": 3,
+      "Zr": 2,
+      "O": 10
+    },
+    "lattice_params": {
+      "a": 5.334493602135977,
+      "b": 5.334493602135977,
+      "c": 7.414742238786526,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 225,
+    "generation_method": "composition_driven",
+    "properties": {
+      "ionic_conductivity": 0.0026416991303458326,
+      "bandgap": 0.003773936579530044,
+      "sei_score": 0.7416666666666667,
+      "cei_score": 0.48849999999999993,
+      "bulk_modulus": 0.002321776584343615
+    },
+    "objectives": [
+      0.42188335322126624,
+      0.9987420211401566,
+      0.15833333333333333,
+      0.36150000000000004,
+      0.9999709777926957
+    ],
+    "pareto_rank": 1,
+    "crowding_distance": Infinity,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_La3Li5O10Zr2_composition_driven_2592739264080.cif"
+  },
+  {
+    "id": 32,
+    "composition": {
+      "Li": 5,
+      "Ta": 2,
+      "Sc": 2,
+      "O": 6,
+      "Br": 8
+    },
+    "lattice_params": {
+      "a": 7.277584789564545,
+      "b": 7.971558311646754,
+      "c": 6.590049938357287,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
@@ -1002,289 +1192,256 @@
     "space_group": 167,
     "generation_method": "symmetry_driven",
     "properties": {
-      "ionic_conductivity": 0.006701415833170932,
-      "bandgap": 7.822068608900948e-05,
-      "sei_score": 0.6953571428571429,
-      "cei_score": 0.0,
-      "bulk_modulus": 0.0038852915925090114
+      "ionic_conductivity": 0.0046585311465298755,
+      "bandgap": 0.006475813896990207,
+      "sei_score": 0.63234375,
+      "cei_score": 0.4021428571428571,
+      "bulk_modulus": 0.0033431521456600694
     },
     "objectives": [
-      0.8261665674133574,
-      0.9999739264379702,
-      0.20464285714285713,
-      0.85,
-      0.9999514338550937
+      0.6682490034893998,
+      0.9978413953676699,
+      0.26765625000000004,
+      0.4478571428571429,
+      0.9999582105981792
     ],
-    "pareto_rank": 2,
+    "pareto_rank": 1,
     "crowding_distance": Infinity,
     "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Ga4N7Na3_symmetry_driven_2345534695312.cif"
-  },
-  {
-    "id": 28,
-    "composition": {
-      "Li": 1,
-      "Ga": 3,
-      "F": 6,
-      "In": 1
-    },
-    "lattice_params": {
-      "a": 8.382800124168831,
-      "b": 8.382800124168831,
-      "c": 8.282073347909806,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 227,
-    "generation_method": "property_targeted",
-    "properties": {
-      "ionic_conductivity": 0.005816420236520366,
-      "bandgap": 0.0026774051530221365,
-      "sei_score": 0.76775,
-      "cei_score": 0.7825,
-      "bulk_modulus": 0.007956749780433864
-    },
-    "objectives": [
-      0.7646557767726945,
-      0.9991075316156593,
-      0.13224999999999998,
-      0.0675,
-      0.9999005406277446
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": 0.3022739552893604,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_F6Ga3In1Li1_property_targeted_2345534423888.cif"
-  },
-  {
-    "id": 29,
-    "composition": {
-      "Li": 3,
-      "Zr": 1,
-      "Cl": 9
-    },
-    "lattice_params": {
-      "a": 10.630199120372884,
-      "b": 10.630199120372884,
-      "c": 10.525243832716349,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 194,
-    "generation_method": "property_targeted",
-    "properties": {
-      "ionic_conductivity": 0.009831117281789559,
-      "bandgap": 0.00696238932673185,
-      "sei_score": 0.6050000000000001,
-      "cei_score": 0.506,
-      "bulk_modulus": 0.005924358245955242
-    },
-    "objectives": [
-      0.9926028771141646,
-      0.9976792035577561,
-      0.29499999999999993,
-      0.344,
-      0.9999259455219256
-    ],
-    "pareto_rank": 1,
-    "crowding_distance": 1.7224551221860311,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Cl9Li3Zr1_property_targeted_2345534271440.cif"
-  },
-  {
-    "id": 30,
-    "composition": {
-      "Li": 1,
-      "Al": 1,
-      "O": 5
-    },
-    "lattice_params": {
-      "a": 4.685953157672667,
-      "b": 4.685953157672667,
-      "c": 8.507844586689645,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 120
-    },
-    "space_group": 194,
-    "generation_method": "symmetry_driven",
-    "properties": {
-      "ionic_conductivity": 0.0020413370521522836,
-      "bandgap": 0.00027299490997793196,
-      "sei_score": 0.7464583333333332,
-      "cei_score": 0.42124999999999996,
-      "bulk_modulus": 0.0004506366626219764
-    },
-    "objectives": [
-      0.30991471848605734,
-      0.9999090016966741,
-      0.1535416666666668,
-      0.42875,
-      0.9999943670417173
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": Infinity,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Al1Li1O5_symmetry_driven_2345508574928.cif"
-  },
-  {
-    "id": 31,
-    "composition": {
-      "Li": 3,
-      "Al": 1,
-      "O": 4
-    },
-    "lattice_params": {
-      "a": 6.848814164291007,
-      "b": 6.848814164291007,
-      "c": 8.264343694561635,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 120
-    },
-    "space_group": 194,
-    "generation_method": "symmetry_driven",
-    "properties": {
-      "ionic_conductivity": 0.008743775562001734,
-      "bandgap": 0.006329947007940072,
-      "sei_score": 0.748,
-      "cei_score": 0.43550000000000005,
-      "bulk_modulus": 0.00639623369869665
-    },
-    "objectives": [
-      0.9416990014765116,
-      0.99789001766402,
-      0.15200000000000002,
-      0.4144999999999999,
-      0.9999200470787664
-    ],
-    "pareto_rank": 1,
-    "crowding_distance": 0.8398940668697078,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Al1Li3O4_symmetry_driven_2345534700880.cif"
-  },
-  {
-    "id": 32,
-    "composition": {
-      "Li": 2,
-      "Ga": 1,
-      "O": 8,
-      "La": 2
-    },
-    "lattice_params": {
-      "a": 9.04369391874891,
-      "b": 9.04369391874891,
-      "c": 8.19443520601719,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 227,
-    "generation_method": "property_targeted",
-    "properties": {
-      "ionic_conductivity": 0.004859321240546739,
-      "bandgap": 0.0032323715548397912,
-      "sei_score": 0.7409090909090907,
-      "cei_score": 0.4335000000000001,
-      "bulk_modulus": 0.0019021645237184584
-    },
-    "objectives": [
-      0.6865756103997507,
-      0.9989225428150533,
-      0.15909090909090928,
-      0.41649999999999987,
-      0.9999762229434536
-    ],
-    "pareto_rank": 1,
-    "crowding_distance": 1.3159058555041603,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Ga1La2Li2O8_property_targeted_2345534661008.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Br8Li5O6Sc2Ta2_symmetry_driven_2592740332688.cif"
   },
   {
     "id": 33,
     "composition": {
-      "Li": 3,
-      "Ti": 1,
+      "Li": 1,
+      "Sc": 1,
+      "Cl": 3,
       "O": 5
     },
     "lattice_params": {
-      "a": 5.924311962826049,
-      "b": 5.924311962826049,
-      "c": 5.924311962826049,
+      "a": 3.9070099204805757,
+      "b": 13.796165024011486,
+      "c": 3.416942841142411,
+      "alpha": 80.2809842270023,
+      "beta": 70.23721743351435,
+      "gamma": 60.31781149028924
+    },
+    "space_group": 194,
+    "generation_method": "noise_perturbed",
+    "properties": {
+      "ionic_conductivity": 0.00676531201114045,
+      "bandgap": 0.009231986691209983,
+      "sei_score": 0.68296875,
+      "cei_score": 0.39781249999999996,
+      "bulk_modulus": 0.005454634129826563
+    },
+    "objectives": [
+      0.8302878307328809,
+      0.9969226711029301,
+      0.21703125,
+      0.4521875,
+      0.9999318170733771
+    ],
+    "pareto_rank": 1,
+    "crowding_distance": Infinity,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Cl3Li1O5Sc1_noise_perturbed_2592740014480.cif"
+  },
+  {
+    "id": 34,
+    "composition": {
+      "Li": 3,
+      "Ti": 1,
+      "O": 3,
+      "Ba": 2
+    },
+    "lattice_params": {
+      "a": 4.198336453808407,
+      "b": 4.198336453808407,
+      "c": 4.198336453808407,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
     },
     "space_group": 225,
-    "generation_method": "symmetry_driven",
+    "generation_method": "composition_driven",
     "properties": {
-      "ionic_conductivity": 0.009991509036955728,
-      "bandgap": 0.008348663776674653,
-      "sei_score": 0.7389583333333333,
-      "cei_score": 0.41874999999999996,
-      "bulk_modulus": 0.0009380043681979531
+      "ionic_conductivity": 0.008957944228105195,
+      "bandgap": 0.002229342622360294,
+      "sei_score": 0.7390625,
+      "cei_score": 0.453125,
+      "bulk_modulus": 0.00399683243197873
     },
     "objectives": [
-      0.9996310855162465,
-      0.9972171120744417,
-      0.16104166666666675,
-      0.43125,
-      0.9999882749453975
+      0.9522083542125359,
+      0.9992568857925467,
+      0.16093750000000007,
+      0.396875,
+      0.9999500395946003
     ],
-    "pareto_rank": 1,
+    "pareto_rank": 2,
     "crowding_distance": Infinity,
     "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3O5Ti1_symmetry_driven_2345534611472.cif"
-  },
-  {
-    "id": 34,
-    "composition": {
-      "Li": 1,
-      "Al": 1,
-      "O": 5
-    },
-    "lattice_params": {
-      "a": 5.27126202551475,
-      "b": 5.27126202551475,
-      "c": 8.155745277068707,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 120
-    },
-    "space_group": 166,
-    "generation_method": "symmetry_driven",
-    "properties": {
-      "ionic_conductivity": 0.009960203574385616,
-      "bandgap": 0.008222546364354993,
-      "sei_score": 0.7464583333333332,
-      "cei_score": 0.42124999999999996,
-      "bulk_modulus": 0.004148363954604506
-    },
-    "objectives": [
-      0.9982682149627364,
-      0.9972591512118817,
-      0.1535416666666668,
-      0.42875,
-      0.9999481454505675
-    ],
-    "pareto_rank": 1,
-    "crowding_distance": 0.37613138596721907,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Al1Li1O5_symmetry_driven_2345532718288.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Ba2Li3O3Ti1_composition_driven_2592739673488.cif"
   },
   {
     "id": 35,
     "composition": {
       "Li": 3,
-      "Ti": 1,
-      "O": 4
+      "Zr": 1,
+      "O": 10
     },
     "lattice_params": {
-      "a": 4.812283597737039,
-      "b": 4.812283597737039,
-      "c": 4.812283597737039,
+      "a": 8.919533758810136,
+      "b": 8.919533758810136,
+      "c": 9.266579455620043,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 221,
+    "generation_method": "property_targeted",
+    "properties": {
+      "ionic_conductivity": 0.006002777396101129,
+      "bandgap": 0.004095024667084363,
+      "sei_score": 0.7388636363636363,
+      "cei_score": 0.3875,
+      "bulk_modulus": 0.004628368844172406
+    },
+    "objectives": [
+      0.7783522385020603,
+      0.9986349917776386,
+      0.16113636363636374,
+      0.46249999999999997,
+      0.9999421453894479
+    ],
+    "pareto_rank": 2,
+    "crowding_distance": Infinity,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3O10Zr1_property_targeted_2592742520784.cif"
+  },
+  {
+    "id": 36,
+    "composition": {
+      "Li": 3,
+      "Ti": 2,
+      "P": 5,
+      "O": 10
+    },
+    "lattice_params": {
+      "a": 4.424957928764768,
+      "b": 5.323880595387947,
+      "c": 6.282380884108175,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 221,
+    "generation_method": "composition_driven",
+    "properties": {
+      "ionic_conductivity": 0.0015844681601024531,
+      "bandgap": 0.006225462943717843,
+      "sei_score": 0.7569117647058823,
+      "cei_score": 0.5261029411764707,
+      "bulk_modulus": 0.004505556319856798
+    },
+    "objectives": [
+      0.19988351646368496,
+      0.9979248456854274,
+      0.14308823529411774,
+      0.32389705882352926,
+      0.9999436805460018
+    ],
+    "pareto_rank": 0,
+    "crowding_distance": 0.42535113692294135,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3O10P5Ti2_composition_driven_2592742551504.cif"
+  },
+  {
+    "id": 37,
+    "composition": {
+      "Li": 1,
+      "Ti": 1,
+      "P": 2,
+      "O": 11
+    },
+    "lattice_params": {
+      "a": 4.672328728355259,
+      "b": 4.672328728355259,
+      "c": 4.672328728355259,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 221,
+    "generation_method": "composition_driven",
+    "properties": {
+      "ionic_conductivity": 0.004541123606881125,
+      "bandgap": 0.001730061359997211,
+      "sei_score": 0.7475892857142856,
+      "cei_score": 0.4414285714285714,
+      "bulk_modulus": 0.00023742956506762745
+    },
+    "objectives": [
+      0.657163323318231,
+      0.9994233128800009,
+      0.1524107142857144,
+      0.4085714285714286,
+      0.9999970321304368
+    ],
+    "pareto_rank": 1,
+    "crowding_distance": Infinity,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li1O11P2Ti1_composition_driven_2592742636432.cif"
+  },
+  {
+    "id": 38,
+    "composition": {
+      "Na": 3,
+      "Ta": 1,
+      "Ti": 2,
+      "O": 5
+    },
+    "lattice_params": {
+      "a": 6.90158099449807,
+      "b": 6.368467905710012,
+      "c": 6.140639432164067,
+      "alpha": 90,
+      "beta": 90,
+      "gamma": 90
+    },
+    "space_group": 167,
+    "generation_method": "symmetry_driven",
+    "properties": {
+      "ionic_conductivity": 0.002688398587639318,
+      "bandgap": 0.001012332277852447,
+      "sei_score": 0.7148863636363635,
+      "cei_score": 0.4678571428571429,
+      "bulk_modulus": 0.0025669861671506564
+    },
+    "objectives": [
+      0.42949365857050203,
+      0.9996625559073825,
+      0.18511363636363654,
+      0.38214285714285706,
+      0.9999679126729106
+    ],
+    "pareto_rank": 1,
+    "crowding_distance": 1.160005127922826,
+    "generation": 1,
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Na3O5Ta1Ti2_symmetry_driven_2592742584400.cif"
+  },
+  {
+    "id": 39,
+    "composition": {
+      "Li": 2,
+      "Ti": 1,
+      "O": 5
+    },
+    "lattice_params": {
+      "a": 7.3229326032040865,
+      "b": 7.3229326032040865,
+      "c": 7.3229326032040865,
       "alpha": 90,
       "beta": 90,
       "gamma": 90
@@ -1292,169 +1449,22 @@
     "space_group": 221,
     "generation_method": "symmetry_driven",
     "properties": {
-      "ionic_conductivity": 0.004892329443586515,
-      "bandgap": 0.005653050546948357,
-      "sei_score": 0.7390000000000001,
-      "cei_score": 0.43250000000000005,
-      "bulk_modulus": 0.007964563973348405
+      "ionic_conductivity": 0.009863802631517028,
+      "bandgap": 0.005822177821540216,
+      "sei_score": 0.7389583333333334,
+      "cei_score": 0.41875,
+      "bulk_modulus": 0.008331330336756966
     },
     "objectives": [
-      0.6895156942175484,
-      0.9981156498176839,
-      0.16099999999999992,
-      0.4174999999999999,
-      0.9999004429503332
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": 0.31684343294021006,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3O4Ti1_symmetry_driven_2345528979600.cif"
-  },
-  {
-    "id": 36,
-    "composition": {
-      "Li": 3,
-      "Ti": 1,
-      "O": 4,
-      "Sr": 2
-    },
-    "lattice_params": {
-      "a": 3.9872422809507833,
-      "b": 4.109918977607457,
-      "c": 4.881846285722538,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 141,
-    "generation_method": "composition_driven",
-    "properties": {
-      "ionic_conductivity": 0.002467236755358152,
-      "bandgap": 0.0024914233406338206,
-      "sei_score": 0.7390000000000001,
-      "cei_score": 0.43250000000000005,
-      "bulk_modulus": 0.0003795016997901394
-    },
-    "objectives": [
-      0.3922108262680437,
-      0.9991695255531221,
-      0.16099999999999992,
-      0.4174999999999999,
-      0.9999952562287525
+      0.9940443737153504,
+      0.9980592740594866,
+      0.16104166666666664,
+      0.43124999999999997,
+      0.9998958583707905
     ],
     "pareto_rank": 1,
     "crowding_distance": Infinity,
     "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3O4Sr2Ti1_composition_driven_2345535443536.cif"
-  },
-  {
-    "id": 37,
-    "composition": {
-      "Li": 3,
-      "Ge": 1,
-      "S": 3
-    },
-    "lattice_params": {
-      "a": 4.261486972598806,
-      "b": 4.261486972598806,
-      "c": 3.854567983106251,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 14,
-    "generation_method": "composition_driven",
-    "properties": {
-      "ionic_conductivity": 0.0018957618489695409,
-      "bandgap": 0.00928939332947121,
-      "sei_score": 0.6087499999999999,
-      "cei_score": 0.5837499999999999,
-      "bulk_modulus": 0.006668929978072626
-    },
-    "objectives": [
-      0.2777837791125135,
-      0.996903535556843,
-      0.2912500000000001,
-      0.2662500000000001,
-      0.999916638375274
-    ],
-    "pareto_rank": 0,
-    "crowding_distance": 0.10048186874035915,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Ge1Li3S3_composition_driven_2345535240016.cif"
-  },
-  {
-    "id": 38,
-    "composition": {
-      "Li": 3,
-      "Ti": 2,
-      "P": 4,
-      "O": 9
-    },
-    "lattice_params": {
-      "a": 5.193945825653122,
-      "b": 5.193945825653122,
-      "c": 4.967180791213828,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 141,
-    "generation_method": "composition_driven",
-    "properties": {
-      "ionic_conductivity": 0.0056485228021123735,
-      "bandgap": 0.006212070762427392,
-      "sei_score": 0.7552500000000001,
-      "cei_score": 0.5206666666666667,
-      "bulk_modulus": 0.004120226210560764
-    },
-    "objectives": [
-      0.7519348862669832,
-      0.9979293097458575,
-      0.14474999999999993,
-      0.32933333333333326,
-      0.999948497172368
-    ],
-    "pareto_rank": 1,
-    "crowding_distance": Infinity,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li3O9P4Ti2_composition_driven_2345535448592.cif"
-  },
-  {
-    "id": 39,
-    "composition": {
-      "Li": 4,
-      "Ti": 2,
-      "P": 2,
-      "O": 9
-    },
-    "lattice_params": {
-      "a": 5.0132979349645845,
-      "b": 5.0132979349645845,
-      "c": 5.0132979349645845,
-      "alpha": 90,
-      "beta": 90,
-      "gamma": 90
-    },
-    "space_group": 221,
-    "generation_method": "composition_driven",
-    "properties": {
-      "ionic_conductivity": 0.005988051508462491,
-      "bandgap": 0.004655315496189981,
-      "sei_score": 0.7483653846153847,
-      "cei_score": 0.48019230769230775,
-      "bulk_modulus": 0.0008987807380536986
-    },
-    "objectives": [
-      0.7772855274333428,
-      0.9984482281679367,
-      0.1516346153846153,
-      0.3698076923076922,
-      0.9999887652407743
-    ],
-    "pareto_rank": 2,
-    "crowding_distance": Infinity,
-    "generation": 1,
-    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li4O9P2Ti2_composition_driven_2345535451088.cif"
+    "cif_path": "advanced_generation_ga_results\\cifs\\gen1_Li2O5Ti1_symmetry_driven_2592742633424.cif"
   }
 ]
