@@ -1,4 +1,55 @@
 .venv
 # Python cache files
 __pycache__
+
+# Python cache and compiled files
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# ML Model weights and checkpoints (HUGE FILES!)
+*.pth
 *.pth.tar
+*.ckpt
+*.pt
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+
+# CDVAE specific large files
+generator/CDVAE/data/mp_20/*.pkl
+generator/CDVAE/cdvae/prop_models/*/epoch*.ckpt
+generator/CDVAE/temp_cdvae/
+
+# Large datasets and CIF collections
+env/cgcnn_bandgap_ionic_cond_bulk_moduli/CIF_OBELiX/
+*.cif
+data/
+datasets/
+
+# Results directories (optional - you might want to keep these)
+*_results/
+*_ga_results/
+comparison_plots/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+wandb/
