@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li2MnNi3Sb4P3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.06628714
+_cell_length_b   5.22500869
+_cell_length_c   7.05501234
+_cell_angle_alpha   96.85191808
+_cell_angle_beta   97.08926020
+_cell_angle_gamma   97.47025505
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2MnNi3Sb4P3
+_chemical_formula_sum   'Li2 Mn1 Ni3 Sb4 P3'
+_cell_volume   182.00844004
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Mn  Mn0  1  0.00000000  0.00000000  0.00000000  1
+  Sb  Sb1  1  0.50000000  0.50000000  0.50000000  1
+  Sb  Sb2  1  0.25000000  0.25000000  0.25000000  1
+  Sb  Sb3  1  0.75000000  0.25000000  0.00000000  1
+  Sb  Sb4  1  0.25000000  0.75000000  0.50000000  1
+  P  P5  1  0.15784040  0.24275087  0.92927449  1
+  P  P6  1  0.51385893  0.90045113  0.66583877  1
+  P  P7  1  0.32415224  0.88455318  0.36392331  1
+  Li  Li8  1  0.67184763  0.85130346  0.97916052  1
+  Li  Li9  1  0.72723041  0.02127113  0.42409650  1
+  Ni  Ni10  1  0.00884774  0.45147702  0.93463712  1
+  Ni  Ni11  1  0.85504737  0.93569257  0.66985601  1
+  Ni  Ni12  1  0.93897229  0.19701400  0.12290777  1

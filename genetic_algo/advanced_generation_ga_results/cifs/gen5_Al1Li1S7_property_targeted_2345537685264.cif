@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_LiAlS7
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   11.25680535
+_cell_length_b   11.25680535
+_cell_length_c   11.77725791
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiAlS7
+_chemical_formula_sum   'Li1 Al1 S7'
+_cell_volume   1492.36308850
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.91429555  0.93746461  0.09002761  1
+  Al  Al1  1  0.14800934  0.23896990  0.38067659  1
+  S  S2  1  0.12426942  0.36663698  0.54408560  1
+  S  S3  1  0.41628490  0.55161252  0.84152556  1
+  S  S4  1  0.50023613  0.69507647  0.21224462  1
+  S  S5  1  0.60920422  0.82774708  0.47919855  1
+  S  S6  1  0.76053359  0.06263840  0.72214942  1
+  S  S7  1  0.79397515  0.31826780  0.96474658  1
+  S  S8  1  0.81216067  0.34500214  0.38936766  1

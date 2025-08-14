@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li6ZrTi2Se
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.48276254
+_cell_length_b   2.98054036
+_cell_length_c   6.67522292
+_cell_angle_alpha   108.33071498
+_cell_angle_beta   111.86247717
+_cell_angle_gamma   106.89334266
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li6ZrTi2Se
+_chemical_formula_sum   'Li6 Zr1 Ti2 Se1'
+_cell_volume   54.11517119
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Se  Se0  1  0.00000000  0.00000000  0.00000000  1
+  Ti  Ti1  1  0.50000000  0.50000000  0.50000000  1
+  Ti  Ti2  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li3  1  0.75000000  0.25000000  0.00000000  1
+  Li  Li4  1  0.25000000  0.75000000  0.50000000  1
+  Li  Li5  1  0.66201454  0.68537706  0.59733445  1
+  Li  Li6  1  0.84681345  0.59625403  0.41833039  1
+  Li  Li7  1  0.32340567  0.34857119  0.84584523  1
+  Li  Li8  1  0.91310587  0.16418770  0.12447494  1
+  Zr  Zr9  1  0.96064351  0.08627137  0.81207056  1

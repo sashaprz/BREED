@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li3ZnTe3(OF)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.44949551
+_cell_length_b   7.44191677
+_cell_length_c   5.29631776
+_cell_angle_alpha   89.45943289
+_cell_angle_beta   90.74875530
+_cell_angle_gamma   88.97385135
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3ZnTe3(OF)2
+_chemical_formula_sum   'Li3 Zn1 Te3 O2 F2'
+_cell_volume   254.13093609
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Zn  Zn0  1  0.00000000  0.00000000  0.00000000  1
+  F  F1  1  0.50000000  0.50000000  0.50000000  1
+  F  F2  1  0.25000000  0.25000000  0.25000000  1
+  O  O3  1  0.75000000  0.25000000  0.00000000  1
+  O  O4  1  0.25000000  0.75000000  0.50000000  1
+  Li  Li5  1  0.65754497  0.75170603  0.21664417  1
+  Li  Li6  1  0.05582643  0.58548043  0.63512012  1
+  Li  Li7  1  0.57171665  0.01480507  0.97549427  1
+  Te  Te8  1  0.03872757  0.60583310  0.41653912  1
+  Te  Te9  1  0.53896392  0.10970285  0.18767401  1
+  Te  Te10  1  0.22944067  0.59427369  0.09821271  1

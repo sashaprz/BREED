@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_Li6Cr2As3NO2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.20116721
+_cell_length_b   7.28347308
+_cell_length_c   9.68372462
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li6Cr2As3NO2
+_chemical_formula_sum   'Li6 Cr2 As3 N1 O2'
+_cell_volume   578.43773554
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li3  1  0.75000000  0.25000000  0.00000000  1
+  Li  Li4  1  0.25000000  0.75000000  0.50000000  1
+  Li  Li5  1  0.43009898  0.42210070  0.46707310  1
+  Cr  Cr6  1  0.48847420  0.25274942  0.31715070  1
+  Cr  Cr7  1  0.41646021  0.65060052  0.22919338  1
+  N  N8  1  0.73123409  0.50872856  0.63270829  1
+  As  As9  1  0.42671638  0.55408998  0.52027786  1
+  As  As10  1  0.96770140  0.46412976  0.89595996  1
+  As  As11  1  0.81249961  0.05950083  0.80182582  1
+  O  O12  1  0.43875023  0.82049809  0.82140063  1
+  O  O13  1  0.50129100  0.16335278  0.42172513  1

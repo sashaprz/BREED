@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_LiSb4Mo2P3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.28312424
+_cell_length_b   5.35675697
+_cell_length_c   6.17932268
+_cell_angle_alpha   94.50823249
+_cell_angle_beta   91.88444527
+_cell_angle_gamma   94.71095414
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiSb4Mo2P3
+_chemical_formula_sum   'Li1 Sb4 Mo2 P3'
+_cell_volume   173.61110719
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Sb  Sb0  1  0.00000000  0.00000000  0.00000000  1
+  Sb  Sb1  1  0.50000000  0.50000000  0.50000000  1
+  Sb  Sb2  1  0.25000000  0.25000000  0.25000000  1
+  Sb  Sb3  1  0.75000000  0.25000000  0.00000000  1
+  P  P4  1  0.25000000  0.75000000  0.50000000  1
+  P  P5  1  0.12396782  0.42188012  0.97515905  1
+  P  P6  1  0.58643776  0.56330055  0.68631425  1
+  Mo  Mo7  1  0.94835937  0.47389474  0.29791406  1
+  Mo  Mo8  1  0.61751518  0.64382142  0.43806774  1
+  Li  Li9  1  0.70835399  0.06556744  0.40108152  1

@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li2Al3PBr4O3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.90426122
+_cell_length_b   7.17210148
+_cell_length_c   7.69312588
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Al3PBr4O3
+_chemical_formula_sum   'Li2 Al3 P1 Br4 O3'
+_cell_volume   436.12456530
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.25000000  0.25000000  0.25000000  1
+  Br  Br3  1  0.75000000  0.25000000  0.00000000  1
+  Br  Br4  1  0.25000000  0.75000000  0.50000000  1
+  Br  Br5  1  0.93863835  0.88055839  0.80972199  1
+  Br  Br6  1  0.17095104  0.08295166  0.57482285  1
+  Al  Al7  1  0.38676203  0.72406464  0.42264556  1
+  Al  Al8  1  0.35750891  0.62020328  0.58592902  1
+  Al  Al9  1  0.65799956  0.27300578  0.63853489  1
+  O  O10  1  0.73349352  0.65254488  0.73395979  1
+  O  O11  1  0.98522975  0.34547088  0.10208270  1
+  O  O12  1  0.65063745  0.05451530  0.02541991  1

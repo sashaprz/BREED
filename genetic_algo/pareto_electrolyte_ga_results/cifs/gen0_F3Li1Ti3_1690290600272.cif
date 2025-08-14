@@ -1,0 +1,33 @@
+# generated using pymatgen
+data_LiTi3F3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.18889231
+_cell_length_b   2.64178720
+_cell_length_c   6.24131931
+_cell_angle_alpha   93.03569744
+_cell_angle_beta   104.44292649
+_cell_angle_gamma   93.47061278
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiTi3F3
+_chemical_formula_sum   'Li1 Ti3 F3'
+_cell_volume   50.69801819
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Ti  Ti1  1  0.33300000  0.66700000  0.25000000  1
+  Ti  Ti2  1  0.66700000  0.33300000  0.50000000  1
+  Ti  Ti3  1  0.00000000  0.00000000  0.75000000  1
+  F  F4  1  0.38237372  0.24774591  0.12818774  1
+  F  F5  1  0.33471016  0.23832047  0.51809263  1
+  F  F6  1  0.16082710  0.01287723  0.77253203  1

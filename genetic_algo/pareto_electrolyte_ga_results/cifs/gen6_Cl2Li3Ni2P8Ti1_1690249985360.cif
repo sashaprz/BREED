@@ -1,0 +1,42 @@
+# generated using pymatgen
+data_Li3TiNi2(P4Cl)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.36070661
+_cell_length_b   7.08205538
+_cell_length_c   8.01013766
+_cell_angle_alpha   94.78385235
+_cell_angle_beta   96.10788072
+_cell_angle_gamma   94.50024589
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3TiNi2(P4Cl)2
+_chemical_formula_sum   'Li3 Ti1 Ni2 P8 Cl2'
+_cell_volume   412.13287019
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.25000000  0.25000000  0.25000000  1
+  P  P3  1  0.75000000  0.25000000  0.00000000  1
+  P  P4  1  0.25000000  0.75000000  0.50000000  1
+  P  P5  1  0.30654027  0.27434401  0.26976911  1
+  P  P6  1  0.92891950  0.16529220  0.27330899  1
+  P  P7  1  0.57971620  0.14901529  0.97982025  1
+  Li  Li8  1  0.21732995  0.81082235  0.05709215  1
+  Li  Li9  1  0.41427099  0.99219739  0.92771047  1
+  Li  Li10  1  0.12704705  0.16278507  0.08509936  1
+  Cl  Cl11  1  0.02415309  0.87265937  0.33013209  1
+  Cl  Cl12  1  0.06023873  0.52128363  0.55294297  1
+  Ni  Ni13  1  0.64541401  0.24919492  0.63251498  1
+  Ni  Ni14  1  0.82614502  0.58559676  0.17283187  1
+  Ti  Ti15  1  0.65316350  0.38213403  0.40154316  1

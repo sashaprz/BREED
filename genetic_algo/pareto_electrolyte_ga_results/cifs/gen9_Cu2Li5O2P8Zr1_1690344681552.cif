@@ -1,0 +1,44 @@
+# generated using pymatgen
+data_Li5ZrCu2(P4O)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.97617601
+_cell_length_b   7.07974254
+_cell_length_c   8.20727399
+_cell_angle_alpha   96.20218150
+_cell_angle_beta   97.91876128
+_cell_angle_gamma   95.83449065
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5ZrCu2(P4O)2
+_chemical_formula_sum   'Li5 Zr1 Cu2 P8 O2'
+_cell_volume   396.33279039
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li2  1  0.37500000  0.00000000  0.25000000  1
+  Li  Li3  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li4  1  0.00000000  0.25000000  0.12500000  1
+  P  P5  1  0.25148423  0.62403034  0.35443044  1
+  P  P6  1  0.38871617  0.84411760  0.38484145  1
+  P  P7  1  0.65208491  0.50568537  0.00526795  1
+  P  P8  1  0.91960097  0.84016542  0.41862825  1
+  P  P9  1  0.39031668  0.83772896  0.40304833  1
+  P  P10  1  0.78335215  0.88167851  0.66035463  1
+  P  P11  1  0.60668578  0.94675151  0.31487871  1
+  P  P12  1  0.46692200  0.30805527  0.42793738  1
+  O  O13  1  0.46434165  0.58631707  0.50092169  1
+  O  O14  1  0.01721074  0.88561699  0.57704025  1
+  Cu  Cu15  1  0.69447666  0.03490872  0.64171046  1
+  Cu  Cu16  1  0.86693424  0.86545501  0.13957155  1
+  Zr  Zr17  1  0.61605782  0.51169206  0.95489136  1

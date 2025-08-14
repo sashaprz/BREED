@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li3TiP3(I2O)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.20523723
+_cell_length_b   5.85246236
+_cell_length_c   6.97521607
+_cell_angle_alpha   95.88807232
+_cell_angle_beta   96.75602484
+_cell_angle_gamma   95.31707558
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3TiP3(I2O)2
+_chemical_formula_sum   'Li3 Ti1 P3 I4 O2'
+_cell_volume   248.81478999
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  I  I0  1  0.00000000  0.00000000  0.00000000  1
+  I  I1  1  0.50000000  0.50000000  0.50000000  1
+  I  I2  1  0.50000000  0.50000000  0.00000000  1
+  I  I3  1  0.50000000  0.00000000  0.50000000  1
+  P  P4  1  0.00000000  0.50000000  0.50000000  1
+  P  P5  1  0.39925869  0.40962172  0.12778059  1
+  P  P6  1  0.61373700  0.62181237  0.42776458  1
+  Li  Li7  1  0.36893127  0.35335604  0.89312983  1
+  Li  Li8  1  0.02683788  0.90200034  0.92449997  1
+  Li  Li9  1  0.40478291  0.76361986  0.13700103  1
+  Ti  Ti10  1  0.18541051  0.20754134  0.29740706  1
+  O  O11  1  0.97725540  0.53946001  0.39294599  1
+  O  O12  1  0.87265964  0.29656611  0.59668454  1

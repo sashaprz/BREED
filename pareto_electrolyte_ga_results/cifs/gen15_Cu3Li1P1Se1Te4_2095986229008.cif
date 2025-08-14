@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_LiCu3Te4PSe
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.50726282
+_cell_length_b   4.84314907
+_cell_length_c   6.26354430
+_cell_angle_alpha   94.76745200
+_cell_angle_beta   98.51945730
+_cell_angle_gamma   106.14193667
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiCu3Te4PSe
+_chemical_formula_sum   'Li1 Cu3 Te4 P1 Se1'
+_cell_volume   128.77275030
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Se  Se0  1  0.00000000  0.00000000  0.00000000  1
+  Te  Te1  1  0.50000000  0.50000000  0.50000000  1
+  Te  Te2  1  0.50000000  0.50000000  0.00000000  1
+  Te  Te3  1  0.50000000  0.00000000  0.50000000  1
+  Te  Te4  1  0.00000000  0.50000000  0.50000000  1
+  Cu  Cu5  1  0.06216186  0.16145281  0.48338806  1
+  Cu  Cu6  1  0.46425726  0.43101743  0.36018333  1
+  Cu  Cu7  1  0.81412652  0.91372199  0.90794163  1
+  P  P8  1  0.73717056  0.47289518  0.52942314  1
+  Li  Li9  1  0.66215768  0.79752274  0.23890042  1

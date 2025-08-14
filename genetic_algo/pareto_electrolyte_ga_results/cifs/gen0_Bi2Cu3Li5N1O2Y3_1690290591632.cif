@@ -1,0 +1,42 @@
+# generated using pymatgen
+data_Li5Y3Cu3Bi2NO2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.88392493
+_cell_length_b   11.43096702
+_cell_length_c   11.52963445
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5Y3Cu3Bi2NO2
+_chemical_formula_sum   'Li5 Y3 Cu3 Bi2 N1 O2'
+_cell_volume   1698.03522675
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li2  1  0.37500000  0.00000000  0.25000000  1
+  Li  Li3  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li4  1  0.00000000  0.25000000  0.12500000  1
+  Cu  Cu5  1  0.41813109  0.51508553  0.39849318  1
+  Cu  Cu6  1  0.98914359  0.73458927  0.57015120  1
+  Cu  Cu7  1  0.36322901  0.28489368  0.81575896  1
+  Y  Y8  1  0.88097690  0.21843532  0.43149915  1
+  Y  Y9  1  0.47579554  0.09377458  0.89320231  1
+  Y  Y10  1  0.02488287  0.66605077  0.15359396  1
+  Bi  Bi11  1  0.90540827  0.38981131  0.48419107  1
+  Bi  Bi12  1  0.52356178  0.65996712  0.76904836  1
+  O  O13  1  0.94074070  0.41364340  0.19541885  1
+  O  O14  1  0.97615251  0.66392057  0.49281007  1
+  N  N15  1  0.24155263  0.10458693  0.76724886  1

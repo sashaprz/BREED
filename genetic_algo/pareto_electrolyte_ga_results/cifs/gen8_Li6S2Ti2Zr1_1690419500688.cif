@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li6Zr(TiS)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.56117648
+_cell_length_b   3.06556685
+_cell_length_c   6.64756991
+_cell_angle_alpha   109.33690702
+_cell_angle_beta   113.50684227
+_cell_angle_gamma   107.92169639
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li6Zr(TiS)2
+_chemical_formula_sum   'Li6 Zr1 Ti2 S2'
+_cell_volume   54.07925877
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  S  S0  1  0.12500000  0.00000000  0.25000000  1
+  S  S1  1  0.00000000  0.00000000  0.00000000  1
+  Ti  Ti2  1  0.37500000  0.00000000  0.25000000  1
+  Ti  Ti3  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li4  1  0.00000000  0.25000000  0.12500000  1
+  Li  Li5  1  0.81838461  0.82181418  0.51856900  1
+  Li  Li6  1  0.72397870  0.96701092  0.52737816  1
+  Li  Li7  1  0.39969969  0.02576617  0.61208562  1
+  Li  Li8  1  0.16569725  0.79647461  0.35888209  1
+  Li  Li9  1  0.31185325  0.15201961  0.19715919  1
+  Zr  Zr10  1  0.76345605  0.14743248  0.26816973  1

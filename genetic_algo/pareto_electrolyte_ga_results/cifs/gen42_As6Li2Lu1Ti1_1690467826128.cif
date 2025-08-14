@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li2LuTiAs6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.95304176
+_cell_length_b   7.78587992
+_cell_length_c   8.14114408
+_cell_angle_alpha   91.09697038
+_cell_angle_beta   91.07973383
+_cell_angle_gamma   91.22658222
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2LuTiAs6
+_chemical_formula_sum   'Li2 Lu1 Ti1 As6'
+_cell_volume   503.80990170
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Lu  Lu0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.50000000  0.50000000  0.00000000  1
+  Ti  Ti3  1  0.50000000  0.00000000  0.50000000  1
+  As  As4  1  0.00000000  0.50000000  0.50000000  1
+  As  As5  1  0.21183411  0.05333260  0.26418111  1
+  As  As6  1  0.69777609  0.73759568  0.26825659  1
+  As  As7  1  0.21046990  0.35949009  0.97412310  1
+  As  As8  1  0.10576587  0.85873533  0.38218253  1
+  As  As9  1  0.40980054  0.58625467  0.35074207  1

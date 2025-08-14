@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li6AlF4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.47355028
+_cell_length_b   12.47355028
+_cell_length_c   11.84712751
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li6AlF4
+_chemical_formula_sum   'Li6 Al1 F4'
+_cell_volume   1843.28813237
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.95115615  0.02304506  0.91476187  1
+  Li  Li1  1  0.15754368  0.14517534  0.27004083  1
+  Li  Li2  1  0.21194173  0.32393628  0.54902775  1
+  Li  Li3  1  0.28885581  0.40603519  0.68370159  1
+  Li  Li4  1  0.27269088  0.63798217  0.98309812  1
+  Li  Li5  1  0.37923408  0.67375419  0.24063011  1
+  Al  Al6  1  0.45877223  0.88371362  0.51213042  1
+  F  F7  1  0.73062499  0.95085986  0.75721481  1
+  F  F8  1  0.78655002  0.21351332  0.92796061  1
+  F  F9  1  0.89980625  0.40685757  0.18402669  1
+  F  F10  1  0.85304877  0.51388966  0.37329237  1

@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_Li3Mg2Zr2Al3Tl2SbO
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.18248481
+_cell_length_b   13.50487290
+_cell_length_c   14.45563377
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3Mg2Zr2Al3Tl2SbO
+_chemical_formula_sum   'Li3 Mg2 Zr2 Al3 Tl2 Sb1 O1'
+_cell_volume   2378.28291993
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li2  1  0.37500000  0.00000000  0.25000000  1
+  Mg  Mg3  1  0.25000000  0.25000000  0.25000000  1
+  Mg  Mg4  1  0.00000000  0.25000000  0.12500000  1
+  Zr  Zr5  1  0.30015277  0.58071359  0.98679587  1
+  Zr  Zr6  1  0.76639545  0.78627334  0.11528492  1
+  Al  Al7  1  0.96091590  0.07663075  0.16956571  1
+  Al  Al8  1  0.16468017  0.55643177  0.08721933  1
+  Al  Al9  1  0.93560350  0.51160305  0.65367082  1
+  Tl  Tl10  1  0.38893258  0.08370115  0.42837579  1
+  Tl  Tl11  1  0.25983357  0.03770622  0.88014391  1
+  O  O12  1  0.11382777  0.82116981  0.18474037  1
+  Sb  Sb13  1  0.64358907  0.04497355  0.99950776  1

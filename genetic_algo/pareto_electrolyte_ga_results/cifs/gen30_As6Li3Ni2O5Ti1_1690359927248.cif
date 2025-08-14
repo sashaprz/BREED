@@ -1,0 +1,43 @@
+# generated using pymatgen
+data_Li3TiNi2As6O5
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.14816115
+_cell_length_b   7.99359501
+_cell_length_c   8.43886865
+_cell_angle_alpha   91.02953643
+_cell_angle_beta   90.65272272
+_cell_angle_gamma   91.19304854
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3TiNi2As6O5
+_chemical_formula_sum   'Li3 Ti1 Ni2 As6 O5'
+_cell_volume   549.40374822
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.50000000  0.50000000  0.00000000  1
+  Ni  Ni3  1  0.50000000  0.00000000  0.50000000  1
+  Ni  Ni4  1  0.00000000  0.50000000  0.50000000  1
+  Ti  Ti5  1  0.31733016  0.05527642  0.31026647  1
+  As  As6  1  0.10543184  0.26503087  0.74833685  1
+  As  As7  1  0.78099148  0.35200442  0.01180057  1
+  As  As8  1  0.50763464  0.26667752  0.16643183  1
+  As  As9  1  0.28491864  0.27353673  0.97760239  1
+  As  As10  1  0.91173589  0.89794516  0.25335827  1
+  As  As11  1  0.32507928  0.01007208  0.38553214  1
+  O  O12  1  0.70257074  0.85673206  0.36443348  1
+  O  O13  1  0.66677199  0.61346571  0.93332380  1
+  O  O14  1  0.14840229  0.52938895  0.52178703  1
+  O  O15  1  0.84720786  0.96502855  0.43661748  1
+  O  O16  1  0.78735369  0.82898954  0.65217699  1

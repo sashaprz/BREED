@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li2TbAl2(SbP)3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.21074998
+_cell_length_b   8.14549065
+_cell_length_c   7.79237690
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2TbAl2(SbP)3
+_chemical_formula_sum   'Li2 Tb1 Al2 Sb3 P3'
+_cell_volume   521.15874291
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Al  Al0  1  0.00000000  0.00000000  0.00000000  1
+  Al  Al1  1  0.50000000  0.50000000  0.50000000  1
+  Sb  Sb2  1  0.25000000  0.25000000  0.25000000  1
+  Sb  Sb3  1  0.75000000  0.25000000  0.00000000  1
+  Sb  Sb4  1  0.25000000  0.75000000  0.50000000  1
+  P  P5  1  0.00422511  0.57869853  0.32029990  1
+  P  P6  1  0.37109534  0.60437217  0.81362498  1
+  P  P7  1  0.69860318  0.34339156  0.22871701  1
+  Li  Li8  1  0.29991963  0.39144750  0.11706367  1
+  Li  Li9  1  0.74975745  0.41676992  0.89605488  1
+  Tb  Tb10  1  0.52745083  0.20125338  0.48426569  1

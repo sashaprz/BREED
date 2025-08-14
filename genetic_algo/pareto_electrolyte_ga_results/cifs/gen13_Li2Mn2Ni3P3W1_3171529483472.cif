@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li2Mn2Ni3P3W
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.64598765
+_cell_length_b   5.43638495
+_cell_length_c   6.47887153
+_cell_angle_alpha   96.13628311
+_cell_angle_beta   92.44524273
+_cell_angle_gamma   94.81834392
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Mn2Ni3P3W
+_chemical_formula_sum   'Li2 Mn2 Ni3 P3 W1'
+_cell_volume   196.75497428
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Mn  Mn0  1  0.00000000  0.00000000  0.00000000  1
+  Mn  Mn1  1  0.50000000  0.50000000  0.50000000  1
+  W  W2  1  0.25000000  0.25000000  0.25000000  1
+  P  P3  1  0.75000000  0.25000000  0.00000000  1
+  P  P4  1  0.25000000  0.75000000  0.50000000  1
+  P  P5  1  0.88049952  0.79457459  0.99217374  1
+  Li  Li6  1  0.00283172  0.70436394  0.06467443  1
+  Li  Li7  1  0.39098790  0.75001432  0.13511036  1
+  Ni  Ni8  1  0.50615276  0.99062170  0.42800994  1
+  Ni  Ni9  1  0.70982101  0.54887853  0.45605443  1
+  Ni  Ni10  1  0.68172470  0.97886586  0.08432170  1

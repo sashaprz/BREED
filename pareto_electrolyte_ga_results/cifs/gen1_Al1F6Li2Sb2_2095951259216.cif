@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li2AlSb2F6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.33571842
+_cell_length_b   5.45267589
+_cell_length_c   7.20067108
+_cell_angle_alpha   94.92599949
+_cell_angle_beta   93.06644719
+_cell_angle_gamma   92.39528181
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2AlSb2F6
+_chemical_formula_sum   'Li2 Al1 Sb2 F6'
+_cell_volume   247.21601264
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Al  Al0  1  0.00000000  0.00000000  0.00000000  1
+  F  F1  1  0.50000000  0.50000000  0.50000000  1
+  F  F2  1  0.50000000  0.50000000  0.00000000  1
+  F  F3  1  0.50000000  0.00000000  0.50000000  1
+  F  F4  1  0.00000000  0.50000000  0.50000000  1
+  F  F5  1  0.13785672  0.91642044  0.00483427  1
+  F  F6  1  0.00778907  0.61546831  0.62959615  1
+  Li  Li7  1  0.52198254  0.72415029  0.63222425  1
+  Li  Li8  1  0.22953105  0.76703617  0.85076039  1
+  Sb  Sb9  1  0.70700178  0.72620240  0.59818010  1
+  Sb  Sb10  1  0.10144924  0.61608802  0.33259694  1

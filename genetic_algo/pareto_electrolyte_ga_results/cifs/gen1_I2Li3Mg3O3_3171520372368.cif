@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li3Mg3I2O3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.65777546
+_cell_length_b   5.68303663
+_cell_length_c   6.89093219
+_cell_angle_alpha   104.52366441
+_cell_angle_beta   102.75873147
+_cell_angle_gamma   95.64554170
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3Mg3I2O3
+_chemical_formula_sum   'Li3 Mg3 I2 O3'
+_cell_volume   206.39755972
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  O  O0  1  0.00000000  0.00000000  0.00000000  1
+  O  O1  1  0.33300000  0.66700000  0.25000000  1
+  O  O2  1  0.66700000  0.33300000  0.50000000  1
+  Mg  Mg3  1  0.00000000  0.00000000  0.75000000  1
+  Mg  Mg4  1  0.66028227  0.30221728  0.67137257  1
+  Mg  Mg5  1  0.83410606  0.80469342  0.09403767  1
+  I  I6  1  0.08639270  0.82254964  0.12634748  1
+  I  I7  1  0.76980500  0.12543288  0.71454907  1
+  Li  Li8  1  0.86951231  0.06737661  0.85756563  1
+  Li  Li9  1  0.07610621  0.14370584  0.66292657  1
+  Li  Li10  1  0.32875113  0.84273106  0.82373123  1

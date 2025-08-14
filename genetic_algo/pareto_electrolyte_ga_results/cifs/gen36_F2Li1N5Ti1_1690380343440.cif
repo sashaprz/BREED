@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_LiTiN5F2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.15852240
+_cell_length_b   7.00662659
+_cell_length_c   7.75538560
+_cell_angle_alpha   91.75940882
+_cell_angle_beta   93.57945440
+_cell_angle_gamma   92.02954619
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiTiN5F2
+_chemical_formula_sum   'Li1 Ti1 N5 F2'
+_cell_volume   387.77391880
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.12500000  0.12500000  1
+  F  F1  1  0.50000000  0.50000000  0.50000000  1
+  F  F2  1  0.25000000  0.25000000  0.25000000  1
+  Ti  Ti3  1  0.75000000  0.75000000  0.75000000  1
+  N  N4  1  0.58401032  0.75777794  0.51275030  1
+  N  N5  1  0.74843743  0.03236496  0.99194672  1
+  N  N6  1  0.92897098  0.16759990  0.04058091  1
+  N  N7  1  0.90351680  0.65535760  0.70697399  1
+  N  N8  1  0.91774978  0.30604943  0.54263640  1

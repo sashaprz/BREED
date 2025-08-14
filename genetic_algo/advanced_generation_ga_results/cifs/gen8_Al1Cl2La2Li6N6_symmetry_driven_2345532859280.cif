@@ -1,0 +1,43 @@
+# generated using pymatgen
+data_Li6La2Al(N3Cl)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   10.62136361
+_cell_length_b   10.80840703
+_cell_length_c   10.83026145
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li6La2Al(N3Cl)2
+_chemical_formula_sum   'Li6 La2 Al1 N6 Cl2'
+_cell_volume   1243.31424295
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.06893325  0.06586764  0.00525718  1
+  Li  Li1  1  0.04394784  0.14161733  0.16364436  1
+  Li  Li2  1  0.07750226  0.20264342  0.37566255  1
+  Li  Li3  1  0.11254717  0.37060222  0.52845657  1
+  Li  Li4  1  0.25467703  0.34447756  0.60933131  1
+  Li  Li5  1  0.27761672  0.52610092  0.67506376  1
+  Al  Al6  1  0.32426848  0.66944401  0.83452812  1
+  La  La7  1  0.43334943  0.69293418  0.03486167  1
+  La  La8  1  0.54942069  0.70399221  0.23018336  1
+  N  N9  1  0.60358923  0.92330854  0.33972603  1
+  N  N10  1  0.65159016  0.86694349  0.53315396  1
+  N  N11  1  0.70046076  0.02881136  0.77141630  1
+  N  N12  1  0.66381488  0.11955017  0.93316215  1
+  N  N13  1  0.78885477  0.31503360  0.96665667  1
+  N  N14  1  0.79144050  0.24678771  0.08530372  1
+  Cl  Cl15  1  0.97532794  0.51356778  0.26448759  1
+  Cl  Cl16  1  0.01017842  0.59102703  0.41883727  1

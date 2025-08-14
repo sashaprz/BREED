@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_LiTi3CuSb3TeCl3O2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.35179106
+_cell_length_b   5.11444186
+_cell_length_c   4.97823047
+_cell_angle_alpha   92.35705751
+_cell_angle_beta   85.32540171
+_cell_angle_gamma   94.91602856
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiTi3CuSb3TeCl3O2
+_chemical_formula_sum   'Li1 Ti3 Cu1 Sb3 Te1 Cl3 O2'
+_cell_volume   109.96052834
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Ti  Ti1  1  0.50000000  0.50000000  0.50000000  1
+  Ti  Ti2  1  0.50000000  0.50000000  0.00000000  1
+  Ti  Ti3  1  0.50000000  0.00000000  0.50000000  1
+  O  O4  1  0.00000000  0.50000000  0.50000000  1
+  O  O5  1  0.48450082  0.34815561  0.56233781  1
+  Sb  Sb6  1  0.74926218  0.69310546  0.00904804  1
+  Sb  Sb7  1  0.69058349  0.47779357  0.16238269  1
+  Sb  Sb8  1  0.78138938  0.05479633  0.94554896  1
+  Cl  Cl9  1  0.61294916  0.65214937  0.90957314  1
+  Cl  Cl10  1  0.78283634  0.31767225  0.38243424  1
+  Cl  Cl11  1  0.58585991  0.59228872  0.81189683  1
+  Te  Te12  1  0.19846140  0.94566923  0.91324565  1
+  Cu  Cu13  1  0.67215030  0.96260630  0.49257917  1

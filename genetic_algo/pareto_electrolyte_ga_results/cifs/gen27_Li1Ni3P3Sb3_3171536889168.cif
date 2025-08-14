@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_LiNi3(SbP)3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.11352375
+_cell_length_b   5.21083795
+_cell_length_c   6.76856102
+_cell_angle_alpha   96.27817719
+_cell_angle_beta   95.20375931
+_cell_angle_gamma   96.70241626
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiNi3(SbP)3
+_chemical_formula_sum   'Li1 Ni3 Sb3 P3'
+_cell_volume   177.06603777
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Sb  Sb0  1  0.00000000  0.00000000  0.00000000  1
+  Sb  Sb1  1  0.50000000  0.50000000  0.50000000  1
+  Sb  Sb2  1  0.50000000  0.50000000  0.00000000  1
+  P  P3  1  0.50000000  0.00000000  0.50000000  1
+  P  P4  1  0.00000000  0.50000000  0.50000000  1
+  P  P5  1  0.41521764  0.09022404  0.72097750  1
+  Li  Li6  1  0.60715216  0.25756189  0.92831636  1
+  Ni  Ni7  1  0.88528836  0.67299368  0.36251470  1
+  Ni  Ni8  1  0.98949946  0.78946630  0.59917034  1
+  Ni  Ni9  1  0.81226026  0.25390528  0.79136024  1

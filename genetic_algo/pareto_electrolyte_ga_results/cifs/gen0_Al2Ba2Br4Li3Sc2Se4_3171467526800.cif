@@ -1,0 +1,43 @@
+# generated using pymatgen
+data_Ba2Li3Sc2Al2(SeBr)4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.69012140
+_cell_length_b   12.73810185
+_cell_length_c   11.54797459
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Ba2Li3Sc2Al2(SeBr)4
+_chemical_formula_sum   'Ba2 Li3 Sc2 Al2 Se4 Br4'
+_cell_volume   1866.70767714
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li2  1  0.37500000  0.00000000  0.25000000  1
+  Sc  Sc3  1  0.25000000  0.25000000  0.25000000  1
+  Sc  Sc4  1  0.00000000  0.25000000  0.12500000  1
+  Al  Al5  1  0.78575315  0.00855325  0.49963661  1
+  Al  Al6  1  0.05068692  0.91564781  0.94985710  1
+  Ba  Ba7  1  0.69503342  0.25987107  0.08323310  1
+  Ba  Ba8  1  0.59667698  0.05785097  0.08500421  1
+  Br  Br9  1  0.59282486  0.69045700  0.34376596  1
+  Br  Br10  1  0.00264268  0.03617555  0.21924240  1
+  Br  Br11  1  0.23897305  0.24751555  0.26663882  1
+  Br  Br12  1  0.16915239  0.53592090  0.50507602  1
+  Se  Se13  1  0.91344651  0.32854043  0.77822459  1
+  Se  Se14  1  0.77916811  0.11923571  0.93700495  1
+  Se  Se15  1  0.57624129  0.15060708  0.55492764  1
+  Se  Se16  1  0.82289946  0.66143737  0.99989161  1

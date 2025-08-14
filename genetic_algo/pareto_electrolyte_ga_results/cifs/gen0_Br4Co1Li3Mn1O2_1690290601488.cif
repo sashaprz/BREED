@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li3MnCo(Br2O)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.91978093
+_cell_length_b   3.66039274
+_cell_length_c   4.50242364
+_cell_angle_alpha   88.35510744
+_cell_angle_beta   87.87204335
+_cell_angle_gamma   88.35696441
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3MnCo(Br2O)2
+_chemical_formula_sum   'Li3 Mn1 Co1 Br4 O2'
+_cell_volume   64.50469464
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.50000000  0.50000000  0.00000000  1
+  Mn  Mn3  1  0.50000000  0.00000000  0.50000000  1
+  Co  Co4  1  0.00000000  0.50000000  0.50000000  1
+  O  O5  1  0.06684724  0.53871183  0.50276250  1
+  O  O6  1  0.21571529  0.04481816  0.55536924  1
+  Br  Br7  1  0.26582697  0.13289420  0.52329586  1
+  Br  Br8  1  0.14849808  0.47999652  0.09764346  1
+  Br  Br9  1  0.45598822  0.98129060  0.63772697  1
+  Br  Br10  1  0.97742843  0.62196004  0.89215496  1

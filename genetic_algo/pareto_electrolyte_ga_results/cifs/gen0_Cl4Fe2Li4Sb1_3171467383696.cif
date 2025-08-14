@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li4Fe2SbCl4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.01428451
+_cell_length_b   3.18755995
+_cell_length_c   6.61381831
+_cell_angle_alpha   107.22934000
+_cell_angle_beta   118.84452935
+_cell_angle_gamma   113.15384371
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li4Fe2SbCl4
+_chemical_formula_sum   'Li4 Fe2 Sb1 Cl4'
+_cell_volume   40.81591837
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.33300000  0.66700000  0.25000000  1
+  Li  Li2  1  0.66700000  0.33300000  0.50000000  1
+  Li  Li3  1  0.00000000  0.00000000  0.75000000  1
+  Fe  Fe4  1  0.89669055  0.42531568  0.75621603  1
+  Fe  Fe5  1  0.80796523  0.43089160  0.98050006  1
+  Cl  Cl6  1  0.85106970  0.31444146  0.00713028  1
+  Cl  Cl7  1  0.96105698  0.36758900  0.36035712  1
+  Cl  Cl8  1  0.31867983  0.14666722  0.51193568  1
+  Cl  Cl9  1  0.17242358  0.04521718  0.63041182  1
+  Sb  Sb10  1  0.38646904  0.60874661  0.39395413  1

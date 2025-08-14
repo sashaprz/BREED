@@ -1,0 +1,32 @@
+# generated using pymatgen
+data_Li3ZrTiS
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.68291063
+_cell_length_b   3.76945424
+_cell_length_c   5.66781359
+_cell_angle_alpha   106.71515977
+_cell_angle_beta   101.33152930
+_cell_angle_gamma   109.29687296
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3ZrTiS
+_chemical_formula_sum   'Li3 Zr1 Ti1 S1'
+_cell_volume   67.32479586
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  S  S0  1  0.00000000  0.00000000  0.00000000  1
+  Zr  Zr1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li3  1  0.75000000  0.25000000  0.00000000  1
+  Li  Li4  1  0.25000000  0.75000000  0.50000000  1
+  Ti  Ti5  1  0.03174531  0.26304278  0.78029370  1

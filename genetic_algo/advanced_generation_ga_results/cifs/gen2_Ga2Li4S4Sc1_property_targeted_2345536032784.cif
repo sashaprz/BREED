@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li4Sc(GaS2)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   13.74604209
+_cell_length_b   13.74604209
+_cell_length_c   13.75129371
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li4Sc(GaS2)2
+_chemical_formula_sum   'Li4 Sc1 Ga2 S4'
+_cell_volume   2598.35745739
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.04340214  0.05894764  0.92782351  1
+  Li  Li1  1  0.09464461  0.07795329  0.19386636  1
+  Li  Li2  1  0.17788908  0.29378088  0.50458915  1
+  Li  Li3  1  0.32852132  0.44746003  0.80237812  1
+  Ga  Ga4  1  0.26491719  0.58044967  0.87245387  1
+  Ga  Ga5  1  0.52210645  0.74673299  0.09244365  1
+  S  S6  1  0.45685813  0.93332039  0.41244251  1
+  S  S7  1  0.70984297  0.05126930  0.72030663  1
+  S  S8  1  0.82537601  0.17444477  0.82908544  1
+  S  S9  1  0.72428898  0.27859087  0.16145139  1
+  Sc  Sc10  1  0.94641396  0.52842315  0.38736088  1

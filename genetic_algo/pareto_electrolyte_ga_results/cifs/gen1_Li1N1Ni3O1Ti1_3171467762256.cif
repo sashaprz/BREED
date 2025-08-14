@@ -1,0 +1,33 @@
+# generated using pymatgen
+data_LiTiNi3NO
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.05756974
+_cell_length_b   5.33377593
+_cell_length_c   6.56948497
+_cell_angle_alpha   89.50205318
+_cell_angle_beta   90.08400994
+_cell_angle_gamma   88.39118236
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiTiNi3NO
+_chemical_formula_sum   'Li1 Ti1 Ni3 N1 O1'
+_cell_volume   212.16622386
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  O  O0  1  0.12500000  0.00000000  0.25000000  1
+  N  N1  1  0.00000000  0.00000000  0.00000000  1
+  Ni  Ni2  1  0.37500000  0.00000000  0.25000000  1
+  Ni  Ni3  1  0.25000000  0.25000000  0.25000000  1
+  Ni  Ni4  1  0.00000000  0.25000000  0.12500000  1
+  Ti  Ti5  1  0.01375258  0.00580214  0.03618840  1
+  Li  Li6  1  0.11443857  0.66230876  0.28753418  1

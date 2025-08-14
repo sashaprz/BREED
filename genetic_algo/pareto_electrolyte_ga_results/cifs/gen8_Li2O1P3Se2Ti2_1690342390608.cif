@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li2Ti2P3Se2O
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.38003620
+_cell_length_b   6.96091369
+_cell_length_c   6.79108820
+_cell_angle_alpha   90.53298052
+_cell_angle_beta   92.53575945
+_cell_angle_gamma   90.60933905
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Ti2P3Se2O
+_chemical_formula_sum   'Li2 Ti2 P3 Se2 O1'
+_cell_volume   348.49239147
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.12500000  0.00000000  0.25000000  1
+  P  P1  1  0.00000000  0.00000000  0.00000000  1
+  P  P2  1  0.37500000  0.00000000  0.25000000  1
+  Li  Li3  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li4  1  0.00000000  0.25000000  0.12500000  1
+  Se  Se5  1  0.57933240  0.67746814  0.04101823  1
+  Se  Se6  1  0.82404002  0.91401168  0.46334334  1
+  Ti  Ti7  1  0.22884633  0.41524502  0.30011086  1
+  Ti  Ti8  1  0.82152955  0.79673259  0.91384996  1
+  O  O9  1  0.78341336  0.95156680  0.84009198  1

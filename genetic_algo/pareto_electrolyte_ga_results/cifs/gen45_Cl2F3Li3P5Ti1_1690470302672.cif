@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_Li3TiP5Cl2F3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.62332150
+_cell_length_b   5.34974875
+_cell_length_c   7.04914734
+_cell_angle_alpha   100.44621401
+_cell_angle_beta   103.64128102
+_cell_angle_gamma   99.77037769
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3TiP5Cl2F3
+_chemical_formula_sum   'Li3 Ti1 P5 Cl2 F3'
+_cell_volume   197.59275646
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.25000000  0.25000000  0.25000000  1
+  P  P3  1  0.75000000  0.25000000  0.00000000  1
+  P  P4  1  0.25000000  0.75000000  0.50000000  1
+  Li  Li5  1  0.85165095  0.30976505  0.17664756  1
+  Li  Li6  1  0.07010083  0.04904025  0.91042892  1
+  Li  Li7  1  0.82390749  0.79531921  0.68950290  1
+  F  F8  1  0.52776822  0.36669662  0.43480913  1
+  F  F9  1  0.71578257  0.09414893  0.51237251  1
+  F  F10  1  0.10146448  0.81797530  0.66700841  1
+  Cl  Cl11  1  0.20489118  0.63608998  0.87153698  1
+  Cl  Cl12  1  0.50794654  0.01006714  0.28606317  1
+  Ti  Ti13  1  0.51033816  0.91930874  0.08400400  1

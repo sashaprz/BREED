@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_LiSe3Br3O2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.90676250
+_cell_length_b   8.51393482
+_cell_length_c   7.79754374
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiSe3Br3O2
+_chemical_formula_sum   'Li1 Se3 Br3 O2'
+_cell_volume   524.91240210
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Br  Br1  1  0.33300000  0.66700000  0.25000000  1
+  Br  Br2  1  0.66700000  0.33300000  0.50000000  1
+  Br  Br3  1  0.00000000  0.00000000  0.75000000  1
+  Se  Se4  1  0.28858118  0.71917695  0.37279872  1
+  Se  Se5  1  0.36968313  0.26336062  0.72448207  1
+  Se  Se6  1  0.85280348  0.25559593  0.57783594  1
+  O  O7  1  0.15685094  0.02001225  0.44509115  1
+  O  O8  1  0.54289748  0.33468055  0.97109297  1

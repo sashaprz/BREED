@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li5(TiS3)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   9.09443522
+_cell_length_b   9.09443522
+_cell_length_c   8.88675443
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5(TiS3)2
+_chemical_formula_sum   'Li5 Ti2 S6'
+_cell_volume   735.01236754
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.96368561  0.95129685  0.04529032  1
+  Li  Li1  1  0.08250163  0.04025886  0.15359109  1
+  Li  Li2  1  0.24152402  0.34024100  0.49457982  1
+  Li  Li3  1  0.26498972  0.41705414  0.54407349  1
+  Li  Li4  1  0.35040968  0.39981085  0.84110583  1
+  Ti  Ti5  1  0.39716616  0.68656642  0.99266509  1
+  Ti  Ti6  1  0.50689442  0.71197156  0.12344242  1
+  S  S7  1  0.58287768  0.91234291  0.33556194  1
+  S  S8  1  0.64255570  0.92218769  0.60550250  1
+  S  S9  1  0.68755173  0.15474466  0.85329492  1
+  S  S10  1  0.81782519  0.24831233  0.00329045  1
+  S  S11  1  0.91265744  0.40070749  0.23280896  1
+  S  S12  1  0.86635684  0.52012275  0.33503006  1

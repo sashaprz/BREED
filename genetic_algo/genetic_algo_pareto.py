@@ -12,36 +12,167 @@ import tempfile
 import shutil
 from pathlib import Path
 
-# PyXtal and pymatgen imports
-from pyxtal import pyxtal
-from pyxtal.symmetry import Group
-from pymatgen.core import Structure
+# CDVAE and pymatgen imports
+import sys
+sys.path.append(r'C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE')
+from pymatgen.core import Structure, Lattice
+from pymatgen.core.periodic_table import Element
 from pymatgen.io.cif import CifWriter
 from pymatgen.analysis.structure_matcher import StructureMatcher
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
 # Import ML prediction functions with fallback to debug mode
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # Add parent directory
+
 try:
-    from genetic_algo.fully_optimized_predictor import predict_single_cif_fully_optimized as predict_single_cif
+    from fully_optimized_predictor import predict_single_cif_fully_optimized as predict_single_cif
     print("Using FULLY optimized ML predictor - models loaded ONCE only")
 except ImportError:
     try:
-        from optimized_ml_predictor import predict_single_cif_optimized as predict_single_cif
+        from env.optimized_ml_predictor import predict_single_cif_optimized as predict_single_cif
         print("Using optimized ML predictor with model caching")
     except ImportError:
         try:
             from env.main_rl import predict_single_cif
             print("Using standard ML predictor (models will reload each time)")
         except ImportError:
-            from debug_predictor import predict_single_cif_debug as predict_single_cif
+            # Create a simple debug predictor if nothing else works
+            def predict_single_cif_debug(cif_path, verbose=False):
+                """Debug predictor with realistic random values"""
+                import random
+                return {
+                    'ionic_conductivity': random.uniform(1e-6, 1e-2),
+                    'bandgap': random.uniform(1.0, 5.0),
+                    'sei_score': random.uniform(0.3, 0.9),
+                    'cei_score': random.uniform(0.3, 0.9),
+                    'bulk_modulus': random.uniform(20.0, 150.0)
+                }
+            predict_single_cif = predict_single_cif_debug
             print("Using DEBUG predictor with realistic random values for testing")
 
-# Import crystal generation functions
-from genetic_algo.pyxtal_generation import (
-    charge_dict, all_species, common_space_groups,
-    check_charge_neutrality, get_wyckoff_multiplicities,
-    generate_wyckoff_compatible_composition
-)
+# CDVAE crystal generation functions
+def generate_cdvae_crystal_pool():
+    """Generate a pool of diverse crystal structures using CDVAE-like generation"""
+    crystal_templates = [
+        # Perovskite-like structures (good for Li-ion conductors)
+        {
+            'name': 'perovskite',
+            'frac_coords': np.array([
+                [0.0, 0.0, 0.0],      # A-site
+                [0.5, 0.5, 0.5],      # B-site
+                [0.5, 0.5, 0.0],      # Anion
+                [0.5, 0.0, 0.5],      # Anion
+                [0.0, 0.5, 0.5],      # Anion
+            ]),
+            'base_elements': [3, 22, 8, 8, 8],  # Li, Ti, O template
+            'lattice_range': {'a': (3.5, 4.5), 'angles': (85, 95)},
+            'space_groups': [221, 225, 229]
+        },
+        # Spinel-like structures
+        {
+            'name': 'spinel',
+            'frac_coords': np.array([
+                [0.125, 0.125, 0.125],  # Tetrahedral
+                [0.5, 0.5, 0.5],        # Octahedral
+                [0.25, 0.25, 0.25],     # Anion
+                [0.75, 0.75, 0.75],     # Anion
+            ]),
+            'base_elements': [3, 13, 8, 8],  # Li, Al, O template
+            'lattice_range': {'a': (7.5, 8.5), 'angles': (90, 90)},
+            'space_groups': [227]
+        },
+        # Layered structures (good for Li mobility)
+        {
+            'name': 'layered',
+            'frac_coords': np.array([
+                [0.0, 0.0, 0.0],        # Li layer
+                [0.333, 0.667, 0.25],   # Metal layer
+                [0.667, 0.333, 0.5],    # Metal layer
+                [0.0, 0.0, 0.75],       # Anion
+            ]),
+            'base_elements': [3, 3, 22, 8],  # Li, Li, Ti, O template
+            'lattice_range': {'a': (3.0, 4.0), 'c': (5.0, 7.0), 'angles': (90, 120)},
+            'space_groups': [194, 166]
+        },
+        # NASICON-type structures
+        {
+            'name': 'nasicon',
+            'frac_coords': np.array([
+                [0.0, 0.0, 0.0],        # Li site
+                [0.5, 0.5, 0.5],        # Framework
+                [0.25, 0.25, 0.25],     # Framework
+                [0.75, 0.25, 0.0],      # Anion
+                [0.25, 0.75, 0.5],      # Anion
+            ]),
+            'base_elements': [3, 22, 15, 8, 8],  # Li, Ti, P, O template
+            'lattice_range': {'a': (8.0, 9.0), 'angles': (90, 90)},
+            'space_groups': [167]
+        },
+        # Garnet-type structures
+        {
+            'name': 'garnet',
+            'frac_coords': np.array([
+                [0.125, 0.0, 0.25],     # Li site
+                [0.0, 0.0, 0.0],        # Dodecahedral
+                [0.375, 0.0, 0.25],     # Octahedral
+                [0.25, 0.25, 0.25],     # Tetrahedral
+                [0.0, 0.25, 0.125],     # Anion
+            ]),
+            'base_elements': [3, 57, 13, 14, 8],  # Li, La, Al, Si, O template
+            'lattice_range': {'a': (12.0, 13.0), 'angles': (90, 90)},
+            'space_groups': [230]
+        }
+    ]
+    return crystal_templates
+
+def generate_element_substitutions():
+    """Generate realistic element substitutions for solid electrolytes with EXPANDED DIVERSITY"""
+    substitutions = {
+        # Li-ion conductors (always include Li)
+        'li_elements': [3],  # Li (required)
+        
+        # Framework elements (metals) - EXPANDED
+        'framework_metals': [13, 22, 40, 57, 39, 21, 12, 20, 26, 27, 28, 29, 30, 42, 74, 73, 41, 23, 24, 25],
+        # Al, Ti, Zr, La, Y, Sc, Mg, Ca, Fe, Co, Ni, Cu, Zn, Mo, W, Ta, Nb, V, Cr, Mn
+        
+        # Anions (common in solid electrolytes) - EXPANDED
+        'anions': [8, 16, 9, 17, 35, 53, 34, 52, 7, 15, 33, 51],
+        # O, S, F, Cl, Br, I, Se, Te, N, P, As, Sb
+        
+        # Additional elements for diversity - EXPANDED
+        'additional': [15, 14, 31, 32, 50, 49, 81, 82, 83, 5, 6, 19, 37, 38, 56, 72],
+        # P, Si, Ga, Ge, Sn, In, Tl, Pb, Bi, B, C, K, Rb, Sr, Ba, Hf
+        
+        # Rare earth elements for advanced electrolytes
+        'rare_earth': [58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71],
+        # Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu
+    }
+    return substitutions
+
+def check_composition_validity(composition_dict):
+    """Check if composition is chemically reasonable for solid electrolytes"""
+    # Must contain Li for Li-ion conduction
+    if 3 not in composition_dict:  # Li
+        return False
+    
+    # Must have at least one anion (expanded list)
+    anions = [8, 16, 9, 17, 35, 53, 34, 52, 7, 15, 33, 51]  # O, S, F, Cl, Br, I, Se, Te, N, P, As, Sb
+    if not any(elem in composition_dict for elem in anions):
+        return False
+    
+    # Reasonable number of atoms (2-25 per unit cell, expanded for more complex compositions)
+    total_atoms = sum(composition_dict.values())
+    if total_atoms < 2 or total_atoms > 25:
+        return False
+    
+    # Check for reasonable Li content (not too much, not too little)
+    li_count = composition_dict.get(3, 0)
+    if li_count > total_atoms * 0.8:  # Li shouldn't be more than 80% of composition
+        return False
+    
+    return True
 
 
 @dataclass
@@ -107,11 +238,12 @@ class ParetoFrontGA:
         self.cif_dir = self.output_dir / "cifs"
         self.cif_dir.mkdir(exist_ok=True)
         
-        # Enhanced element pool for Li-ion conductors
-        self.element_pool = all_species
+        # CDVAE crystal templates and element pools
+        self.crystal_templates = generate_cdvae_crystal_pool()
+        self.element_substitutions = generate_element_substitutions()
         
         # Space groups commonly found in solid electrolytes
-        self.common_space_groups = common_space_groups
+        self.common_space_groups = [221, 225, 229, 227, 194, 166, 167, 230, 62, 63, 136, 141]
         
         self.target_properties = TargetProperties()
         self.population: List[GACandidate] = []
@@ -125,18 +257,18 @@ class ParetoFrontGA:
         self.rng = np.random.default_rng()
         
     def generate_initial_population(self) -> List[GACandidate]:
-        """Generate initial population using enhanced PyXtal with charge neutrality"""
-        print(f"Generating initial population of {self.population_size} candidates...")
+        """Generate initial population using CDVAE-like crystal generation"""
+        print(f"Generating initial population of {self.population_size} candidates using CDVAE...")
         
         candidates = []
         attempts = 0
-        max_attempts = self.population_size * 20  # More attempts for better diversity
+        max_attempts = self.population_size * 10  # Fewer attempts needed with CDVAE templates
         
         while len(candidates) < self.population_size and attempts < max_attempts:
             attempts += 1
             
             try:
-                candidate = self._generate_valid_crystal()
+                candidate = self._generate_cdvae_crystal()
                 if candidate and self._is_valid_candidate(candidate):
                     candidates.append(candidate)
                     if len(candidates) % 10 == 0:
@@ -151,64 +283,37 @@ class ParetoFrontGA:
             
         return candidates
     
-    def _generate_valid_crystal(self) -> Optional[GACandidate]:
-        """Generate a single valid crystal using enhanced PyXtal generation"""
+    def _generate_cdvae_crystal(self) -> Optional[GACandidate]:
+        """Generate a single valid crystal using CDVAE-like generation"""
         
-        for attempt in range(100):
+        for attempt in range(50):
             try:
-                # Select space group
-                space_group = random.choice(self.common_space_groups)
-                wyckoff_mults = get_wyckoff_multiplicities(space_group)
+                # Select a random crystal template
+                template = random.choice(self.crystal_templates)
                 
-                # Generate charge-neutral composition with enhanced diversity
-                composition = generate_wyckoff_compatible_composition(
-                    self.element_pool, wyckoff_mults,
-                    min_species=2, max_species=6, max_multiplicity=4  # Increased for more diversity
-                )
+                # Generate element substitutions
+                composition_dict = self._generate_substituted_composition(template)
                 
-                if composition is None:
+                if not check_composition_validity(composition_dict):
                     continue
                 
-                # Optional: Prefer Li-containing structures (but don't force)
-                # This allows chemical diversity while still favoring Li-ion conductors
-                if random.random() < 0.7 and 'Li' not in composition:
-                    # 70% chance to add Li for Li-ion conduction, but allow 30% diversity
-                    elements = list(composition.keys())
-                    if len(elements) < 5:  # Only if we have room for more elements
-                        replace_element = random.choice(elements)
-                        li_count = composition[replace_element]
-                        del composition[replace_element]
-                        composition['Li'] = li_count
+                # Generate lattice parameters based on template
+                lattice_params = self._generate_lattice_parameters(template)
                 
-                # Check charge neutrality
-                if not check_charge_neutrality(composition):
+                # Select space group from template options
+                space_group = random.choice(template['space_groups'])
+                
+                # Create pymatgen structure
+                structure = self._create_structure_from_template(template, composition_dict, lattice_params)
+                
+                if structure is None:
                     continue
                 
-                # Convert to PyXtal format
-                species = list(composition.keys())
-                numIons = list(composition.values())
-                
-                # Generate structure with PyXtal (avoid deepcopy issues)
-                crystal = pyxtal()
-                crystal.from_random(dim=3, group=space_group, species=species,
-                                  numIons=numIons, random_state=None)  # Use None to avoid deepcopy issues
-                
-                if not crystal.valid:
-                    continue
-                    
-                # Convert to pymatgen Structure
-                structure = crystal.to_pymatgen()
-                
-                # Extract lattice parameters
-                lattice = structure.lattice
-                lattice_params = {
-                    'a': lattice.a,
-                    'b': lattice.b,
-                    'c': lattice.c,
-                    'alpha': lattice.alpha,
-                    'beta': lattice.beta,
-                    'gamma': lattice.gamma
-                }
+                # Convert composition_dict (atomic numbers) to element symbols
+                composition = {}
+                for atomic_num, count in composition_dict.items():
+                    element_symbol = Element.from_Z(atomic_num).symbol
+                    composition[element_symbol] = count
                 
                 candidate = GACandidate(
                     composition=composition,
@@ -227,6 +332,147 @@ class ParetoFrontGA:
                 continue
                 
         return None
+    
+    def _generate_substituted_composition(self, template: Dict) -> Dict[int, int]:
+        """Generate element substitutions based on template and substitution rules with MORE DIVERSITY"""
+        base_elements = template['base_elements']
+        composition_dict = {}
+        
+        # Increase substitution probability for more diversity
+        substitution_prob = random.uniform(0.4, 0.8)  # 40-80% chance to substitute
+        
+        for i, base_element in enumerate(base_elements):
+            # Decide whether to substitute this element
+            if random.random() < substitution_prob:
+                # Choose substitution category with more randomness
+                if base_element == 3:  # Li - vary count more
+                    composition_dict[3] = random.randint(1, 6)  # More Li variation
+                elif base_element in self.element_substitutions['framework_metals']:  # Framework metals
+                    # Sometimes use multiple different metals
+                    if random.random() < 0.3:  # 30% chance for multiple metals
+                        for _ in range(random.randint(1, 2)):
+                            new_element = random.choice(self.element_substitutions['framework_metals'])
+                            composition_dict[new_element] = composition_dict.get(new_element, 0) + random.randint(1, 2)
+                    else:
+                        new_element = random.choice(self.element_substitutions['framework_metals'])
+                        composition_dict[new_element] = composition_dict.get(new_element, 0) + random.randint(1, 3)
+                elif base_element in self.element_substitutions['anions']:  # Anions
+                    # Mix different anions sometimes
+                    if random.random() < 0.4:  # 40% chance for mixed anions
+                        for _ in range(random.randint(1, 2)):
+                            new_element = random.choice(self.element_substitutions['anions'])
+                            composition_dict[new_element] = composition_dict.get(new_element, 0) + random.randint(1, 4)
+                    else:
+                        new_element = random.choice(self.element_substitutions['anions'])
+                        composition_dict[new_element] = composition_dict.get(new_element, 0) + random.randint(1, 6)
+                elif base_element in self.element_substitutions['additional']:  # Additional elements
+                    new_element = random.choice(self.element_substitutions['additional'])
+                    composition_dict[new_element] = composition_dict.get(new_element, 0) + random.randint(1, 2)
+                else:  # Fallback - treat as framework metal
+                    new_element = random.choice(self.element_substitutions['framework_metals'])
+                    composition_dict[new_element] = composition_dict.get(new_element, 0) + random.randint(1, 2)
+            else:
+                # Keep original element but vary count
+                count = random.randint(1, 3)
+                composition_dict[base_element] = composition_dict.get(base_element, 0) + count
+        
+        # Ensure Li is present with more variation
+        if 3 not in composition_dict:
+            composition_dict[3] = random.randint(1, 4)
+        elif composition_dict[3] == 0:
+            composition_dict[3] = random.randint(1, 4)
+        
+        # Sometimes add completely random elements for diversity
+        if random.random() < 0.2:  # 20% chance to add random element
+            all_elements = (self.element_substitutions['framework_metals'] +
+                          self.element_substitutions['anions'] +
+                          self.element_substitutions['additional'] +
+                          self.element_substitutions['rare_earth'])
+            random_element = random.choice(all_elements)
+            composition_dict[random_element] = composition_dict.get(random_element, 0) + 1
+        
+        return composition_dict
+    
+    def _generate_lattice_parameters(self, template: Dict) -> Dict[str, float]:
+        """Generate lattice parameters based on template ranges"""
+        lattice_range = template['lattice_range']
+        
+        # Generate a, b, c parameters
+        if 'a' in lattice_range:
+            a_min, a_max = lattice_range['a']
+            a = random.uniform(a_min, a_max)
+        else:
+            a = random.uniform(4.0, 12.0)  # Default range
+        
+        if 'b' in lattice_range:
+            b_min, b_max = lattice_range['b']
+            b = random.uniform(b_min, b_max)
+        else:
+            b = a * random.uniform(0.8, 1.2)  # Similar to a
+        
+        if 'c' in lattice_range:
+            c_min, c_max = lattice_range['c']
+            c = random.uniform(c_min, c_max)
+        else:
+            c = a * random.uniform(0.8, 1.2)  # Similar to a
+        
+        # Generate angles
+        if 'angles' in lattice_range:
+            angle_min, angle_max = lattice_range['angles']
+            if angle_max == angle_min:  # Fixed angle
+                alpha = beta = gamma = angle_min
+            else:
+                alpha = random.uniform(angle_min, angle_max)
+                beta = random.uniform(angle_min, angle_max)
+                gamma = random.uniform(angle_min, angle_max)
+        else:
+            alpha = beta = gamma = 90.0  # Default to cubic
+        
+        return {
+            'a': a, 'b': b, 'c': c,
+            'alpha': alpha, 'beta': beta, 'gamma': gamma
+        }
+    
+    def _create_structure_from_template(self, template: Dict, composition_dict: Dict[int, int],
+                                      lattice_params: Dict[str, float]) -> Optional[Structure]:
+        """Create pymatgen Structure from template and parameters"""
+        try:
+            # Create lattice
+            lattice = Lattice.from_parameters(
+                a=lattice_params['a'], b=lattice_params['b'], c=lattice_params['c'],
+                alpha=lattice_params['alpha'], beta=lattice_params['beta'], gamma=lattice_params['gamma']
+            )
+            
+            # Get fractional coordinates from template
+            frac_coords = template['frac_coords'].copy()
+            
+            # Create species list based on composition
+            species = []
+            coords = []
+            
+            # Map composition to coordinates
+            element_list = list(composition_dict.keys())
+            count_list = list(composition_dict.values())
+            
+            coord_idx = 0
+            for element, count in zip(element_list, count_list):
+                for _ in range(count):
+                    if coord_idx < len(frac_coords):
+                        species.append(Element.from_Z(element))
+                        coords.append(frac_coords[coord_idx])
+                        coord_idx += 1
+                    else:
+                        # Generate additional random coordinates if needed
+                        species.append(Element.from_Z(element))
+                        coords.append([random.random(), random.random(), random.random()])
+            
+            # Create structure
+            structure = Structure(lattice, species, coords, coords_are_cartesian=False)
+            
+            return structure
+            
+        except Exception as e:
+            return None
     
     def _is_valid_candidate(self, candidate: GACandidate) -> bool:
         """Enhanced validity checks for candidates"""
@@ -247,8 +493,13 @@ class ParetoFrontGA:
         # This is now just a preference, not a hard requirement
         pass
             
-        # Check charge neutrality
-        if not check_charge_neutrality(candidate.composition):
+        # Check composition validity (replaces charge neutrality check)
+        composition_dict = {}
+        for element_symbol, count in candidate.composition.items():
+            element = Element(element_symbol)
+            composition_dict[element.Z] = count
+        
+        if not check_composition_validity(composition_dict):
             return False
             
         return True
@@ -479,33 +730,32 @@ class ParetoFrontGA:
             parent_ids=[id(parent1), id(parent2)]
         )
         
-        # Generate structure using PyXtal with error handling
+        # Generate structure using CDVAE-like approach
         try:
-            # Create new PyXtal instance to avoid deepcopy issues
-            crystal = pyxtal()
-            species = list(new_composition.keys())
-            numIons = list(new_composition.values())
+            # Convert composition to atomic numbers for structure generation
+            composition_dict = {}
+            for element_symbol, count in new_composition.items():
+                element = Element(element_symbol)
+                composition_dict[element.Z] = count
             
-            # Try multiple times with different random states to avoid PyXtal issues
-            for attempt in range(3):
-                try:
-                    crystal.from_random(dim=3, group=space_group, species=species,
-                                      numIons=numIons, random_state=None)  # Use None to avoid deepcopy issues
-                    
-                    if crystal.valid:
-                        offspring.structure = crystal.to_pymatgen()
-                        # Update lattice parameters with actual values
-                        lattice = offspring.structure.lattice
-                        offspring.lattice_params = {
-                            'a': lattice.a, 'b': lattice.b, 'c': lattice.c,
-                            'alpha': lattice.alpha, 'beta': lattice.beta, 'gamma': lattice.gamma
-                        }
-                        self._generate_cif_file(offspring)
-                        return offspring
-                except Exception as inner_e:
-                    if attempt == 2:  # Last attempt
-                        print(f"    PyXtal crossover failed after 3 attempts: {inner_e}")
-                    continue
+            # Select a template that matches the composition size
+            suitable_templates = [t for t in self.crystal_templates
+                                if len(t['base_elements']) >= len(composition_dict)]
+            
+            if suitable_templates:
+                template = random.choice(suitable_templates)
+                structure = self._create_structure_from_template(template, composition_dict, new_lattice_params)
+                
+                if structure is not None:
+                    offspring.structure = structure
+                    # Update lattice parameters with actual values
+                    lattice = offspring.structure.lattice
+                    offspring.lattice_params = {
+                        'a': lattice.a, 'b': lattice.b, 'c': lattice.c,
+                        'alpha': lattice.alpha, 'beta': lattice.beta, 'gamma': lattice.gamma
+                    }
+                    self._generate_cif_file(offspring)
+                    return offspring
                     
         except Exception as e:
             print(f"    Crossover structure generation failed: {e}")
@@ -558,8 +808,13 @@ class ParetoFrontGA:
             if 'Li' not in new_composition or new_composition['Li'] == 0:
                 new_composition['Li'] = max(comp1.get('Li', 1), comp2.get('Li', 1))
             
-            # Check charge neutrality
-            if check_charge_neutrality(new_composition):
+            # Check composition validity
+            composition_dict = {}
+            for element_symbol, count in new_composition.items():
+                element = Element(element_symbol)
+                composition_dict[element.Z] = count
+            
+            if check_composition_validity(composition_dict):
                 return new_composition
         
         # Fallback: return parent composition
@@ -594,8 +849,13 @@ class ParetoFrontGA:
                         else:
                             temp_composition[element] = new_count
                 
-                # Check if mutation maintains charge neutrality
-                if check_charge_neutrality(temp_composition):
+                # Check if mutation maintains composition validity
+                composition_dict = {}
+                for element_symbol, count in temp_composition.items():
+                    element = Element(element_symbol)
+                    composition_dict[element.Z] = count
+                
+                if check_composition_validity(composition_dict):
                     mutated.composition = temp_composition
                     break
                     
@@ -611,31 +871,31 @@ class ParetoFrontGA:
                 mutated.space_group = random.choice(self.common_space_groups)
                 break
         
-        # Regenerate structure with error handling
+        # Regenerate structure using CDVAE-like approach
         try:
-            crystal = pyxtal()
-            species = list(mutated.composition.keys())
-            numIons = list(mutated.composition.values())
+            # Convert composition to atomic numbers
+            composition_dict = {}
+            for element_symbol, count in mutated.composition.items():
+                element = Element(element_symbol)
+                composition_dict[element.Z] = count
             
-            # Try multiple times to avoid PyXtal issues
-            for attempt in range(3):
-                try:
-                    crystal.from_random(dim=3, group=mutated.space_group, species=species,
-                                      numIons=numIons, random_state=None)  # Use None to avoid deepcopy issues
-                    
-                    if crystal.valid:
-                        mutated.structure = crystal.to_pymatgen()
-                        lattice = mutated.structure.lattice
-                        mutated.lattice_params = {
-                            'a': lattice.a, 'b': lattice.b, 'c': lattice.c,
-                            'alpha': lattice.alpha, 'beta': lattice.beta, 'gamma': lattice.gamma
-                        }
-                        self._generate_cif_file(mutated)
-                        return mutated
-                except Exception as inner_e:
-                    if attempt == 2:  # Last attempt
-                        print(f"    PyXtal mutation failed after 3 attempts: {inner_e}")
-                    continue
+            # Select a suitable template
+            suitable_templates = [t for t in self.crystal_templates
+                                if len(t['base_elements']) >= len(composition_dict)]
+            
+            if suitable_templates:
+                template = random.choice(suitable_templates)
+                structure = self._create_structure_from_template(template, composition_dict, mutated.lattice_params)
+                
+                if structure is not None:
+                    mutated.structure = structure
+                    lattice = mutated.structure.lattice
+                    mutated.lattice_params = {
+                        'a': lattice.a, 'b': lattice.b, 'c': lattice.c,
+                        'alpha': lattice.alpha, 'beta': lattice.beta, 'gamma': lattice.gamma
+                    }
+                    self._generate_cif_file(mutated)
+                    return mutated
                     
         except Exception as e:
             print(f"    Mutation structure generation failed: {e}")

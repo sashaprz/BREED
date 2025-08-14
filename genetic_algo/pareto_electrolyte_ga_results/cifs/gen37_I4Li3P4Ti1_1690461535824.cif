@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_Li3Ti(PI)4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.57263652
+_cell_length_b   7.36618958
+_cell_length_c   7.43091001
+_cell_angle_alpha   93.21019611
+_cell_angle_beta   93.28715316
+_cell_angle_gamma   93.01769070
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3Ti(PI)4
+_chemical_formula_sum   'Li3 Ti1 P4 I4'
+_cell_volume   412.52658664
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  I  I0  1  0.00000000  0.00000000  0.00000000  1
+  I  I1  1  0.50000000  0.50000000  0.50000000  1
+  I  I2  1  0.50000000  0.50000000  0.00000000  1
+  I  I3  1  0.50000000  0.00000000  0.50000000  1
+  P  P4  1  0.00000000  0.50000000  0.50000000  1
+  P  P5  1  0.63560175  0.78113196  0.94586490  1
+  P  P6  1  0.44151814  0.14797057  0.02802435  1
+  P  P7  1  0.31046231  0.27423100  0.25298191  1
+  Li  Li8  1  0.21783866  0.07237391  0.82325371  1
+  Li  Li9  1  0.66303894  0.45341555  0.26401862  1
+  Li  Li10  1  0.05444244  0.84517773  0.53193341  1
+  Ti  Ti11  1  0.01187026  0.90577386  0.67014399  1

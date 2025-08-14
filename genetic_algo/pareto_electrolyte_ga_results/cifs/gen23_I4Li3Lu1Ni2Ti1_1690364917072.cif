@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li3LuTi(NiI2)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.27768251
+_cell_length_b   8.13016262
+_cell_length_c   7.84112252
+_cell_angle_alpha   91.03958285
+_cell_angle_beta   90.66775439
+_cell_angle_gamma   91.20465787
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3LuTi(NiI2)2
+_chemical_formula_sum   'Li3 Lu1 Ti1 Ni2 I4'
+_cell_volume   527.45724922
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  I  I0  1  0.00000000  0.00000000  0.00000000  1
+  I  I1  1  0.50000000  0.50000000  0.50000000  1
+  I  I2  1  0.25000000  0.25000000  0.25000000  1
+  I  I3  1  0.75000000  0.25000000  0.00000000  1
+  Lu  Lu4  1  0.25000000  0.75000000  0.50000000  1
+  Li  Li5  1  0.20250958  0.55070909  0.71389523  1
+  Li  Li6  1  0.73363799  0.37855814  0.72457977  1
+  Li  Li7  1  0.85412037  0.27128134  0.67909014  1
+  Ni  Ni8  1  0.49899347  0.07143218  0.00315041  1
+  Ni  Ni9  1  0.86692221  0.08881783  0.33920870  1
+  Ti  Ti10  1  0.13465918  0.11211294  0.55194252  1

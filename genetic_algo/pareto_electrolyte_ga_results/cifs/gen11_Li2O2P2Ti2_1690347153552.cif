@@ -1,0 +1,34 @@
+# generated using pymatgen
+data_LiTiPO
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.80528886
+_cell_length_b   6.20625714
+_cell_length_c   6.91109281
+_cell_angle_alpha   98.78230823
+_cell_angle_beta   101.89517526
+_cell_angle_gamma   101.30202955
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiTiPO
+_chemical_formula_sum   'Li2 Ti2 P2 O2'
+_cell_volume   234.04179247
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.33300000  0.66700000  0.25000000  1
+  Li  Li2  1  0.66700000  0.33300000  0.50000000  1
+  Li  Li3  1  0.00000000  0.00000000  0.75000000  1
+  Ti  Ti4  1  0.15633334  0.28422708  0.14938311  1
+  Ti  Ti5  1  0.09462984  0.19716231  0.99156505  1
+  O  O6  1  0.32414009  0.49679303  0.76933084  1
+  O  O7  1  0.25763779  0.26110464  0.35983811  1

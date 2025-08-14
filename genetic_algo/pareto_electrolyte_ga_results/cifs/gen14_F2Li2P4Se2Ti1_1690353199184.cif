@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li2TiP4(SeF)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.39145446
+_cell_length_b   8.14028147
+_cell_length_c   7.37488197
+_cell_angle_alpha   90.17646678
+_cell_angle_beta   90.83957536
+_cell_angle_gamma   90.20174865
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2TiP4(SeF)2
+_chemical_formula_sum   'Li2 Ti1 P4 Se2 F2'
+_cell_volume   503.70966994
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.50000000  0.50000000  0.00000000  1
+  P  P3  1  0.50000000  0.00000000  0.50000000  1
+  Li  Li4  1  0.00000000  0.50000000  0.50000000  1
+  Li  Li5  1  0.59955508  0.68714442  0.61029085  1
+  F  F6  1  0.28042089  0.59906084  0.70150732  1
+  F  F7  1  0.22628627  0.51813763  0.70320884  1
+  Se  Se8  1  0.74261411  0.70625536  0.84381964  1
+  Se  Se9  1  0.28739964  0.97881601  0.47578324  1
+  Ti  Ti10  1  0.71394500  0.05767377  0.54531290  1

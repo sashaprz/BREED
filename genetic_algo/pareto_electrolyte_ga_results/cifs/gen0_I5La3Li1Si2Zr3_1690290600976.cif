@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_LiLa3Zr3Si2I5
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.50221711
+_cell_length_b   12.15037885
+_cell_length_c   12.32720519
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiLa3Zr3Si2I5
+_chemical_formula_sum   'Li1 La3 Zr3 Si2 I5'
+_cell_volume   1872.58474412
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  La  La1  1  0.00000000  0.00000000  0.00000000  1
+  La  La2  1  0.37500000  0.00000000  0.25000000  1
+  La  La3  1  0.25000000  0.25000000  0.25000000  1
+  Zr  Zr4  1  0.00000000  0.25000000  0.12500000  1
+  Zr  Zr5  1  0.68541820  0.93939396  0.37556792  1
+  Zr  Zr6  1  0.56517647  0.30420735  0.84378741  1
+  Si  Si7  1  0.83104796  0.16464259  0.43137529  1
+  Si  Si8  1  0.97730420  0.83801495  0.99918176  1
+  I  I9  1  0.83497189  0.16362043  0.04397915  1
+  I  I10  1  0.04115626  0.60245029  0.42899963  1
+  I  I11  1  0.98848563  0.54002624  0.75076823  1
+  I  I12  1  0.50894646  0.41997782  0.35141509  1
+  I  I13  1  0.78815076  0.50223898  0.71773902  1

@@ -1,0 +1,41 @@
+# generated using pymatgen
+data_Li4TiNi2(BrO)4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.26484435
+_cell_length_b   8.01786839
+_cell_length_c   9.67697002
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li4TiNi2(BrO)4
+_chemical_formula_sum   'Li4 Ti1 Ni2 Br4 O4'
+_cell_volume   641.25829710
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li2  1  0.37500000  0.00000000  0.25000000  1
+  Li  Li3  1  0.25000000  0.25000000  0.25000000  1
+  Br  Br4  1  0.00000000  0.25000000  0.12500000  1
+  Br  Br5  1  0.00297886  0.13226682  0.37154362  1
+  Br  Br6  1  0.79770414  0.63687841  0.91960067  1
+  Br  Br7  1  0.01830723  0.56781030  0.62474271  1
+  Ni  Ni8  1  0.39686990  0.63659015  0.06732370  1
+  Ni  Ni9  1  0.36846171  0.25572689  0.72875680  1
+  Ti  Ti10  1  0.35902293  0.69580234  0.86000848  1
+  O  O11  1  0.97206442  0.20636412  0.12413296  1
+  O  O12  1  0.51527062  0.37422707  0.90034971  1
+  O  O13  1  0.32078570  0.28857687  0.89091055  1
+  O  O14  1  0.29263270  0.33262798  0.73488131  1

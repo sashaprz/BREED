@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li3Y2(P2Se)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.79447113
+_cell_length_b   5.10721091
+_cell_length_c   7.11002993
+_cell_angle_alpha   95.07935911
+_cell_angle_beta   101.06178817
+_cell_angle_gamma   110.40176680
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3Y2(P2Se)2
+_chemical_formula_sum   'Li3 Y2 P4 Se2'
+_cell_volume   157.84366735
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Se  Se0  1  0.12500000  0.12500000  0.12500000  1
+  Se  Se1  1  0.50000000  0.50000000  0.50000000  1
+  Y  Y2  1  0.25000000  0.25000000  0.25000000  1
+  Y  Y3  1  0.75000000  0.75000000  0.75000000  1
+  P  P4  1  0.67205315  0.35105856  0.59929495  1
+  P  P5  1  0.08874824  0.62364141  0.49833599  1
+  P  P6  1  0.83673428  0.89878060  0.81250215  1
+  P  P7  1  0.65075368  0.74063921  0.18582354  1
+  Li  Li8  1  0.04933695  0.13042320  0.79543118  1
+  Li  Li9  1  0.21475421  0.63893380  0.62046461  1
+  Li  Li10  1  0.66410438  0.13188573  0.29372546  1

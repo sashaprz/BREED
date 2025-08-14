@@ -1,0 +1,32 @@
+# generated using pymatgen
+data_Li3YScF
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.02912139
+_cell_length_b   3.18533928
+_cell_length_c   5.46618866
+_cell_angle_alpha   105.89724431
+_cell_angle_beta   105.75556609
+_cell_angle_gamma   111.73158335
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3YScF
+_chemical_formula_sum   'Li3 Y1 Sc1 F1'
+_cell_volume   42.81771287
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  F  F0  1  0.00000000  0.00000000  0.00000000  1
+  Sc  Sc1  1  0.50000000  0.50000000  0.50000000  1
+  Y  Y2  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li3  1  0.75000000  0.25000000  0.00000000  1
+  Li  Li4  1  0.25000000  0.75000000  0.50000000  1
+  Li  Li5  1  0.09196018  0.78381034  0.78997453  1

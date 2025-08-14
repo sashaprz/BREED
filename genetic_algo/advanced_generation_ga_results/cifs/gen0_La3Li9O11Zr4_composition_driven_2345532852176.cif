@@ -1,0 +1,53 @@
+# generated using pymatgen
+data_Li9La3Zr4O11
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.58084437
+_cell_length_b   6.58084437
+_cell_length_c   6.58084437
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li9La3Zr4O11
+_chemical_formula_sum   'Li9 La3 Zr4 O11'
+_cell_volume   285.00000000
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.96649994  0.98585151  0.94051100  1
+  Li  Li1  1  0.96407264  0.14588814  0.01735114  1
+  Li  Li2  1  0.12762701  0.14146009  0.16183461  1
+  Li  Li3  1  0.18710290  0.24553981  0.28669321  1
+  Li  Li4  1  0.06593019  0.19930318  0.34741168  1
+  Li  Li5  1  0.09097748  0.20421844  0.56508438  1
+  Li  Li6  1  0.27183229  0.26741506  0.55203558  1
+  Li  Li7  1  0.25168250  0.37756320  0.61490741  1
+  Li  Li8  1  0.35035530  0.45056684  0.79446363  1
+  La  La9  1  0.38895146  0.57571832  0.88544128  1
+  La  La10  1  0.36670999  0.54391866  0.88022036  1
+  La  La11  1  0.43227540  0.68937713  0.05142170  1
+  Zr  Zr12  1  0.40349367  0.65835306  0.24135139  1
+  Zr  Zr13  1  0.40470063  0.80059916  0.35116642  1
+  Zr  Zr14  1  0.55816746  0.83404182  0.26353790  1
+  Zr  Zr15  1  0.55961453  0.84777085  0.43887573  1
+  O  O16  1  0.64925482  0.99247415  0.45168649  1
+  O  O17  1  0.57290278  0.10472825  0.71725192  1
+  O  O18  1  0.58644866  0.07069982  0.67036981  1
+  O  O19  1  0.62727799  0.04030703  0.90235141  1
+  O  O20  1  0.64774425  0.25676799  0.97404386  1
+  O  O21  1  0.83865109  0.28275158  0.97237027  1
+  O  O22  1  0.80545589  0.41632740  0.20780533  1
+  O  O23  1  0.77850024  0.31130919  0.32953492  1
+  O  O24  1  0.84097242  0.38282410  0.34462551  1
+  O  O25  1  0.02312451  0.53046921  0.46083359  1
+  O  O26  1  0.89490708  0.48540344  0.50078606  1

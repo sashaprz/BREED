@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_LiLa5Ti(AsPb)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   9.74863547
+_cell_length_b   9.57772706
+_cell_length_c   10.12012777
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiLa5Ti(AsPb)2
+_chemical_formula_sum   'Li1 La5 Ti1 As2 Pb2'
+_cell_volume   944.91400024
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Pb  Pb0  1  0.00000000  0.00000000  0.00000000  1
+  Pb  Pb1  1  0.50000000  0.50000000  0.50000000  1
+  La  La2  1  0.50000000  0.50000000  0.00000000  1
+  La  La3  1  0.50000000  0.00000000  0.50000000  1
+  La  La4  1  0.00000000  0.50000000  0.50000000  1
+  La  La5  1  0.97130338  0.77066380  0.51690456  1
+  La  La6  1  0.61504086  0.38349505  0.76631738  1
+  Ti  Ti7  1  0.82480022  0.03334415  0.56695124  1
+  Li  Li8  1  0.33607185  0.99052848  0.79156394  1
+  As  As9  1  0.42923908  0.96948354  0.48929626  1
+  As  As10  1  0.00966899  0.68039121  0.38977423  1

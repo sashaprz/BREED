@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_Li3ZrTiI4O3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.57985982
+_cell_length_b   7.61265468
+_cell_length_c   7.88955514
+_cell_angle_alpha   94.23229420
+_cell_angle_beta   95.40366763
+_cell_angle_gamma   93.98138638
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3ZrTiI4O3
+_chemical_formula_sum   'Li3 Zr1 Ti1 I4 O3'
+_cell_volume   450.65118521
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  I  I0  1  0.00000000  0.00000000  0.00000000  1
+  I  I1  1  0.50000000  0.50000000  0.50000000  1
+  I  I2  1  0.50000000  0.50000000  0.00000000  1
+  I  I3  1  0.50000000  0.00000000  0.50000000  1
+  Li  Li4  1  0.00000000  0.50000000  0.50000000  1
+  Li  Li5  1  0.13973638  0.72602015  0.14336194  1
+  Li  Li6  1  0.52289395  0.79077111  0.70099862  1
+  Ti  Ti7  1  0.82801493  0.78183115  0.73567735  1
+  O  O8  1  0.30798211  0.00180950  0.28760369  1
+  O  O9  1  0.86450445  0.24870771  0.29555569  1
+  O  O10  1  0.89700562  0.36016098  0.72748408  1
+  Zr  Zr11  1  0.73150557  0.71992253  0.18505236  1

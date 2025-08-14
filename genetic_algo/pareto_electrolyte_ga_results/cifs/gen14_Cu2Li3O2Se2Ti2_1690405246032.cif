@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li3Ti2Cu2(SeO)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.29596017
+_cell_length_b   6.46577144
+_cell_length_c   6.78440161
+_cell_angle_alpha   97.52372070
+_cell_angle_beta   100.42393779
+_cell_angle_gamma   99.67248879
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3Ti2Cu2(SeO)2
+_chemical_formula_sum   'Li3 Ti2 Cu2 Se2 O2'
+_cell_volume   264.02818161
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.25000000  0.25000000  0.25000000  1
+  Cu  Cu3  1  0.75000000  0.25000000  0.00000000  1
+  Cu  Cu4  1  0.25000000  0.75000000  0.50000000  1
+  Se  Se5  1  0.55047302  0.86881648  0.90039599  1
+  Se  Se6  1  0.87466875  0.25234200  0.22061217  1
+  Ti  Ti7  1  0.18324749  0.81505460  0.43622400  1
+  Ti  Ti8  1  0.68381762  0.81638790  0.28317852  1
+  O  O9  1  0.14453734  0.02387934  0.34935134  1
+  O  O10  1  0.98131077  0.76486607  0.82813152  1

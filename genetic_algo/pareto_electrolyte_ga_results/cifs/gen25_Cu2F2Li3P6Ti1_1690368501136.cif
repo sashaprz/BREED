@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_Li3TiCu2P6F2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.98293697
+_cell_length_b   6.85571410
+_cell_length_c   7.55671613
+_cell_angle_alpha   92.16297749
+_cell_angle_beta   93.87630620
+_cell_angle_gamma   91.76525451
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3TiCu2P6F2
+_chemical_formula_sum   'Li3 Ti1 Cu2 P6 F2'
+_cell_volume   360.47614322
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.25000000  0.25000000  0.25000000  1
+  P  P3  1  0.75000000  0.25000000  0.00000000  1
+  P  P4  1  0.25000000  0.75000000  0.50000000  1
+  P  P5  1  0.49943720  0.21035228  0.03464821  1
+  Li  Li6  1  0.33329200  0.88367265  0.12779689  1
+  Li  Li7  1  0.87028701  0.51427452  0.97793095  1
+  Li  Li8  1  0.81114004  0.28486510  0.16820491  1
+  Cu  Cu9  1  0.13013389  0.03253300  0.42420185  1
+  Cu  Cu10  1  0.38730800  0.34085475  0.05465550  1
+  F  F11  1  0.77247450  0.63490411  0.20871418  1
+  F  F12  1  0.23154803  0.15088501  0.42299142  1
+  Ti  Ti13  1  0.69883070  0.76252786  0.89281697  1

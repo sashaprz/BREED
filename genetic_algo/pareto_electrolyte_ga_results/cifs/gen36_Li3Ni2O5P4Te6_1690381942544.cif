@@ -1,0 +1,46 @@
+# generated using pymatgen
+data_Li3Ni2Te6P4O5
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.17028252
+_cell_length_b   6.96177394
+_cell_length_c   7.89454101
+_cell_angle_alpha   94.39686318
+_cell_angle_beta   95.12274694
+_cell_angle_gamma   94.38543802
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3Ni2Te6P4O5
+_chemical_formula_sum   'Li3 Ni2 Te6 P4 O5'
+_cell_volume   389.97000249
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.12500000  0.00000000  0.25000000  1
+  P  P1  1  0.00000000  0.00000000  0.00000000  1
+  P  P2  1  0.37500000  0.00000000  0.25000000  1
+  P  P3  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li4  1  0.00000000  0.25000000  0.12500000  1
+  Li  Li5  1  0.86254119  0.68983405  0.19231496  1
+  Li  Li6  1  0.31154906  0.17498511  0.97419941  1
+  Ni  Ni7  1  0.00219643  0.37940417  0.70436375  1
+  Ni  Ni8  1  0.26530129  0.34880618  0.28265472  1
+  Te  Te9  1  0.45871539  0.78647029  0.17228781  1
+  Te  Te10  1  0.50480244  0.81907979  0.85096534  1
+  Te  Te11  1  0.39571140  0.92730175  0.15007544  1
+  Te  Te12  1  0.10580874  0.96168589  0.41116341  1
+  Te  Te13  1  0.93288644  0.98332688  0.63751324  1
+  Te  Te14  1  0.70051248  0.18483048  0.40385688  1
+  O  O15  1  0.78359327  0.61327701  0.68180991  1
+  O  O16  1  0.94076152  0.28687419  0.17191763  1
+  O  O17  1  0.54711287  0.48808123  0.29471710  1
+  O  O18  1  0.31550021  0.27947646  0.69163486  1
+  O  O19  1  0.38187730  0.03506276  0.60378651  1

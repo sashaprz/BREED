@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_Li5GaS3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.47920542
+_cell_length_b   8.47920542
+_cell_length_c   9.18095931
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5GaS3
+_chemical_formula_sum   'Li5 Ga1 S3'
+_cell_volume   660.08273834
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.95057823  0.00462167  0.95174920  1
+  Li  Li1  1  0.15110922  0.25213966  0.31215118  1
+  Li  Li2  1  0.22198897  0.33510040  0.55377475  1
+  Li  Li3  1  0.24820926  0.61292226  0.88645701  1
+  Li  Li4  1  0.44855139  0.73403540  0.07105487  1
+  Ga  Ga5  1  0.58440578  0.94755902  0.42951518  1
+  S  S6  1  0.61187946  0.06192617  0.76071500  1
+  S  S7  1  0.84405045  0.16331435  0.08485722  1
+  S  S8  1  0.80101046  0.51023984  0.39174234  1

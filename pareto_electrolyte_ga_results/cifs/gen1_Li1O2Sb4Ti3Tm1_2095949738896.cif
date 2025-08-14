@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_LiTmTi3(Sb2O)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.40819636
+_cell_length_b   8.19387555
+_cell_length_c   7.29329323
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiTmTi3(Sb2O)2
+_chemical_formula_sum   'Li1 Tm1 Ti3 Sb4 O2'
+_cell_volume   502.47664870
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Sb  Sb0  1  0.12500000  0.00000000  0.25000000  1
+  Sb  Sb1  1  0.00000000  0.00000000  0.00000000  1
+  Sb  Sb2  1  0.37500000  0.00000000  0.25000000  1
+  Sb  Sb3  1  0.25000000  0.25000000  0.25000000  1
+  Tm  Tm4  1  0.00000000  0.25000000  0.12500000  1
+  Ti  Ti5  1  0.23346290  0.41204554  0.12390072  1
+  Ti  Ti6  1  0.96740895  0.84436476  0.32732320  1
+  Ti  Ti7  1  0.75063715  0.76815265  0.85850074  1
+  O  O8  1  0.53015113  0.70783295  0.25756741  1
+  O  O9  1  0.23095996  0.48415868  0.81852091  1
+  Li  Li10  1  0.85407898  0.05473647  0.22047245  1

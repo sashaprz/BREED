@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_Li2ZnTe3SI3Br2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.46310679
+_cell_length_b   4.31407066
+_cell_length_c   5.03743318
+_cell_angle_alpha   93.33578235
+_cell_angle_beta   89.32762555
+_cell_angle_gamma   85.92784103
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2ZnTe3SI3Br2
+_chemical_formula_sum   'Li2 Zn1 Te3 S1 I3 Br2'
+_cell_volume   96.57048808
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Zn  Zn2  1  0.50000000  0.50000000  0.00000000  1
+  Te  Te3  1  0.50000000  0.00000000  0.50000000  1
+  Te  Te4  1  0.00000000  0.50000000  0.50000000  1
+  Te  Te5  1  0.39783935  0.28027895  0.74263655  1
+  S  S6  1  0.27285912  0.22798740  0.74069888  1
+  Br  Br7  1  0.07386306  0.11814375  0.89009929  1
+  Br  Br8  1  0.48224801  0.75653982  0.30725133  1
+  I  I9  1  0.02264595  0.05223242  0.43741793  1
+  I  I10  1  0.76350516  0.78830006  0.61726453  1
+  I  I11  1  0.54850742  0.42506667  0.84591200  1

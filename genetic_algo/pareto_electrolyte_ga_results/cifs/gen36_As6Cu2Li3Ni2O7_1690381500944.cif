@@ -1,0 +1,46 @@
+# generated using pymatgen
+data_Li3Cu2Ni2As6O7
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.62685887
+_cell_length_b   7.42148071
+_cell_length_c   8.45294678
+_cell_angle_alpha   91.69739893
+_cell_angle_beta   91.29615952
+_cell_angle_gamma   91.96615184
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3Cu2Ni2As6O7
+_chemical_formula_sum   'Li3 Cu2 Ni2 As6 O7'
+_cell_volume   477.83333137
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li2  1  0.37500000  0.00000000  0.25000000  1
+  Cu  Cu3  1  0.25000000  0.25000000  0.25000000  1
+  Cu  Cu4  1  0.00000000  0.25000000  0.12500000  1
+  Ni  Ni5  1  0.23147308  0.05546824  0.54663119  1
+  Ni  Ni6  1  0.98586667  0.99371792  0.99287802  1
+  As  As7  1  0.79693523  0.04750684  0.39745634  1
+  As  As8  1  0.69512852  0.42311865  0.88066366  1
+  As  As9  1  0.31974493  0.83585169  0.84301493  1
+  As  As10  1  0.30227181  0.74693449  0.45200354  1
+  As  As11  1  0.18164614  0.46269909  0.43040983  1
+  As  As12  1  0.74509362  0.93472197  0.51165676  1
+  O  O13  1  0.57138561  0.10066283  0.19300481  1
+  O  O14  1  0.04779346  0.07502727  0.01082396  1
+  O  O15  1  0.60299961  0.20159656  0.15352134  1
+  O  O16  1  0.72002936  0.88729483  0.63098658  1
+  O  O17  1  0.19605187  0.60409854  0.00011472  1
+  O  O18  1  0.90795791  0.08223004  0.17055038  1
+  O  O19  1  0.97029469  0.51830935  0.57157132  1

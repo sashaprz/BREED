@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_Li2CuTe4W(N2O)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.10368516
+_cell_length_b   8.79496080
+_cell_length_c   7.48188281
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2CuTe4W(N2O)2
+_chemical_formula_sum   'Li2 Cu1 Te4 W1 N4 O2'
+_cell_volume   533.24570814
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Cu  Cu2  1  0.25000000  0.25000000  0.25000000  1
+  W  W3  1  0.75000000  0.25000000  0.00000000  1
+  Te  Te4  1  0.25000000  0.75000000  0.50000000  1
+  Te  Te5  1  0.15101070  0.49342739  0.37302578  1
+  Te  Te6  1  0.11631616  0.98210731  0.71153144  1
+  Te  Te7  1  0.23602257  0.87232888  0.68870587  1
+  N  N8  1  0.19171178  0.62423094  0.20717670  1
+  N  N9  1  0.74478870  0.42582297  0.02367396  1
+  N  N10  1  0.68880695  0.94685038  0.37970411  1
+  N  N11  1  0.54476601  0.46319059  0.66420904  1
+  O  O12  1  0.72020439  0.95284294  0.67803790  1
+  O  O13  1  0.05814045  0.63421390  0.09480837  1

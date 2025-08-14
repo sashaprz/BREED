@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_LiMn3Al2P4O
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.83687386
+_cell_length_b   8.82556289
+_cell_length_c   7.31544264
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiMn3Al2P4O
+_chemical_formula_sum   'Li1 Mn3 Al2 P4 O1'
+_cell_volume   505.97129628
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Al  Al0  1  0.00000000  0.00000000  0.00000000  1
+  Al  Al1  1  0.50000000  0.50000000  0.50000000  1
+  O  O2  1  0.50000000  0.50000000  0.00000000  1
+  Mn  Mn3  1  0.50000000  0.00000000  0.50000000  1
+  Mn  Mn4  1  0.00000000  0.50000000  0.50000000  1
+  Mn  Mn5  1  0.20034185  0.41942774  0.83094955  1
+  P  P6  1  0.28569610  0.65379755  0.09157868  1
+  P  P7  1  0.70588612  0.13204017  0.43379682  1
+  P  P8  1  0.15100602  0.59969886  0.59047522  1
+  P  P9  1  0.42541763  0.61022651  0.54731638  1
+  Li  Li10  1  0.40335395  0.09860668  0.41024481  1

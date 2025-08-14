@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li5Ta2O3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   11.35681044
+_cell_length_b   11.35681044
+_cell_length_c   10.99838189
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5Ta2O3
+_chemical_formula_sum   'Li5 Ta2 O3'
+_cell_volume   1418.53987827
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.94827868  0.08874876  0.09080732  1
+  Li  Li1  1  0.14541360  0.11539694  0.21190779  1
+  Li  Li2  1  0.22652698  0.37514070  0.50246171  1
+  Li  Li3  1  0.35228683  0.55778473  0.81045932  1
+  Li  Li4  1  0.40569177  0.68631191  0.98075519  1
+  Ta  Ta5  1  0.51574750  0.73270049  0.38784880  1
+  Ta  Ta6  1  0.57180510  0.99962904  0.51797817  1
+  O  O7  1  0.77921998  0.05337963  0.80533034  1
+  O  O8  1  0.89671256  0.26236037  0.11289445  1
+  O  O9  1  0.89676954  0.45683546  0.41804642  1

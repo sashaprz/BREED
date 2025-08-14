@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_LiMn2Zn2(Te2O)3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.29056480
+_cell_length_b   8.31420071
+_cell_length_c   7.55443108
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiMn2Zn2(Te2O)3
+_chemical_formula_sum   'Li1 Mn2 Zn2 Te6 O3'
+_cell_volume   520.72255051
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Zn  Zn1  1  0.50000000  0.50000000  0.50000000  1
+  Zn  Zn2  1  0.50000000  0.50000000  0.00000000  1
+  Te  Te3  1  0.50000000  0.00000000  0.50000000  1
+  Te  Te4  1  0.00000000  0.50000000  0.50000000  1
+  Te  Te5  1  0.24141926  0.68287244  0.41638129  1
+  Te  Te6  1  0.43624191  0.20588158  0.95682430  1
+  Te  Te7  1  0.39264589  0.25730868  0.06174517  1
+  Te  Te8  1  0.46130760  0.92556934  0.66719011  1
+  Mn  Mn9  1  0.88016467  0.28739356  0.92816118  1
+  Mn  Mn10  1  0.32943380  0.38543241  0.42098333  1
+  O  O11  1  0.13394912  0.07228924  0.10361187  1
+  O  O12  1  0.45262173  0.34895379  0.16616782  1
+  O  O13  1  0.02627240  0.38328624  0.40423846  1

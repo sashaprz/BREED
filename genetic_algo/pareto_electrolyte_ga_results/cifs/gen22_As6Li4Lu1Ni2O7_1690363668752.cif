@@ -1,0 +1,46 @@
+# generated using pymatgen
+data_Li4LuNi2As6O7
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.04548481
+_cell_length_b   7.83023514
+_cell_length_c   9.41111232
+_cell_angle_alpha   91.06492435
+_cell_angle_beta   90.37649548
+_cell_angle_gamma   91.23518333
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li4LuNi2As6O7
+_chemical_formula_sum   'Li4 Lu1 Ni2 As6 O7'
+_cell_volume   592.62705057
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Lu  Lu0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li2  1  0.37500000  0.00000000  0.25000000  1
+  Li  Li3  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li4  1  0.00000000  0.25000000  0.12500000  1
+  Ni  Ni5  1  0.62053971  0.49963492  0.30764058  1
+  Ni  Ni6  1  0.86439643  0.77093640  0.90236423  1
+  As  As7  1  0.26639644  0.37675723  0.17797132  1
+  As  As8  1  0.26469322  0.42512562  0.68035429  1
+  As  As9  1  0.63720060  0.47727504  0.81354021  1
+  As  As10  1  0.55901761  0.24176797  0.69184552  1
+  As  As11  1  0.72021093  0.93665705  0.83244253  1
+  As  As12  1  0.88346852  0.75842070  0.55818596  1
+  O  O13  1  0.73672825  0.67808071  0.02354798  1
+  O  O14  1  0.52993207  0.61010639  0.26734358  1
+  O  O15  1  0.46639893  0.38601130  0.21087404  1
+  O  O16  1  0.04295034  0.09327033  0.01585337  1
+  O  O17  1  0.28093638  0.80965673  0.08759949  1
+  O  O18  1  0.52785304  0.68041615  0.77570029  1
+  O  O19  1  0.42030302  0.52415260  0.87711872  1

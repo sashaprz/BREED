@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_Li4AlMo2P4Se
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.38235137
+_cell_length_b   6.83269595
+_cell_length_c   7.04762529
+_cell_angle_alpha   89.71108525
+_cell_angle_beta   90.77675826
+_cell_angle_gamma   90.53715398
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li4AlMo2P4Se
+_chemical_formula_sum   'Li4 Al1 Mo2 P4 Se1'
+_cell_volume   307.29207891
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Al  Al0  1  0.00000000  0.00000000  0.00000000  1
+  Se  Se1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.50000000  0.50000000  0.00000000  1
+  P  P3  1  0.50000000  0.00000000  0.50000000  1
+  P  P4  1  0.00000000  0.50000000  0.50000000  1
+  P  P5  1  0.28724504  0.99798833  0.94514723  1
+  Mo  Mo6  1  0.24002522  0.61541246  0.04175882  1
+  Mo  Mo7  1  0.65152892  0.78527669  0.91070561  1
+  Li  Li8  1  0.41834745  0.62480985  0.70349931  1
+  Li  Li9  1  0.94107196  0.51236000  0.51584629  1
+  Li  Li10  1  0.71023047  0.07011065  0.90150168  1
+  Li  Li11  1  0.13194778  0.73271627  0.87065798  1

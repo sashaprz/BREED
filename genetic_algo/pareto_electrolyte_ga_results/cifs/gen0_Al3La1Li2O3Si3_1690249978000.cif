@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_Li2LaAl3(SiO)3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.90779092
+_cell_length_b   12.23507068
+_cell_length_c   15.35817951
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2LaAl3(SiO)3
+_chemical_formula_sum   'Li2 La1 Al3 Si3 O3'
+_cell_volume   2425.48249080
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  La  La2  1  0.37500000  0.00000000  0.25000000  1
+  Al  Al3  1  0.25000000  0.25000000  0.25000000  1
+  Al  Al4  1  0.00000000  0.25000000  0.12500000  1
+  Al  Al5  1  0.04550616  0.30075217  0.33094772  1
+  Si  Si6  1  0.20440242  0.65073505  0.74287290  1
+  Si  Si7  1  0.69321282  0.69985389  0.11478400  1
+  Si  Si8  1  0.89974358  0.38918370  0.08116776  1
+  O  O9  1  0.98309136  0.92960051  0.97453707  1
+  O  O10  1  0.01224155  0.30194389  0.79782913  1
+  O  O11  1  0.05929288  0.03639458  0.02120780  1

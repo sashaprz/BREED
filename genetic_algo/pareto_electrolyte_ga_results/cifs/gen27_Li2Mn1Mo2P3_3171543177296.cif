@@ -1,0 +1,34 @@
+# generated using pymatgen
+data_Li2MnMo2P3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.63147799
+_cell_length_b   4.68701580
+_cell_length_c   5.95150645
+_cell_angle_alpha   102.29361527
+_cell_angle_beta   94.15756256
+_cell_angle_gamma   101.67890467
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2MnMo2P3
+_chemical_formula_sum   'Li2 Mn1 Mo2 P3'
+_cell_volume   122.71284507
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Mn  Mn0  1  0.12500000  0.00000000  0.25000000  1
+  P  P1  1  0.00000000  0.00000000  0.00000000  1
+  P  P2  1  0.37500000  0.00000000  0.25000000  1
+  P  P3  1  0.25000000  0.25000000  0.25000000  1
+  Mo  Mo4  1  0.00000000  0.25000000  0.12500000  1
+  Mo  Mo5  1  0.69523805  0.10906718  0.42835994  1
+  Li  Li6  1  0.03035208  0.15876163  0.19493757  1
+  Li  Li7  1  0.29679136  0.58169217  0.16631194  1

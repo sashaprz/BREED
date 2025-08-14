@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li2GaO2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   10.51421949
+_cell_length_b   10.51421949
+_cell_length_c   11.36593922
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2GaO2
+_chemical_formula_sum   'Li4 Ga2 O4'
+_cell_volume   1256.49107133
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.93175466  0.93076462  0.03134113  1
+  Li  Li1  1  0.15346262  0.18566755  0.30508116  1
+  Li  Li2  1  0.13959795  0.33482604  0.47838556  1
+  Li  Li3  1  0.34812184  0.53580871  0.72890639  1
+  Ga  Ga4  1  0.41924592  0.56542890  0.11749822  1
+  Ga  Ga5  1  0.56957234  0.81949966  0.33541272  1
+  O  O6  1  0.51785211  0.02363875  0.63547661  1
+  O  O7  1  0.62150193  0.05528497  0.90709742  1
+  O  O8  1  0.80965177  0.31384473  0.03096911  1
+  O  O9  1  0.97709856  0.50748543  0.27608181  1

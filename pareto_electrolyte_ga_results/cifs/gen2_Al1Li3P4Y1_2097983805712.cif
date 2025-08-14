@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_Li3YAlP4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.11083211
+_cell_length_b   8.18069550
+_cell_length_c   8.72347278
+_cell_angle_alpha   90.83924706
+_cell_angle_beta   91.82770561
+_cell_angle_gamma   93.37092187
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3YAlP4
+_chemical_formula_sum   'Li3 Y1 Al1 P4'
+_cell_volume   577.44739513
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Al  Al0  1  0.00000000  0.00000000  0.00000000  1
+  Y  Y1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.50000000  0.50000000  0.00000000  1
+  P  P3  1  0.50000000  0.00000000  0.50000000  1
+  P  P4  1  0.00000000  0.50000000  0.50000000  1
+  P  P5  1  0.42883266  0.09217302  0.18886271  1
+  Li  Li6  1  0.90898979  0.43144772  0.57744588  1
+  Li  Li7  1  0.25052728  0.27151548  0.54163904  1
+  Li  Li8  1  0.65270672  0.40882880  0.00623154  1

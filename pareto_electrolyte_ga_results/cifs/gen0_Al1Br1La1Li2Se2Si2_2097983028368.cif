@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_Li2LaAlSi2Se2Br
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.82981044
+_cell_length_b   14.90650848
+_cell_length_c   12.17367155
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2LaAlSi2Se2Br
+_chemical_formula_sum   'Li2 La1 Al1 Si2 Se2 Br1'
+_cell_volume   2328.18641883
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  La  La2  1  0.37500000  0.00000000  0.25000000  1
+  Al  Al3  1  0.25000000  0.25000000  0.25000000  1
+  Si  Si4  1  0.00000000  0.25000000  0.12500000  1
+  Si  Si5  1  0.94524417  0.63171115  0.80738949  1
+  Se  Se6  1  0.19490796  0.60499691  0.13321989  1
+  Se  Se7  1  0.79126536  0.40543712  0.22135299  1
+  Br  Br8  1  0.26471032  0.81247512  0.92349976  1

@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_LiY2Sb2(As2P)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.85155469
+_cell_length_b   4.88423086
+_cell_length_c   7.07958684
+_cell_angle_alpha   95.10300465
+_cell_angle_beta   101.11328322
+_cell_angle_gamma   110.49674151
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiY2Sb2(As2P)2
+_chemical_formula_sum   'Li1 Y2 Sb2 As4 P2'
+_cell_volume   151.94176951
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Y  Y0  1  0.00000000  0.00000000  0.00000000  1
+  Y  Y1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.25000000  0.25000000  0.25000000  1
+  P  P3  1  0.75000000  0.25000000  0.00000000  1
+  As  As4  1  0.25000000  0.75000000  0.50000000  1
+  As  As5  1  0.90096096  0.23139833  0.53158286  1
+  As  As6  1  0.49722069  0.16299181  0.41195778  1
+  As  As7  1  0.61052551  0.89090273  0.53131452  1
+  Li  Li8  1  0.86480217  0.15843037  0.11354265  1
+  Sb  Sb9  1  0.41357958  0.06705899  0.84648958  1
+  Sb  Sb10  1  0.86576698  0.81088321  0.74570493  1

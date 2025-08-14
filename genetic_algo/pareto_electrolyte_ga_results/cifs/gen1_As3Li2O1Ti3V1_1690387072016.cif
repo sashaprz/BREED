@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li2Ti3VAs3O
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.78886642
+_cell_length_b   3.39884559
+_cell_length_c   5.01736274
+_cell_angle_alpha   104.15351647
+_cell_angle_beta   98.72329092
+_cell_angle_gamma   94.79232263
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Ti3VAs3O
+_chemical_formula_sum   'Li2 Ti3 V1 As3 O1'
+_cell_volume   61.43390429
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  O  O0  1  0.00000000  0.00000000  0.00000000  1
+  Ti  Ti1  1  0.50000000  0.50000000  0.50000000  1
+  Ti  Ti2  1  0.50000000  0.50000000  0.00000000  1
+  Ti  Ti3  1  0.50000000  0.00000000  0.50000000  1
+  V  V4  1  0.00000000  0.50000000  0.50000000  1
+  As  As5  1  0.18317255  0.13665947  0.58694143  1
+  As  As6  1  0.78435497  0.36315274  0.73632822  1
+  As  As7  1  0.44913924  0.32351235  0.91916105  1
+  Li  Li8  1  0.44732170  0.42889011  0.13375483  1
+  Li  Li9  1  0.34962467  0.43415428  0.25473427  1

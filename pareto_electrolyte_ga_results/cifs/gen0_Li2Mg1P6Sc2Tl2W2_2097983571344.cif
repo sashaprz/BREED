@@ -1,0 +1,41 @@
+# generated using pymatgen
+data_Li2MgSc2Tl2(P3W)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.78030718
+_cell_length_b   11.01037083
+_cell_length_c   14.23841291
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2MgSc2Tl2(P3W)2
+_chemical_formula_sum   'Li2 Mg1 Sc2 Tl2 P6 W2'
+_cell_volume   2003.57139057
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  W  W2  1  0.37500000  0.00000000  0.25000000  1
+  W  W3  1  0.25000000  0.25000000  0.25000000  1
+  Sc  Sc4  1  0.00000000  0.25000000  0.12500000  1
+  Sc  Sc5  1  0.57002071  0.42077530  0.37557670  1
+  Mg  Mg6  1  0.56939699  0.85218980  0.56363416  1
+  Tl  Tl7  1  0.10179101  0.30173233  0.97056590  1
+  Tl  Tl8  1  0.91067180  0.99735189  0.50677321  1
+  P  P9  1  0.27373875  0.88213090  0.74336373  1
+  P  P10  1  0.89259173  0.10780877  0.02457521  1
+  P  P11  1  0.35177359  0.39361735  0.56863899  1
+  P  P12  1  0.70705121  0.76039400  0.08976096  1
+  P  P13  1  0.35407416  0.84185657  0.18262537  1
+  P  P14  1  0.36727541  0.69208507  0.60423587  1

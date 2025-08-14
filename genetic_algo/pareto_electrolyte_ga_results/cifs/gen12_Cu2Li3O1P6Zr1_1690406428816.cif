@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li3ZrCu2P6O
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.20150549
+_cell_length_b   7.23266178
+_cell_length_c   7.91922877
+_cell_angle_alpha   94.17920209
+_cell_angle_beta   95.75959881
+_cell_angle_gamma   93.95609744
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3ZrCu2P6O
+_chemical_formula_sum   'Li3 Zr1 Cu2 P6 O1'
+_cell_volume   408.09584996
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.50000000  0.50000000  0.00000000  1
+  P  P3  1  0.50000000  0.00000000  0.50000000  1
+  P  P4  1  0.00000000  0.50000000  0.50000000  1
+  P  P5  1  0.83489660  0.24275576  0.93352094  1
+  Li  Li6  1  0.88546254  0.11964521  0.50633913  1
+  Li  Li7  1  0.41515822  0.30841265  0.84021496  1
+  Li  Li8  1  0.26315092  0.91656880  0.94185668  1
+  Cu  Cu9  1  0.42269600  0.83951390  0.00614868  1
+  Cu  Cu10  1  0.98443692  0.46309420  0.93161651  1
+  O  O11  1  0.46612006  0.58257798  0.52308867  1
+  Zr  Zr12  1  0.37408641  0.66937243  0.98122364  1

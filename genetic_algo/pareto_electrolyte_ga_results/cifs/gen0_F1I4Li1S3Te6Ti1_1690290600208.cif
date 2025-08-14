@@ -1,0 +1,42 @@
+# generated using pymatgen
+data_LiTiTe6S3I4F
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.81879901
+_cell_length_b   9.46369942
+_cell_length_c   8.51621526
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiTiTe6S3I4F
+_chemical_formula_sum   'Li1 Ti1 Te6 S3 I4 F1'
+_cell_volume   710.75023669
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Ti  Ti1  1  0.50000000  0.50000000  0.50000000  1
+  S  S2  1  0.25000000  0.25000000  0.25000000  1
+  S  S3  1  0.75000000  0.25000000  0.00000000  1
+  S  S4  1  0.25000000  0.75000000  0.50000000  1
+  Te  Te5  1  0.02586130  0.09413086  0.65871600  1
+  Te  Te6  1  0.94704564  0.20956611  0.24320256  1
+  Te  Te7  1  0.00651528  0.54980064  0.17063169  1
+  Te  Te8  1  0.85465507  0.51061137  0.74794555  1
+  Te  Te9  1  0.49177796  0.71840606  0.76037053  1
+  Te  Te10  1  0.30518245  0.53239100  0.62781473  1
+  F  F11  1  0.07317372  0.46414497  0.85259896  1
+  I  I12  1  0.09485980  0.54397321  0.45201079  1
+  I  I13  1  0.29682514  0.02426760  0.15536409  1
+  I  I14  1  0.96274850  0.53754435  0.47825848  1
+  I  I15  1  0.95322527  0.48841261  0.52894068  1

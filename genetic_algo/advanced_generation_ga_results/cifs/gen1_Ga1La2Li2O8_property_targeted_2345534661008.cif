@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li2La2GaO8
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   9.04369392
+_cell_length_b   9.04369392
+_cell_length_c   8.19443521
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2La2GaO8
+_chemical_formula_sum   'Li2 La2 Ga1 O8'
+_cell_volume   670.20974191
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.94116323  0.04314384  0.93206527  1
+  Li  Li1  1  0.13866785  0.17421917  0.20854325  1
+  Ga  Ga2  1  0.15481018  0.15195668  0.49302217  1
+  O  O3  1  0.29146988  0.30767980  0.52644104  1
+  O  O4  1  0.34431193  0.44224964  0.74507798  1
+  O  O5  1  0.32171362  0.52947980  0.92176217  1
+  O  O6  1  0.48904133  0.81538382  0.30150458  1
+  O  O7  1  0.57947449  0.78993996  0.42239714  1
+  O  O8  1  0.59167848  0.97900063  0.57828671  1
+  O  O9  1  0.59980584  0.16063719  0.84040176  1
+  O  O10  1  0.77078180  0.20025744  0.02125114  1
+  La  La11  1  0.88022050  0.32247360  0.29294095  1
+  La  La12  1  0.96108555  0.55258640  0.38212788  1

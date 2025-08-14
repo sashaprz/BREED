@@ -1,0 +1,43 @@
+# generated using pymatgen
+data_Li6Ga2F9
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.26715193
+_cell_length_b   8.26715193
+_cell_length_c   8.87692247
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li6Ga2F9
+_chemical_formula_sum   'Li6 Ga2 F9'
+_cell_volume   606.70037649
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.02227448  0.05448203  0.00719558  1
+  Li  Li1  1  0.06927021  0.12599044  0.11589650  1
+  Li  Li2  1  0.11926210  0.25010804  0.29324010  1
+  Li  Li3  1  0.15345169  0.34857367  0.44638930  1
+  Li  Li4  1  0.28957894  0.38857047  0.68820013  1
+  Li  Li5  1  0.36854097  0.40701531  0.70089453  1
+  Ga  Ga6  1  0.38975395  0.51904936  0.89238700  1
+  Ga  Ga7  1  0.35907649  0.62839074  0.04014221  1
+  F  F8  1  0.49824435  0.73708724  0.28219546  1
+  F  F9  1  0.61722898  0.75733505  0.32836671  1
+  F  F10  1  0.52343531  0.94246643  0.44246256  1
+  F  F11  1  0.72986378  0.05005362  0.59546529  1
+  F  F12  1  0.80030880  0.09754354  0.94417616  1
+  F  F13  1  0.71454066  0.25892241  0.03475934  1
+  F  F14  1  0.90952286  0.37723623  0.23546758  1
+  F  F15  1  0.82238812  0.50990218  0.36442420  1
+  F  F16  1  0.96255210  0.57561294  0.46085982  1

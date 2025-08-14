@@ -1,0 +1,44 @@
+# generated using pymatgen
+data_LiZnCu(TeAs)3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.05810151
+_cell_length_b   8.40682435
+_cell_length_c   7.80981822
+_cell_angle_alpha   90.23104150
+_cell_angle_beta   91.09922527
+_cell_angle_gamma   90.26414212
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiZnCu(TeAs)3
+_chemical_formula_sum   'Li2 Zn2 Cu2 Te6 As6'
+_cell_volume   528.95338234
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Te  Te0  1  0.00000000  0.00000000  0.00000000  1
+  Te  Te1  1  0.50000000  0.50000000  0.50000000  1
+  Te  Te2  1  0.50000000  0.50000000  0.00000000  1
+  Te  Te3  1  0.50000000  0.00000000  0.50000000  1
+  Te  Te4  1  0.00000000  0.50000000  0.50000000  1
+  Te  Te5  1  0.72336293  0.19361936  0.03095999  1
+  As  As6  1  0.00906737  0.93570287  0.55092707  1
+  As  As7  1  0.36382655  0.54613270  0.76392995  1
+  As  As8  1  0.88418879  0.93851512  0.14021000  1
+  As  As9  1  0.38563527  0.31693304  0.00636215  1
+  As  As10  1  0.45174044  0.76696970  0.44309049  1
+  As  As11  1  0.54980438  0.46788185  0.06894753  1
+  Li  Li12  1  0.62733309  0.46988651  0.40117678  1
+  Li  Li13  1  0.72946879  0.98917303  0.27432681  1
+  Cu  Cu14  1  0.83913379  0.76562944  0.90484446  1
+  Cu  Cu15  1  0.42261914  0.15136278  0.82325918  1
+  Zn  Zn16  1  0.10584407  0.55119607  0.92293383  1
+  Zn  Zn17  1  0.94452443  0.28776776  0.09146889  1

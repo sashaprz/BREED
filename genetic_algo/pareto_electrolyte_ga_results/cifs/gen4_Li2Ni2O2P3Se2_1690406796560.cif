@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li2Ni2P3(SeO)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.83800115
+_cell_length_b   7.69131786
+_cell_length_c   7.37885476
+_cell_angle_alpha   90.31144546
+_cell_angle_beta   91.48176289
+_cell_angle_gamma   90.35606532
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Ni2P3(SeO)2
+_chemical_formula_sum   'Li2 Ni2 P3 Se2 O2'
+_cell_volume   444.66669585
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li3  1  0.75000000  0.25000000  0.00000000  1
+  Li  Li4  1  0.25000000  0.75000000  0.50000000  1
+  Se  Se5  1  0.64155158  0.71570218  0.54050226  1
+  Se  Se6  1  0.84389872  0.09011210  0.38355957  1
+  Ni  Ni7  1  0.55028688  0.10171136  0.92733045  1
+  Ni  Ni8  1  0.06380950  0.18787207  0.81723507  1
+  O  O9  1  0.30650781  0.18639848  0.27220066  1
+  O  O10  1  0.95521470  0.41197045  0.41735954  1

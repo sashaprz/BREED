@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li2LuTi2S3N5
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.76134263
+_cell_length_b   5.25916993
+_cell_length_c   7.34351577
+_cell_angle_alpha   96.77910594
+_cell_angle_beta   95.26726020
+_cell_angle_gamma   97.85211483
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2LuTi2S3N5
+_chemical_formula_sum   'Li2 Lu1 Ti2 S3 N5'
+_cell_volume   217.55895972
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Lu  Lu0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.25000000  0.25000000  0.25000000  1
+  S  S3  1  0.75000000  0.25000000  0.00000000  1
+  S  S4  1  0.25000000  0.75000000  0.50000000  1
+  S  S5  1  0.47510898  0.13967740  0.58557638  1
+  Ti  Ti6  1  0.06527213  0.30305669  0.24290129  1
+  Ti  Ti7  1  0.90978107  0.81588523  0.07441003  1
+  N  N8  1  0.72003805  0.76843192  0.80711734  1
+  N  N9  1  0.47213426  0.81897957  0.43729072  1
+  N  N10  1  0.17062396  0.70738749  0.33453592  1
+  N  N11  1  0.06393630  0.98471432  0.67293689  1
+  N  N12  1  0.53410176  0.84471556  0.66363553  1

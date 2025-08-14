@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_Li2Zr3N5Cl2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.15427528
+_cell_length_b   7.84357488
+_cell_length_c   9.26787855
+_cell_angle_alpha   95.86816604
+_cell_angle_beta   98.35454099
+_cell_angle_gamma   95.81479944
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Zr3N5Cl2
+_chemical_formula_sum   'Li2 Zr3 N5 Cl2'
+_cell_volume   579.31936690
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.33300000  0.66700000  0.25000000  1
+  Cl  Cl2  1  0.66700000  0.33300000  0.50000000  1
+  Cl  Cl3  1  0.00000000  0.00000000  0.75000000  1
+  N  N4  1  0.93098166  0.32026154  0.94328999  1
+  N  N5  1  0.22169895  0.49557813  0.18697426  1
+  N  N6  1  0.36513129  0.22463409  0.30656365  1
+  N  N7  1  0.35023450  0.55665800  0.10917424  1
+  N  N8  1  0.22218042  0.98577964  0.69916467  1
+  Zr  Zr9  1  0.20711712  0.92010436  0.18381242  1
+  Zr  Zr10  1  0.78513245  0.26089992  0.45205361  1
+  Zr  Zr11  1  0.74129169  0.77019144  0.21907455  1

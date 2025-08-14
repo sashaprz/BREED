@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li3LuTiP3Cl2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.03362562
+_cell_length_b   6.74706831
+_cell_length_c   7.40529236
+_cell_angle_alpha   95.21250138
+_cell_angle_beta   96.40111058
+_cell_angle_gamma   95.03160944
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3LuTiP3Cl2
+_chemical_formula_sum   'Li3 Lu1 Ti1 P3 Cl2'
+_cell_volume   346.08944372
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.50000000  0.50000000  0.00000000  1
+  Lu  Lu3  1  0.50000000  0.00000000  0.50000000  1
+  Li  Li4  1  0.00000000  0.50000000  0.50000000  1
+  Li  Li5  1  0.63476415  0.99223575  0.99022383  1
+  Li  Li6  1  0.08796687  0.22925444  0.09036725  1
+  Cl  Cl7  1  0.49466177  0.26096065  0.32907630  1
+  Cl  Cl8  1  0.00249585  0.20738228  0.56892470  1
+  Ti  Ti9  1  0.80266140  0.32200390  0.69872311  1

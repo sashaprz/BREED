@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li3Ti2Cr2As3N
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.41526797
+_cell_length_b   5.41818108
+_cell_length_c   6.34774984
+_cell_angle_alpha   91.79784318
+_cell_angle_beta   104.84598385
+_cell_angle_gamma   91.84175194
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3Ti2Cr2As3N
+_chemical_formula_sum   'Li3 Ti2 Cr2 As3 N1'
+_cell_volume   179.78708426
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ti  Ti0  1  0.00000000  0.00000000  0.00000000  1
+  Ti  Ti1  1  0.50000000  0.50000000  0.50000000  1
+  As  As2  1  0.50000000  0.50000000  0.00000000  1
+  As  As3  1  0.50000000  0.00000000  0.50000000  1
+  As  As4  1  0.00000000  0.50000000  0.50000000  1
+  Li  Li5  1  0.74754803  0.03874304  0.72493833  1
+  Li  Li6  1  0.24432927  0.99163141  0.06963426  1
+  Li  Li7  1  0.27234096  0.15138091  0.50742076  1
+  N  N8  1  0.59524631  0.18002089  0.09815612  1
+  Cr  Cr9  1  0.32422078  0.57539937  0.62139737  1
+  Cr  Cr10  1  0.78164967  0.02597099  0.62576982  1

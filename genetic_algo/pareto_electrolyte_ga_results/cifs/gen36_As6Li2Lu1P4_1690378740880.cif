@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li2Lu(As3P2)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.21696958
+_cell_length_b   7.12495448
+_cell_length_c   8.35327339
+_cell_angle_alpha   93.94078894
+_cell_angle_beta   93.98314830
+_cell_angle_gamma   94.08037283
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Lu(As3P2)2
+_chemical_formula_sum   'Li2 Lu1 As6 P4'
+_cell_volume   426.23357202
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.33300000  0.66700000  0.25000000  1
+  P  P2  1  0.66700000  0.33300000  0.50000000  1
+  P  P3  1  0.00000000  0.00000000  0.75000000  1
+  Lu  Lu4  1  0.70796541  0.14865709  0.56509925  1
+  As  As5  1  0.93897538  0.78392950  0.20970320  1
+  As  As6  1  0.08834256  0.29467605  0.91446499  1
+  As  As7  1  0.96790534  0.04481351  0.09530458  1
+  As  As8  1  0.85639574  0.79444502  0.04787455  1
+  As  As9  1  0.37400429  0.85792634  0.40405911  1
+  As  As10  1  0.79696688  0.39427173  0.61548592  1
+  Li  Li11  1  0.91097752  0.36633129  0.97892695  1
+  Li  Li12  1  0.82447040  0.13942555  0.62443093  1

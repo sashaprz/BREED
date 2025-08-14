@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_Li3TiBr4N
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.05813606
+_cell_length_b   6.08711054
+_cell_length_c   7.47082957
+_cell_angle_alpha   91.40184803
+_cell_angle_beta   101.57598920
+_cell_angle_gamma   91.43608539
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li3TiBr4N
+_chemical_formula_sum   'Li3 Ti1 Br4 N1'
+_cell_volume   269.68742951
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.50000000  0.50000000  0.00000000  1
+  Ti  Ti3  1  0.50000000  0.00000000  0.50000000  1
+  N  N4  1  0.00000000  0.50000000  0.50000000  1
+  Br  Br5  1  0.26380679  0.38377182  0.12095983  1
+  Br  Br6  1  0.96942775  0.90115413  0.10776336  1
+  Br  Br7  1  0.41726215  0.33724159  0.30197117  1
+  Br  Br8  1  0.95915853  0.48159419  0.67998718  1

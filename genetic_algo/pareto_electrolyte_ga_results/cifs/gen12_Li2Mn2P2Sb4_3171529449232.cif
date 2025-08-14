@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_LiMnSb2P
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.85116744
+_cell_length_b   6.29230183
+_cell_length_c   6.78126162
+_cell_angle_alpha   97.26938178
+_cell_angle_beta   92.35893816
+_cell_angle_gamma   96.84938239
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiMnSb2P
+_chemical_formula_sum   'Li2 Mn2 Sb4 P2'
+_cell_volume   245.49213414
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Mn  Mn0  1  0.00000000  0.00000000  0.00000000  1
+  Mn  Mn1  1  0.50000000  0.50000000  0.50000000  1
+  Sb  Sb2  1  0.50000000  0.50000000  0.00000000  1
+  Sb  Sb3  1  0.50000000  0.00000000  0.50000000  1
+  Sb  Sb4  1  0.00000000  0.50000000  0.50000000  1
+  Sb  Sb5  1  0.74794241  0.78958749  0.53763240  1
+  P  P6  1  0.85094538  0.13661298  0.87962816  1
+  P  P7  1  0.33814824  0.93571848  0.27194391  1
+  Li  Li8  1  0.49349432  0.71489532  0.75353114  1
+  Li  Li9  1  0.88336296  0.54825940  0.59072209  1

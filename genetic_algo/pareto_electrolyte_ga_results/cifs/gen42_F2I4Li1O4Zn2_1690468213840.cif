@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_LiZn2I4(O2F)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.02282540
+_cell_length_b   8.33081619
+_cell_length_c   7.51004792
+_cell_angle_alpha   90.77762204
+_cell_angle_beta   91.67599436
+_cell_angle_gamma   90.93121302
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiZn2I4(O2F)2
+_chemical_formula_sum   'Li1 Zn2 I4 O4 F2'
+_cell_volume   501.61614919
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  I  I0  1  0.00000000  0.00000000  0.00000000  1
+  I  I1  1  0.50000000  0.50000000  0.50000000  1
+  I  I2  1  0.50000000  0.50000000  0.00000000  1
+  I  I3  1  0.50000000  0.00000000  0.50000000  1
+  Li  Li4  1  0.00000000  0.50000000  0.50000000  1
+  Zn  Zn5  1  0.72009260  0.42199166  0.13808705  1
+  Zn  Zn6  1  0.84062815  0.77109822  0.34763789  1
+  F  F7  1  0.87069359  0.40975705  0.54988954  1
+  F  F8  1  0.85317001  0.33628888  0.56207202  1
+  O  O9  1  0.15028411  0.36579213  0.40425931  1
+  O  O10  1  0.18587773  0.58072496  0.90472589  1
+  O  O11  1  0.63402905  0.68873681  0.12454981  1
+  O  O12  1  0.80386020  0.68143953  0.86919287  1

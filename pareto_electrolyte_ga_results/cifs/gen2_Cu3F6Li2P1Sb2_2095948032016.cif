@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_Li2Cu3Sb2PF6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.50615822
+_cell_length_b   5.49066718
+_cell_length_c   6.69144727
+_cell_angle_alpha   93.30063525
+_cell_angle_beta   95.20703979
+_cell_angle_gamma   100.15051738
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2Cu3Sb2PF6
+_chemical_formula_sum   'Li2 Cu3 Sb2 P1 F6'
+_cell_volume   197.75167813
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  F  F0  1  0.00000000  0.00000000  0.00000000  1
+  F  F1  1  0.50000000  0.50000000  0.50000000  1
+  F  F2  1  0.50000000  0.50000000  0.00000000  1
+  F  F3  1  0.50000000  0.00000000  0.50000000  1
+  F  F4  1  0.00000000  0.50000000  0.50000000  1
+  F  F5  1  0.86882868  0.55100299  0.25535259  1
+  Cu  Cu6  1  0.54062442  0.25557302  0.31564214  1
+  Cu  Cu7  1  0.36285998  0.40785244  0.09553245  1
+  Cu  Cu8  1  0.91552753  0.58663497  0.36767961  1
+  P  P9  1  0.01690797  0.23350066  0.08128242  1
+  Li  Li10  1  0.44938542  0.97419161  0.54698277  1
+  Li  Li11  1  0.40069515  0.48165810  0.75478767  1
+  Sb  Sb12  1  0.19145166  0.79845802  0.36873866  1
+  Sb  Sb13  1  0.83875366  0.16172970  0.06857822  1

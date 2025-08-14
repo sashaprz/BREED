@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li4(NiTe)3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.83954477
+_cell_length_b   3.61669056
+_cell_length_c   5.04223901
+_cell_angle_alpha   113.36823105
+_cell_angle_beta   111.37278269
+_cell_angle_gamma   108.74578096
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li4(NiTe)3
+_chemical_formula_sum   'Li4 Ni3 Te3'
+_cell_volume   50.18345213
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.33300000  0.66700000  0.25000000  1
+  Li  Li2  1  0.66700000  0.33300000  0.50000000  1
+  Li  Li3  1  0.00000000  0.00000000  0.75000000  1
+  Ni  Ni4  1  0.17068648  0.37513554  0.95413900  1
+  Ni  Ni5  1  0.79055321  0.69842224  0.79196019  1
+  Ni  Ni6  1  0.98366952  0.44611122  0.20893489  1
+  Te  Te7  1  0.62476295  0.97512654  0.24315987  1
+  Te  Te8  1  0.98081215  0.44780874  0.85884772  1
+  Te  Te9  1  0.85461865  0.09620174  0.08622834  1

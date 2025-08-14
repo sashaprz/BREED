@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li2TiSb4P3O
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.29370146
+_cell_length_b   5.81281463
+_cell_length_c   6.90266738
+_cell_angle_alpha   94.82779339
+_cell_angle_beta   100.51393033
+_cell_angle_gamma   109.39132728
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2TiSb4P3O
+_chemical_formula_sum   'Li2 Ti1 Sb4 P3 O1'
+_cell_volume   194.57720608
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.25000000  0.25000000  0.25000000  1
+  Ti  Ti3  1  0.75000000  0.25000000  0.00000000  1
+  O  O4  1  0.25000000  0.75000000  0.50000000  1
+  Li  Li5  1  0.89030095  0.23671432  0.42511192  1
+  Li  Li6  1  0.85296396  0.71519571  0.38498449  1
+  Sb  Sb7  1  0.40062659  0.93522866  0.69662397  1
+  Sb  Sb8  1  0.15326174  0.21022625  0.77017321  1
+  Sb  Sb9  1  0.10863357  0.35329689  0.76587086  1
+  Sb  Sb10  1  0.87147201  0.36145621  0.17980888  1

@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_LiCuNiP2F
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.26030071
+_cell_length_b   7.05353142
+_cell_length_c   7.68538027
+_cell_angle_alpha   91.64515782
+_cell_angle_beta   92.13458218
+_cell_angle_gamma   91.60378973
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiCuNiP2F
+_chemical_formula_sum   'Li2 Cu2 Ni2 P4 F2'
+_cell_volume   392.97256637
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.25000000  0.25000000  0.25000000  1
+  P  P3  1  0.75000000  0.25000000  0.00000000  1
+  Li  Li4  1  0.25000000  0.75000000  0.50000000  1
+  Li  Li5  1  0.05888957  0.95816452  0.00076132  1
+  Cu  Cu6  1  0.32180241  0.47019965  0.19178249  1
+  Cu  Cu7  1  0.92111362  0.52767533  0.60920286  1
+  F  F8  1  0.00039567  0.93933506  0.12292715  1
+  F  F9  1  0.87141995  0.48762336  0.91182684  1
+  Ni  Ni10  1  0.01399120  0.50661645  0.88395540  1
+  Ni  Ni11  1  0.96293634  0.57123714  0.85447424  1

@@ -1,0 +1,41 @@
+# generated using pymatgen
+data_Li2TiNi2(As3P2)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.87926365
+_cell_length_b   7.74421578
+_cell_length_c   7.74519944
+_cell_angle_alpha   90.92210368
+_cell_angle_beta   91.23637284
+_cell_angle_gamma   91.06609484
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2TiNi2(As3P2)2
+_chemical_formula_sum   'Li2 Ti1 Ni2 As6 P4'
+_cell_volume   472.34600175
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.50000000  0.50000000  0.00000000  1
+  P  P3  1  0.50000000  0.00000000  0.50000000  1
+  Li  Li4  1  0.00000000  0.50000000  0.50000000  1
+  Li  Li5  1  0.52343662  0.53445766  0.96571689  1
+  Ni  Ni6  1  0.89392332  0.16097468  0.16259994  1
+  Ni  Ni7  1  0.05056856  0.99479973  0.76636323  1
+  Ti  Ti8  1  0.83299336  0.37500187  0.54105681  1
+  As  As9  1  0.96886288  0.62050964  0.24487602  1
+  As  As10  1  0.87886222  0.84695790  0.84025142  1
+  As  As11  1  0.01623282  0.21280755  0.34565937  1
+  As  As12  1  0.08740021  0.12759415  0.66253340  1
+  As  As13  1  0.45716200  0.75034321  0.89420831  1
+  As  As14  1  0.09661590  0.18153738  0.54623717  1

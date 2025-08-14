@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_LiYAs2P
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.99142727
+_cell_length_b   5.15540578
+_cell_length_c   6.96347342
+_cell_angle_alpha   94.86609955
+_cell_angle_beta   100.59735318
+_cell_angle_gamma   109.54518790
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiYAs2P
+_chemical_formula_sum   'Li2 Y2 As4 P2'
+_cell_volume   163.89959832
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.33300000  0.66700000  0.25000000  1
+  As  As2  1  0.66700000  0.33300000  0.50000000  1
+  As  As3  1  0.00000000  0.00000000  0.75000000  1
+  As  As4  1  0.11095735  0.64595125  0.15873235  1
+  As  As5  1  0.60793895  0.28076965  0.71655533  1
+  Li  Li6  1  0.16639746  0.33545868  0.59067064  1
+  Li  Li7  1  0.55415749  0.10071712  0.23560072  1
+  Y  Y8  1  0.30779320  0.11722264  0.17935164  1
+  Y  Y9  1  0.90694499  0.24032334  0.14194865  1

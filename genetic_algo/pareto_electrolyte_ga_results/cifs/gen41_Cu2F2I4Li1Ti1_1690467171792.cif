@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_LiTiCu2(I2F)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.98050865
+_cell_length_b   7.91881047
+_cell_length_c   7.58142990
+_cell_angle_alpha   91.03120905
+_cell_angle_beta   92.22254572
+_cell_angle_gamma   91.23488693
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiTiCu2(I2F)2
+_chemical_formula_sum   'Li1 Ti1 Cu2 I4 F2'
+_cell_volume   478.56039800
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  I  I0  1  0.00000000  0.00000000  0.00000000  1
+  I  I1  1  0.50000000  0.50000000  0.50000000  1
+  I  I2  1  0.25000000  0.25000000  0.25000000  1
+  I  I3  1  0.75000000  0.25000000  0.00000000  1
+  Li  Li4  1  0.25000000  0.75000000  0.50000000  1
+  Cu  Cu5  1  0.48578530  0.34620300  0.88066495  1
+  Cu  Cu6  1  0.35499990  0.21641962  0.24589536  1
+  F  F7  1  0.90767365  0.38971821  0.27218705  1
+  F  F8  1  0.49560605  0.80008744  0.23835614  1
+  Ti  Ti9  1  0.54388992  0.52948153  0.46725772  1

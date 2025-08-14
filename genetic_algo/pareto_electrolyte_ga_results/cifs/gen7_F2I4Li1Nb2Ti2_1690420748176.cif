@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_LiTi2Nb2(I2F)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.00843653
+_cell_length_b   8.35716951
+_cell_length_c   8.23351870
+_cell_angle_alpha   90.31572143
+_cell_angle_beta   91.50210670
+_cell_angle_gamma   90.36095390
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiTi2Nb2(I2F)2
+_chemical_formula_sum   'Li1 Ti2 Nb2 I4 F2'
+_cell_volume   550.84262740
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  I  I0  1  0.00000000  0.00000000  0.00000000  1
+  I  I1  1  0.50000000  0.50000000  0.50000000  1
+  I  I2  1  0.50000000  0.50000000  0.00000000  1
+  I  I3  1  0.50000000  0.00000000  0.50000000  1
+  Li  Li4  1  0.00000000  0.50000000  0.50000000  1
+  Nb  Nb5  1  0.08527480  0.15745861  0.13841646  1
+  Nb  Nb6  1  0.41069107  0.64872775  0.82711033  1
+  F  F7  1  0.87899819  0.03201223  0.55480440  1
+  F  F8  1  0.25424161  0.10576316  0.08154565  1
+  Ti  Ti9  1  0.66667902  0.75989594  0.72780240  1
+  Ti  Ti10  1  0.97877304  0.18257482  0.57079468  1

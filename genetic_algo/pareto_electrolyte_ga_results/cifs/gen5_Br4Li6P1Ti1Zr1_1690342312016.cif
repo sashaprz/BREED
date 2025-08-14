@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li6ZrTiPBr4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.59262663
+_cell_length_b   6.21615972
+_cell_length_c   8.53058710
+_cell_angle_alpha   98.40800476
+_cell_angle_beta   100.73509096
+_cell_angle_gamma   97.90954363
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li6ZrTiPBr4
+_chemical_formula_sum   'Li6 Zr1 Ti1 P1 Br4'
+_cell_volume   334.85785652
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.50000000  0.50000000  0.00000000  1
+  Li  Li3  1  0.50000000  0.00000000  0.50000000  1
+  Li  Li4  1  0.00000000  0.50000000  0.50000000  1
+  Li  Li5  1  0.26965292  0.83991486  0.94875197  1
+  Li  Li6  1  0.69683666  0.96304151  0.93143875  1
+  Br  Br7  1  0.87945363  0.16312849  0.07761096  1
+  Br  Br8  1  0.51538590  0.91375247  0.13530574  1
+  Br  Br9  1  0.63828485  0.84854748  0.94141221  1
+  Br  Br10  1  0.62961785  0.91012256  0.50160312  1
+  Ti  Ti11  1  0.40942448  0.49098331  0.77272419  1
+  Zr  Zr12  1  0.40599656  0.79923363  0.89726603  1

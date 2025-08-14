@@ -1,0 +1,44 @@
+# generated using pymatgen
+data_LiCuAs3(IO)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.90251927
+_cell_length_b   7.99726622
+_cell_length_c   8.10496241
+_cell_angle_alpha   90.33065095
+_cell_angle_beta   91.57313678
+_cell_angle_gamma   90.37802232
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiCuAs3(IO)2
+_chemical_formula_sum   'Li2 Cu2 As6 I4 O4'
+_cell_volume   512.00859584
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  O  O0  1  0.00000000  0.00000000  0.00000000  1
+  O  O1  1  0.50000000  0.50000000  0.50000000  1
+  O  O2  1  0.25000000  0.25000000  0.25000000  1
+  O  O3  1  0.75000000  0.25000000  0.00000000  1
+  I  I4  1  0.25000000  0.75000000  0.50000000  1
+  I  I5  1  0.24254905  0.44761026  0.05167033  1
+  I  I6  1  0.02767273  0.19070669  0.14593323  1
+  I  I7  1  0.62668622  0.11301180  0.63265163  1
+  As  As8  1  0.20972733  0.85914341  0.42186927  1
+  As  As9  1  0.56027200  0.15449915  0.42909989  1
+  As  As10  1  0.66495437  0.98610598  0.81901996  1
+  As  As11  1  0.20687556  0.28190235  0.99090580  1
+  As  As12  1  0.54696672  0.21484282  0.28751533  1
+  As  As13  1  0.03907551  0.60644316  0.95095996  1
+  Li  Li14  1  0.96541246  0.01153963  0.31404164  1
+  Li  Li15  1  0.45153066  0.94080555  0.83704313  1
+  Cu  Cu16  1  0.00493558  0.61786718  0.16376728  1
+  Cu  Cu17  1  0.00439316  0.82183745  0.56725633  1

@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li5LaZnNF2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.79804288
+_cell_length_b   3.93007197
+_cell_length_c   3.98296155
+_cell_angle_alpha   97.19690977
+_cell_angle_beta   98.27573135
+_cell_angle_gamma   91.49484057
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5LaZnNF2
+_chemical_formula_sum   'Li5 La1 Zn1 N1 F2'
+_cell_volume   58.31043606
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Zn  Zn0  1  0.12500000  0.00000000  0.25000000  1
+  La  La1  1  0.00000000  0.00000000  0.00000000  1
+  F  F2  1  0.37500000  0.00000000  0.25000000  1
+  F  F3  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li4  1  0.00000000  0.25000000  0.12500000  1
+  Li  Li5  1  0.64015466  0.68634407  0.62865129  1
+  Li  Li6  1  0.55499174  0.02468913  0.86809200  1
+  Li  Li7  1  0.44896374  0.82080188  0.30029074  1
+  Li  Li8  1  0.58803142  0.33015323  0.22618267  1
+  N  N9  1  0.50929665  0.99089646  0.40426088  1

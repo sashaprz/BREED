@@ -1,0 +1,48 @@
+# generated using pymatgen
+data_Li5ZrNi2(Se3O4)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.62345660
+_cell_length_b   9.99554508
+_cell_length_c   6.95504529
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5ZrNi2(Se3O4)2
+_chemical_formula_sum   'Li5 Zr1 Ni2 Se6 O8'
+_cell_volume   599.49812146
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li3  1  0.75000000  0.25000000  0.00000000  1
+  Li  Li4  1  0.25000000  0.75000000  0.50000000  1
+  Ni  Ni5  1  0.78406927  0.75173878  0.56358282  1
+  Ni  Ni6  1  0.60830258  0.45291444  0.22426480  1
+  Zr  Zr7  1  0.13266262  0.99947294  0.79374336  1
+  O  O8  1  0.13771276  0.48802105  0.57822104  1
+  O  O9  1  0.74592953  0.47413132  0.64503889  1
+  O  O10  1  0.20897799  0.76268233  0.62124502  1
+  O  O11  1  0.98635923  0.40892515  0.85002147  1
+  O  O12  1  0.22058759  0.29627345  0.04421776  1
+  O  O13  1  0.50100606  0.76971160  0.89925758  1
+  O  O14  1  0.59592301  0.75085878  0.80019906  1
+  O  O15  1  0.62618970  0.48028988  0.34614447  1
+  Se  Se16  1  0.75411663  0.75603023  0.03478158  1
+  Se  Se17  1  0.21877408  0.28970721  0.50194844  1
+  Se  Se18  1  0.03686734  0.12429137  0.60272939  1
+  Se  Se19  1  0.36030330  0.37834052  0.54163706  1
+  Se  Se20  1  0.92244541  0.87677523  0.28334144  1
+  Se  Se21  1  0.91647101  0.99291378  0.27399112  1

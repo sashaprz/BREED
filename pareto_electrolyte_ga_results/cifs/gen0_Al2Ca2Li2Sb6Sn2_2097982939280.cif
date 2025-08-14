@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_LiCaAlSnSb3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   12.75736373
+_cell_length_b   14.88848783
+_cell_length_c   14.32463289
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiCaAlSnSb3
+_chemical_formula_sum   'Li2 Ca2 Al2 Sn2 Sb6'
+_cell_volume   2720.79003991
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.00000000  0.25000000  1
+  Li  Li1  1  0.00000000  0.00000000  0.00000000  1
+  Ca  Ca2  1  0.37500000  0.00000000  0.25000000  1
+  Ca  Ca3  1  0.25000000  0.25000000  0.25000000  1
+  Al  Al4  1  0.00000000  0.25000000  0.12500000  1
+  Al  Al5  1  0.73648456  0.76768497  0.02679820  1
+  Sn  Sn6  1  0.98509218  0.96198294  0.64796818  1
+  Sn  Sn7  1  0.40411791  0.77510585  0.61445517  1
+  Sb  Sb8  1  0.06990510  0.74554163  0.87791156  1
+  Sb  Sb9  1  0.91468512  0.97934418  0.85573161  1
+  Sb  Sb10  1  0.75102081  0.96276073  0.09423715  1
+  Sb  Sb11  1  0.91591886  0.63503297  0.52680828  1
+  Sb  Sb12  1  0.09595165  0.06726994  0.49219141  1
+  Sb  Sb13  1  0.36645787  0.25684218  0.63799731  1

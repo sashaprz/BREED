@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Li2TiCu2(NiP2)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.11987024
+_cell_length_b   7.02682008
+_cell_length_c   7.51239958
+_cell_angle_alpha   91.11543119
+_cell_angle_beta   91.69020979
+_cell_angle_gamma   90.78585003
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2TiCu2(NiP2)2
+_chemical_formula_sum   'Li2 Ti1 Cu2 Ni2 P4'
+_cell_volume   375.57259337
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  P  P0  1  0.00000000  0.00000000  0.00000000  1
+  P  P1  1  0.50000000  0.50000000  0.50000000  1
+  P  P2  1  0.25000000  0.25000000  0.25000000  1
+  P  P3  1  0.75000000  0.25000000  0.00000000  1
+  Li  Li4  1  0.25000000  0.75000000  0.50000000  1
+  Li  Li5  1  0.12076664  0.90322022  0.34574522  1
+  Cu  Cu6  1  0.32701455  0.97485471  0.93019200  1
+  Cu  Cu7  1  0.14557195  0.52236839  0.10772644  1
+  Ni  Ni8  1  0.36391317  0.72547675  0.13863092  1
+  Ni  Ni9  1  0.07467018  0.45939310  0.16207108  1
+  Ti  Ti10  1  0.29481874  0.33935961  0.79094749  1

@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li(MoS5)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.25068433
+_cell_length_b   7.45887398
+_cell_length_c   8.35697332
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li(MoS5)2
+_chemical_formula_sum   'Li1 Mo2 S10'
+_cell_volume   514.29494649
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.12500000  0.12500000  0.12500000  1
+  Mo  Mo1  1  0.50000000  0.50000000  0.50000000  1
+  Mo  Mo2  1  0.25000000  0.25000000  0.25000000  1
+  S  S3  1  0.75000000  0.75000000  0.75000000  1
+  S  S4  1  0.87120650  0.34940109  0.32037469  1
+  S  S5  1  0.47911768  0.74434399  0.56928764  1
+  S  S6  1  0.24009717  0.25710154  0.05123906  1
+  S  S7  1  0.33786830  0.64859227  0.94391843  1
+  S  S8  1  0.64020371  0.58550241  0.06703339  1
+  S  S9  1  0.64646290  0.76931247  0.04973378  1
+  S  S10  1  0.14276014  0.31139575  0.29009592  1
+  S  S11  1  0.51094330  0.14051891  0.70068795  1
+  S  S12  1  0.82652879  0.50415850  0.94215249  1

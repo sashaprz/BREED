@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_Li5TiPBr4O3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   8.23094815
+_cell_length_b   7.91201823
+_cell_length_c   9.69645436
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li5TiPBr4O3
+_chemical_formula_sum   'Li5 Ti1 P1 Br4 O3'
+_cell_volume   631.46619038
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.25000000  0.25000000  0.25000000  1
+  Li  Li3  1  0.75000000  0.25000000  0.00000000  1
+  Li  Li4  1  0.25000000  0.75000000  0.50000000  1
+  Ti  Ti5  1  0.57967473  0.72557295  0.74862073  1
+  P  P6  1  0.60205167  0.49718580  0.12157427  1
+  Br  Br7  1  0.56887680  0.23536120  0.58274350  1
+  Br  Br8  1  0.58394411  0.76763425  0.07068343  1
+  Br  Br9  1  0.82503219  0.69641976  0.91773773  1
+  Br  Br10  1  0.05930848  0.25519502  0.16759146  1
+  O  O11  1  0.18057928  0.94560003  0.36409548  1
+  O  O12  1  0.74241813  0.14843952  0.36527384  1
+  O  O13  1  0.37951331  0.43979481  0.85795604  1

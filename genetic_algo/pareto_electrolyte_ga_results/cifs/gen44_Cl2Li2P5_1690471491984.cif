@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_Li2P5Cl2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.99688831
+_cell_length_b   5.79673766
+_cell_length_c   7.50365924
+_cell_angle_alpha   101.05757521
+_cell_angle_beta   104.02854285
+_cell_angle_gamma   100.44714382
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2P5Cl2
+_chemical_formula_sum   'Li2 P5 Cl2'
+_cell_volume   241.15318913
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cl  Cl0  1  0.00000000  0.00000000  0.00000000  1
+  Cl  Cl1  1  0.33300000  0.66700000  0.25000000  1
+  P  P2  1  0.66700000  0.33300000  0.50000000  1
+  P  P3  1  0.00000000  0.00000000  0.75000000  1
+  P  P4  1  0.87648887  0.26386999  0.10915320  1
+  P  P5  1  0.91263034  0.29085224  0.71331922  1
+  P  P6  1  0.03326549  0.14253268  0.37809368  1
+  Li  Li7  1  0.24899190  0.05159955  0.54602090  1
+  Li  Li8  1  0.59552143  0.21673475  0.53643481  1

@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li4Mg2InO6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.45844886
+_cell_length_b   4.90232171
+_cell_length_c   3.75630402
+_cell_angle_alpha   90.35525219
+_cell_angle_beta   88.76738132
+_cell_angle_gamma   90.80281428
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li4Mg2InO6
+_chemical_formula_sum   'Li4 Mg2 In1 O6'
+_cell_volume   82.07211584
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.50000000  0.50000000  0.50000000  1
+  Li  Li2  1  0.50000000  0.50000000  0.00000000  1
+  Li  Li3  1  0.50000000  0.00000000  0.50000000  1
+  Mg  Mg4  1  0.00000000  0.50000000  0.50000000  1
+  Mg  Mg5  1  0.10058099  0.55388115  0.50741886  1
+  O  O6  1  0.53471208  0.97114862  0.08211029  1
+  O  O7  1  0.87789584  0.60228159  0.13831225  1
+  O  O8  1  0.35740311  0.13268697  0.29951215  1
+  O  O9  1  0.90808364  0.15201945  0.44352471  1
+  O  O10  1  0.76050639  0.41216531  0.63112902  1
+  O  O11  1  0.84431914  0.02123464  0.59000023  1
+  In  In12  1  0.53609743  0.31919402  0.00040988  1

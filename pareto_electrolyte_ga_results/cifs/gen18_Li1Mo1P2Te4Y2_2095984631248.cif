@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_LiY2Te4MoP2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.99505837
+_cell_length_b   5.23834610
+_cell_length_c   6.83999574
+_cell_angle_alpha   94.32066567
+_cell_angle_beta   98.71984427
+_cell_angle_gamma   106.20314700
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiY2Te4MoP2
+_chemical_formula_sum   'Li1 Y2 Te4 Mo1 P2'
+_cell_volume   168.56876334
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Te  Te0  1  0.00000000  0.00000000  0.00000000  1
+  Te  Te1  1  0.50000000  0.50000000  0.50000000  1
+  Te  Te2  1  0.50000000  0.50000000  0.00000000  1
+  Te  Te3  1  0.50000000  0.00000000  0.50000000  1
+  Y  Y4  1  0.00000000  0.50000000  0.50000000  1
+  Y  Y5  1  0.19647971  0.75800060  0.32834955  1
+  P  P6  1  0.89948317  0.04055262  0.09780533  1
+  P  P7  1  0.37239296  0.20280278  0.14437190  1
+  Mo  Mo8  1  0.93899158  0.33156678  0.06994128  1
+  Li  Li9  1  0.61048111  0.64319163  0.96235160  1

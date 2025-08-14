@@ -1,0 +1,33 @@
+# generated using pymatgen
+data_Li2GaBr4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.85834873
+_cell_length_b   8.34854764
+_cell_length_c   7.96163418
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2GaBr4
+_chemical_formula_sum   'Li2 Ga1 Br4'
+_cell_volume   522.32937002
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.04374387  0.97297477  0.99706603  1
+  Li  Li1  1  0.10277472  0.19841529  0.29018577  1
+  Ga  Ga2  1  0.30188118  0.38024493  0.73265007  1
+  Br  Br3  1  0.37389162  0.71116603  0.09495985  1
+  Br  Br4  1  0.48321172  0.99074067  0.57720614  1
+  Br  Br5  1  0.76557306  0.10170841  0.95448633  1
+  Br  Br6  1  0.95385127  0.45452245  0.31776156  1

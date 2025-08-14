@@ -1,0 +1,39 @@
+# generated using pymatgen
+data_Li6Mo3Cl4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.07955115
+_cell_length_b   2.83217181
+_cell_length_c   5.99961729
+_cell_angle_alpha   119.77735832
+_cell_angle_beta   94.75272054
+_cell_angle_gamma   93.28138323
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li6Mo3Cl4
+_chemical_formula_sum   'Li6 Mo3 Cl4'
+_cell_volume   44.96840164
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.00000000  0.00000000  0.00000000  1
+  Li  Li1  1  0.33300000  0.66700000  0.25000000  1
+  Li  Li2  1  0.66700000  0.33300000  0.50000000  1
+  Li  Li3  1  0.00000000  0.00000000  0.75000000  1
+  Li  Li4  1  0.91659982  0.56466110  0.23678566  1
+  Li  Li5  1  0.02729886  0.93206454  0.08881356  1
+  Mo  Mo6  1  0.27505494  0.42492745  0.39329707  1
+  Mo  Mo7  1  0.14323800  0.02439929  0.92239615  1
+  Mo  Mo8  1  0.38774331  0.69656124  0.69727695  1
+  Cl  Cl9  1  0.36949597  0.59109210  0.81514718  1
+  Cl  Cl10  1  0.64469963  0.78173566  0.01956014  1
+  Cl  Cl11  1  0.59794805  0.33921804  0.89000605  1
+  Cl  Cl12  1  0.32501943  0.96337505  0.38575949  1

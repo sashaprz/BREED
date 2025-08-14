@@ -1,0 +1,42 @@
+# generated using pymatgen
+data_Li7GeS8
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.78659392
+_cell_length_b   4.78659392
+_cell_length_c   7.07069078
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li7GeS8
+_chemical_formula_sum   'Li7 Ge1 S8'
+_cell_volume   162.00000000
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.96546464  0.05012743  0.05363053  1
+  Li  Li1  1  0.13420015  0.10715523  0.20519159  1
+  Li  Li2  1  0.07651348  0.14844199  0.32408174  1
+  Li  Li3  1  0.25120418  0.37419080  0.40182229  1
+  Li  Li4  1  0.19409449  0.47187837  0.70670857  1
+  Li  Li5  1  0.33920299  0.44398644  0.84948905  1
+  Li  Li6  1  0.39749111  0.68688195  0.00585022  1
+  Ge  Ge7  1  0.52472921  0.73928031  0.16310639  1
+  S  S8  1  0.55819955  0.76949241  0.37078040  1
+  S  S9  1  0.64548607  0.93914007  0.40003681  1
+  S  S10  1  0.65989439  0.94565450  0.72415011  1
+  S  S11  1  0.73031209  0.09092840  0.85353272  1
+  S  S12  1  0.65139538  0.26500938  0.94193384  1
+  S  S13  1  0.84310997  0.27202436  0.17020637  1
+  S  S14  1  0.82116178  0.33470932  0.32093409  1
+  S  S15  1  0.90018080  0.48576807  0.51744781  1
