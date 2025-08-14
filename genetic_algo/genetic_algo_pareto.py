@@ -30,7 +30,7 @@ except ImportError:
         print("Using optimized ML predictor with model caching")
     except ImportError:
         try:
-            from main_rl import predict_single_cif
+            from env.main_rl import predict_single_cif
             print("Using standard ML predictor (models will reload each time)")
         except ImportError:
             from debug_predictor import predict_single_cif_debug as predict_single_cif
