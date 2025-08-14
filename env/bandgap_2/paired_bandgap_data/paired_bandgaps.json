@@ -1,0 +1,72 @@
+[
+  {
+    "material_id": "synthetic_001",
+    "formula": "Li3Ti2(PO4)3",
+    "pbe_bandgap": 2.1,
+    "hse_bandgap": 3.0,
+    "material_class": "phosphate"
+  },
+  {
+    "material_id": "synthetic_002",
+    "formula": "Li7La3Zr2O12",
+    "pbe_bandgap": 4.2,
+    "hse_bandgap": 5.4,
+    "material_class": "garnet"
+  },
+  {
+    "material_id": "synthetic_003",
+    "formula": "Li6PS5Cl",
+    "pbe_bandgap": 3.1,
+    "hse_bandgap": 3.7,
+    "material_class": "argyrodite"
+  },
+  {
+    "material_id": "synthetic_004",
+    "formula": "Li2ZrCl6",
+    "pbe_bandgap": 4.8,
+    "hse_bandgap": 5.7,
+    "material_class": "halide"
+  },
+  {
+    "material_id": "synthetic_005",
+    "formula": "Li4SiO4",
+    "pbe_bandgap": 5.1,
+    "hse_bandgap": 6.1,
+    "material_class": "oxide"
+  },
+  {
+    "material_id": "synthetic_006",
+    "formula": "LiAlO2",
+    "pbe_bandgap": 6.2,
+    "hse_bandgap": 7.4,
+    "material_class": "oxide"
+  },
+  {
+    "material_id": "synthetic_007",
+    "formula": "Li3InCl6",
+    "pbe_bandgap": 4.5,
+    "hse_bandgap": 5.4,
+    "material_class": "halide"
+  },
+  {
+    "material_id": "synthetic_008",
+    "formula": "Li10GeP2S12",
+    "pbe_bandgap": 2.8,
+    "hse_bandgap": 3.4,
+    "material_class": "thiophosphate"
+  },
+  {
+    "material_id": "synthetic_009",
+    "formula": "Li5La3Nb2O12",
+    "pbe_bandgap": 3.8,
+    "hse_bandgap": 4.8,
+    "material_class": "perovskite"
+  },
+  {
+    "material_id": "synthetic_010",
+    "formula": "Li2S",
+    "pbe_bandgap": 2.5,
+    "hse_bandgap": 3.1,
+    "material_class": "chalcogenide"
+  }
+]
