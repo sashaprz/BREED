@@ -1,0 +1,41 @@
+{
+  "total_materials": 841,
+  "pbe_bandgap_range": [
+    0.1,
+    0.12380000000000001
+  ],
+  "es_bandgap_range": [
+    0.1,
+    0.12380000000000001
+  ],
+  "bandgap_difference_stats": {
+    "mean": 0.0,
+    "std": 0.0,
+    "min": 0.0,
+    "max": 0.0
+  },
+  "correlation": 1.0,
+  "direct_gap_count": "197",
+  "materials_with_structure": "841",
+  "crystal_systems": {
+    "Monoclinic": 246,
+    "Triclinic": 202,
+    "Orthorhombic": 178,
+    "Tetragonal": 93,
+    "Trigonal": 53,
+    "Cubic": 47,
+    "Hexagonal": 22
+  },
+  "space_group_distribution": {
+    "1": 120,
+    "2": 82,
+    "14": 61,
+    "123": 53,
+    "71": 46,
+    "62": 32,
+    "15": 31,
+    "12": 29,
+    "8": 27,
+    "11": 16
+  }
+}

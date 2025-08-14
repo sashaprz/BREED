@@ -21,14 +21,16 @@ from pymatgen.io.cif import CifWriter
 from pymatgen.analysis.structure_matcher import StructureMatcher
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
+# Import torch first (needed for CDVAE and general use)
+import torch
+import yaml
+
 # Import True CDVAE components
 try:
     from cdvae.pl_modules.model import CDVAE
     from cdvae.common.data_utils import build_crystal_graph
     from cdvae.pl_data.dataset import CrystDataset
     from cdvae.pl_data.datamodule import CrystDataModule
-    import torch
-    import yaml
     CDVAE_AVAILABLE = True
     print("✅ True CDVAE imports successful!")
 except ImportError as e:
@@ -66,6 +68,15 @@ except ImportError:
                 }
             predict_single_cif = predict_single_cif_debug
             print("Using DEBUG predictor with realistic random values for testing")
+
+# Import bandgap correction system for more accurate predictions
+try:
+    from bandgap_correction_system import correct_bandgap_prediction, get_correction_info
+    print("✅ Bandgap correction system loaded - will apply literature-based PBE→HSE corrections")
+    BANDGAP_CORRECTION_AVAILABLE = True
+except ImportError as e:
+    print(f"⚠️ Bandgap correction system not available: {e}")
+    BANDGAP_CORRECTION_AVAILABLE = False
 
 class TrueCDVAEGenerator:
     """True CDVAE crystal structure generator using pre-trained diffusion model"""
@@ -605,13 +616,38 @@ class TrueCDVAEGA:
                 if candidate.cif_path and os.path.exists(candidate.cif_path):
                     results = predict_single_cif(candidate.cif_path, verbose=False)
                     
-                    candidate.properties = {
-                        'ionic_conductivity': results.get('ionic_conductivity', 1e-10),
-                        'bandgap': results.get('bandgap', 0.0),
-                        'sei_score': results.get('sei_score', 0.0),
-                        'cei_score': results.get('cei_score', 0.0),
-                        'bulk_modulus': results.get('bulk_modulus', 0.0)
-                    }
+                    # APPLY BANDGAP CORRECTION FOR MORE ACCURATE PREDICTIONS
+                    # WHY: PBE DFT underestimates bandgaps by 30-50%, HSE corrections give realistic values
+                    raw_pbe_bandgap = results.get('bandgap', 0.0)
+                    
+                    if BANDGAP_CORRECTION_AVAILABLE and raw_pbe_bandgap > 0:
+                        # Apply literature-based correction to convert PBE → HSE equivalent
+                        corrected_bandgap = correct_bandgap_prediction(candidate.cif_path, raw_pbe_bandgap)
+                        correction_info = get_correction_info(candidate.cif_path, raw_pbe_bandgap)
+                        
+                        # Store both raw and corrected values for analysis
+                        candidate.properties = {
+                            'ionic_conductivity': results.get('ionic_conductivity', 1e-10),
+                            'bandgap': corrected_bandgap,  # Use corrected HSE-equivalent value
+                            'bandgap_raw_pbe': raw_pbe_bandgap,  # Keep original for reference
+                            'bandgap_correction_applied': True,
+                            'material_class': correction_info.get('material_class', 'unknown'),
+                            'sei_score': results.get('sei_score', 0.0),
+                            'cei_score': results.get('cei_score', 0.0),
+                            'bulk_modulus': results.get('bulk_modulus', 0.0)
+                        }
+                        
+                        # Bandgap correction applied silently
+                    else:
+                        # No correction available, use raw values
+                        candidate.properties = {
+                            'ionic_conductivity': results.get('ionic_conductivity', 1e-10),
+                            'bandgap': raw_pbe_bandgap,
+                            'bandgap_correction_applied': False,
+                            'sei_score': results.get('sei_score', 0.0),
+                            'cei_score': results.get('cei_score', 0.0),
+                            'bulk_modulus': results.get('bulk_modulus', 0.0)
+                        }
                     
                     # Calculate multi-objective values (minimize all - distance from targets)
                     candidate.objectives = self._calculate_objectives(candidate.properties)
@@ -865,8 +901,18 @@ class TrueCDVAEGA:
                 for prop, value in candidate.properties.items():
                     if prop == 'ionic_conductivity':
                         print(f"     {prop}: {value:.2e}")
-                    else:
+                    elif prop in ['bandgap_correction_applied']:
+                        # Handle boolean values
+                        print(f"     {prop}: {value}")
+                    elif prop in ['material_class']:
+                        # Handle string values
+                        print(f"     {prop}: {value}")
+                    elif isinstance(value, (int, float)):
+                        # Handle numeric values
                         print(f"     {prop}: {value:.4f}")
+                    else:
+                        # Handle other types
+                        print(f"     {prop}: {value}")
                 print(f"   Objectives: {[f'{obj:.3f}' for obj in candidate.objectives]}")
         
         return results

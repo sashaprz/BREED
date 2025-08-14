@@ -1,0 +1,11 @@
+# Materials Project API and dependencies
+mp-api>=0.41.0
+pymatgen>=2023.1.1
+
+# Data processing
+pandas>=1.5.0
+numpy>=1.21.0
+
+# Optional: For advanced structure analysis
+ase>=3.22.0
+spglib>=2.0.0
