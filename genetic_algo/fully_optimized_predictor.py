@@ -15,6 +15,11 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Import your ML prediction modules
+import sys
+import os
+# Add parent directory to path so we can import from env
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from env.sei_predictor import SEIPredictor
 from env.cei_predictor import CEIPredictor
 from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
@@ -22,11 +27,17 @@ from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.data import
 from env.cgcnn_bandgap_ionic_cond_bulk_moduli.main import Normalizer
 
 # Bandgap correction system - ML model with literature fallback
-BANDGAP_CORRECTION_MODEL_PATH = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\bandgap_2\bandgap_correction_model.pkl"
+BANDGAP_CORRECTION_MODEL_PATHS = [
+    r"C:\Users\Sasha\repos\RL-electrolyte-design\env\bandgap_2\improved_bandgap_model.pkl",
+    r"C:\Users\Sasha\repos\RL-electrolyte-design\env\bandgap_2\bandgap_correction_model_joblib.pkl",
+    r"C:\Users\Sasha\repos\RL-electrolyte-design\env\bandgap_2\bandgap_correction_model.pkl",
+    r"C:\Users\Sasha\repos\RL-electrolyte-design\env\bandgap_2\bandgap_correction_model_v4.pkl"
+]
 
 # Try to load ML model, but provide literature-based fallback
 try:
     import pickle
+    import joblib
     import warnings
     warnings.filterwarnings('ignore')
     
@@ -79,16 +90,43 @@ try:
     
     print(f"🔧 Numpy compatibility fixes applied (numpy version: {np.__version__})")
     
-    if os.path.exists(BANDGAP_CORRECTION_MODEL_PATH):
-        print(f"📁 Loading ML bandgap correction model from: {BANDGAP_CORRECTION_MODEL_PATH}")
-        with open(BANDGAP_CORRECTION_MODEL_PATH, 'rb') as f:
-            BANDGAP_CORRECTION_MODEL = pickle.load(f)
-        print("✅ ML Bandgap correction model loaded successfully - will apply ensemble PBE→HSE corrections")
-        print(f"   Model contains: {list(BANDGAP_CORRECTION_MODEL.keys())}")
-        BANDGAP_CORRECTION_AVAILABLE = True
-        CORRECTION_METHOD = "ml_ensemble"
-    else:
-        raise FileNotFoundError(f"Model file not found at: {BANDGAP_CORRECTION_MODEL_PATH}")
+    # Try to load model from available paths
+    BANDGAP_CORRECTION_MODEL = None
+    BANDGAP_CORRECTION_MODEL_PATH = None
+    
+    for model_path in BANDGAP_CORRECTION_MODEL_PATHS:
+        if os.path.exists(model_path):
+            try:
+                print(f"📁 Loading ML bandgap correction model from: {model_path}")
+                
+                if model_path.endswith('_joblib.pkl'):
+                    BANDGAP_CORRECTION_MODEL = joblib.load(model_path)
+                    print("   Using joblib loader for maximum compatibility")
+                else:
+                    with open(model_path, 'rb') as f:
+                        BANDGAP_CORRECTION_MODEL = pickle.load(f)
+                    print("   Using pickle loader")
+                
+                BANDGAP_CORRECTION_MODEL_PATH = model_path
+                print("✅ ML Bandgap correction model loaded successfully - will apply ensemble PBE→HSE corrections")
+                print(f"   Model contains: {list(BANDGAP_CORRECTION_MODEL.keys())}")
+                
+                if 'metadata' in BANDGAP_CORRECTION_MODEL:
+                    meta = BANDGAP_CORRECTION_MODEL['metadata']
+                    print(f"   Created: {meta.get('created_date', 'unknown')}")
+                    print(f"   NumPy version: {meta.get('numpy_version', 'unknown')}")
+                    print(f"   Scikit-learn version: {meta.get('sklearn_version', 'unknown')}")
+                
+                BANDGAP_CORRECTION_AVAILABLE = True
+                CORRECTION_METHOD = "ml_ensemble"
+                break
+                
+            except Exception as e:
+                print(f"❌ Failed to load model from {model_path}: {e}")
+                continue
+    
+    if BANDGAP_CORRECTION_MODEL is None:
+        raise FileNotFoundError(f"No ML model files found in: {BANDGAP_CORRECTION_MODEL_PATHS}")
         
 except Exception as e:
     print(f"⚠️ ML Bandgap correction model not available ({e})")
@@ -581,3 +619,36 @@ def print_predictor_status():
     """Print the current model loading status"""
     predictor = get_fully_optimized_predictor()
     predictor.print_model_status()
+
+def test_bandgap_correction():
+    """Test the bandgap correction system"""
+    print("\n🧪 TESTING BANDGAP CORRECTION SYSTEM")
+    print("=" * 50)
+    
+    test_cases = [
+        (0.5, "Li2O"),
+        (1.0, "LiCoO2"),
+        (1.5, "Li3PO4"),
+        (2.0, "LiF"),
+        (0.1, "Li7La3Zr2O12")
+    ]
+    
+    for pbe_bg, composition in test_cases:
+        corrected_bg = apply_ml_bandgap_correction(pbe_bg, composition)
+        correction_factor = corrected_bg / pbe_bg if pbe_bg > 0 else 0
+        print(f"{composition:12s}: {pbe_bg:.1f} eV → {corrected_bg:.3f} eV ({correction_factor:.1f}x)")
+    
+    print(f"\n✅ Correction method: {CORRECTION_METHOD}")
+    print(f"✅ Model available: {BANDGAP_CORRECTION_AVAILABLE}")
+
+if __name__ == "__main__":
+    print("🔬 FULLY OPTIMIZED ML PREDICTOR TEST")
+    print("=" * 50)
+    
+    # Test bandgap correction
+    test_bandgap_correction()
+    
+    # Print model status
+    print_predictor_status()
+    
+    print("\n✅ Predictor is ready for use!")
