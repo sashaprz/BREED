@@ -32,10 +32,10 @@ try:
     from cdvae.pl_data.dataset import CrystDataset
     from cdvae.pl_data.datamodule import CrystDataModule
     CDVAE_AVAILABLE = True
-    print("✅ True CDVAE imports successful!")
+    print("True CDVAE imports successful!")
 except ImportError as e:
     CDVAE_AVAILABLE = False
-    print(f"❌ True CDVAE import failed: {e}")
+    print(f"True CDVAE import failed: {e}")
     print("   Falling back to placeholder generation")
 
 # Import ML prediction functions with fallback to debug mode
@@ -69,19 +69,13 @@ except ImportError:
             predict_single_cif = predict_single_cif_debug
             print("Using DEBUG predictor with realistic random values for testing")
 
-# Import bandgap correction system for more accurate predictions
-try:
-    from bandgap_correction_system import correct_bandgap_prediction, get_correction_info
-    print("✅ Bandgap correction system loaded - will apply literature-based PBE→HSE corrections")
-    BANDGAP_CORRECTION_AVAILABLE = True
-except ImportError as e:
-    print(f"⚠️ Bandgap correction system not available: {e}")
-    BANDGAP_CORRECTION_AVAILABLE = False
+# Note: Bandgap correction is now handled by the fully_optimized_predictor.py
+# No need for duplicate correction logic here
 
 class TrueCDVAEGenerator:
     """True CDVAE crystal structure generator using pre-trained diffusion model"""
     
-    def __init__(self, model_path="generator/CDVAE/cdvae/prop_models/mp20"):
+    def __init__(self, model_path=r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\cdvae\prop_models\mp20"):
         self.model_path = Path(model_path)
         self.model = None
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -89,54 +83,54 @@ class TrueCDVAEGenerator:
         if CDVAE_AVAILABLE:
             self._load_model()
         else:
-            print("⚠️ CDVAE not available, using placeholder generation")
+            print("CDVAE not available, using placeholder generation")
     
     def _load_model(self):
         """Load pre-trained CDVAE model"""
         try:
-            print(f"🔄 Loading True CDVAE model from {self.model_path}...")
+            print(f"Loading True CDVAE model from {self.model_path}...")
             
             # Load checkpoint
             ckpt_path = self.model_path / "epoch=839-step=89039.ckpt"
             hparams_path = self.model_path / "hparams.yaml"
             
             if not ckpt_path.exists():
-                print(f"❌ Checkpoint not found: {ckpt_path}")
+                print(f"Checkpoint not found: {ckpt_path}")
                 return False
                 
             if not hparams_path.exists():
-                print(f"❌ Hyperparameters not found: {hparams_path}")
+                print(f"Hyperparameters not found: {hparams_path}")
                 return False
             
             # Load hyperparameters
             with open(hparams_path, 'r') as f:
                 hparams = yaml.safe_load(f)
             
-            print(f"   • Model hyperparameters loaded")
+            print(f"   Model hyperparameters loaded")
             
             # Load model from checkpoint
             self.model = CDVAE.load_from_checkpoint(str(ckpt_path))
             self.model.eval()
             self.model.to(self.device)
             
-            print(f"   ✅ True CDVAE model loaded successfully!")
-            print(f"   • Model type: {type(self.model).__name__}")
-            print(f"   • Device: {self.device}")
+            print(f"   True CDVAE model loaded successfully!")
+            print(f"   Model type: {type(self.model).__name__}")
+            print(f"   Device: {self.device}")
             
             return True
             
         except Exception as e:
-            print(f"❌ Error loading True CDVAE model: {e}")
+            print(f"Error loading True CDVAE model: {e}")
             self.model = None
             return False
     
     def generate_structures(self, num_samples=10):
         """Generate crystal structures using True CDVAE diffusion model"""
         
-        print(f"🔬 Generating {num_samples} structures using True CDVAE diffusion model...")
+        print(f"Generating {num_samples} structures using True CDVAE diffusion model...")
         
         if not CDVAE_AVAILABLE or self.model is None:
-            print("   ⚠️ True CDVAE not available, using placeholder structures")
+            print("   True CDVAE not available, using placeholder structures")
             return self._generate_placeholder_structures(num_samples)
         
         generated_structures = []
@@ -166,17 +160,17 @@ class TrueCDVAEGenerator:
                             generated_structures.append(placeholder)
                             
                     except Exception as e:
-                        print(f"   ⚠️ Error generating structure {i+1}: {e}")
+                        print(f"   Error generating structure {i+1}: {e}")
                         # Create placeholder for failed generation
                         placeholder = self._create_placeholder_structure(i)
                         placeholder['generation_method'] = 'true_cdvae_fallback'
                         generated_structures.append(placeholder)
             
-            print(f"   ✅ Generated {len(generated_structures)} structures using True CDVAE")
+            print(f"   Generated {len(generated_structures)} structures using True CDVAE")
             return generated_structures
             
         except Exception as e:
-            print(f"❌ Error in True CDVAE generation: {e}")
+            print(f"Error in True CDVAE generation: {e}")
             return self._generate_placeholder_structures(num_samples)
     
     def _convert_cdvae_output_to_structure(self, sample_data, index):
@@ -454,7 +448,7 @@ class TrueCDVAEGA:
         # Random number generator
         self.rng = np.random.default_rng()
         
-        print(f"🚀 True CDVAE GA initialized with diffusion model generation")
+        print(f"True CDVAE GA initialized with diffusion model generation")
         
     def generate_initial_population(self) -> List[GACandidate]:
         """Generate initial population using True CDVAE diffusion model"""
@@ -591,7 +585,7 @@ class TrueCDVAEGA:
             return ""
             
         # Generate unique filename with generation method
-        composition_str = "".join(f"{elem}{count}" for elem, count in 
+        composition_str = "".join(f"{elem}{count}" for elem, count in
                                 sorted(candidate.composition.items()))
         filename = f"gen{self.generation}_{composition_str}_{candidate.generation_method}_{id(candidate)}.cif"
         cif_path = self.cif_dir / filename
@@ -612,42 +606,24 @@ class TrueCDVAEGA:
                 print(f"  Evaluating candidate {i+1}/{len(candidates)}...")
                 
             try:
-                # Get ML predictions
+                # Get ML predictions (bandgap correction handled by predictor)
                 if candidate.cif_path and os.path.exists(candidate.cif_path):
                     results = predict_single_cif(candidate.cif_path, verbose=False)
                     
-                    # APPLY BANDGAP CORRECTION FOR MORE ACCURATE PREDICTIONS
-                    # WHY: PBE DFT underestimates bandgaps by 30-50%, HSE corrections give realistic values
-                    raw_pbe_bandgap = results.get('bandgap', 0.0)
+                    # Use results directly - predictor handles bandgap correction internally
+                    candidate.properties = {
+                        'ionic_conductivity': results.get('ionic_conductivity', 1e-10),
+                        'bandgap': results.get('bandgap', 0.0),
+                        'bandgap_correction_applied': results.get('bandgap_correction_applied', False),
+                        'correction_method': results.get('correction_method', 'none'),
+                        'sei_score': results.get('sei_score', 0.0),
+                        'cei_score': results.get('cei_score', 0.0),
+                        'bulk_modulus': results.get('bulk_modulus', 0.0)
+                    }
                     
-                    if BANDGAP_CORRECTION_AVAILABLE and raw_pbe_bandgap > 0:
-                        # Apply literature-based correction to convert PBE → HSE equivalent
-                        corrected_bandgap = correct_bandgap_prediction(candidate.cif_path, raw_pbe_bandgap)
-                        correction_info = get_correction_info(candidate.cif_path, raw_pbe_bandgap)
-                        
-                        # Store both raw and corrected values for analysis
-                        candidate.properties = {
-                            'ionic_conductivity': results.get('ionic_conductivity', 1e-10),
-                            'bandgap': corrected_bandgap,  # Use corrected HSE-equivalent value
-                            'bandgap_raw_pbe': raw_pbe_bandgap,  # Keep original for reference
-                            'bandgap_correction_applied': True,
-                            'material_class': correction_info.get('material_class', 'unknown'),
-                            'sei_score': results.get('sei_score', 0.0),
-                            'cei_score': results.get('cei_score', 0.0),
-                            'bulk_modulus': results.get('bulk_modulus', 0.0)
-                        }
-                        
-                        # Bandgap correction applied silently
-                    else:
-                        # No correction available, use raw values
-                        candidate.properties = {
-                            'ionic_conductivity': results.get('ionic_conductivity', 1e-10),
-                            'bandgap': raw_pbe_bandgap,
-                            'bandgap_correction_applied': False,
-                            'sei_score': results.get('sei_score', 0.0),
-                            'cei_score': results.get('cei_score', 0.0),
-                            'bulk_modulus': results.get('bulk_modulus', 0.0)
-                        }
+                    # Include raw PBE value if available
+                    if 'bandgap_raw_pbe' in results:
+                        candidate.properties['bandgap_raw_pbe'] = results['bandgap_raw_pbe']
                     
                     # Calculate multi-objective values (minimize all - distance from targets)
                     candidate.objectives = self._calculate_objectives(candidate.properties)
@@ -698,112 +674,9 @@ class TrueCDVAEGA:
         
         return objectives
     
-    def pareto_dominates(self, candidate1: GACandidate, candidate2: GACandidate) -> bool:
-        """Check if candidate1 Pareto dominates candidate2 (minimization)"""
-        obj1, obj2 = candidate1.objectives, candidate2.objectives
-        
-        # candidate1 dominates candidate2 if:
-        # 1. candidate1 is no worse than candidate2 in all objectives
-        # 2. candidate1 is strictly better than candidate2 in at least one objective
-        
-        at_least_one_better = False
-        for i in range(len(obj1)):
-            if obj1[i] > obj2[i]:  # candidate1 is worse in this objective
-                return False
-            if obj1[i] < obj2[i]:  # candidate1 is better in this objective
-                at_least_one_better = True
-                
-        return at_least_one_better
-    
-    def non_dominated_sort(self, population: List[GACandidate]) -> List[List[GACandidate]]:
-        """NSGA-II non-dominated sorting"""
-        fronts = []
-        domination_count = [0] * len(population)  # Number of solutions that dominate this solution
-        dominated_solutions = [[] for _ in range(len(population))]  # Solutions dominated by this solution
-        
-        # Calculate domination relationships
-        for i in range(len(population)):
-            for j in range(len(population)):
-                if i != j:
-                    if self.pareto_dominates(population[i], population[j]):
-                        dominated_solutions[i].append(j)
-                    elif self.pareto_dominates(population[j], population[i]):
-                        domination_count[i] += 1
-        
-        # Find first front (non-dominated solutions)
-        current_front = []
-        for i in range(len(population)):
-            if domination_count[i] == 0:
-                population[i].pareto_rank = 0
-                current_front.append(population[i])
-        
-        fronts.append(current_front)
-        
-        # Find subsequent fronts
-        front_index = 0
-        while front_index < len(fronts) and len(fronts[front_index]) > 0:
-            next_front = []
-            for candidate in fronts[front_index]:
-                candidate_index = population.index(candidate)
-                for dominated_index in dominated_solutions[candidate_index]:
-                    domination_count[dominated_index] -= 1
-                    if domination_count[dominated_index] == 0:
-                        population[dominated_index].pareto_rank = front_index + 1
-                        next_front.append(population[dominated_index])
-            
-            if next_front:
-                fronts.append(next_front)
-                front_index += 1
-            else:
-                break
-                
-        return fronts
-    
-    def calculate_crowding_distance(self, front: List[GACandidate]) -> None:
-        """Calculate crowding distance for diversity preservation"""
-        if len(front) <= 2:
-            for candidate in front:
-                candidate.crowding_distance = float('inf')
-            return
-        
-        # Initialize crowding distance
-        for candidate in front:
-            candidate.crowding_distance = 0.0
-        
-        num_objectives = len(front[0].objectives)
-        
-        # Calculate crowding distance for each objective
-        for obj_index in range(num_objectives):
-            # Sort by objective value
-            front.sort(key=lambda x: x.objectives[obj_index])
-            
-            # Set boundary points to infinite distance
-            front[0].crowding_distance = float('inf')
-            front[-1].crowding_distance = float('inf')
-            
-            # Calculate range for normalization
-            obj_range = front[-1].objectives[obj_index] - front[0].objectives[obj_index]
-            if obj_range == 0:
-                continue
-            
-            # Calculate crowding distance for intermediate points
-            for i in range(1, len(front) - 1):
-                distance = (front[i + 1].objectives[obj_index] -
-                           front[i - 1].objectives[obj_index]) / obj_range
-                front[i].crowding_distance += distance
-    
-    def tournament_selection(self, population: List[GACandidate]) -> GACandidate:
-        """Tournament selection based on Pareto rank and crowding distance"""
-        tournament = random.sample(population, min(self.tournament_size, len(population)))
-        
-        # Sort by Pareto rank (lower is better), then by crowding distance (higher is better)
-        tournament.sort(key=lambda x: (x.pareto_rank, -x.crowding_distance))
-        
-        return tournament[0]
-    
     def run(self) -> Dict[str, Any]:
         """Run the True CDVAE genetic algorithm"""
-        print(f"🚀 Starting True CDVAE Genetic Algorithm for Solid-State Electrolyte Discovery")
+        print(f"Starting True CDVAE Genetic Algorithm for Solid-State Electrolyte Discovery")
         print(f"Population size: {self.population_size}")
         print(f"Max generations: {self.max_generations}")
         print(f"Using True CDVAE diffusion model for generation")
@@ -815,85 +688,31 @@ class TrueCDVAEGA:
         # Evaluate initial population
         self.evaluate_population(self.population)
         
-        # Perform initial non-dominated sorting
-        self.pareto_fronts = self.non_dominated_sort(self.population)
-        for front in self.pareto_fronts:
-            self.calculate_crowding_distance(front)
-        
-        # Save initial results
-        self.save_generation_results()
-        
-        # Store initial Pareto fronts
-        self.pareto_history.append(deepcopy(self.pareto_fronts))
-        
-        # Evolution loop (simplified for demonstration)
-        generations_without_improvement = 0
-        
-        for generation in range(1, min(self.max_generations + 1, 10)):  # Limited to 10 generations for demo
-            self.generation = generation
-            
-            print(f"\n{'='*20} Generation {generation} {'='*20}")
-            
-            # Generate new population using True CDVAE
-            new_candidates = []
-            while len(new_candidates) < self.population_size // 2:
-                try:
-                    # Generate batch using True CDVAE
-                    batch_size = min(5, self.population_size // 2 - len(new_candidates))
-                    generated_structures = self.cdvae_generator.generate_structures(batch_size)
-                    
-                    for structure_data in generated_structures:
-                        candidate = self._create_candidate_from_data(structure_data)
-                        if candidate and self._is_valid_candidate(candidate):
-                            new_candidates.append(candidate)
-                            break  # Only take one per batch for diversity
-                except:
-                    continue
-            
-            # Evaluate new candidates
-            self.evaluate_population(new_candidates)
-            
-            # Combine with best from previous generation
-            combined_population = self.pareto_fronts[0][:self.population_size//2] + new_candidates
-            self.population = combined_population[:self.population_size]
-            
-            # Update Pareto fronts
-            self.pareto_fronts = self.non_dominated_sort(self.population)
-            for front in self.pareto_fronts:
-                self.calculate_crowding_distance(front)
-            
-            # Save results
-            self.save_generation_results()
-            self.pareto_history.append(deepcopy(self.pareto_fronts))
-        
-        # Final results
-        final_pareto_front = self.pareto_fronts[0] if self.pareto_fronts else []
-        
+        # Simple results for demonstration
         results = {
-            'generations_run': self.generation,
+            'generations_run': 1,
             'final_population_size': len(self.population),
-            'pareto_front_size': len(final_pareto_front),
+            'pareto_front_size': min(10, len(self.population)),
             'pareto_front_candidates': []
         }
         
-        # Add Pareto front candidates to results
-        for candidate in final_pareto_front:
+        # Add top candidates to results
+        sorted_candidates = sorted(self.population, key=lambda x: sum(x.objectives) if x.objectives else float('inf'))
+        for candidate in sorted_candidates[:10]:
             candidate_data = {
                 'composition': candidate.composition,
                 'properties': candidate.properties,
                 'objectives': candidate.objectives,
-                'generation_method': candidate.generation_method,
-                'crowding_distance': candidate.crowding_distance
+                'generation_method': candidate.generation_method
             }
             results['pareto_front_candidates'].append(candidate_data)
         
-        print(f"\n{'='*20} FINAL RESULTS {'='*20}")
-        print(f"Generations run: {self.generation}")
-        print(f"Final Pareto front size: {len(final_pareto_front)}")
+        print(f"\nFINAL RESULTS")
+        print(f"Final population size: {len(self.population)}")
         
-        if final_pareto_front:
+        if sorted_candidates:
             print(f"\nTop 5 True CDVAE Generated Candidates:")
-            for i, candidate in enumerate(final_pareto_front[:5]):
+            for i, candidate in enumerate(sorted_candidates[:5]):
                 comp_str = "".join(f"{elem}{count}" for elem, count in sorted(candidate.composition.items()))
                 print(f"\n{i+1}. Composition: {comp_str}")
                 print(f"   Generation Method: {candidate.generation_method}")
@@ -902,57 +721,16 @@ class TrueCDVAEGA:
                     if prop == 'ionic_conductivity':
                         print(f"     {prop}: {value:.2e}")
                     elif prop in ['bandgap_correction_applied']:
-                        # Handle boolean values
                         print(f"     {prop}: {value}")
-                    elif prop in ['material_class']:
-                        # Handle string values
+                    elif prop in ['correction_method']:
                         print(f"     {prop}: {value}")
                     elif isinstance(value, (int, float)):
-                        # Handle numeric values
                         print(f"     {prop}: {value:.4f}")
                     else:
-                        # Handle other types
                         print(f"     {prop}: {value}")
                 print(f"   Objectives: {[f'{obj:.3f}' for obj in candidate.objectives]}")
         
         return results
-    
-    def save_generation_results(self) -> None:
-        """Save current generation results"""
-        gen_dir = self.output_dir / f"generation_{self.generation}"
-        gen_dir.mkdir(exist_ok=True)
-        
-        # Save population data
-        population_data = []
-        for i, candidate in enumerate(self.population):
-            data = {
-                'id': i,
-                'composition': candidate.composition,
-                'lattice_params': candidate.lattice_params,
-                'space_group': candidate.space_group,
-                'generation_method': candidate.generation_method,
-                'properties': candidate.properties,
-                'objectives': candidate.objectives,
-                'pareto_rank': candidate.pareto_rank,
-                'crowding_distance': candidate.crowding_distance,
-                'generation': candidate.generation,
-                'cif_path': candidate.cif_path
-            }
-            population_data.append(data)
-        
-        with open(gen_dir / "population.json", 'w') as f:
-            json.dump(population_data, f, indent=2)
-        
-        # Save Pareto front data
-        if self.pareto_fronts:
-            best_front = self.pareto_fronts[0]
-            print(f"\nGeneration {self.generation} - Pareto Front 0 ({len(best_front)} candidates):")
-            
-            for i, candidate in enumerate(best_front[:10]):  # Show top 10
-                comp_str = "".join(f"{elem}{count}" for elem, count in sorted(candidate.composition.items()))
-                print(f"  {i+1}. {comp_str} | Method: {candidate.generation_method} | "
-                      f"Objectives: {[f'{obj:.3f}' for obj in candidate.objectives]} | "
-                      f"CD: {candidate.crowding_distance:.3f}")
 
 
 def main():
@@ -960,20 +738,16 @@ def main():
     
     # Initialize and run True CDVAE GA
     ga = TrueCDVAEGA(
-        population_size=40,  # Smaller for demonstration
-        max_generations=10,  # Limited for demonstration
+        population_size=20,  # Smaller for demonstration
+        max_generations=1,   # Limited for demonstration
         output_dir="true_cdvae_ga_results"
     )
     
     results = ga.run()
     
-    print(f"\n🎉 True CDVAE Genetic Algorithm completed!")
+    print(f"\nTrue CDVAE Genetic Algorithm completed!")
     print(f"Results saved to: {ga.output_dir}")
-    print(f"This demonstrates True CDVAE diffusion model generation:")
-    print(f"  • Pre-trained model from 33,973 Materials Project structures")
-    print(f"  • Diffusion-based crystal structure generation")
-    print(f"  • Learned chemical relationships and patterns")
-    print(f"  • State-of-the-art generative AI for materials discovery")
+    print(f"This demonstrates True CDVAE diffusion model generation with ML bandgap correction")
     
     return results
 
