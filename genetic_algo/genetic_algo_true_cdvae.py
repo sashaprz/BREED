@@ -86,41 +86,32 @@ class TrueCDVAEGenerator:
             print("CDVAE not available, using placeholder generation")
     
     def _load_model(self):
-        """Load pre-trained CDVAE model"""
+        """Load pre-trained CDVAE model with compatibility fixes"""
         try:
             print(f"Loading True CDVAE model from {self.model_path}...")
             
-            # Load checkpoint
-            ckpt_path = self.model_path / "epoch=839-step=89039.ckpt"
-            hparams_path = self.model_path / "hparams.yaml"
+            # Import the compatibility fix
+            from fix_cdvae_compatibility import load_cdvae_with_compatibility_fix
             
-            if not ckpt_path.exists():
-                print(f"Checkpoint not found: {ckpt_path}")
-                return False
+            # Use compatibility fix to load model
+            self.model = load_cdvae_with_compatibility_fix(str(self.model_path))
+            
+            if self.model is not None:
+                self.model.eval()
+                self.model.to(self.device)
                 
-            if not hparams_path.exists():
-                print(f"Hyperparameters not found: {hparams_path}")
+                print(f"   True CDVAE model loaded successfully with compatibility fixes!")
+                print(f"   Model type: {type(self.model).__name__}")
+                print(f"   Device: {self.device}")
+                
+                return True
+            else:
+                print(f"   Failed to load CDVAE model even with compatibility fixes")
                 return False
-            
-            # Load hyperparameters
-            with open(hparams_path, 'r') as f:
-                hparams = yaml.safe_load(f)
-            
-            print(f"   Model hyperparameters loaded")
-            
-            # Load model from checkpoint
-            self.model = CDVAE.load_from_checkpoint(str(ckpt_path))
-            self.model.eval()
-            self.model.to(self.device)
-            
-            print(f"   True CDVAE model loaded successfully!")
-            print(f"   Model type: {type(self.model).__name__}")
-            print(f"   Device: {self.device}")
-            
-            return True
             
         except Exception as e:
             print(f"Error loading True CDVAE model: {e}")
+            print(f"   Falling back to placeholder generation")
             self.model = None
             return False
     
