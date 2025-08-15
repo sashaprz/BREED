@@ -7,7 +7,18 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.preprocessing import StandardScaler
 import pickle
+import joblib
 import sys
+import os
+from datetime import datetime
+
+# Print version information for debugging
+print(f"Python version: {sys.version}")
+print(f"NumPy version: {np.__version__}")
+print(f"Pandas version: {pd.__version__}")
+print(f"Scikit-learn version: {__import__('sklearn').__version__}")
+print(f"Joblib version: {joblib.__version__}")
+print("-" * 50)
 
 def create_features(data):
     """Create features from the data"""
@@ -143,7 +154,7 @@ def train_and_save_model():
     print(f"Gradient Boosting - MAE: {gb_mae:.4f} eV, R²: {gb_r2:.4f}")
     print(f"Ensemble - MAE: {ensemble_mae:.4f} eV, R²: {ensemble_r2:.4f}")
     
-    # Save model
+    # Save model with multiple methods for maximum compatibility
     model_data = {
         'rf_model': rf_model,
         'gb_model': gb_model,
@@ -156,15 +167,66 @@ def train_and_save_model():
             'ensemble_mae': ensemble_mae, 'ensemble_r2': ensemble_r2
         },
         'training_samples': len(data),
-        'feature_importance': dict(zip(X.columns, rf_model.feature_importances_))
+        'feature_importance': dict(zip(X.columns, rf_model.feature_importances_)),
+        'metadata': {
+            'created_date': datetime.now().isoformat(),
+            'numpy_version': np.__version__,
+            'sklearn_version': __import__('sklearn').__version__,
+            'pandas_version': pd.__version__,
+            'python_version': sys.version,
+            'training_script': 'save_bandgap_model.py'
+        }
     }
     
+    # Method 1: Save with current pickle (highest protocol)
+    print("Saving model with pickle (highest protocol)...")
     with open('bandgap_correction_model.pkl', 'wb') as f:
-        pickle.dump(model_data, f)
+        pickle.dump(model_data, f, protocol=pickle.HIGHEST_PROTOCOL)
     
-    print(f"\n✓ Model saved as 'bandgap_correction_model.pkl'")
-    print(f"✓ File size: {len(pickle.dumps(model_data)) / 1024 / 1024:.1f} MB")
-    print(f"✓ Ready for download!")
+    # Method 2: Save with joblib (often more robust for sklearn models)
+    print("Saving model with joblib...")
+    joblib.dump(model_data, 'bandgap_correction_model_joblib.pkl', compress=3)
+    
+    # Method 3: Save with protocol 4 for broader compatibility
+    print("Saving model with pickle protocol 4...")
+    with open('bandgap_correction_model_v4.pkl', 'wb') as f:
+        pickle.dump(model_data, f, protocol=4)
+    
+    # Get file sizes
+    pkl_size = os.path.getsize('bandgap_correction_model.pkl') / 1024 / 1024
+    joblib_size = os.path.getsize('bandgap_correction_model_joblib.pkl') / 1024 / 1024
+    v4_size = os.path.getsize('bandgap_correction_model_v4.pkl') / 1024 / 1024
+    
+    print(f"\n✅ MODEL SAVED SUCCESSFULLY!")
+    print(f"📁 bandgap_correction_model.pkl (pickle): {pkl_size:.1f} MB")
+    print(f"📁 bandgap_correction_model_joblib.pkl (joblib): {joblib_size:.1f} MB")
+    print(f"📁 bandgap_correction_model_v4.pkl (pickle v4): {v4_size:.1f} MB")
+    print(f"🎯 Use the joblib version for maximum compatibility!")
+    
+    # Test loading immediately to verify
+    print("\n🧪 Testing model loading...")
+    try:
+        test_model = joblib.load('bandgap_correction_model_joblib.pkl')
+        print("✅ Joblib model loads successfully!")
+        
+        # Quick prediction test
+        test_features = pd.DataFrame({
+            'pbe_bandgap': [0.005],
+            'n_elements': [3], 'total_atoms': [12], 'avg_electronegativity': [2.5], 'avg_atomic_mass': [45.0],
+            'has_O': [1], 'has_N': [0], 'has_C': [0], 'has_Si': [0],
+            'has_Al': [0], 'has_Ti': [0], 'has_Fe': [0],
+            'pbe_squared': [0.005 ** 2], 'pbe_sqrt': [np.sqrt(0.005)], 'en_pbe_product': [2.5 * 0.005]
+        })
+        
+        X_test = test_model['scaler'].transform(test_features)
+        rf_pred = test_model['rf_model'].predict(X_test)[0]
+        gb_pred = test_model['gb_model'].predict(X_test)[0]
+        final_pred = test_model['ensemble_weights'][0] * rf_pred + test_model['ensemble_weights'][1] * gb_pred
+        
+        print(f"✅ Prediction test: 0.005 eV → {final_pred:.4f} eV ({final_pred/0.005:.1f}x correction)")
+        
+    except Exception as e:
+        print(f"❌ Model loading test failed: {e}")
     
     return model_data
 
