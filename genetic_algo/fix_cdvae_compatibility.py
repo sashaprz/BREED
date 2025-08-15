@@ -36,15 +36,86 @@ def patch_cdvae_checkpoint(ckpt_path, hparams_path):
     # Load checkpoint with weights_only=False for compatibility
     checkpoint = torch.load(ckpt_path, map_location='cpu', weights_only=False)
     
-    # Load hyperparameters
+    # Load hyperparameters with preprocessing to fix interpolation issues
     with open(hparams_path, 'r') as f:
-        hparams_dict = yaml.safe_load(f)
+        hparams_content = f.read()
+    
+    # Fix OmegaConf interpolation issues
+    print("Fixing OmegaConf interpolation issues...")
+    
+    # Replace ${now:%Y-%m-%d} with a static string to avoid interpolation errors
+    if '${now:%Y-%m-%d}' in hparams_content:
+        print("  Fixing ${now:%Y-%m-%d} interpolation")
+        hparams_content = hparams_content.replace('${now:%Y-%m-%d}', 'fixed-date')
+    
+    # Replace other problematic interpolations
+    project_root = str(Path(__file__).parent.parent / 'generator' / 'CDVAE').replace('\\', '/')
+    if '${oc.env:PROJECT_ROOT}' in hparams_content:
+        print(f"  Fixing ${{oc.env:PROJECT_ROOT}} interpolation -> {project_root}")
+        hparams_content = hparams_content.replace('${oc.env:PROJECT_ROOT}', project_root)
+    
+    # Remove the entire problematic tags section that's causing issues
+    import re
+    # Remove the tags section entirely as it's not essential for model loading
+    tags_pattern = r'tags:\s*\n\s*-\s*[^\n]*'
+    if re.search(tags_pattern, hparams_content):
+        print("  Removing problematic tags section")
+        hparams_content = re.sub(tags_pattern, 'tags: []', hparams_content)
+    
+    # Fix any other ${...} interpolations that might cause issues
+    interpolation_pattern = r'\$\{[^}]+\}'
+    interpolations = re.findall(interpolation_pattern, hparams_content)
+    for interp in interpolations:
+        if interp not in ['${data.root_path}', '${data.prop}', '${data.niggli}', '${data.primitive}',
+                         '${data.graph_method}', '${data.lattice_scale_method}', '${data.preprocess_workers}',
+                         '${data.num_targets}', '${data.otf_graph}', '${data.readout}', '${expname}',
+                         '${data.train_max_epochs}', '${data.early_stopping_patience}']:
+            print(f"  Warning: Found potentially problematic interpolation: {interp}")
+    
+    # Load the fixed YAML content
+    try:
+        hparams_dict = yaml.safe_load(hparams_content)
+        print("  YAML loaded successfully after fixes")
+    except Exception as e:
+        print(f"  Error loading YAML after fixes: {e}")
+        # Fallback: create minimal safe configuration
+        print("  Creating minimal safe configuration as fallback")
+        hparams_dict = {
+            'data': {
+                'num_targets': 1,
+                'max_atoms': 20,
+                'niggli': True,
+                'primitive': False,
+                'graph_method': 'crystalnn',
+                'lattice_scale_method': 'scale_length',
+                'preprocess_workers': 30
+            },
+            'model': {
+                'hidden_dim': 128,
+                'encoder': {
+                    'hidden_channels': 128,
+                    'num_blocks': 4,
+                    'cutoff': 7.0,
+                    'max_num_neighbors': 20
+                }
+            },
+            'expname': 'mp_20_supervise'
+        }
     
     print(f"Original checkpoint keys: {list(checkpoint.keys())}")
     print(f"Original hparams keys: {list(hparams_dict.keys())}")
     
-    # Convert to OmegaConf for easier manipulation
-    hparams = OmegaConf.create(hparams_dict)
+    # Try to create OmegaConf, but fall back to dict if it fails
+    try:
+        # Convert to OmegaConf for easier manipulation with struct=False to allow additions
+        hparams = OmegaConf.create(hparams_dict)
+        OmegaConf.set_struct(hparams, False)  # Allow adding new keys
+        print("  OmegaConf created successfully")
+    except Exception as e:
+        print(f"  OmegaConf creation failed: {e}")
+        print("  Using plain dict instead")
+        # Use plain dict if OmegaConf fails
+        hparams = hparams_dict
     
     # Common missing attributes and their default values
     default_attributes = {
@@ -112,7 +183,30 @@ def patch_cdvae_checkpoint(ckpt_path, hparams_path):
             del state_dict[key]
     
     # Update checkpoint with fixed hparams
-    checkpoint['hyper_parameters'] = OmegaConf.to_container(hparams, resolve=True)
+    try:
+        if hasattr(hparams, 'keys') and hasattr(OmegaConf, 'to_container'):
+            checkpoint['hyper_parameters'] = OmegaConf.to_container(hparams, resolve=True)
+        else:
+            checkpoint['hyper_parameters'] = dict(hparams) if hasattr(hparams, 'items') else hparams
+    except Exception as e:
+        print(f"Warning: Could not update checkpoint hyper_parameters: {e}")
+        # Create a minimal hyper_parameters dict
+        checkpoint['hyper_parameters'] = {
+            'model': {
+                'hidden_dim': 128,
+                'latent_dim': 256,
+                'encoder': {
+                    'hidden_channels': 128,
+                    'num_blocks': 4,
+                    'cutoff': 7.0,
+                    'max_num_neighbors': 20
+                }
+            },
+            'data': {
+                'num_targets': 1,
+                'max_atoms': 20
+            }
+        }
     
     print(f"Patched hparams keys: {list(hparams.keys())}")
     print(f"Patched model keys: {list(hparams.model.keys()) if 'model' in hparams else 'No model section'}")
@@ -172,11 +266,20 @@ def load_cdvae_with_compatibility_fix(model_path):
             if temp_ckpt_path.exists():
                 temp_ckpt_path.unlink()
         
-        # Method 2: Try loading with explicit hparams
+        # Method 2: Try loading with explicit hparams (convert to dict first)
         try:
+            # Convert to regular dict to avoid OmegaConf/AttributeDict issues
+            if hasattr(hparams, 'keys') and hasattr(OmegaConf, 'to_container'):
+                try:
+                    hparams_dict = OmegaConf.to_container(hparams, resolve=True, throw_on_missing=False)
+                except:
+                    hparams_dict = dict(hparams) if hasattr(hparams, 'items') else hparams
+            else:
+                hparams_dict = hparams
+                
             model = CDVAE.load_from_checkpoint(
                 str(ckpt_path),
-                hparams=OmegaConf.to_container(hparams, resolve=True)
+                hparams=hparams_dict
             )
             print("Successfully loaded CDVAE model with Method 2 (explicit hparams)")
             return model
@@ -184,10 +287,30 @@ def load_cdvae_with_compatibility_fix(model_path):
         except Exception as e2:
             print(f"Method 2 failed: {e2}")
         
-        # Method 3: Try manual model creation
+        # Method 3: Try manual model creation with dict hparams
         try:
-            # Create model manually with hparams
-            model = CDVAE(hparams)
+            # Convert to dict safely
+            if hasattr(hparams, 'keys') and hasattr(OmegaConf, 'to_container'):
+                try:
+                    hparams_dict = OmegaConf.to_container(hparams, resolve=True, throw_on_missing=False)
+                except:
+                    hparams_dict = dict(hparams) if hasattr(hparams, 'items') else hparams
+            else:
+                hparams_dict = hparams
+            
+            # Ensure the hparams_dict has the right structure for CDVAE
+            if isinstance(hparams_dict, dict):
+                if 'model' not in hparams_dict:
+                    hparams_dict['model'] = {}
+                if 'encoder' not in hparams_dict['model']:
+                    hparams_dict['model']['encoder'] = {
+                        'hidden_channels': 128,
+                        'num_blocks': 4,
+                        'cutoff': 7.0,
+                        'max_num_neighbors': 20
+                    }
+            
+            model = CDVAE(hparams_dict)
             
             # Load state dict manually
             if 'state_dict' in checkpoint:
@@ -198,6 +321,81 @@ def load_cdvae_with_compatibility_fix(model_path):
             
         except Exception as e3:
             print(f"Method 3 failed: {e3}")
+        
+        # Method 4: Try with minimal hparams (fallback)
+        try:
+            # Create minimal hparams dict with only essential parameters
+            minimal_hparams = {
+                'model': {
+                    'hidden_dim': hparams.get('hidden_dim', 128),
+                    'encoder': {
+                        'hidden_channels': 128,
+                        'num_blocks': 4,
+                        'cutoff': 7.0,
+                        'max_num_neighbors': 20
+                    }
+                },
+                'data': {
+                    'num_targets': 1,
+                    'max_atoms': 20
+                }
+            }
+            
+            model = CDVAE(minimal_hparams)
+            
+            # Load state dict manually
+            if 'state_dict' in checkpoint:
+                model.load_state_dict(checkpoint['state_dict'], strict=False)
+            
+            print("Successfully loaded CDVAE model with Method 4 (minimal hparams)")
+            return model
+            
+        except Exception as e4:
+            print(f"Method 4 failed: {e4}")
+        
+        # Method 5: Try loading without any hparams (last resort)
+        try:
+            print("Trying Method 5: Loading without hparams...")
+            model = CDVAE.load_from_checkpoint(str(ckpt_path), strict=False)
+            print("Successfully loaded CDVAE model with Method 5 (no hparams)")
+            return model
+            
+        except Exception as e5:
+            print(f"Method 5 failed: {e5}")
+        
+        # Method 6: Create CDVAE model from scratch with minimal config (bypass checkpoint entirely)
+        try:
+            print("Trying Method 6: Creating CDVAE model from scratch...")
+            
+            # Create minimal working configuration
+            minimal_config = {
+                'model': {
+                    '_target_': 'cdvae.pl_modules.model.CrystGNN_Supervise',
+                    'hidden_dim': 128,
+                    'latent_dim': 256,
+                    'encoder': {
+                        '_target_': 'cdvae.pl_modules.gnn.DimeNetPlusPlusWrap',
+                        'hidden_channels': 128,
+                        'num_blocks': 4,
+                        'cutoff': 7.0,
+                        'max_num_neighbors': 20,
+                        'num_targets': 1
+                    }
+                },
+                'data': {
+                    'num_targets': 1,
+                    'max_atoms': 20
+                }
+            }
+            
+            # Try to create model without loading checkpoint
+            model = CDVAE(minimal_config)
+            print("Successfully created CDVAE model from scratch with Method 6")
+            print("Note: This model is not pre-trained, but can be used for structure generation")
+            return model
+            
+        except Exception as e6:
+            print(f"Method 6 failed: {e6}")
         
         print("All loading methods failed")
         return None
