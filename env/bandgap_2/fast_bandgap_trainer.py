@@ -2,14 +2,24 @@
 
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+from sklearn.ensemble import RandomForestRegressor, HistGradientBoostingRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import pickle
+import joblib
 import sys
 import os
+from datetime import datetime
+
+# Print version information for debugging
+print(f"Python version: {sys.version}")
+print(f"NumPy version: {np.__version__}")
+print(f"Pandas version: {pd.__version__}")
+print(f"Scikit-learn version: {__import__('sklearn').__version__}")
+print(f"Joblib version: {joblib.__version__}")
+print("-" * 50)
 
 def create_advanced_features(data):
     """Create advanced features from the data"""
@@ -119,8 +129,7 @@ def train_ensemble_model(data_path):
         verbose=1
     )
     
-    # Model 2: Gradient Boosting (NaN-tolerant version)
-    from sklearn.ensemble import HistGradientBoostingRegressor
+    # Model 2: Histogram Gradient Boosting (modern, NaN-tolerant)
     gb_model = HistGradientBoostingRegressor(
         max_iter=200,
         max_depth=8,
@@ -196,7 +205,7 @@ def train_ensemble_model(data_path):
     print("\nFeature Importance (Random Forest):")
     print(importance[['feature', 'rf_importance']].head(10))
     
-    # Save models
+    # Save models with enhanced metadata and multiple formats
     model_data = {
         'rf_model': rf_model,
         'gb_model': gb_model,
@@ -207,21 +216,71 @@ def train_ensemble_model(data_path):
             'rf_mae': rf_mae, 'rf_r2': rf_r2,
             'gb_mae': gb_mae, 'gb_r2': gb_r2,
             'ensemble_mae': ensemble_mae, 'ensemble_r2': ensemble_r2
+        },
+        'training_samples': len(data),
+        'feature_importance': dict(zip(X.columns, rf_model.feature_importances_)),
+        'metadata': {
+            'created_date': datetime.now().isoformat(),
+            'numpy_version': np.__version__,
+            'sklearn_version': __import__('sklearn').__version__,
+            'pandas_version': pd.__version__,
+            'python_version': sys.version,
+            'training_script': 'fast_bandgap_trainer.py'
         }
     }
     
+    # Save with multiple methods for compatibility
+    print("Saving model with pickle (highest protocol)...")
     with open('fast_bandgap_model.pkl', 'wb') as f:
-        pickle.dump(model_data, f)
+        pickle.dump(model_data, f, protocol=pickle.HIGHEST_PROTOCOL)
     
-    print("✓ Models saved as 'fast_bandgap_model.pkl'")
+    print("Saving model with joblib...")
+    joblib.dump(model_data, 'fast_bandgap_model_joblib.pkl', compress=3)
+    
+    print("Saving model with pickle protocol 4...")
+    with open('fast_bandgap_model_v4.pkl', 'wb') as f:
+        pickle.dump(model_data, f, protocol=4)
+    
+    # Get file sizes
+    pkl_size = os.path.getsize('fast_bandgap_model.pkl') / 1024 / 1024
+    joblib_size = os.path.getsize('fast_bandgap_model_joblib.pkl') / 1024 / 1024
+    v4_size = os.path.getsize('fast_bandgap_model_v4.pkl') / 1024 / 1024
+    
+    print(f"\n✅ MODELS SAVED SUCCESSFULLY!")
+    print(f"📁 fast_bandgap_model.pkl (pickle): {pkl_size:.1f} MB")
+    print(f"📁 fast_bandgap_model_joblib.pkl (joblib): {joblib_size:.1f} MB")
+    print(f"📁 fast_bandgap_model_v4.pkl (pickle v4): {v4_size:.1f} MB")
+    print(f"🎯 Use the joblib version for maximum compatibility!")
     
     return model_data
 
-def predict_bandgap(pbe_bandgap, formula=None, model_file='fast_bandgap_model.pkl'):
+def predict_bandgap(pbe_bandgap, formula=None, model_file='fast_bandgap_model_joblib.pkl'):
     """Use the trained ensemble to predict HSE bandgap"""
     
-    with open(model_file, 'rb') as f:
-        model_data = pickle.load(f)
+    # Try joblib first, then fallback to pickle
+    try:
+        if model_file.endswith('_joblib.pkl'):
+            model_data = joblib.load(model_file)
+        else:
+            with open(model_file, 'rb') as f:
+                model_data = pickle.load(f)
+    except Exception as e:
+        print(f"Error loading model {model_file}: {e}")
+        # Try alternative formats
+        if 'joblib' in model_file:
+            alt_file = model_file.replace('_joblib.pkl', '.pkl')
+        else:
+            alt_file = model_file.replace('.pkl', '_joblib.pkl')
+        
+        try:
+            if alt_file.endswith('_joblib.pkl'):
+                model_data = joblib.load(alt_file)
+            else:
+                with open(alt_file, 'rb') as f:
+                    model_data = pickle.load(f)
+            print(f"Successfully loaded alternative model: {alt_file}")
+        except:
+            raise Exception(f"Could not load any model format for {model_file}")
     
     rf_model = model_data['rf_model']
     gb_model = model_data['gb_model']
