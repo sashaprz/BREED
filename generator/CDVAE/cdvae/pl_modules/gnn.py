@@ -4,7 +4,16 @@
 import torch
 import torch.nn as nn
 from torch_scatter import scatter
-from torch_geometric.nn.acts import swish
+try:
+    from torch_geometric.nn.acts import swish
+except ImportError:
+    # For newer versions of PyTorch Geometric
+    try:
+        from torch.nn.functional import silu as swish
+    except ImportError:
+        # Fallback implementation
+        def swish(x):
+            return x * torch.sigmoid(x)
 from torch_geometric.nn.inits import glorot_orthogonal
 from torch_geometric.nn.models.dimenet import (
     EmbeddingBlock,

@@ -20,7 +20,7 @@ hydra:
       WANDB_DIR: ${oc.env:WABDB_DIR}
 
 defaults:
-  - data: default
+  - data: mp_20
   - logging: default
   - model: vae
   - optim: default

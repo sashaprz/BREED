@@ -1,5 +1,5 @@
 data:
-  root_path: /root/inorganic_SEEs-1/generator/CDVAE/data  # Update this path for your setup
+  root_path: /path/to/your/data/mp_20  # Update this path for your setup
   prop: formation_energy_per_atom
   num_targets: 1
   niggli: true
@@ -126,7 +126,7 @@ train:
     precision: 32
     max_epochs: ${data.train_max_epochs}
     accumulate_grad_batches: 1
-    num_sanity_val_steps: 2f
+    num_sanity_val_steps: 2
     gradient_clip_val: 0.5
     gradient_clip_algorithm: value
     profiler: simple

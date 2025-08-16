@@ -1,0 +1,13 @@
+torch
+pytorch-lightning
+hydra-core
+omegaconf
+wandb
+numpy
+pandas
+pymatgen
+ase
+scikit-learn
+tqdm
+matplotlib
+seaborn

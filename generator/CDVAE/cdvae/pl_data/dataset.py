@@ -2,14 +2,19 @@ import hydra
 import omegaconf
 import torch
 import pandas as pd
+import pickle
 from omegaconf import ValueNode
 from torch.utils.data import Dataset
 
 from torch_geometric.data import Data
 
 from cdvae.common.utils import PROJECT_ROOT
+from cdvae.common.numpy_compat import setup_numpy_compatibility
 from cdvae.common.data_utils import (
     preprocess, preprocess_tensors, add_scaled_lattice_prop)
+
+# Ensure numpy compatibility is set up
+setup_numpy_compatibility()
 
 
 class CrystDataset(Dataset):
@@ -21,7 +26,14 @@ class CrystDataset(Dataset):
         super().__init__()
         self.path = path
         self.name = name
-        self.df = pd.read_csv(path)
+        
+        # Check if the file is a pickle file or CSV file
+        if str(path).endswith('.pkl'):
+            with open(path, 'rb') as f:
+                self.df = pickle.load(f)
+        else:
+            self.df = pd.read_csv(path)
+            
         self.prop = prop
         self.niggli = niggli
         self.primitive = primitive

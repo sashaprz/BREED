@@ -4,6 +4,7 @@ import networkx as nx
 import torch
 import copy
 import itertools
+import pickle
 
 from pymatgen.core.structure import Structure
 from pymatgen.core.lattice import Lattice
@@ -609,17 +610,26 @@ class StandardScalerTorch(object):
         self.stds = stds
 
     def fit(self, X):
-        X = torch.tensor(X, dtype=torch.float)
+        if isinstance(X, torch.Tensor):
+            X = X.clone().detach().to(dtype=torch.float)
+        else:
+            X = torch.tensor(X, dtype=torch.float)
         self.means = torch.mean(X, dim=0)
         # https://github.com/pytorch/pytorch/issues/29372
         self.stds = torch.std(X, dim=0, unbiased=False) + EPSILON
 
     def transform(self, X):
-        X = torch.tensor(X, dtype=torch.float)
+        if isinstance(X, torch.Tensor):
+            X = X.clone().detach().to(dtype=torch.float)
+        else:
+            X = torch.tensor(X, dtype=torch.float)
         return (X - self.means) / self.stds
 
     def inverse_transform(self, X):
-        X = torch.tensor(X, dtype=torch.float)
+        if isinstance(X, torch.Tensor):
+            X = X.clone().detach().to(dtype=torch.float)
+        else:
+            X = torch.tensor(X, dtype=torch.float)
         return X * self.stds + self.means
 
     def match_device(self, tensor):
@@ -641,7 +651,16 @@ class StandardScalerTorch(object):
 
 
 def get_scaler_from_data_list(data_list, key):
-    targets = torch.tensor([d[key] for d in data_list])
+    # Convert list of numpy arrays to single numpy array first, then to tensor
+    targets_list = [d[key] for d in data_list]
+    if len(targets_list) > 0 and hasattr(targets_list[0], '__len__'):
+        # Handle case where targets are arrays/lists
+        import numpy as np
+        targets_array = np.array(targets_list)
+        targets = torch.from_numpy(targets_array).float()
+    else:
+        # Handle case where targets are scalars
+        targets = torch.tensor(targets_list, dtype=torch.float)
     scaler = StandardScalerTorch()
     scaler.fit(targets)
     return scaler
@@ -649,7 +668,24 @@ def get_scaler_from_data_list(data_list, key):
 
 def preprocess(input_file, num_workers, niggli, primitive, graph_method,
                prop_list):
-    df = pd.read_csv(input_file)
+    # Check if the file is a pickle file or CSV file
+    if str(input_file).endswith('.pkl'):
+        # Handle numpy compatibility for pickle files created with different numpy versions
+        import sys
+        import numpy as np
+        
+        # Create a compatibility module for numpy._core.numeric if it doesn't exist
+        if not hasattr(np, '_core'):
+            import types
+            np._core = types.ModuleType('_core')
+            np._core.numeric = np.core.numeric if hasattr(np.core, 'numeric') else np
+            sys.modules['numpy._core'] = np._core
+            sys.modules['numpy._core.numeric'] = np._core.numeric
+        
+        with open(input_file, 'rb') as f:
+            df = pickle.load(f)
+    else:
+        df = pd.read_csv(input_file)
 
     def process_one(row, niggli, primitive, graph_method, prop_list):
         crystal_str = row['cif']

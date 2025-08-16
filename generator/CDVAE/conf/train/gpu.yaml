@@ -1,3 +1,6 @@
+# GPU training configuration for CDVAE
+# Use this when you have GPU access available
+
 # reproducibility
 deterministic: False
 random_seed: 42
@@ -6,7 +9,8 @@ random_seed: 42
 
 pl_trainer:
   fast_dev_run: False # Enable this for debug purposes
-  accelerator: cpu  # Changed from gpus: 1 to fix hanging issue
+  accelerator: gpu    # Modern PyTorch Lightning GPU configuration
+  devices: 1          # Number of GPUs to use
   precision: 32
   # max_steps: 10000
   max_epochs: ${data.train_max_epochs}

@@ -1,0 +1,3 @@
+- expname=test_fixed_config
+- data.train_max_epochs=1
+- train.pl_trainer.fast_dev_run=true

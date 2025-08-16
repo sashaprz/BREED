@@ -1,6 +1,6 @@
 data:
-  root_path: /root/inorganic_SEEs-1/generator/CDVAE/data  # Update this path for your setup
-  prop: formation_energy_per_atom
+  root_path: ${oc.env:PROJECT_ROOT}/data/mp_20
+  prop: formation_energy
   num_targets: 1
   niggli: true
   primitive: false
@@ -11,16 +11,16 @@ data:
   max_atoms: 20
   otf_graph: false
   eval_model_name: mp20
-  train_max_epochs: 1000
-  early_stopping_patience: 100000
-  teacher_forcing_max_epoch: 500
+  train_max_epochs: 1
+  early_stopping_patience: 5
+  teacher_forcing_max_epoch: 5
   datamodule:
     _target_: cdvae.pl_data.datamodule.CrystDataModule
     datasets:
       train:
         _target_: cdvae.pl_data.dataset.CrystDataset
         name: Formation energy train
-        path: ${data.root_path}/train.csv
+        path: ${data.root_path}/train.pkl
         prop: ${data.prop}
         niggli: ${data.niggli}
         primitive: ${data.primitive}
@@ -30,7 +30,7 @@ data:
       val:
       - _target_: cdvae.pl_data.dataset.CrystDataset
         name: Formation energy val
-        path: ${data.root_path}/val.csv
+        path: ${data.root_path}/val.pkl
         prop: ${data.prop}
         niggli: ${data.niggli}
         primitive: ${data.primitive}
@@ -40,7 +40,7 @@ data:
       test:
       - _target_: cdvae.pl_data.dataset.CrystDataset
         name: Formation energy test
-        path: ${data.root_path}/test.csv
+        path: ${data.root_path}/test.pkl
         prop: ${data.prop}
         niggli: ${data.niggli}
         primitive: ${data.primitive}
@@ -58,6 +58,7 @@ data:
 logging:
   val_check_interval: 5
   progress_bar_refresh_rate: 20
+  enable_progress_bar: true
   wandb:
     name: ${expname}
     project: crystal_generation_mit
@@ -90,17 +91,36 @@ model:
     num_after_skip: 2
     num_output_layers: 3
     readout: ${data.readout}
-  _target_: cdvae.pl_modules.model.CrystGNN_Supervise
-  use_orientation: false
-  hidden_dim: 128
-  fc_num_layers: 4
-  use_pe: false
-  # Add missing attributes that caused the AttributeDict issues
+  decoder:
+    _target_: cdvae.pl_modules.decoder.GemNetTDecoder
+    hidden_dim: 128
+    latent_dim: ${model.latent_dim}
+    max_neighbors: ${model.max_neighbors}
+    radius: ${model.radius}
+    scale_file: ${oc.env:PROJECT_ROOT}/cdvae/pl_modules/gemnet/gemnet-dT.json
+  _target_: cdvae.pl_modules.model.CDVAE
+  hidden_dim: 256
   latent_dim: 256
-  num_layers: 4
-  max_atoms: 20
-  cutoff: 7.0
+  fc_num_layers: 1
+  max_atoms: ${data.max_atoms}
+  cost_natom: 1.0
+  cost_coord: 10.0
+  cost_type: 1.0
+  cost_lattice: 10.0
+  cost_composition: 1.0
+  cost_edge: 10.0
+  cost_property: 1.0
+  beta: 0.01
+  teacher_forcing_lattice: true
+  teacher_forcing_max_epoch: ${data.teacher_forcing_max_epoch}
   max_neighbors: 20
+  radius: 7.0
+  sigma_begin: 10.0
+  sigma_end: 0.01
+  type_sigma_begin: 5.0
+  type_sigma_end: 0.01
+  num_noise_level: 50
+  predict_property: false
 optim:
   optimizer:
     _target_: torch.optim.Adam
@@ -120,20 +140,15 @@ train:
   deterministic: false
   random_seed: 42
   pl_trainer:
-    fast_dev_run: false
-    accelerator: gpu  # Updated from 'gpus' for PyTorch Lightning 2.x
-    devices: 1        # Updated from 'gpus' for PyTorch Lightning 2.x
+    fast_dev_run: true
+    accelerator: cpu
     precision: 32
     max_epochs: ${data.train_max_epochs}
     accumulate_grad_batches: 1
-    num_sanity_val_steps: 2f
+    num_sanity_val_steps: 2
     gradient_clip_val: 0.5
     gradient_clip_algorithm: value
     profiler: simple
-    # Add PyTorch Lightning 2.x compatibility settings
-    enable_checkpointing: true
-    enable_progress_bar: true
-    enable_model_summary: true
   monitor_metric: val_loss
   monitor_metric_mode: min
   early_stopping:
@@ -142,8 +157,8 @@ train:
   model_checkpoints:
     save_top_k: 1
     verbose: false
-expname: mp_20_supervise
+expname: test_fixed_config
 core:
   version: 0.0.1
   tags:
-  - "2024-01-01"  # Fixed date instead of problematic ${now:%Y-%m-%d}
+  - ${now:%Y-%m-%d}
