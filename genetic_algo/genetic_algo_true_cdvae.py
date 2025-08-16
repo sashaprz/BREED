@@ -75,8 +75,8 @@ except ImportError:
 class TrueCDVAEGenerator:
     """True CDVAE crystal structure generator using pre-trained diffusion model"""
     
-    def __init__(self, model_path=r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\cdvae\prop_models\mp20"):
-        self.model_path = Path(model_path)
+    def __init__(self, weights_path=r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\cdvae_weights.ckpt"):
+        self.weights_path = Path(weights_path)
         self.model = None
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
@@ -86,27 +86,31 @@ class TrueCDVAEGenerator:
             print("CDVAE not available, using placeholder generation")
     
     def _load_model(self):
-        """Load pre-trained CDVAE model with compatibility fixes"""
+        """Load pre-trained CDVAE model from weights file"""
         try:
-            print(f"Loading True CDVAE model from {self.model_path}...")
+            print(f"Loading True CDVAE model from weights file: {self.weights_path}...")
             
-            # Import the compatibility fix
-            from fix_cdvae_compatibility import load_cdvae_with_compatibility_fix
+            if not self.weights_path.exists():
+                print(f"   Weights file not found: {self.weights_path}")
+                return False
             
-            # Use compatibility fix to load model
-            self.model = load_cdvae_with_compatibility_fix(str(self.model_path))
+            # Use the new weights loading function from fix_cdvae_compatibility
+            from fix_cdvae_compatibility import load_cdvae_from_weights_file
+            
+            self.model = load_cdvae_from_weights_file(str(self.weights_path))
             
             if self.model is not None:
                 self.model.eval()
                 self.model.to(self.device)
                 
-                print(f"   True CDVAE model loaded successfully with compatibility fixes!")
+                print(f"   True CDVAE model loaded successfully from weights file!")
                 print(f"   Model type: {type(self.model).__name__}")
                 print(f"   Device: {self.device}")
+                print(f"   Model parameters: {sum(p.numel() for p in self.model.parameters()):,}")
                 
                 return True
             else:
-                print(f"   Failed to load CDVAE model even with compatibility fixes")
+                print(f"   Failed to load CDVAE model from weights file")
                 return False
             
         except Exception as e:
