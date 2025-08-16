@@ -1,5 +1,5 @@
 data:
-  root_path: /path/to/your/data/mp_20  # Update this path for your setup
+  root_path: /root/inorganic_SEEs-1/generator/CDVAE/data/mp_20  # Updated to your actual path
   prop: formation_energy_per_atom
   num_targets: 1
   niggli: true
