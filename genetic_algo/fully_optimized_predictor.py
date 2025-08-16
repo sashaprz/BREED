@@ -1,4 +1,4 @@
-"""
+r"""
 Fully optimized ML predictor that completely bypasses the original cgcnn_predict functions
 This ensures models are loaded only once and cached properly.
 """
