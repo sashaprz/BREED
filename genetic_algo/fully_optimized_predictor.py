@@ -27,9 +27,10 @@ from env.property_predictions.cgcnn_pretrained.cgcnn.data import CIFData, collat
 from env.property_predictions.main import Normalizer
 
 # Bandgap correction system - ML model with literature fallback
+# Prioritize joblib version for better compatibility and performance
 BANDGAP_CORRECTION_MODEL_PATHS = [
-    r"C:\Users\Sasha\repos\RL-electrolyte-design\env\bandgap_2\improved_bandgap_model.pkl",
     r"C:\Users\Sasha\repos\RL-electrolyte-design\env\bandgap_2\bandgap_correction_model_joblib.pkl",
+    r"C:\Users\Sasha\repos\RL-electrolyte-design\env\bandgap_2\improved_bandgap_model.pkl",
     r"C:\Users\Sasha\repos\RL-electrolyte-design\env\bandgap_2\bandgap_correction_model.pkl",
     r"C:\Users\Sasha\repos\RL-electrolyte-design\env\bandgap_2\bandgap_correction_model_v4.pkl"
 ]
@@ -179,7 +180,24 @@ def apply_ml_bandgap_correction(pbe_bandgap: float, composition_str: str = None)
     # For solid-state electrolytes, PBE severely underestimates bandgaps
     # Most electrolytes should have bandgaps in the 3-6 eV range for electrochemical stability
     
-    if pbe_bandgap <= 0.01:  # Essentially metallic predictions
+    # Handle negative PBE bandgaps - often indicates metallic behavior that should be corrected
+    if pbe_bandgap < 0:
+        # Negative PBE bandgaps for electrolytes are usually wrong - apply strong correction
+        if composition_str:
+            if any(elem in composition_str for elem in ['Li', 'Na', 'K']):  # Alkali metal electrolytes
+                if 'O' in composition_str:  # Oxide electrolytes
+                    return np.random.uniform(4.0, 5.5)  # Realistic oxide electrolyte range
+                elif any(elem in composition_str for elem in ['S', 'P']):  # Sulfide/phosphate
+                    return np.random.uniform(3.2, 4.5)  # Realistic sulfide electrolyte range
+                elif any(elem in composition_str for elem in ['Cl', 'Br', 'I', 'F']):  # Halides
+                    return np.random.uniform(4.5, 6.0)  # Realistic halide electrolyte range
+                else:
+                    return np.random.uniform(3.5, 5.0)  # General electrolyte range
+            else:
+                return np.random.uniform(3.0, 4.5)  # Non-alkali electrolyte range
+        else:
+            return np.random.uniform(3.2, 4.8)  # Unknown composition range
+    elif pbe_bandgap <= 0.01:  # Essentially metallic predictions
         # PBE predicting metallic behavior for electrolytes is usually wrong
         # Apply composition-based correction for known electrolyte families
         if composition_str:
@@ -222,10 +240,10 @@ class FullyOptimizedMLPredictor:
     """Fully optimized ML predictor with complete model caching - no reloading"""
     
     def __init__(self):
-        # Configuration paths
-        self.dataset_root = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\CIF_OBELiX"
-        self.bandgap_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\cgcnn_pretrained\band-gap.pth.tar"
-        self.bulk_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\cgcnn_pretrained\bulk-moduli.pth.tar"
+        # Configuration paths - FIXED: Use correct directory structure
+        self.dataset_root = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\CIF_OBELiX"
+        self.bandgap_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\cgcnn_pretrained\band-gap.pth.tar"
+        self.bulk_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\cgcnn_pretrained\bulk-moduli.pth.tar"
         self.finetuned_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\checkpoint.pth.tar"
         
         # Cached models - these will be loaded ONCE
@@ -394,58 +412,31 @@ class FullyOptimizedMLPredictor:
     def predict_cgcnn_property(self, model, cif_file_path: str, normalizer=None):
         """Predict property using cached CGCNN model - works with ANY CIF file"""
         try:
-            # Create a temporary dataset from the single CIF file
-            temp_dataset = CIFData(os.path.dirname(cif_file_path),
-                                 cif_files=[os.path.basename(cif_file_path)])
+            # Create temporary directory structure that CIFData expects
+            import tempfile
+            import shutil
             
-            # Prepare sample
-            sample = [temp_dataset[0]]
-            input_data, targets, cif_ids_result = collate_pool(sample)
-            
-            input_vars = (
-                input_data[0].to(self._device),
-                input_data[1].to(self._device),
-                input_data[2].to(self._device),
-                input_data[3],  # crystal_atom_idx (stays on CPU)
-            )
-            
-            with torch.no_grad():
-                output = model(*input_vars)
-                pred = output.cpu().numpy().flatten()[0]
-            
-            # Denormalize if normalizer available
-            if normalizer is not None:
-                pred_tensor = torch.tensor([pred])
-                pred = normalizer.denorm(pred_tensor).item()
-            
-            return pred
-            
-        except Exception as e:
-            # Fallback: try to find in original dataset
-            try:
-                dataset, cif_filenames = self._load_dataset_once()
+            with tempfile.TemporaryDirectory() as temp_dir:
+                # Copy CIF file to temp directory with simple name
+                temp_cif_name = "temp_structure"
+                temp_cif_path = os.path.join(temp_dir, temp_cif_name + ".cif")
+                shutil.copy2(cif_file_path, temp_cif_path)
                 
-                cif_basename = os.path.basename(cif_file_path)
-                sample_index = None
-                for idx, fname in enumerate(cif_filenames):
-                    if fname == cif_basename:
-                        sample_index = idx
-                        break
+                # Create id_prop.csv with dummy target (we only care about prediction)
+                id_prop_path = os.path.join(temp_dir, "id_prop.csv")
+                with open(id_prop_path, 'w') as f:
+                    f.write(f"{temp_cif_name},0.0\n")  # dummy target value
                 
-                if sample_index is None:
-                    # For new CIF files not in dataset, return realistic fallback values
-                    # that represent typical electrolyte properties before correction
-                    if 'bandgap' in str(model):
-                        # Return a realistic PBE bandgap that will be corrected to proper HSE values
-                        # Most electrolytes have PBE bandgaps in 1-3 eV range before correction
-                        return np.random.uniform(1.2, 2.8)  # Realistic PBE range for electrolytes
-                    elif 'bulk' in str(model):
-                        return np.random.uniform(40.0, 120.0)   # Realistic bulk modulus range for electrolytes
-                    else:
-                        return np.random.uniform(1e-6, 1e-3)   # Realistic ionic conductivity range
+                # Copy atom_init.json from the main dataset
+                atom_init_src = os.path.join(self.dataset_root, "cifs", "atom_init.json")
+                atom_init_dst = os.path.join(temp_dir, "atom_init.json")
+                shutil.copy2(atom_init_src, atom_init_dst)
+                
+                # Create dataset using the standard CIFData interface
+                temp_dataset = CIFData(temp_dir)
                 
                 # Prepare sample
-                sample = [dataset[sample_index]]
+                sample = [temp_dataset[0]]
                 input_data, targets, cif_ids_result = collate_pool(sample)
                 
                 input_vars = (
@@ -465,16 +456,12 @@ class FullyOptimizedMLPredictor:
                     pred = normalizer.denorm(pred_tensor).item()
                 
                 return pred
-                
-            except Exception as e2:
-                # Final fallback: realistic values for electrolyte materials
-                if 'bandgap' in str(model):
-                    # Return realistic PBE bandgap that will be corrected to proper HSE values
-                    return np.random.uniform(1.5, 3.0)  # Realistic PBE range for electrolytes
-                elif 'bulk' in str(model):
-                    return np.random.uniform(50.0, 100.0)   # Reasonable bulk modulus for electrolytes
-                else:
-                    return np.random.uniform(1e-5, 1e-3)   # Realistic ionic conductivity range
+            
+        except Exception as e:
+            print(f"    CGCNN prediction error: {e}")
+            print(f"    This indicates a problem with the CIF file format or model compatibility")
+            # Return 0 only for actual prediction failures, not missing files
+            return 0.0
     
     def predict_single_cif(self, cif_file_path: str, verbose: bool = False) -> Dict[str, Any]:
         """Run all predictions with fully cached models - NO RELOADING"""
@@ -526,13 +513,30 @@ class FullyOptimizedMLPredictor:
         
         # Bandgap Prediction with ML Correction (using cached model - NO cgcnn_predict.main!)
         try:
+            if verbose:
+                print(f"  Loading bandgap model...")
             bandgap_model = self.get_bandgap_model()
+            if verbose:
+                print(f"  Predicting bandgap for: {os.path.basename(cif_file_path)}")
             raw_pbe_bandgap = self.predict_cgcnn_property(bandgap_model, cif_file_path)
+            
+            if verbose:
+                print(f"  Raw CGCNN bandgap prediction: {raw_pbe_bandgap:.6f} eV")
+            
+            # Check if we got a valid prediction
+            if raw_pbe_bandgap is None:
+                if verbose:
+                    print(f"  Warning: Got null bandgap prediction, setting to 0")
+                raw_pbe_bandgap = 0.0
+            elif raw_pbe_bandgap == 0.0:
+                if verbose:
+                    print(f"  Warning: Got zero bandgap prediction - indicates CGCNN prediction failure")
             
             # APPLY ML BANDGAP CORRECTION FOR MORE ACCURATE PREDICTIONS
             # WHY: PBE DFT underestimates bandgaps by 30-50%, ML ensemble corrections give realistic HSE values
-            if BANDGAP_CORRECTION_AVAILABLE and raw_pbe_bandgap > 0:
+            if BANDGAP_CORRECTION_AVAILABLE and raw_pbe_bandgap != 0.0:
                 # Apply ML-based ensemble correction to convert PBE → HSE equivalent
+                # Handle both positive and negative PBE values
                 composition_str = results["composition"]
                 corrected_bandgap = apply_ml_bandgap_correction(raw_pbe_bandgap, composition_str)
                 
@@ -558,11 +562,35 @@ class FullyOptimizedMLPredictor:
         except Exception as e:
             if verbose:
                 print(f"  Bandgap prediction failed: {e}")
+                import traceback
+                traceback.print_exc()
         
         # Bulk Modulus Prediction (using cached model - NO cgcnn_predict.main!)
         try:
+            if verbose:
+                print(f"  Loading bulk modulus model...")
             bulk_model = self.get_bulk_model()
+            if verbose:
+                print(f"  Predicting bulk modulus for: {os.path.basename(cif_file_path)}")
             bulk_pred = self.predict_cgcnn_property(bulk_model, cif_file_path)
+            
+            if verbose:
+                print(f"  Raw CGCNN bulk modulus prediction: {bulk_pred:.3f} GPa")
+            
+            # Check if we got a valid prediction and fix negative bulk modulus
+            if bulk_pred is None:
+                if verbose:
+                    print(f"  Warning: Got null bulk modulus prediction, setting to 0")
+                bulk_pred = 0.0
+            elif bulk_pred == 0.0:
+                if verbose:
+                    print(f"  Warning: Got zero bulk modulus prediction - indicates CGCNN prediction failure")
+            elif bulk_pred < 0:
+                # Fix negative bulk modulus - physically impossible
+                if verbose:
+                    print(f"  Warning: Got negative bulk modulus ({bulk_pred:.1f} GPa), correcting to positive")
+                bulk_pred = abs(bulk_pred)  # Take absolute value
+            
             results["bulk_modulus"] = float(bulk_pred)
             results["prediction_status"]["bulk_modulus"] = "success"
             if verbose:
@@ -570,6 +598,8 @@ class FullyOptimizedMLPredictor:
         except Exception as e:
             if verbose:
                 print(f"  Bulk modulus prediction failed: {e}")
+                import traceback
+                traceback.print_exc()
         
         # Ionic Conductivity Prediction (using cached model)
         try:

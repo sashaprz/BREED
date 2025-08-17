@@ -47,10 +47,17 @@ except ImportError as e:
     print(f"❌ Failed to import improved CDVAE loader: {e}")
     IMPROVED_CDVAE_AVAILABLE = False
 
-# Import the fully optimized ML predictor
+# Import the fully optimized ML predictor - USE GLOBAL INSTANCE
 try:
-    from fully_optimized_predictor import predict_single_cif_fully_optimized as predict_single_cif
-    print("✅ Using FULLY optimized ML predictor - models loaded ONCE only")
+    from fully_optimized_predictor import get_fully_optimized_predictor
+    # Get the global predictor instance ONCE
+    _global_predictor = get_fully_optimized_predictor()
+    
+    def predict_single_cif(cif_path, verbose=False):
+        """Use the global predictor instance to avoid reloading models"""
+        return _global_predictor.predict_single_cif(cif_path, verbose=verbose)
+    
+    print("✅ Using FULLY optimized ML predictor with GLOBAL INSTANCE - models loaded ONCE only")
 except ImportError:
     try:
         from env.optimized_ml_predictor import predict_single_cif_optimized as predict_single_cif
@@ -571,32 +578,7 @@ def main():
     print(f"CIF files saved to: {ga.cif_dir}")
     print(f"This demonstrates complete integration of true CDVAE weights with ML prediction")
     
-    # Print summary statistics
-    if results['pareto_front_candidates']:
-        print(f"\n📊 SUMMARY STATISTICS:")
-        print(f"   Total candidates generated: {results['final_population_size']}")
-        print(f"   CDVAE model loaded: {results['cdvae_model_loaded']}")
-        print(f"   CDVAE parameters loaded: {results['cdvae_parameters_loaded']}")
-        print(f"   True CDVAE generation: {results['true_cdvae_generation']}")
-        
-        # Calculate statistics for top candidates
-        top_candidates = results['pareto_front_candidates'][:5]
-        avg_ic = np.mean([c['properties']['ionic_conductivity'] for c in top_candidates])
-        avg_bg = np.mean([c['properties']['bandgap'] for c in top_candidates])
-        avg_sei = np.mean([c['properties']['sei_score'] for c in top_candidates])
-        avg_cei = np.mean([c['properties']['cei_score'] for c in top_candidates])
-        
-        print(f"   Average ionic conductivity (top 5): {avg_ic:.2e} S/cm")
-        print(f"   Average bandgap (top 5): {avg_bg:.3f} eV")
-        print(f"   Average SEI score (top 5): {avg_sei:.3f}")
-        print(f"   Average CEI score (top 5): {avg_cei:.3f}")
-        
-        # Count generation methods
-        methods = [c['generation_method'] for c in results['pareto_front_candidates']]
-        method_counts = {method: methods.count(method) for method in set(methods)}
-        print(f"   Generation methods used:")
-        for method, count in method_counts.items():
-            print(f"     {method}: {count} candidates")
+    # Summary statistics removed per user request
     
     return results
 
