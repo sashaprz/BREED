@@ -22,9 +22,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from env.sei_predictor import SEIPredictor
 from env.cei_predictor import CEIPredictor
-from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
-from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.data import CIFData, collate_pool
-from env.cgcnn_bandgap_ionic_cond_bulk_moduli.main import Normalizer
+from env.property_predictions.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
+from env.property_predictions.cgcnn_pretrained.cgcnn.data import CIFData, collate_pool
+from env.property_predictions.main import Normalizer
 
 # Bandgap correction system - ML model with literature fallback
 BANDGAP_CORRECTION_MODEL_PATHS = [

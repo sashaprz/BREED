@@ -17,10 +17,10 @@ warnings.filterwarnings('ignore')
 # Import your ML prediction modules
 from env.sei_predictor import SEIPredictor
 from env.cei_predictor import CEIPredictor
-from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained import cgcnn_predict
-from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
-from env.cgcnn_bandgap_ionic_cond_bulk_moduli.cgcnn_pretrained.cgcnn.data import CIFData, collate_pool
-from env.cgcnn_bandgap_ionic_cond_bulk_moduli.main import Normalizer
+from env.property_predictions.cgcnn_pretrained import cgcnn_predict
+from env.property_predictions.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
+from env.property_predictions.cgcnn_pretrained.cgcnn.data import CIFData, collate_pool
+from env.property_predictions.main import Normalizer
 
 
 class OptimizedMLPredictor:
