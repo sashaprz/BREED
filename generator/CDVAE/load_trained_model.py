@@ -81,7 +81,7 @@ class TrainedCDVAELoader:
             tuple: (lattice_scaler, prop_scaler)
         """
         lattice_scaler_path = self.scalers_dir / "lattice_scaler.pt"
-        prop_scaler_path = self.scalers_dir / "prop_scaler.pt"
+        prop_scaler_path = self.scalers_dir / "new_prop_scaler.pt"
         
         lattice_scaler = None
         prop_scaler = None
@@ -156,8 +156,8 @@ def main():
     Example usage of the trained model.
     """
     # Define paths to your trained model files
-    CHECKPOINT_PATH = "generator/CDVAE/outputs/singlerun/2025-08-18/enhanced_cdvae/generator/CDVAE/outputs/singlerun/2025-08-18/enhanced_cdvae/epoch=136-step=14659.ckpt"
-    SCALERS_DIR = "generator/CDVAE/outputs/singlerun/2025-08-18/enhanced_cdvae/generator/CDVAE/outputs/singlerun/2025-08-18/enhanced_cdvae/"
+    CHECKPOINT_PATH = "generator/CDVAE/new_cdvae_weights.ckpt"
+    SCALERS_DIR = "generator/CDVAE/"
     
     # Check if files exist
     if not Path(CHECKPOINT_PATH).exists():
