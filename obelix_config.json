@@ -1,0 +1,22 @@
+{
+  "description": "Configuration for OBELiX dataset preparation",
+  "obelix_excel_path": "data/OBELiX_data.xlsx",
+  "cif_folder_path": "data/cifs",
+  "output_dir": "data/obelix_prepared",
+  "conductivity_column": "Ionic conductivity (S cm-1)",
+  "conductivity_threshold": 1e-12,
+  "matching_strategy": "composition_spacegroup",
+  "composition_tolerance": 0.05,
+  "output_formats": ["pickle", "csv"],
+  "save_cgcnn_format": true,
+  "processing_options": {
+    "use_cdvae_processing": true,
+    "niggli_reduction": true,
+    "primitive_cell": false,
+    "graph_method": "crystalnn"
+  },
+  "logging": {
+    "level": "INFO",
+    "save_logs": true
+  }
+}

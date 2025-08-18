@@ -34,6 +34,11 @@ def setup_numpy_compatibility():
                 # Skip attributes that can't be copied
                 pass
         
+        # Fix numpy.math compatibility issue - add math module if missing
+        if not hasattr(numeric_module, 'math'):
+            import math
+            numeric_module.math = math
+        
         # Add some specific attributes that might be needed from numpy.core
         if hasattr(np, 'core'):
             for attr_name in dir(np.core):
@@ -98,6 +103,11 @@ def setup_numpy_compatibility():
         # Also add to numpy namespace if not present
         if not hasattr(np, '_core'):
             np._core = _core_module
+        
+        # Fix numpy.math compatibility issue - add math module to numpy if missing
+        if not hasattr(np, 'math'):
+            import math
+            np.math = math
             
         print("NumPy compatibility setup completed successfully")
         

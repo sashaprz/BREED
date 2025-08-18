@@ -12,6 +12,7 @@ from cdvae.common.utils import PROJECT_ROOT
 from cdvae.common.numpy_compat import setup_numpy_compatibility
 from cdvae.common.data_utils import (
     preprocess, preprocess_tensors, add_scaled_lattice_prop)
+from cdvae.common.caching import get_data_cache, cached_preprocessing
 
 # Ensure numpy compatibility is set up
 setup_numpy_compatibility()
@@ -22,10 +23,15 @@ class CrystDataset(Dataset):
                  prop: ValueNode, niggli: ValueNode, primitive: ValueNode,
                  graph_method: ValueNode, preprocess_workers: ValueNode,
                  lattice_scale_method: ValueNode,
+                 use_cache: bool = True,
                  **kwargs):
         super().__init__()
         self.path = path
         self.name = name
+        self.use_cache = use_cache
+        
+        # Initialize cache with fixed directory
+        self.cache = get_data_cache("./data_cache") if use_cache else None
         
         # Check if the file is a pickle file or CSV file
         if str(path).endswith('.pkl'):
@@ -40,13 +46,44 @@ class CrystDataset(Dataset):
         self.graph_method = graph_method
         self.lattice_scale_method = lattice_scale_method
 
-        self.cached_data = preprocess(
-            self.path,
-            preprocess_workers,
-            niggli=self.niggli,
-            primitive=self.primitive,
-            graph_method=self.graph_method,
-            prop_list=[prop])
+        # Use cached preprocessing if available
+        import hashlib
+        import os
+        
+        # Create a more robust cache key using file path, size, and modification time
+        try:
+            file_stat = os.stat(path)
+            file_info = f"{path}_{file_stat.st_size}_{file_stat.st_mtime}"
+        except:
+            file_info = str(path)
+            
+        cache_key_data = f"{file_info}_{niggli}_{primitive}_{graph_method}_{prop}"
+        cache_key = hashlib.md5(cache_key_data.encode()).hexdigest()
+        
+        if self.cache:
+            self.cached_data = self.cache.get(cache_key)
+            if self.cached_data is None:
+                print(f"Preprocessing data for {name} (not cached)...")
+                self.cached_data = preprocess(
+                    self.path,
+                    preprocess_workers,
+                    niggli=self.niggli,
+                    primitive=self.primitive,
+                    graph_method=self.graph_method,
+                    prop_list=[prop])
+                self.cache.set(cache_key, self.cached_data)
+                print(f"Cached preprocessing results for {name}")
+            else:
+                print(f"Using cached preprocessing results for {name}")
+        else:
+            print(f"Preprocessing data for {name} (caching disabled)...")
+            self.cached_data = preprocess(
+                self.path,
+                preprocess_workers,
+                niggli=self.niggli,
+                primitive=self.primitive,
+                graph_method=self.graph_method,
+                prop_list=[prop])
 
         add_scaled_lattice_prop(self.cached_data, lattice_scale_method)
         self.lattice_scaler = None

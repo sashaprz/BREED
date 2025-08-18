@@ -7,6 +7,7 @@ cdvae.egg-info/dependency_links.txt
 cdvae.egg-info/requires.txt
 cdvae.egg-info/top_level.txt
 cdvae/common/__init__.py
+cdvae/common/caching.py
 cdvae/common/constants.py
 cdvae/common/data_utils.py
 cdvae/common/numpy_compat.py

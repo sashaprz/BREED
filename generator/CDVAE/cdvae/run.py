@@ -103,6 +103,9 @@ def run(cfg: DictConfig) -> None:
     hydra.utils.log.info(f"Passing scaler from datamodule to model <{datamodule.scaler}>")
     model.lattice_scaler = datamodule.lattice_scaler.copy()
     model.scaler = datamodule.scaler.copy()
+    
+    # Ensure hydra directory exists before saving
+    hydra_dir.mkdir(parents=True, exist_ok=True)
     torch.save(datamodule.lattice_scaler, hydra_dir / 'lattice_scaler.pt')
     torch.save(datamodule.scaler, hydra_dir / 'prop_scaler.pt')
     # Instantiate the callbacks
@@ -138,16 +141,19 @@ def run(cfg: DictConfig) -> None:
         ckpt = None
           
     hydra.utils.log.info("Instantiating the Trainer")
-    trainer = pl.Trainer(
-        default_root_dir=hydra_dir,
-        logger=wandb_logger,
-        callbacks=callbacks,
-        deterministic=cfg.train.deterministic,
-        check_val_every_n_epoch=cfg.logging.val_check_interval,
-        enable_progress_bar=cfg.logging.enable_progress_bar,
-        resume_from_checkpoint=ckpt,
+    trainer_kwargs = {
+        "default_root_dir": hydra_dir,
+        "logger": wandb_logger,
+        "callbacks": callbacks,
+        "deterministic": cfg.train.deterministic,
         **cfg.train.pl_trainer,
-    )
+    }
+    
+    # Handle checkpoint resumption for newer PyTorch Lightning versions
+    if ckpt is not None:
+        trainer_kwargs["ckpt_path"] = ckpt
+    
+    trainer = pl.Trainer(**trainer_kwargs)
     log_hyperparameters(trainer=trainer, model=model, cfg=cfg)
 
     hydra.utils.log.info("Starting training!")

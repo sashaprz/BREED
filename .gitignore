@@ -56,3 +56,5 @@ wandb/
 
 # Embedded git repositories (not managed as submodules)
 generator/old/CrystaLLM/
+
+*.yaml
