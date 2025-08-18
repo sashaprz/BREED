@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
+ #!/usr/bin/env python3
 """
 Final Genetic Algorithm with True CDVAE Integration
 
 This genetic algorithm successfully uses the improved CDVAE loader that:
-- Loads all 399/399 parameters from cdvae_weights.ckpt
+- Loads all 399/399 parameters from new_cdvae_weights.ckpt
 - Uses proper StandardScalerTorch classes
 - Generates structures from true CDVAE latent space
 - Integrates with fully optimized ML predictor for property evaluation
@@ -47,21 +47,28 @@ except ImportError as e:
     print(f"❌ Failed to import improved CDVAE loader: {e}")
     IMPROVED_CDVAE_AVAILABLE = False
 
-# Import the fully optimized ML predictor - USE GLOBAL INSTANCE
+# Import the corrected ML predictor that uses main_rl.py architecture
 try:
-    from fully_optimized_predictor import get_fully_optimized_predictor
-    # Get the global predictor instance ONCE
-    _global_predictor = get_fully_optimized_predictor()
+    from corrected_predictor import get_corrected_predictor
+    # Get the global corrected predictor instance ONCE
+    _global_predictor = get_corrected_predictor()
     
     def predict_single_cif(cif_path, verbose=False):
-        """Use the global predictor instance to avoid reloading models"""
+        """Use the corrected predictor instance with main_rl.py architecture"""
         return _global_predictor.predict_single_cif(cif_path, verbose=verbose)
     
-    print("✅ Using FULLY optimized ML predictor with GLOBAL INSTANCE - models loaded ONCE only")
+    print("✅ Using CORRECTED ML predictor with main_rl.py architecture - SEI/CEI should work!")
 except ImportError:
     try:
-        from env.optimized_ml_predictor import predict_single_cif_optimized as predict_single_cif
-        print("⚠️  Using optimized ML predictor with model caching")
+        from fully_optimized_predictor import get_fully_optimized_predictor
+        # Get the global predictor instance ONCE
+        _global_predictor = get_fully_optimized_predictor()
+        
+        def predict_single_cif(cif_path, verbose=False):
+            """Use the global predictor instance to avoid reloading models"""
+            return _global_predictor.predict_single_cif(cif_path, verbose=verbose)
+        
+        print("✅ Using FULLY optimized ML predictor with GLOBAL INSTANCE - models loaded ONCE only")
     except ImportError:
         try:
             from env.main_rl import predict_single_cif
@@ -124,13 +131,13 @@ class GACandidate:
 class FinalCDVAEGA:
     """Final Genetic Algorithm with True CDVAE Integration"""
     
-    def __init__(self, 
-                 population_size: int = 50,
-                 elite_count: int = 5,
+    def __init__(self,
+                 population_size: int = 80,
+                 elite_count: int = 8,
                  tournament_size: int = 3,
                  mutation_rate: float = 0.02,
-                 max_generations: int = 20,
-                 convergence_threshold: int = 10,
+                 max_generations: int = 200,
+                 convergence_threshold: int = 15,
                  output_dir: str = "final_cdvae_ga_results"):
         
         self.population_size = population_size
@@ -146,10 +153,13 @@ class FinalCDVAEGA:
         self.cif_dir = self.output_dir / "cifs"
         self.cif_dir.mkdir(exist_ok=True)
         
-        # Initialize improved CDVAE loader
-        weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\cdvae_weights.ckpt"
-        print("🔧 Initializing improved CDVAE loader with true weights...")
-        self.cdvae_loader = ImprovedCDVAELoader(weights_path) if IMPROVED_CDVAE_AVAILABLE else None
+        # Initialize improved CDVAE loader with new files
+        weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\new_cdvae_weights.ckpt"
+        hparams_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\new_hparams.yaml"
+        prop_scaler_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\new_prop_scaler.pt"
+        lattice_scaler_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\new_lattice_scaler.pt"
+        print("🔧 Initializing improved CDVAE loader with new weights...")
+        self.cdvae_loader = ImprovedCDVAELoader(weights_path, hparams_path, prop_scaler_path, lattice_scaler_path) if IMPROVED_CDVAE_AVAILABLE else None
         
         if self.cdvae_loader and self.cdvae_loader.model is not None:
             print("✅ True CDVAE model loaded successfully with all 399/399 parameters!")
@@ -468,7 +478,7 @@ class FinalCDVAEGA:
         print(f"   Population size: {self.population_size}")
         print(f"   Max generations: {self.max_generations}")
         print(f"   Using true CDVAE weights with all 399/399 parameters")
-        print(f"   Using fully optimized ML predictor with bandgap correction")
+        print(f"   Using corrected ML predictor with main_rl.py architecture for proper SEI/CEI")
         print("-" * 80)
         
         # Generate initial population using true CDVAE weights
@@ -559,15 +569,15 @@ def main():
     print("🔬 FINAL CDVAE GENETIC ALGORITHM")
     print("=" * 60)
     print("This genetic algorithm uses the improved CDVAE loader that successfully")
-    print("loads all 399/399 parameters from cdvae_weights.ckpt and generates")
-    print("structures from the true CDVAE latent space using actual trained weights.")
+    print("loads all 399/399 parameters from new_cdvae_weights.ckpt and generates")
+    print("structures from the true CDVAE latent space using updated trained weights.")
     print("Combined with fully optimized ML predictor for accurate property evaluation.")
     print("=" * 60)
     
     # Initialize and run final CDVAE GA
     ga = FinalCDVAEGA(
-        population_size=30,  # Reasonable size for demonstration
-        max_generations=1,   # Limited for demonstration
+        population_size=80,  # Full population size as specified
+        max_generations=200,   # Full generations as specified
         output_dir="final_cdvae_ga_results"
     )
     

@@ -3,7 +3,7 @@
 Improved CDVAE Loader
 
 This module properly loads the full CDVAE model with the complete architecture
-using the actual weights from cdvae_weights.ckpt
+using the actual weights from new_cdvae_weights.ckpt
 """
 
 import torch
@@ -11,6 +11,7 @@ import torch.nn as nn
 import numpy as np
 import sys
 import os
+import yaml
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 from omegaconf import DictConfig, OmegaConf
@@ -23,6 +24,7 @@ os.environ['PROJECT_ROOT'] = r'C:\Users\Sasha\repos\RL-electrolyte-design\genera
 
 try:
     from cdvae.pl_modules.model import CDVAE
+    from cdvae.pl_modules.enhanced_model import EnhancedCDVAE
     from cdvae.pl_modules.gnn import DimeNetPlusPlusWrap
     from cdvae.pl_modules.decoder import GemNetTDecoder
     CDVAE_IMPORTS_AVAILABLE = True
@@ -35,20 +37,55 @@ except ImportError as e:
 class ImprovedCDVAELoader:
     """Improved CDVAE loader that properly handles the full model architecture"""
     
-    def __init__(self, weights_path: str):
+    def __init__(self, weights_path: str, hparams_path: str = None, prop_scaler_path: str = None, lattice_scaler_path: str = None):
         self.weights_path = Path(weights_path)
+        self.hparams_path = Path(hparams_path) if hparams_path else Path(weights_path).parent / "new_hparams.yaml"
+        self.prop_scaler_path = Path(prop_scaler_path) if prop_scaler_path else Path(weights_path).parent / "new_prop_scaler.pt"
+        self.lattice_scaler_path = Path(lattice_scaler_path) if lattice_scaler_path else Path(weights_path).parent / "new_lattice_scaler.pt"
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.model = None
+        self.external_hparams = None
+        self.external_prop_scaler = None
+        self.external_lattice_scaler = None
         
         print(f"🔧 Initializing Improved CDVAE Loader")
         print(f"   Weights file: {self.weights_path}")
+        print(f"   Hparams file: {self.hparams_path}")
+        print(f"   Prop scaler file: {self.prop_scaler_path}")
+        print(f"   Lattice scaler file: {self.lattice_scaler_path}")
         print(f"   Device: {self.device}")
         print(f"   CDVAE imports available: {CDVAE_IMPORTS_AVAILABLE}")
+        
+        # Load external configurations
+        self._load_external_configs()
         
         if CDVAE_IMPORTS_AVAILABLE:
             self._load_full_model()
         else:
             print("❌ Cannot load full CDVAE model - imports not available")
+    
+    def _load_external_configs(self):
+        """Load external hparams and prop_scaler files"""
+        try:
+            # Load hparams from YAML file
+            if self.hparams_path.exists():
+                print(f"📄 Loading hparams from: {self.hparams_path}")
+                with open(self.hparams_path, 'r') as f:
+                    self.external_hparams = yaml.safe_load(f)
+                print("   ✅ External hparams loaded successfully")
+            else:
+                print(f"   ⚠️ Hparams file not found: {self.hparams_path}")
+            
+            # Load prop_scaler
+            if self.prop_scaler_path.exists():
+                print(f"📄 Loading prop_scaler from: {self.prop_scaler_path}")
+                self.external_prop_scaler = torch.load(self.prop_scaler_path, map_location=self.device, weights_only=False)
+                print("   ✅ External prop_scaler loaded successfully")
+            else:
+                print(f"   ⚠️ Prop_scaler file not found: {self.prop_scaler_path}")
+                
+        except Exception as e:
+            print(f"   ⚠️ Error loading external configs: {e}")
     
     def _load_full_model(self):
         """Load the complete CDVAE model with proper architecture"""
@@ -76,11 +113,11 @@ class ImprovedCDVAELoader:
                 print(f"     latent_dim: {hparams.get('latent_dim')}")
                 print(f"     max_atoms: {hparams.get('max_atoms')}")
                 
-                # Try to create CDVAE model
+                # Try to create EnhancedCDVAE model (this is what the checkpoint contains!)
                 try:
-                    # Method 1: Direct instantiation with fixed hparams
-                    self.model = CDVAE(**hparams)
-                    print("✅ CDVAE model created successfully!")
+                    # Method 1: Direct instantiation with EnhancedCDVAE
+                    self.model = EnhancedCDVAE(**hparams)
+                    print("✅ EnhancedCDVAE model created successfully!")
                     
                     # Load state dict
                     if 'state_dict' in checkpoint:
@@ -112,7 +149,7 @@ class ImprovedCDVAELoader:
                 # Method 2: Try with OmegaConf
                 try:
                     hparams_conf = OmegaConf.create(hparams)
-                    self.model = CDVAE(hparams_conf)
+                    self.model = EnhancedCDVAE(hparams_conf)
                     
                     if 'state_dict' in checkpoint:
                         self.model.load_state_dict(checkpoint['state_dict'], strict=False)
@@ -120,7 +157,7 @@ class ImprovedCDVAELoader:
                         self._initialize_scalers()
                         self.model.eval()
                         self.model.to(self.device)
-                        print("✅ CDVAE model loaded with OmegaConf!")
+                        print("✅ EnhancedCDVAE model loaded with OmegaConf!")
                         return
                         
                 except Exception as e2:
@@ -128,12 +165,12 @@ class ImprovedCDVAELoader:
                 
                 # Method 3: Try load_from_checkpoint
                 try:
-                    self.model = CDVAE.load_from_checkpoint(str(self.weights_path), strict=False)
+                    self.model = EnhancedCDVAE.load_from_checkpoint(str(self.weights_path), strict=False)
                     # Initialize missing scalers/normalizers
                     self._initialize_scalers()
                     self.model.eval()
                     self.model.to(self.device)
-                    print("✅ CDVAE model loaded with load_from_checkpoint!")
+                    print("✅ EnhancedCDVAE model loaded with load_from_checkpoint!")
                     return
                     
                 except Exception as e3:
@@ -149,83 +186,83 @@ class ImprovedCDVAELoader:
     def _fix_hyperparameters(self, hparams_raw: Dict) -> Dict:
         """Fix hyperparameters to be compatible with CDVAE constructor"""
         
-        # Create a clean hyperparameters dict
+        # Use exact hparams from the configuration file - this is EnhancedCDVAE!
+        print("   🔄 Using EnhancedCDVAE configuration from hparams file")
         hparams = {
-            'hidden_dim': hparams_raw.get('hidden_dim', 256),
-            'latent_dim': hparams_raw.get('latent_dim', 256),
-            'max_atoms': hparams_raw.get('max_atoms', 1000),
-            'num_targets': hparams_raw.get('num_targets', 1),
-            'fc_num_layers': hparams_raw.get('fc_num_layers', 3),
-            'sigma_begin': hparams_raw.get('sigma_begin', 10.0),
-            'sigma_end': hparams_raw.get('sigma_end', 0.01),
-            'num_noise_level': hparams_raw.get('num_noise_level', 50),
-            'type_sigma_begin': hparams_raw.get('type_sigma_begin', 5.0),
-            'type_sigma_end': hparams_raw.get('type_sigma_end', 0.01),
-            'teacher_forcing_max_epoch': hparams_raw.get('teacher_forcing_max_epoch', 500),
-            'teacher_forcing_lattice': hparams_raw.get('teacher_forcing_lattice', True),
-            'cost_natom': hparams_raw.get('cost_natom', 1.0),
-            'cost_coord': hparams_raw.get('cost_coord', 1.0),
-            'cost_type': hparams_raw.get('cost_type', 1.0),
-            'cost_lattice': hparams_raw.get('cost_lattice', 1.0),
-            'cost_composition': hparams_raw.get('cost_composition', 1.0),
-            'cost_property': hparams_raw.get('cost_property', 1.0),
-            'beta': hparams_raw.get('beta', 0.01),
-            'predict_property': hparams_raw.get('predict_property', False),
+            # Core model parameters from hparams
+            'hidden_dim': 256,  # From hparams line 107
+            'latent_dim': 256,  # From hparams line 108
+            'fc_num_layers': 2,  # From hparams line 109
+            'max_atoms': 20,     # From hparams line 110
+            
+            # Cost parameters from hparams
+            'cost_natom': 2.0,
+            'cost_natom_enhanced': 3.0,  # EnhancedCDVAE specific
+            'cost_coord': 10.0,
+            'cost_type': 1.0,
+            'cost_lattice': 10.0,
+            'cost_composition': 1.5,
+            'cost_edge': 10.0,           # EnhancedCDVAE specific
+            'cost_property': 1.0,
+            'beta': 0.01,
+            'beta_start': 0.0,           # EnhancedCDVAE specific
+            'beta_end': 0.01,            # EnhancedCDVAE specific
+            'beta_warmup_epochs': 15,    # EnhancedCDVAE specific
+            'beta_schedule': 'cosine',   # EnhancedCDVAE specific
+            'kld_capacity': 0.0,         # EnhancedCDVAE specific
+            
+            # Transformer parameters (EnhancedCDVAE specific)
+            'transformer_layers': 3,
+            'attention_heads': 8,
+            'dropout_rate': 0.1,
+            
+            # Other parameters
+            'teacher_forcing_lattice': True,
+            'teacher_forcing_max_epoch': 10,
+            'max_neighbors': 20,
+            'radius': 7.0,
+            'sigma_begin': 10.0,
+            'sigma_end': 0.01,
+            'type_sigma_begin': 5.0,
+            'type_sigma_end': 0.01,
+            'num_noise_level': 50,
+            'predict_property': False,
         }
         
-        # Handle encoder configuration
-        if 'encoder' in hparams_raw and isinstance(hparams_raw['encoder'], dict):
-            encoder_config = hparams_raw['encoder'].copy()
-            # Ensure num_targets matches latent_dim
-            encoder_config['num_targets'] = hparams['latent_dim']
-            hparams['encoder'] = encoder_config
-        else:
-            # Default encoder configuration
-            hparams['encoder'] = {
-                '_target_': 'cdvae.pl_modules.gnn.DimeNetPlusPlusWrap',
-                'hidden_channels': hparams['hidden_dim'],
-                'out_emb_channels': hparams['hidden_dim'],
-                'num_blocks': 4,
-                'int_emb_size': 64,
-                'basis_emb_size': 8,
-                'num_spherical': 7,
-                'num_radial': 6,
-                'otf_graph': False,
-                'cutoff': 7.0,
-                'max_num_neighbors': 20,
-                'envelope_exponent': 5,
-                'num_before_skip': 1,
-                'num_after_skip': 2,
-                'num_output_layers': 3,
-                'readout': 'mean',
-                'num_targets': hparams['latent_dim']
-            }
+        # Handle encoder configuration - exact from hparams
+        print("   🔄 Using encoder configuration from hparams file")
+        hparams['encoder'] = {
+            '_target_': 'cdvae.pl_modules.gnn.DimeNetPlusPlusWrap',
+            'num_targets': 1,            # From hparams line 83
+            'hidden_channels': 128,      # From hparams line 84
+            'num_blocks': 4,             # From hparams line 85
+            'int_emb_size': 64,          # From hparams line 86
+            'basis_emb_size': 8,         # From hparams line 87
+            'out_emb_channels': 256,     # From hparams line 88
+            'num_spherical': 7,          # From hparams line 89
+            'num_radial': 6,             # From hparams line 90
+            'otf_graph': False,          # From hparams line 91
+            'cutoff': 7.0,               # From hparams line 92
+            'max_num_neighbors': 20,     # From hparams line 93
+            'envelope_exponent': 5,      # From hparams line 94
+            'num_before_skip': 1,        # From hparams line 95
+            'num_after_skip': 2,         # From hparams line 96
+            'num_output_layers': 3,      # From hparams line 97
+            'readout': 'mean',           # From hparams line 98
+        }
         
-        # Handle decoder configuration
-        if 'decoder' in hparams_raw and isinstance(hparams_raw['decoder'], dict):
-            decoder_config = hparams_raw['decoder'].copy()
-            # Ensure dimensions match
-            decoder_config['hidden_dim'] = hparams['hidden_dim']
-            decoder_config['latent_dim'] = hparams['latent_dim']
-            # Fix the scale_file path issue
-            if 'scale_file' in decoder_config:
-                # Use a local path that exists
-                scale_file_path = r'C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\cdvae\pl_modules\gemnet\gemnet-dT.json'
-                if os.path.exists(scale_file_path):
-                    decoder_config['scale_file'] = scale_file_path
-                else:
-                    # Remove the scale_file if it doesn't exist
-                    decoder_config.pop('scale_file', None)
-            hparams['decoder'] = decoder_config
-        else:
-            # Default decoder configuration
-            hparams['decoder'] = {
-                '_target_': 'cdvae.pl_modules.decoder.GemNetTDecoder',
-                'hidden_dim': hparams['hidden_dim'],
-                'latent_dim': hparams['latent_dim'],
-                'max_neighbors': 20,
-                'radius': 7.0,
-            }
+        # Handle decoder configuration - exact from hparams
+        print("   🔄 Using decoder configuration from hparams file")
+        scale_file_path = r'C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\cdvae\pl_modules\gemnet\gemnet-dT.json'
+        hparams['decoder'] = {
+            '_target_': 'cdvae.pl_modules.decoder.GemNetTDecoder',
+            'hidden_dim': 128,           # From hparams line 101
+            'latent_dim': 256,           # From hparams line 102
+            'max_neighbors': 20,         # From hparams line 103
+            'radius': 7.0,               # From hparams line 104
+            'scale_file': scale_file_path,  # Updated path
+        }
+        print(f"     ✅ Using scale_file: {scale_file_path}")
         
         # Add other required fields
         hparams['optim'] = hparams_raw.get('optim', {})
@@ -247,10 +284,17 @@ class ImprovedCDVAELoader:
             lattice_means = torch.tensor([8.0, 8.0, 8.0, 90.0, 90.0, 90.0], dtype=torch.float)  # a,b,c,α,β,γ
             lattice_stds = torch.tensor([3.0, 3.0, 3.0, 15.0, 15.0, 15.0], dtype=torch.float)   # reasonable std devs
             
-            # Create proper property scaler with reasonable defaults
-            # Assuming single property (like formation energy)
-            prop_means = torch.tensor([0.0], dtype=torch.float)
-            prop_stds = torch.tensor([1.0], dtype=torch.float)
+            # Use external prop_scaler if available, otherwise create defaults
+            if self.external_prop_scaler is not None:
+                print("   🔄 Using external prop_scaler")
+                prop_scaler = self.external_prop_scaler
+            else:
+                print("   🔄 Using default prop_scaler")
+                # Create proper property scaler with reasonable defaults
+                # Assuming single property (like formation energy)
+                prop_means = torch.tensor([0.0], dtype=torch.float)
+                prop_stds = torch.tensor([1.0], dtype=torch.float)
+                prop_scaler = StandardScalerTorch(means=prop_means, stds=prop_stds)
             
             # CRITICAL: Add lattice_scaler to the main model
             if not hasattr(self.model, 'lattice_scaler') or self.model.lattice_scaler is None:
@@ -259,7 +303,7 @@ class ImprovedCDVAELoader:
             
             # Add property scaler to the main model
             if not hasattr(self.model, 'scaler') or self.model.scaler is None:
-                self.model.scaler = StandardScalerTorch(means=prop_means, stds=prop_stds)
+                self.model.scaler = prop_scaler
                 print("     ✅ Added proper property scaler to model")
             
             # Check if model has decoder and if it needs scalers
@@ -268,12 +312,12 @@ class ImprovedCDVAELoader:
                 
                 # Initialize scaler if missing
                 if not hasattr(decoder, 'scaler') or decoder.scaler is None:
-                    decoder.scaler = StandardScalerTorch(means=prop_means, stds=prop_stds)
+                    decoder.scaler = prop_scaler
                     print("     ✅ Added proper scaler to decoder")
                 
                 # Initialize normalizer if missing (use same as scaler for simplicity)
                 if not hasattr(decoder, 'normalizer') or decoder.normalizer is None:
-                    decoder.normalizer = StandardScalerTorch(means=prop_means, stds=prop_stds)
+                    decoder.normalizer = prop_scaler
                     print("     ✅ Added proper normalizer to decoder")
             
             # Check if model has encoder and if it needs scalers
@@ -281,7 +325,7 @@ class ImprovedCDVAELoader:
                 encoder = self.model.encoder
                 
                 if not hasattr(encoder, 'scaler') or encoder.scaler is None:
-                    encoder.scaler = StandardScalerTorch(means=prop_means, stds=prop_stds)
+                    encoder.scaler = prop_scaler
                     print("     ✅ Added proper scaler to encoder")
             
             print("   ✅ Proper CDVAE scaler initialization complete")
@@ -584,7 +628,7 @@ class ImprovedCDVAELoader:
 
 def test_improved_cdvae_loader():
     """Test the improved CDVAE loader"""
-    weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\cdvae_weights.ckpt"
+    weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\new_cdvae_weights.ckpt"
     
     try:
         loader = ImprovedCDVAELoader(weights_path)

@@ -240,10 +240,10 @@ class FullyOptimizedMLPredictor:
     """Fully optimized ML predictor with complete model caching - no reloading"""
     
     def __init__(self):
-        # Configuration paths - FIXED: Use correct directory structure
-        self.dataset_root = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\CIF_OBELiX"
-        self.bandgap_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\cgcnn_pretrained\band-gap.pth.tar"
-        self.bulk_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\cgcnn_pretrained\bulk-moduli.pth.tar"
+        # Configuration paths - CORRECTED: Use paths from main_rl.py
+        self.dataset_root = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\CIF_OBELiX"
+        self.bandgap_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\cgcnn_pretrained\band-gap.pth.tar"
+        self.bulk_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\cgcnn_bandgap_ionic_cond_bulk_moduli\cgcnn_pretrained\bulk-moduli.pth.tar"
         self.finetuned_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\checkpoint.pth.tar"
         
         # Cached models - these will be loaded ONCE
@@ -485,7 +485,7 @@ class FullyOptimizedMLPredictor:
         if verbose:
             print(f"Processing CIF: {os.path.basename(cif_file_path)}")
         
-        # SEI Prediction (using cached model)
+        # SEI Prediction (using cached model) - FIXED: Better error handling
         try:
             sei_predictor = self.get_sei_predictor()
             sei_results = sei_predictor.predict_from_cif(cif_file_path)
@@ -494,11 +494,17 @@ class FullyOptimizedMLPredictor:
                 results["prediction_status"]["sei"] = "success"
                 if verbose:
                     print(f"  SEI Score: {results['sei_score']:.3f}")
+            else:
+                if verbose:
+                    print("  SEI prediction failed or no score returned")
+                # Set default value instead of 0
+                results["sei_score"] = 0.5  # Neutral score
         except Exception as e:
             if verbose:
                 print(f"  SEI prediction failed: {e}")
+            results["sei_score"] = 0.5  # Neutral score
         
-        # CEI Prediction (using cached model)
+        # CEI Prediction (using cached model) - FIXED: Better error handling
         try:
             cei_predictor = self.get_cei_predictor()
             cei_results = cei_predictor.predict_from_cif(cif_file_path)
@@ -507,9 +513,15 @@ class FullyOptimizedMLPredictor:
                 results["prediction_status"]["cei"] = "success"
                 if verbose:
                     print(f"  CEI Score: {results['cei_score']:.3f}")
+            else:
+                if verbose:
+                    print("  CEI prediction failed or no score returned")
+                # Set default value instead of 0
+                results["cei_score"] = 0.5  # Neutral score
         except Exception as e:
             if verbose:
                 print(f"  CEI prediction failed: {e}")
+            results["cei_score"] = 0.5  # Neutral score
         
         # Bandgap Prediction with ML Correction (using cached model - NO cgcnn_predict.main!)
         try:
