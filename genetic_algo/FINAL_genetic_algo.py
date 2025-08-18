@@ -49,7 +49,7 @@ except ImportError as e:
 
 # Import the corrected ML predictor that uses main_rl.py architecture
 try:
-    from corrected_predictor import get_corrected_predictor
+    from genetic_algo.property_prediction_script import get_corrected_predictor
     # Get the global corrected predictor instance ONCE
     _global_predictor = get_corrected_predictor()
     
