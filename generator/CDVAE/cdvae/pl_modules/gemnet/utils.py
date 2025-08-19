@@ -16,6 +16,28 @@ def read_json(path):
     if not path.endswith(".json"):
         raise UserWarning(f"Path {path} is not a json-path.")
 
+    # Handle hardcoded paths from original training environment
+    import os
+    from pathlib import Path
+    
+    # If path starts with /workspace/inorganic_SEEs-1/, replace with current directory structure
+    if path.startswith('/workspace/inorganic_SEEs-1/'):
+        # Extract the relative path after the workspace prefix
+        relative_path = path.replace('/workspace/inorganic_SEEs-1/', '')
+        # Get the current file's directory and navigate to the project root
+        current_dir = Path(__file__).parent.parent.parent.parent.parent  # Go up to project root
+        new_path = current_dir / relative_path
+        if new_path.exists():
+            path = str(new_path)
+        else:
+            # Try alternative: look for the file in the current CDVAE structure
+            if 'gemnet-dT.json' in path:
+                # Look for gemnet-dT.json in the current gemnet directory
+                gemnet_dir = Path(__file__).parent  # Current gemnet directory
+                gemnet_file = gemnet_dir / 'gemnet-dT.json'
+                if gemnet_file.exists():
+                    path = str(gemnet_file)
+
     with open(path, "r") as f:
         content = json.load(f)
     return content

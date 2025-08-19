@@ -56,18 +56,63 @@ class TrainedCDVAELoader:
         print(f"Loading model from: {self.checkpoint_path}")
         print(f"Using device: {device}")
         
-        # Load checkpoint
-        checkpoint = torch.load(self.checkpoint_path, map_location=device)
+        # Import torch at the beginning to avoid scoping issues
+        import torch as torch_lib
+        
+        # Load checkpoint with PyTorch 2.6 compatibility
+        checkpoint = None
+        try:
+            # Try loading with weights_only=True first (safer)
+            checkpoint = torch_lib.load(self.checkpoint_path, map_location=device, weights_only=True)
+        except Exception as e:
+            if "omegaconf.dictconfig.DictConfig" in str(e) or "weights_only" in str(e) or "StandardScalerTorch" in str(e):
+                print("⚠️  PyTorch 2.6 compatibility: Adding safe globals for CDVAE classes")
+                try:
+                    # Add safe globals for CDVAE-specific classes
+                    import torch.serialization
+                    from cdvae.common.data_utils import StandardScalerTorch
+                    
+                    # Use safe_globals context manager to allow CDVAE classes
+                    with torch_lib.serialization.safe_globals([StandardScalerTorch]):
+                        checkpoint = torch_lib.load(self.checkpoint_path, map_location=device, weights_only=True)
+                    print("✅ Model loaded with safe globals for CDVAE classes")
+                except Exception as e2:
+                    print("⚠️  Fallback: Loading with weights_only=False for full compatibility")
+                    # Load with weights_only=False for omegaconf compatibility
+                    checkpoint = torch_lib.load(self.checkpoint_path, map_location=device, weights_only=False)
+            else:
+                raise e
         
         # Create model instance from hyperparameters
-        model = EnhancedCDVAE.load_from_checkpoint(
-            self.checkpoint_path,
-            map_location=device
-        )
+        try:
+            model = EnhancedCDVAE.load_from_checkpoint(
+                self.checkpoint_path,
+                map_location=device
+            )
+        except Exception as e:
+            if "omegaconf.dictconfig.DictConfig" in str(e) or "weights_only" in str(e):
+                print("⚠️  PyTorch 2.6 compatibility: Loading checkpoint with weights_only=False")
+                # For PyTorch Lightning load_from_checkpoint, we need to handle this differently
+                # Let's try a direct approach
+                import omegaconf
+                torch_lib.serialization.add_safe_globals([omegaconf.dictconfig.DictConfig])
+                model = EnhancedCDVAE.load_from_checkpoint(
+                    self.checkpoint_path,
+                    map_location=device
+                )
+            else:
+                raise e
         
         # Set to evaluation mode
         model.eval()
         model.to(device)
+        
+        # Load and set scalers for the model
+        lattice_scaler, prop_scaler = self.load_scalers()
+        if lattice_scaler is not None:
+            model.lattice_scaler = lattice_scaler
+        if prop_scaler is not None:
+            model.scaler = prop_scaler
         
         self.model = model
         print("✅ Model loaded successfully!")
@@ -80,23 +125,57 @@ class TrainedCDVAELoader:
         Returns:
             tuple: (lattice_scaler, prop_scaler)
         """
-        lattice_scaler_path = self.scalers_dir / "lattice_scaler.pt"
+        lattice_scaler_path = self.scalers_dir / "new_lattice_scaler.pt"
         prop_scaler_path = self.scalers_dir / "new_prop_scaler.pt"
         
         lattice_scaler = None
         prop_scaler = None
         
         if lattice_scaler_path.exists():
-            lattice_scaler = torch.load(lattice_scaler_path)
-            print("✅ Lattice scaler loaded")
+            try:
+                # Use the same PyTorch 2.6 compatibility approach as model loading
+                import torch as torch_lib
+                try:
+                    lattice_scaler = torch_lib.load(lattice_scaler_path, weights_only=True)
+                except Exception as e:
+                    if "StandardScalerTorch" in str(e) or "weights_only" in str(e):
+                        # Use safe globals for StandardScalerTorch
+                        from cdvae.common.data_utils import StandardScalerTorch
+                        with torch_lib.serialization.safe_globals([StandardScalerTorch]):
+                            lattice_scaler = torch_lib.load(lattice_scaler_path, weights_only=True)
+                    else:
+                        # Fallback to weights_only=False
+                        lattice_scaler = torch_lib.load(lattice_scaler_path, weights_only=False)
+                print("✅ Lattice scaler loaded")
+            except Exception as e:
+                print(f"⚠️  Could not load lattice scaler: {e}")
+                lattice_scaler = None
         else:
             print("⚠️  Lattice scaler not found")
+            lattice_scaler = None
             
         if prop_scaler_path.exists():
-            prop_scaler = torch.load(prop_scaler_path)
-            print("✅ Property scaler loaded")
+            try:
+                # Use the same PyTorch 2.6 compatibility approach as model loading
+                import torch as torch_lib
+                try:
+                    prop_scaler = torch_lib.load(prop_scaler_path, weights_only=True)
+                except Exception as e:
+                    if "StandardScalerTorch" in str(e) or "weights_only" in str(e):
+                        # Use safe globals for StandardScalerTorch
+                        from cdvae.common.data_utils import StandardScalerTorch
+                        with torch_lib.serialization.safe_globals([StandardScalerTorch]):
+                            prop_scaler = torch_lib.load(prop_scaler_path, weights_only=True)
+                    else:
+                        # Fallback to weights_only=False
+                        prop_scaler = torch_lib.load(prop_scaler_path, weights_only=False)
+                print("✅ Property scaler loaded")
+            except Exception as e:
+                print(f"⚠️  Could not load property scaler: {e}")
+                prop_scaler = None
         else:
             print("⚠️  Property scaler not found")
+            prop_scaler = None
             
         self.lattice_scaler = lattice_scaler
         self.prop_scaler = prop_scaler
@@ -109,7 +188,7 @@ class TrainedCDVAELoader:
         
         Args:
             num_samples (int): Number of structures to generate
-            num_atoms (int, optional): Target number of atoms
+            num_atoms (int, optional): Target number of atoms (ignored for compatibility)
             
         Returns:
             list: Generated crystal structures
@@ -120,11 +199,18 @@ class TrainedCDVAELoader:
         print(f"Generating {num_samples} crystal structures...")
         
         with torch.no_grad():
-            # Generate structures
-            generated = self.model.sample(
-                num_samples=num_samples,
-                num_atoms=num_atoms
+            # Create Langevin dynamics configuration for EnhancedCDVAE.sample()
+            from types import SimpleNamespace
+            ld_kwargs = SimpleNamespace(
+                n_step_each=100,
+                step_lr=1e-4,
+                min_sigma=0.0,
+                save_traj=False,
+                disable_bar=True
             )
+            
+            # Generate structures using EnhancedCDVAE.sample() with required ld_kwargs
+            generated = self.model.sample(num_samples=num_samples, ld_kwargs=ld_kwargs)
             
         print(f"✅ Generated {len(generated)} structures")
         return generated

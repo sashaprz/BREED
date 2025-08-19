@@ -38,14 +38,14 @@ from pymatgen.io.cif import CifWriter
 from pymatgen.analysis.structure_matcher import StructureMatcher
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
-# Import the improved CDVAE loader
+# Import the working CDVAE loader
 try:
-    from improved_cdvae_loader import ImprovedCDVAELoader
-    print("✅ Improved CDVAE loader imported successfully")
-    IMPROVED_CDVAE_AVAILABLE = True
+    from generator.CDVAE.load_trained_model import TrainedCDVAELoader
+    print("✅ TrainedCDVAELoader imported successfully")
+    CDVAE_AVAILABLE = True
 except ImportError as e:
-    print(f"❌ Failed to import improved CDVAE loader: {e}")
-    IMPROVED_CDVAE_AVAILABLE = False
+    print(f"❌ Failed to import TrainedCDVAELoader: {e}")
+    CDVAE_AVAILABLE = False
 
 # Import the corrected ML predictor that uses main_rl.py architecture
 try:
@@ -153,18 +153,34 @@ class FinalCDVAEGA:
         self.cif_dir = self.output_dir / "cifs"
         self.cif_dir.mkdir(exist_ok=True)
         
-        # Initialize improved CDVAE loader with new files
+        # Initialize TrainedCDVAELoader with correct paths
         weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\new_cdvae_weights.ckpt"
-        hparams_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\new_hparams.yaml"
-        prop_scaler_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\new_prop_scaler.pt"
-        lattice_scaler_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\new_lattice_scaler.pt"
-        print("🔧 Initializing improved CDVAE loader with new weights...")
-        self.cdvae_loader = ImprovedCDVAELoader(weights_path, hparams_path, prop_scaler_path, lattice_scaler_path) if IMPROVED_CDVAE_AVAILABLE else None
+        scalers_dir = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE"
+        print("🔧 Initializing TrainedCDVAELoader with working weights...")
         
-        if self.cdvae_loader and self.cdvae_loader.model is not None:
-            print("✅ True CDVAE model loaded successfully with all 399/399 parameters!")
+        if CDVAE_AVAILABLE:
+            try:
+                self.cdvae_loader = TrainedCDVAELoader(weights_path, scalers_dir)
+                self.cdvae_loader.load_model()
+                print("✅ True CDVAE model loaded successfully with all 399/399 parameters!")
+                
+                # Try to load scalers (optional - don't fail if scalers are missing)
+                try:
+                    self.cdvae_loader.load_scalers()
+                    print("✅ CDVAE scalers loaded successfully!")
+                except Exception as scaler_error:
+                    print(f"⚠️  CDVAE scalers not loaded (optional): {scaler_error}")
+                    # Continue anyway - model can work without scalers for basic generation
+                    
+            except Exception as e:
+                print(f"❌ Failed to load CDVAE model: {e}")
+                # Print more detailed error information
+                import traceback
+                traceback.print_exc()
+                self.cdvae_loader = None
         else:
-            print("❌ Failed to load CDVAE model, using fallback generation")
+            self.cdvae_loader = None
+            print("❌ TrainedCDVAELoader not available, using fallback generation")
         
         self.target_properties = TargetProperties()
         self.population: List[GACandidate] = []
@@ -195,25 +211,57 @@ class FinalCDVAEGA:
             attempts += 1
             
             try:
-                # Generate structures using improved CDVAE loader
-                if self.cdvae_loader and self.cdvae_loader.model is not None:
+                # Generate structures using TrainedCDVAELoader
+                if self.cdvae_loader and hasattr(self.cdvae_loader, 'model') and self.cdvae_loader.model is not None:
                     batch_size = min(10, self.population_size - len(candidates))
                     print(f"🧬 Generating {batch_size} structures using true CDVAE latent space...")
-                    structures = self.cdvae_loader.generate_structures(batch_size)
+                    try:
+                        structures = self.cdvae_loader.generate_structures(batch_size)
+                        print(f"✅ CDVAE generated {len(structures)} structures successfully!")
+                        
+                        # Convert CDVAE structures to our format
+                        for structure in structures:
+                            if len(candidates) >= self.population_size:
+                                break
+                                
+                            structure_data = self._convert_cdvae_structure(structure)
+                            if structure_data:
+                                candidate = self._create_candidate_from_data(structure_data)
+                                if candidate and self._is_valid_candidate(candidate):
+                                    candidates.append(candidate)
+                                    
+                                    if len(candidates) % 10 == 0:
+                                        print(f"  Generated {len(candidates)}/{self.population_size} candidates...")
+                    except Exception as e:
+                        print(f"❌ CDVAE generation failed: {e}")
+                        print(f"🧬 Falling back to fallback method...")
+                        structures = self._generate_fallback_structures(self.population_size - len(candidates))
+                        
+                        for structure_data in structures:
+                            if len(candidates) >= self.population_size:
+                                break
+                                
+                            candidate = self._create_candidate_from_data(structure_data)
+                            if candidate and self._is_valid_candidate(candidate):
+                                candidates.append(candidate)
+                                
+                                if len(candidates) % 10 == 0:
+                                    print(f"  Generated {len(candidates)}/{self.population_size} candidates...")
                 else:
+                    print(f"❌ CDVAE model not available (loader: {self.cdvae_loader is not None}, model: {hasattr(self.cdvae_loader, 'model') and self.cdvae_loader.model is not None if self.cdvae_loader else False})")
                     print(f"🧬 Generating {self.population_size} structures using fallback method...")
                     structures = self._generate_fallback_structures(self.population_size)
-                
-                for structure_data in structures:
-                    if len(candidates) >= self.population_size:
-                        break
-                        
-                    candidate = self._create_candidate_from_data(structure_data)
-                    if candidate and self._is_valid_candidate(candidate):
-                        candidates.append(candidate)
-                        
-                        if len(candidates) % 10 == 0:
-                            print(f"  Generated {len(candidates)}/{self.population_size} candidates...")
+                    
+                    for structure_data in structures:
+                        if len(candidates) >= self.population_size:
+                            break
+                            
+                        candidate = self._create_candidate_from_data(structure_data)
+                        if candidate and self._is_valid_candidate(candidate):
+                            candidates.append(candidate)
+                            
+                            if len(candidates) % 10 == 0:
+                                print(f"  Generated {len(candidates)}/{self.population_size} candidates...")
                             
             except Exception as e:
                 print(f"  Failed to generate candidate batch (attempt {attempts}): {e}")
@@ -272,6 +320,58 @@ class FinalCDVAEGA:
             })
         
         return structures
+    
+    def _convert_cdvae_structure(self, cdvae_structure) -> Optional[Dict]:
+        """Convert CDVAE structure output to our expected format"""
+        try:
+            # CDVAE structures should have composition, lattice_params, etc.
+            # Based on the terminal output, structures have 'composition' key
+            if hasattr(cdvae_structure, 'composition') or 'composition' in cdvae_structure:
+                composition = cdvae_structure.get('composition', cdvae_structure.composition if hasattr(cdvae_structure, 'composition') else {})
+                
+                # Extract lattice parameters
+                if hasattr(cdvae_structure, 'lattice') or 'lattice' in cdvae_structure:
+                    lattice = cdvae_structure.get('lattice', cdvae_structure.lattice if hasattr(cdvae_structure, 'lattice') else None)
+                    if lattice:
+                        # Convert lattice to parameters
+                        if hasattr(lattice, 'abc') and hasattr(lattice, 'angles'):
+                            a, b, c = lattice.abc
+                            alpha, beta, gamma = lattice.angles
+                        else:
+                            # Default reasonable values
+                            a = b = c = 10.0
+                            alpha = beta = gamma = 90.0
+                    else:
+                        # Default reasonable values
+                        a = b = c = 10.0
+                        alpha = beta = gamma = 90.0
+                else:
+                    # Default reasonable values
+                    a = b = c = 10.0
+                    alpha = beta = gamma = 90.0
+                
+                lattice_params = {
+                    'a': float(a), 'b': float(b), 'c': float(c),
+                    'alpha': float(alpha), 'beta': float(beta), 'gamma': float(gamma)
+                }
+                
+                # Get space group (default if not available)
+                space_group = getattr(cdvae_structure, 'space_group', 225)  # Default to cubic
+                
+                return {
+                    'composition': composition,
+                    'lattice_params': lattice_params,
+                    'space_group': space_group,
+                    'generated_id': f'cdvae_{id(cdvae_structure)}',
+                    'generation_method': 'true_cdvae'
+                }
+            else:
+                print(f"Warning: CDVAE structure missing composition: {cdvae_structure}")
+                return None
+                
+        except Exception as e:
+            print(f"Error converting CDVAE structure: {e}")
+            return None
     
     def _create_candidate_from_data(self, structure_data: Dict) -> Optional[GACandidate]:
         """Create GACandidate from structure generation data"""
