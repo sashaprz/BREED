@@ -1,262 +1,135 @@
+"""
+Caching utilities for CDVAE data preprocessing.
+"""
 import os
 import pickle
 import hashlib
-import logging
-from pathlib import Path
-from typing import Any, Optional, Dict, List
-import torch
-import numpy as np
-from functools import wraps
 import time
-
-logger = logging.getLogger(__name__)
+from pathlib import Path
+from typing import Any, Optional, Dict
 
 
 class DataCache:
-    """
-    Enhanced caching system for CDVAE training data with memory management
-    and persistent storage capabilities.
-    """
+    """Simple file-based cache for preprocessed data."""
     
-    def __init__(self, cache_dir: str = "cache", max_memory_items: int = 1000):
+    def __init__(self, cache_dir: str):
         self.cache_dir = Path(cache_dir)
-        self.cache_dir.mkdir(exist_ok=True)
-        self.max_memory_items = max_memory_items
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
         
-        # In-memory cache for frequently accessed items
-        self.memory_cache: Dict[str, Any] = {}
-        self.access_times: Dict[str, float] = {}
-        self.access_counts: Dict[str, int] = {}
-        
-        # Metadata cache
-        self.metadata_file = self.cache_dir / "cache_metadata.pkl"
-        self.metadata = self._load_metadata()
-        
-    def _load_metadata(self) -> Dict[str, Any]:
-        """Load cache metadata from disk."""
-        if self.metadata_file.exists():
+    def _get_cache_path(self, key: str) -> Path:
+        """Get the cache file path for a given key."""
+        return self.cache_dir / f"{key}.pkl"
+    
+    def get(self, key: str) -> Optional[Any]:
+        """Get cached data by key."""
+        cache_path = self._get_cache_path(key)
+        if cache_path.exists():
             try:
-                with open(self.metadata_file, 'rb') as f:
-                    return pickle.load(f)
-            except Exception as e:
-                logger.warning(f"Failed to load cache metadata: {e}")
-        return {"file_hashes": {}, "cache_stats": {}}
-    
-    def _save_metadata(self):
-        """Save cache metadata to disk."""
-        try:
-            with open(self.metadata_file, 'wb') as f:
-                pickle.dump(self.metadata, f)
-        except Exception as e:
-            logger.warning(f"Failed to save cache metadata: {e}")
-    
-    def _get_file_hash(self, filepath: str) -> str:
-        """Generate hash for file to detect changes."""
-        hasher = hashlib.md5()
-        try:
-            with open(filepath, 'rb') as f:
-                for chunk in iter(lambda: f.read(4096), b""):
-                    hasher.update(chunk)
-            return hasher.hexdigest()
-        except Exception as e:
-            logger.warning(f"Failed to hash file {filepath}: {e}")
-            return str(time.time())  # Fallback to timestamp
-    
-    def _get_cache_key(self, *args, **kwargs) -> str:
-        """Generate cache key from arguments."""
-        key_data = str(args) + str(sorted(kwargs.items()))
-        return hashlib.md5(key_data.encode()).hexdigest()
-    
-    def _manage_memory_cache(self):
-        """Remove least recently used items from memory cache."""
-        if len(self.memory_cache) <= self.max_memory_items:
-            return
-            
-        # Sort by access time and remove oldest items
-        sorted_items = sorted(
-            self.access_times.items(), 
-            key=lambda x: x[1]
-        )
-        
-        items_to_remove = len(self.memory_cache) - self.max_memory_items + 100
-        for key, _ in sorted_items[:items_to_remove]:
-            if key in self.memory_cache:
-                del self.memory_cache[key]
-                del self.access_times[key]
-                if key in self.access_counts:
-                    del self.access_counts[key]
-    
-    def get(self, key: str, default: Any = None) -> Any:
-        """Get item from cache."""
-        current_time = time.time()
-        
-        # Check memory cache first
-        if key in self.memory_cache:
-            self.access_times[key] = current_time
-            self.access_counts[key] = self.access_counts.get(key, 0) + 1
-            return self.memory_cache[key]
-        
-        # Check disk cache
-        cache_file = self.cache_dir / f"{key}.pkl"
-        if cache_file.exists():
-            try:
-                with open(cache_file, 'rb') as f:
+                with open(cache_path, 'rb') as f:
                     data = pickle.load(f)
-                
-                # Add to memory cache
-                self.memory_cache[key] = data
-                self.access_times[key] = current_time
-                self.access_counts[key] = self.access_counts.get(key, 0) + 1
-                
-                self._manage_memory_cache()
+                print(f"Cache hit: {key}")
                 return data
             except Exception as e:
-                logger.warning(f"Failed to load cached data for key {key}: {e}")
-        
-        return default
+                print(f"Cache read error for {key}: {e}")
+                # Remove corrupted cache file
+                try:
+                    cache_path.unlink()
+                except:
+                    pass
+        return None
     
-    def set(self, key: str, value: Any, save_to_disk: bool = True):
-        """Set item in cache."""
-        current_time = time.time()
-        
-        # Add to memory cache
-        self.memory_cache[key] = value
-        self.access_times[key] = current_time
-        self.access_counts[key] = self.access_counts.get(key, 0) + 1
-        
-        # Save to disk if requested
-        if save_to_disk:
-            cache_file = self.cache_dir / f"{key}.pkl"
-            try:
-                with open(cache_file, 'wb') as f:
-                    pickle.dump(value, f)
-            except Exception as e:
-                logger.warning(f"Failed to save cached data for key {key}: {e}")
-        
-        self._manage_memory_cache()
+    def set(self, key: str, data: Any) -> None:
+        """Set cached data by key."""
+        cache_path = self._get_cache_path(key)
+        try:
+            with open(cache_path, 'wb') as f:
+                pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
+            print(f"Cache stored: {key}")
+        except Exception as e:
+            print(f"Cache write error for {key}: {e}")
     
-    def invalidate(self, key: str):
-        """Remove item from cache."""
-        if key in self.memory_cache:
-            del self.memory_cache[key]
-            del self.access_times[key]
-            if key in self.access_counts:
-                del self.access_counts[key]
-        
-        cache_file = self.cache_dir / f"{key}.pkl"
-        if cache_file.exists():
-            cache_file.unlink()
-    
-    def clear(self):
+    def clear(self) -> None:
         """Clear all cached data."""
-        self.memory_cache.clear()
-        self.access_times.clear()
-        self.access_counts.clear()
-        
-        # Remove all cache files
         for cache_file in self.cache_dir.glob("*.pkl"):
-            if cache_file.name != "cache_metadata.pkl":
+            try:
                 cache_file.unlink()
+            except:
+                pass
+        print(f"Cache cleared: {self.cache_dir}")
     
-    def get_stats(self) -> Dict[str, Any]:
-        """Get cache statistics."""
+    def size(self) -> int:
+        """Get number of cached items."""
+        return len(list(self.cache_dir.glob("*.pkl")))
+    
+    def info(self) -> Dict[str, Any]:
+        """Get cache information."""
+        cache_files = list(self.cache_dir.glob("*.pkl"))
+        total_size = sum(f.stat().st_size for f in cache_files)
         return {
-            "memory_cache_size": len(self.memory_cache),
-            "disk_cache_files": len(list(self.cache_dir.glob("*.pkl"))) - 1,  # Exclude metadata
-            "total_access_counts": sum(self.access_counts.values()),
-            "most_accessed": max(self.access_counts.items(), key=lambda x: x[1]) if self.access_counts else None,
+            "cache_dir": str(self.cache_dir),
+            "num_files": len(cache_files),
+            "total_size_mb": total_size / (1024 * 1024),
+            "files": [f.name for f in cache_files]
         }
 
 
-def cached_preprocessing(cache_dir: str = "preprocessing_cache"):
+def get_data_cache(cache_dir: str = "./data_cache") -> DataCache:
+    """Get a data cache instance."""
+    return DataCache(cache_dir)
+
+
+def cached_preprocessing(cache_key: str, preprocessing_func, *args, **kwargs):
     """
-    Decorator for caching preprocessing results.
+    Decorator-like function for caching preprocessing results.
+    
+    Args:
+        cache_key: Unique key for this preprocessing operation
+        preprocessing_func: Function to call if cache miss
+        *args, **kwargs: Arguments to pass to preprocessing_func
+    
+    Returns:
+        Cached or newly computed preprocessing results
     """
-    cache = DataCache(cache_dir)
+    cache = get_data_cache()
     
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            # Generate cache key
-            cache_key = cache._get_cache_key(func.__name__, *args, **kwargs)
-            
-            # Check if we have cached result
-            cached_result = cache.get(cache_key)
-            if cached_result is not None:
-                logger.info(f"Using cached result for {func.__name__}")
-                return cached_result
-            
-            # Compute result and cache it
-            logger.info(f"Computing and caching result for {func.__name__}")
-            result = func(*args, **kwargs)
-            cache.set(cache_key, result)
-            
-            return result
-        
-        wrapper.cache = cache
-        return wrapper
+    # Try to get from cache first
+    cached_result = cache.get(cache_key)
+    if cached_result is not None:
+        return cached_result
     
-    return decorator
+    # Cache miss - compute and store
+    print(f"Computing preprocessing for cache key: {cache_key}")
+    start_time = time.time()
+    result = preprocessing_func(*args, **kwargs)
+    end_time = time.time()
+    
+    print(f"Preprocessing completed in {end_time - start_time:.2f} seconds")
+    cache.set(cache_key, result)
+    
+    return result
 
 
-class BatchCache:
+def create_cache_key(data_path: str, **params) -> str:
     """
-    Cache for batched data to speed up training.
+    Create a unique cache key based on data path and parameters.
+    
+    Args:
+        data_path: Path to the data file
+        **params: Additional parameters that affect preprocessing
+    
+    Returns:
+        MD5 hash string to use as cache key
     """
+    # Include file modification time and size for cache invalidation
+    try:
+        stat = os.stat(data_path)
+        file_info = f"{data_path}_{stat.st_size}_{stat.st_mtime}"
+    except:
+        file_info = str(data_path)
     
-    def __init__(self, max_batches: int = 100):
-        self.max_batches = max_batches
-        self.batches: Dict[str, torch.Tensor] = {}
-        self.batch_order: List[str] = []
+    # Create string from all parameters
+    param_str = "_".join(f"{k}={v}" for k, v in sorted(params.items()))
+    cache_data = f"{file_info}_{param_str}"
     
-    def get_batch(self, batch_key: str) -> Optional[torch.Tensor]:
-        """Get cached batch."""
-        if batch_key in self.batches:
-            # Move to end (most recently used)
-            self.batch_order.remove(batch_key)
-            self.batch_order.append(batch_key)
-            return self.batches[batch_key]
-        return None
-    
-    def cache_batch(self, batch_key: str, batch_data: torch.Tensor):
-        """Cache batch data."""
-        if batch_key in self.batches:
-            # Update existing
-            self.batches[batch_key] = batch_data
-            self.batch_order.remove(batch_key)
-            self.batch_order.append(batch_key)
-        else:
-            # Add new batch
-            if len(self.batches) >= self.max_batches:
-                # Remove oldest batch
-                oldest_key = self.batch_order.pop(0)
-                del self.batches[oldest_key]
-            
-            self.batches[batch_key] = batch_data
-            self.batch_order.append(batch_key)
-    
-    def clear(self):
-        """Clear all cached batches."""
-        self.batches.clear()
-        self.batch_order.clear()
-
-
-# Global cache instances
-_data_cache = None
-_batch_cache = None
-
-
-def get_data_cache(cache_dir: str = "data_cache") -> DataCache:
-    """Get global data cache instance."""
-    global _data_cache
-    if _data_cache is None:
-        _data_cache = DataCache(cache_dir)
-    return _data_cache
-
-
-def get_batch_cache(max_batches: int = 100) -> BatchCache:
-    """Get global batch cache instance."""
-    global _batch_cache
-    if _batch_cache is None:
-        _batch_cache = BatchCache(max_batches)
-    return _batch_cache
+    # Return MD5 hash
+    return hashlib.md5(cache_data.encode()).hexdigest()

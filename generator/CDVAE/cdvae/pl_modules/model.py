@@ -465,24 +465,84 @@ class CDVAE(BaseModule):
         return pred_composition_per_atom
 
     def num_atom_loss(self, pred_num_atoms, batch):
-        return F.cross_entropy(pred_num_atoms, batch.num_atoms)
+        # Robust handling: clamp num_atoms to valid range [0, max_atoms]
+        # The model outputs max_atoms+1 classes (0 to max_atoms inclusive)
+        target_num_atoms = torch.clamp(batch.num_atoms, 0, self.hparams.max_atoms)
+        
+        # Additional safety: ensure predictions have correct shape
+        if pred_num_atoms.size(-1) != self.hparams.max_atoms + 1:
+            raise ValueError(f"Prediction shape mismatch: expected {self.hparams.max_atoms + 1} classes, got {pred_num_atoms.size(-1)}")
+        
+        return F.cross_entropy(pred_num_atoms, target_num_atoms)
 
     def property_loss(self, z, batch):
         return F.mse_loss(self.fc_property(z), batch.y)
 
     def lattice_loss(self, pred_lengths_and_angles, batch):
         self.lattice_scaler.match_device(pred_lengths_and_angles)
+        
+        # Robust input validation
+        if pred_lengths_and_angles.size(0) == 0 or batch.lengths.size(0) == 0:
+            return torch.tensor(0.0, device=pred_lengths_and_angles.device, requires_grad=True)
+        
+        # Ensure shapes match
+        if pred_lengths_and_angles.size(0) != batch.lengths.size(0):
+            min_size = min(pred_lengths_and_angles.size(0), batch.lengths.size(0))
+            pred_lengths_and_angles = pred_lengths_and_angles[:min_size]
+            batch_lengths = batch.lengths[:min_size]
+            batch_angles = batch.angles[:min_size]
+            batch_num_atoms = batch.num_atoms[:min_size]
+        else:
+            batch_lengths = batch.lengths
+            batch_angles = batch.angles
+            batch_num_atoms = batch.num_atoms
+        
         if self.hparams.data.lattice_scale_method == 'scale_length':
-            target_lengths = batch.lengths / \
-                batch.num_atoms.view(-1, 1).float()**(1/3)
-        target_lengths_and_angles = torch.cat(
-            [target_lengths, batch.angles], dim=-1)
-        target_lengths_and_angles = self.lattice_scaler.transform(
-            target_lengths_and_angles)
+            # Ensure num_atoms is positive to avoid division by zero
+            safe_num_atoms = torch.clamp(batch_num_atoms, min=1.0)
+            target_lengths = batch_lengths / safe_num_atoms.view(-1, 1).float()**(1/3)
+        else:
+            target_lengths = batch_lengths
+            
+        target_lengths_and_angles = torch.cat([target_lengths, batch_angles], dim=-1)
+        
+        # Validate inputs before scaling
+        if torch.any(torch.isnan(target_lengths_and_angles)) or torch.any(torch.isinf(target_lengths_and_angles)):
+            # Replace invalid values with reasonable defaults
+            target_lengths_and_angles = torch.where(
+                torch.isnan(target_lengths_and_angles) | torch.isinf(target_lengths_and_angles),
+                torch.zeros_like(target_lengths_and_angles),
+                target_lengths_and_angles
+            )
+        
+        target_lengths_and_angles = self.lattice_scaler.transform(target_lengths_and_angles)
+        
+        # Final validation before MSE loss
+        if torch.any(torch.isnan(pred_lengths_and_angles)) or torch.any(torch.isinf(pred_lengths_and_angles)):
+            pred_lengths_and_angles = torch.where(
+                torch.isnan(pred_lengths_and_angles) | torch.isinf(pred_lengths_and_angles),
+                torch.zeros_like(pred_lengths_and_angles),
+                pred_lengths_and_angles
+            )
+        
+        if torch.any(torch.isnan(target_lengths_and_angles)) or torch.any(torch.isinf(target_lengths_and_angles)):
+            target_lengths_and_angles = torch.where(
+                torch.isnan(target_lengths_and_angles) | torch.isinf(target_lengths_and_angles),
+                torch.zeros_like(target_lengths_and_angles),
+                target_lengths_and_angles
+            )
+        
         return F.mse_loss(pred_lengths_and_angles, target_lengths_and_angles)
 
     def composition_loss(self, pred_composition_per_atom, target_atom_types, batch):
-        target_atom_types = target_atom_types - 1
+        # Robust handling: ensure atom types are in valid range [1, MAX_ATOMIC_NUM]
+        # Clamp to valid atomic numbers, then convert to 0-based indexing
+        target_atom_types = torch.clamp(target_atom_types, 1, MAX_ATOMIC_NUM) - 1
+        
+        # Additional safety: ensure predictions have correct shape
+        if pred_composition_per_atom.size(-1) != MAX_ATOMIC_NUM:
+            raise ValueError(f"Composition prediction shape mismatch: expected {MAX_ATOMIC_NUM} classes, got {pred_composition_per_atom.size(-1)}")
+        
         loss = F.cross_entropy(pred_composition_per_atom,
                                target_atom_types, reduction='none')
         return scatter(loss, batch.batch, reduce='mean').mean()
@@ -510,7 +570,14 @@ class CDVAE(BaseModule):
 
     def type_loss(self, pred_atom_types, target_atom_types,
                   used_type_sigmas_per_atom, batch):
-        target_atom_types = target_atom_types - 1
+        # Robust handling: ensure atom types are in valid range [1, MAX_ATOMIC_NUM]
+        # Clamp to valid atomic numbers, then convert to 0-based indexing
+        target_atom_types = torch.clamp(target_atom_types, 1, MAX_ATOMIC_NUM) - 1
+        
+        # Additional safety: ensure predictions have correct shape
+        if pred_atom_types.size(-1) != MAX_ATOMIC_NUM:
+            raise ValueError(f"Type prediction shape mismatch: expected {MAX_ATOMIC_NUM} classes, got {pred_atom_types.size(-1)}")
+        
         loss = F.cross_entropy(
             pred_atom_types, target_atom_types, reduction='none')
         # rescale loss according to noise

@@ -30,8 +30,11 @@ class CrystDataset(Dataset):
         self.name = name
         self.use_cache = use_cache
         
-        # Initialize cache with fixed directory
-        self.cache = get_data_cache("./data_cache") if use_cache else None
+        # Initialize cache with absolute directory that's experiment-independent
+        import os
+        from cdvae.common.utils import PROJECT_ROOT
+        cache_dir = os.path.join(PROJECT_ROOT, "shared_data_cache")
+        self.cache = get_data_cache(cache_dir) if use_cache else None
         
         # Check if the file is a pickle file or CSV file
         if str(path).endswith('.pkl'):

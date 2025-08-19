@@ -1,4 +1,5 @@
-.venv/
+venv/
+cdvae_env
 # Python cache files
 __pycache__
 

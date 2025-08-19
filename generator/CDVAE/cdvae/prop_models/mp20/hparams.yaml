@@ -1,5 +1,5 @@
 data:
-  root_path: /root/inorganic_SEEs-1/generator/CDVAE/data  # Update this path for your setup
+  root_path: /pool/sasha/inorganic_SEEs/generator/CDVAE/data/mp_20  # Updated to your actual path
   prop: formation_energy_per_atom
   num_targets: 1
   niggli: true
@@ -20,7 +20,7 @@ data:
       train:
         _target_: cdvae.pl_data.dataset.CrystDataset
         name: Formation energy train
-        path: ${data.root_path}/train.csv
+        path: ${data.root_path}/train.pkl
         prop: ${data.prop}
         niggli: ${data.niggli}
         primitive: ${data.primitive}
@@ -30,7 +30,7 @@ data:
       val:
       - _target_: cdvae.pl_data.dataset.CrystDataset
         name: Formation energy val
-        path: ${data.root_path}/val.csv
+        path: ${data.root_path}/val.pkl
         prop: ${data.prop}
         niggli: ${data.niggli}
         primitive: ${data.primitive}
@@ -40,7 +40,7 @@ data:
       test:
       - _target_: cdvae.pl_data.dataset.CrystDataset
         name: Formation energy test
-        path: ${data.root_path}/test.csv
+        path: ${data.root_path}/test.pkl
         prop: ${data.prop}
         niggli: ${data.niggli}
         primitive: ${data.primitive}
@@ -126,7 +126,7 @@ train:
     precision: 32
     max_epochs: ${data.train_max_epochs}
     accumulate_grad_batches: 1
-    num_sanity_val_steps: 2f
+    num_sanity_val_steps: 2
     gradient_clip_val: 0.5
     gradient_clip_algorithm: value
     profiler: simple

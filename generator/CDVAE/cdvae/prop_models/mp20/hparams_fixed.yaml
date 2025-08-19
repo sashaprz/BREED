@@ -1,5 +1,5 @@
 data:
-  root_path: /root/inorganic_SEEs-1/generator/CDVAE/data/mp_20  # Updated to your actual path
+  root_path: /pool/sasha/inorganic_SEEs/generator/CDVAE/data/mp_20  # Updated to your actual path
   prop: formation_energy_per_atom
   num_targets: 1
   niggli: true
@@ -11,7 +11,7 @@ data:
   max_atoms: 20
   otf_graph: false
   eval_model_name: mp20
-  train_max_epochs: 1000
+  train_max_epochs: 200
   early_stopping_patience: 100000
   teacher_forcing_max_epoch: 500
   datamodule:
@@ -20,7 +20,7 @@ data:
       train:
         _target_: cdvae.pl_data.dataset.CrystDataset
         name: Formation energy train
-        path: ${data.root_path}/train.csv
+        path: ${data.root_path}/train.pkl
         prop: ${data.prop}
         niggli: ${data.niggli}
         primitive: ${data.primitive}
@@ -30,7 +30,7 @@ data:
       val:
       - _target_: cdvae.pl_data.dataset.CrystDataset
         name: Formation energy val
-        path: ${data.root_path}/val.csv
+        path: ${data.root_path}/val.pkl
         prop: ${data.prop}
         niggli: ${data.niggli}
         primitive: ${data.primitive}
@@ -40,7 +40,7 @@ data:
       test:
       - _target_: cdvae.pl_data.dataset.CrystDataset
         name: Formation energy test
-        path: ${data.root_path}/test.csv
+        path: ${data.root_path}/test.pkl
         prop: ${data.prop}
         niggli: ${data.niggli}
         primitive: ${data.primitive}

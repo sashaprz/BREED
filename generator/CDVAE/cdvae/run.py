@@ -149,15 +149,15 @@ def run(cfg: DictConfig) -> None:
         **cfg.train.pl_trainer,
     }
     
-    # Handle checkpoint resumption for newer PyTorch Lightning versions
-    if ckpt is not None:
-        trainer_kwargs["ckpt_path"] = ckpt
-    
     trainer = pl.Trainer(**trainer_kwargs)
     log_hyperparameters(trainer=trainer, model=model, cfg=cfg)
 
     hydra.utils.log.info("Starting training!")
-    trainer.fit(model=model, datamodule=datamodule)
+    # Handle checkpoint resumption for newer PyTorch Lightning versions
+    if ckpt is not None:
+        trainer.fit(model=model, datamodule=datamodule, ckpt_path=ckpt)
+    else:
+        trainer.fit(model=model, datamodule=datamodule)
 
     hydra.utils.log.info("Starting testing!")
     trainer.test(datamodule=datamodule)

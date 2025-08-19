@@ -1,0 +1,21 @@
+{
+  "data_path": "data/ionic_conductivity_dataset.pkl",
+  "prop_name": "ionic_conductivity",
+  "train_ratio": 0.8,
+  "val_ratio": 0.1,
+  "test_ratio": 0.1,
+  "hidden_dim": 256,
+  "num_layers": 6,
+  "dropout": 0.2,
+  "batch_size": 16,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0001,
+  "num_epochs": 300,
+  "patience": 30,
+  "min_delta": 1e-05,
+  "conductivity_threshold": 1e-12,
+  "output_dir": "outputs/enhanced_cgcnn_ionic_conductivity",
+  "device": "auto",
+  "log_every": 5,
+  "save_every": 10
+}
