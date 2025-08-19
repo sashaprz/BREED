@@ -122,8 +122,8 @@ model:
   beta_warmup_epochs: 15
   beta_schedule: cosine
   kld_capacity: 0.0
-  transformer_layers: 3
-  attention_heads: 8
+  transformer_layers: 2
+  attention_heads: 4
   dropout_rate: 0.1
   teacher_forcing_lattice: true
   teacher_forcing_max_epoch: ${data.teacher_forcing_max_epoch}

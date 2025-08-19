@@ -94,14 +94,14 @@ class TransformerBlock(nn.Module):
 class ImprovedAtomCountPredictor(nn.Module):
     """Enhanced atom count predictor with attention mechanism and dynamic range."""
     
-    def __init__(self, latent_dim, hidden_dim, max_atoms, num_layers=3, num_heads=8):
+    def __init__(self, latent_dim, hidden_dim, max_atoms, num_layers=2, num_heads=4):
         super().__init__()
         self.latent_dim = latent_dim
         self.max_atoms = max_atoms
-        # Use a much larger range to handle any realistic crystal structure
-        self.extended_max_atoms = max(max_atoms * 4, 500)  # Support up to 500 atoms
+        # Optimized range for electrolyte structures (up to 100 atoms)
+        self.extended_max_atoms = max(max_atoms * 4, 100)  # Support up to 100 atoms
         
-        # Transformer layers for better representation
+        # Optimized transformer layers (2 layers, 4 heads)
         self.transformer_layers = nn.ModuleList([
             TransformerBlock(latent_dim, num_heads, hidden_dim * 2)
             for _ in range(num_layers)
@@ -195,13 +195,13 @@ class EnhancedCDVAE(BaseModule):
         self.fc_var = nn.Linear(self.hparams.latent_dim,
                                 self.hparams.latent_dim)
 
-        # Enhanced atom count predictor
+        # Optimized atom count predictor (2 layers, 4 heads)
         self.atom_count_predictor = ImprovedAtomCountPredictor(
-            self.hparams.latent_dim, 
+            self.hparams.latent_dim,
             self.hparams.hidden_dim,
             self.hparams.max_atoms,
-            num_layers=getattr(self.hparams, 'transformer_layers', 3),
-            num_heads=getattr(self.hparams, 'attention_heads', 8)
+            num_layers=getattr(self.hparams, 'transformer_layers', 2),
+            num_heads=getattr(self.hparams, 'attention_heads', 4)
         )
         
         # Improved lattice predictor with residual connections
