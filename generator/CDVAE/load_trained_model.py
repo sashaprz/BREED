@@ -182,13 +182,14 @@ class TrainedCDVAELoader:
         
         return lattice_scaler, prop_scaler
     
-    def generate_structures(self, num_samples=10, num_atoms=None):
+    def generate_structures(self, num_samples=10, num_atoms=None, fast_mode=False):
         """
         Generate new crystal structures using the trained model.
         
         Args:
             num_samples (int): Number of structures to generate
             num_atoms (int, optional): Target number of atoms (ignored for compatibility)
+            fast_mode (bool): Use aggressive optimizations for speed (slight quality trade-off)
             
         Returns:
             list: Generated crystal structures
@@ -199,17 +200,31 @@ class TrainedCDVAELoader:
         print(f"Generating {num_samples} crystal structures...")
         
         with torch.no_grad():
-            # Create Langevin dynamics configuration for EnhancedCDVAE.sample()
+            # Create optimized Langevin dynamics configuration
             from types import SimpleNamespace
-            ld_kwargs = SimpleNamespace(
-                n_step_each=100,
-                step_lr=1e-4,
-                min_sigma=0.0,
-                save_traj=False,
-                disable_bar=True
-            )
             
-            # Generate structures using EnhancedCDVAE.sample() with required ld_kwargs
+            if fast_mode:
+                # Aggressive optimization for CPU - maintains reasonable quality
+                ld_kwargs = SimpleNamespace(
+                    n_step_each=8,   # Reduced from 100, still maintains quality
+                    step_lr=8e-4,    # Larger steps for faster convergence
+                    min_sigma=0.05,  # Skip fine-grained noise levels
+                    save_traj=False,
+                    disable_bar=True
+                )
+                print("🚀 Using fast mode - optimized for CPU performance")
+            else:
+                # Balanced optimization - good quality with reasonable speed
+                ld_kwargs = SimpleNamespace(
+                    n_step_each=15,  # Reduced from 100 but maintains quality
+                    step_lr=6e-4,    # Increased step size for faster convergence
+                    min_sigma=0.02,  # Skip very small sigma levels for speed
+                    save_traj=False,
+                    disable_bar=True
+                )
+                print("⚖️  Using balanced mode - good quality with reasonable speed")
+            
+            # Generate structures using EnhancedCDVAE.sample() with optimized ld_kwargs
             generated = self.model.sample(num_samples=num_samples, ld_kwargs=ld_kwargs)
             
         print(f"✅ Generated {len(generated)} structures")

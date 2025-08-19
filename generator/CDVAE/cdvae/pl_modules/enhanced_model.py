@@ -631,7 +631,7 @@ class EnhancedCDVAE(BaseModule):
     # Include all other methods from the original CDVAE class...
     @torch.no_grad()
     def langevin_dynamics(self, z, ld_kwargs, gt_num_atoms=None, gt_atom_types=None):
-        """Same as original but with enhanced atom count prediction."""
+        """Optimized Langevin dynamics with inference speedups."""
         if ld_kwargs.save_traj:
             all_frac_coords = []
             all_pred_cart_coord_diff = []
@@ -655,10 +655,10 @@ class EnhancedCDVAE(BaseModule):
         # init coords.
         cur_frac_coords = torch.rand((num_atoms.sum(), 3), device=z.device)
 
-        # annealed langevin dynamics.
-        for sigma in tqdm(self.sigmas, total=self.sigmas.size(0), disable=ld_kwargs.disable_bar):
-            if sigma < ld_kwargs.min_sigma:
-                break
+        # Optimized annealed langevin dynamics - skip very small sigmas for speed
+        active_sigmas = self.sigmas[self.sigmas >= ld_kwargs.min_sigma]
+        
+        for sigma in tqdm(active_sigmas, total=active_sigmas.size(0), disable=ld_kwargs.disable_bar):
             step_size = ld_kwargs.step_lr * (sigma / self.sigmas[-1]) ** 2
 
             for step in range(ld_kwargs.n_step_each):
@@ -699,10 +699,13 @@ class EnhancedCDVAE(BaseModule):
         return output_dict
 
     def sample(self, num_samples, ld_kwargs):
-        """Sample new structures."""
-        z = torch.randn(num_samples, self.hparams.latent_dim,
-                        device=self.device)
-        samples = self.langevin_dynamics(z, ld_kwargs)
+        """Sample new structures with inference optimizations."""
+        # Set model to eval mode and disable gradients for faster inference
+        self.eval()
+        with torch.no_grad():
+            z = torch.randn(num_samples, self.hparams.latent_dim,
+                            device=self.device)
+            samples = self.langevin_dynamics(z, ld_kwargs)
         return samples
 
     def sample_composition(self, composition_prob, num_atoms):
