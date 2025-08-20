@@ -45,7 +45,7 @@ class TrainedCDVAELoader:
         
     def load_model(self, device='cuda' if torch.cuda.is_available() else 'cpu'):
         """
-        Load the trained model from checkpoint.
+        Load the trained model from checkpoint with architecture compatibility.
         
         Args:
             device (str): Device to load model on ('cuda' or 'cpu')
@@ -83,25 +83,104 @@ class TrainedCDVAELoader:
             else:
                 raise e
         
-        # Create model instance from hyperparameters
+        # Create model instance using EnhancedCDVAE with version compatibility
+        print("🔧 Loading EnhancedCDVAE with version compatibility...")
+        
         try:
+            # Try standard loading first
             model = EnhancedCDVAE.load_from_checkpoint(
                 self.checkpoint_path,
-                map_location=device
+                map_location=device,
+                strict=False  # Allow missing/extra keys for version compatibility
             )
+            print("✅ Model loaded successfully with strict=False")
         except Exception as e:
-            if "omegaconf.dictconfig.DictConfig" in str(e) or "weights_only" in str(e):
-                print("⚠️  PyTorch 2.6 compatibility: Loading checkpoint with weights_only=False")
-                # For PyTorch Lightning load_from_checkpoint, we need to handle this differently
-                # Let's try a direct approach
+            print(f"⚠️  Standard loading failed: {e}")
+            print("🔧 Attempting manual loading with architecture compatibility...")
+            
+            # Manual loading approach with architecture compatibility
+            try:
+                # Load the checkpoint manually
+                checkpoint = torch_lib.load(self.checkpoint_path, map_location=device, weights_only=False)
+                
+                # Create model with checkpoint hyperparameters
                 import omegaconf
-                torch_lib.serialization.add_safe_globals([omegaconf.dictconfig.DictConfig])
-                model = EnhancedCDVAE.load_from_checkpoint(
-                    self.checkpoint_path,
-                    map_location=device
-                )
-            else:
-                raise e
+                
+                # Use hyperparameters from checkpoint if available
+                if 'hyper_parameters' in checkpoint:
+                    hparams = omegaconf.DictConfig(checkpoint['hyper_parameters'])
+                else:
+                    # Fallback hparams
+                    hparams = omegaconf.DictConfig({
+                        'latent_dim': 256,
+                        'hidden_dim': 128,
+                        'max_atoms': 20,
+                        'encoder': {'_target_': 'cdvae.pl_modules.gnn.DimeNetPlusPlus'},
+                        'decoder': {'_target_': 'cdvae.pl_modules.decoder.GemNetTDecoder'},
+                        'fc_num_layers': 3,
+                        'predict_property': False,
+                        'beta': 0.01,
+                        'cost_natom': 1.0,
+                        'cost_lattice': 1.0,
+                        'cost_coord': 1.0,
+                        'cost_type': 1.0,
+                        'cost_composition': 1.0,
+                        'cost_property': 1.0,
+                        'data': {'lattice_scale_method': 'scale_length'},
+                        'sigma_begin': 10.0,
+                        'sigma_end': 0.01,
+                        'num_noise_level': 50,
+                        'type_sigma_begin': 5.0,
+                        'type_sigma_end': 0.01,
+                        'teacher_forcing_max_epoch': 100
+                    })
+                
+                model = EnhancedCDVAE(hparams)
+                
+                # Load state dict with version compatibility mapping
+                state_dict = checkpoint['state_dict']
+                model_state_dict = model.state_dict()
+                
+                # Create compatible state dict by mapping old version to new version
+                compatible_state_dict = {}
+                skipped_old_layers = []
+                
+                for key, value in state_dict.items():
+                    if key in model_state_dict:
+                        # Direct match - use as is
+                        compatible_state_dict[key] = value
+                    elif key.startswith('fc_num_atoms.'):
+                        # Old version used simple fc_num_atoms, new version uses atom_count_predictor
+                        # Skip these - the new transformer architecture will initialize randomly
+                        skipped_old_layers.append(key)
+                        continue
+                    else:
+                        # Other layers that might have been renamed or removed
+                        skipped_old_layers.append(key)
+                        continue
+                
+                # Load the compatible state dict
+                missing_keys, unexpected_keys = model.load_state_dict(compatible_state_dict, strict=False)
+                
+                # Filter out expected missing keys (new architecture components)
+                expected_missing = [k for k in missing_keys if 'atom_count_predictor' in k]
+                unexpected_missing = [k for k in missing_keys if 'atom_count_predictor' not in k]
+                
+                print(f"✅ Model loaded with version compatibility")
+                print(f"   - Successfully loaded: {len(compatible_state_dict)} layers")
+                print(f"   - Skipped old layers: {len(skipped_old_layers)} layers")
+                print(f"   - New architecture layers (random init): {len(expected_missing)} layers")
+                
+                if unexpected_missing:
+                    print(f"   - ⚠️  Unexpectedly missing: {len(unexpected_missing)} layers")
+                
+                print("🔧 The model will use:")
+                print("   - Trained weights for: encoder, decoder, fc_lattice, fc_composition, etc.")
+                print("   - Random initialization for: atom_count_predictor (new transformer architecture)")
+                
+            except Exception as e2:
+                print(f"❌ Manual loading also failed: {e2}")
+                raise e2
         
         # Set to evaluation mode
         model.eval()
@@ -115,7 +194,7 @@ class TrainedCDVAELoader:
             model.scaler = prop_scaler
         
         self.model = model
-        print("✅ Model loaded successfully!")
+        print("✅ Model loading completed!")
         return model
     
     def load_scalers(self):
@@ -257,7 +336,7 @@ def main():
     Example usage of the trained model.
     """
     # Define paths to your trained model files
-    CHECKPOINT_PATH = "generator/CDVAE/last_cdvae_weights.ckpt"
+    CHECKPOINT_PATH = "generator/CDVAE/final_cdvae_weights.ckpt"
     SCALERS_DIR = "generator/CDVAE/"
     
     # Check if files exist

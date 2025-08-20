@@ -160,10 +160,10 @@ class TrueGeneticAlgorithm:
         self.cif_dir = self.output_dir / "cifs"
         self.cif_dir.mkdir(exist_ok=True)
         
-        # Initialize TrainedCDVAELoader with correct paths
-        weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\last_cdvae_weights.ckpt"
+        # Initialize TrainedCDVAELoader with final model files
+        weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\final_cdvae_weights.ckpt"
         scalers_dir = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE"
-        print("🔧 Initializing TrainedCDVAELoader with working weights...")
+        print("🔧 Initializing TrainedCDVAELoader with final_cdvae_weights.ckpt...")
         
         if CDVAE_AVAILABLE:
             try:
@@ -218,23 +218,28 @@ class TrueGeneticAlgorithm:
         
         candidates = []
         
-        # Use 70% CDVAE generation, 30% fallback for diversity
-        cdvae_count = int(self.population_size * 0.7)
-        fallback_count = self.population_size - cdvae_count
+        # Use 100% CDVAE generation for best results
+        cdvae_count = self.population_size
+        fallback_count = 0
         
         # Generate CDVAE candidates
         if self.cdvae_loader and hasattr(self.cdvae_loader, 'model') and self.cdvae_loader.model is not None:
             print(f"🧬 Generating {cdvae_count} structures using true CDVAE...")
             cdvae_candidates = self._generate_cdvae_candidates(cdvae_count)
             candidates.extend(cdvae_candidates)
+        else:
+            print("❌ CDVAE not available - using fallback method for all candidates")
+            fallback_count = self.population_size
         
-        # Generate fallback candidates for diversity
-        print(f"🧬 Generating {fallback_count} structures using fallback method...")
-        fallback_candidates = self._generate_fallback_candidates(fallback_count)
-        candidates.extend(fallback_candidates)
+        # Only use fallback if CDVAE failed completely
+        if fallback_count > 0:
+            print(f"🧬 Generating {fallback_count} structures using fallback method...")
+            fallback_candidates = self._generate_fallback_candidates(fallback_count)
+            candidates.extend(fallback_candidates)
         
-        # Fill remaining slots if needed
+        # Fill remaining slots if CDVAE didn't generate enough
         while len(candidates) < self.population_size:
+            print(f"⚠️  CDVAE generated only {len(candidates)}/{self.population_size} candidates, filling remaining with fallback...")
             fallback_candidates = self._generate_fallback_candidates(self.population_size - len(candidates))
             candidates.extend(fallback_candidates)
         
