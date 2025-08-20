@@ -161,7 +161,7 @@ class TrueGeneticAlgorithm:
         self.cif_dir.mkdir(exist_ok=True)
         
         # Initialize TrainedCDVAELoader with correct paths
-        weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\new_cdvae_weights.ckpt"
+        weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\last_cdvae_weights.ckpt"
         scalers_dir = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE"
         print("🔧 Initializing TrainedCDVAELoader with working weights...")
         
@@ -946,6 +946,27 @@ class TrueGeneticAlgorithm:
             print(f"   Average fitness: {current_avg:.4f}")
             print(f"   Diversity: {current_diversity:.2f}")
             print(f"   Generations without improvement: {self.generations_without_improvement}")
+            
+            # Print elite candidates and their properties
+            sorted_population = sorted(self.population, key=lambda x: x.fitness, reverse=True)
+            elites = sorted_population[:self.elite_count]
+            print(f"\n🏆 ELITE CANDIDATES (Top {self.elite_count}):")
+            
+            for i, candidate in enumerate(elites):
+                comp_str = "".join(f"{elem}{count}" for elem, count in sorted(candidate.composition.items()))
+                print(f"\n   {i+1}. Composition: {comp_str}")
+                print(f"      Generation Method: {candidate.generation_method}")
+                print(f"      Fitness: {candidate.fitness:.4f}")
+                print(f"      Properties:")
+                for prop, value in candidate.properties.items():
+                    if prop == 'ionic_conductivity':
+                        print(f"        {prop}: {value:.2e}")
+                    elif isinstance(value, (int, float)):
+                        print(f"        {prop}: {value:.4f}")
+                    elif isinstance(value, bool):
+                        print(f"        {prop}: {value}")
+                    elif isinstance(value, str):
+                        print(f"        {prop}: {value}")
             
             # Early stopping
             if self.generations_without_improvement >= self.convergence_threshold:

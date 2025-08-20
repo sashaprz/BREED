@@ -125,8 +125,8 @@ class TrainedCDVAELoader:
         Returns:
             tuple: (lattice_scaler, prop_scaler)
         """
-        lattice_scaler_path = self.scalers_dir / "new_lattice_scaler.pt"
-        prop_scaler_path = self.scalers_dir / "new_prop_scaler.pt"
+        lattice_scaler_path = self.scalers_dir / "final_lattice_scaler.pt"
+        prop_scaler_path = self.scalers_dir / "final_prop_scaler.pt"
         
         lattice_scaler = None
         prop_scaler = None
@@ -257,7 +257,7 @@ def main():
     Example usage of the trained model.
     """
     # Define paths to your trained model files
-    CHECKPOINT_PATH = "generator/CDVAE/new_cdvae_weights.ckpt"
+    CHECKPOINT_PATH = "generator/CDVAE/last_cdvae_weights.ckpt"
     SCALERS_DIR = "generator/CDVAE/"
     
     # Check if files exist
