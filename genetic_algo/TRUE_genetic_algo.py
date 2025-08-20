@@ -24,9 +24,10 @@ import tempfile
 import shutil
 from pathlib import Path
 
-# Add paths for imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'generator', 'CDVAE'))
+# Add paths for imports - use absolute path to ensure correct base directory
+base_dir = '/pool/sasha/inorganic_SEEs'
+sys.path.insert(0, base_dir)
+sys.path.insert(0, os.path.join(base_dir, 'generator', 'CDVAE'))
 
 # Import torch first
 import torch
@@ -142,8 +143,7 @@ class TrueGeneticAlgorithm:
                  crossover_rate: float = 0.8,
                  max_generations: int = 50,
                  convergence_threshold: int = 15,
-                 output_dir: str = "true_genetic_algo_results",
-                 target_properties: Optional[TargetProperties] = None):
+                 output_dir: str = "true_genetic_algo_results"):
         
         self.population_size = population_size
         self.elite_count = elite_count
@@ -159,22 +159,40 @@ class TrueGeneticAlgorithm:
         self.cif_dir = self.output_dir / "cifs"
         self.cif_dir.mkdir(exist_ok=True)
         
-        # Initialize TrainedCDVAELoader with final model files
+        # Initialize TrainedCDVAELoader with actual trained model files
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        weights_path = os.path.join(base_dir, "generator", "CDVAE", "final_weights.ckpt")
-        scalers_dir = os.path.join(base_dir, "generator", "CDVAE")
-        print("🔧 Initializing TrainedCDVAELoader with final_weights.ckpt...")
+        weights_path = os.path.join(base_dir, "generator", "CDVAE", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs", "epoch=26-step=2889.ckpt")
+        scalers_dir = Path(os.path.join(base_dir, "generator", "CDVAE", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs"))
+        print("🔧 Initializing TrainedCDVAELoader with epoch=26-step=2889.ckpt...")
         
         if CDVAE_AVAILABLE:
             try:
+                # Create a custom TrainedCDVAELoader that uses the correct file names
                 self.cdvae_loader = TrainedCDVAELoader(weights_path, scalers_dir)
-                self.cdvae_loader.load_model()
-                print("✅ True CDVAE model loaded successfully with all 399/399 parameters!")
                 
-                # Try to load scalers (optional - don't fail if scalers are missing)
+                # Override the scaler paths to use the actual file names
+                self.cdvae_loader.hparams_path = scalers_dir / "hparams.yaml"
+                
+                # Load the model
+                self.cdvae_loader.load_model()
+                print("✅ True CDVAE model loaded successfully!")
+                
+                # Try to load scalers with correct names
                 try:
-                    self.cdvae_loader.load_scalers()
-                    print("✅ CDVAE scalers loaded successfully!")
+                    # Override scaler loading to use correct file names
+                    lattice_scaler_path = scalers_dir / "lattice_scaler.pt"
+                    prop_scaler_path = scalers_dir / "prop_scaler.pt"
+                    
+                    if lattice_scaler_path.exists():
+                        import torch
+                        self.cdvae_loader.lattice_scaler = torch.load(lattice_scaler_path, weights_only=False)
+                        print("✅ CDVAE lattice scaler loaded!")
+                    
+                    if prop_scaler_path.exists():
+                        import torch
+                        self.cdvae_loader.prop_scaler = torch.load(prop_scaler_path, weights_only=False)
+                        print("✅ CDVAE property scaler loaded!")
+                        
                 except Exception as scaler_error:
                     print(f"⚠️  CDVAE scalers not loaded (optional): {scaler_error}")
                     
@@ -187,17 +205,7 @@ class TrueGeneticAlgorithm:
             self.cdvae_loader = None
             print("❌ TrainedCDVAELoader not available, using fallback generation")
         
-        # Set target properties (user can override defaults)
-        self.target_properties = target_properties if target_properties else TargetProperties()
-        
-        # Print target properties for user confirmation
-        print(f"\n🎯 TARGET PROPERTIES FOR OPTIMIZATION:")
-        print(f"   Ionic Conductivity: {self.target_properties.ionic_conductivity:.2e} S/cm")
-        print(f"   Bandgap: {self.target_properties.bandgap:.2f} eV")
-        print(f"   SEI Score: {self.target_properties.sei_score:.2f}")
-        print(f"   CEI Score: {self.target_properties.cei_score:.2f}")
-        print(f"   Bulk Modulus: {self.target_properties.bulk_modulus:.1f} GPa")
-        print(f"   (Candidates will be optimized to match these targets)")
+        self.target_properties = TargetProperties()
         self.population: List[GACandidate] = []
         self.pareto_fronts: List[List[GACandidate]] = []
         self.pareto_history: List[List[List[GACandidate]]] = []

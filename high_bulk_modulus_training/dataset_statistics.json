@@ -1,0 +1,38 @@
+{
+  "total_materials": 1349,
+  "failed_cifs": 0,
+  "train_size": 1079,
+  "val_size": 134,
+  "test_size": 136,
+  "bulk_modulus_stats": {
+    "mean": 120649.65675240914,
+    "std": 3765071.083529856,
+    "min": 50.032,
+    "max": 136586225.151,
+    "median": 105.11,
+    "q25": 73.576,
+    "q75": 163.414
+  },
+  "chemical_systems": {
+    "Al-O": 14,
+    "Al-Pt": 9,
+    "Al-Cu": 9,
+    "B-Cr": 9,
+    "Ca-O-Si": 9,
+    "Ba-O-Ti": 9,
+    "Al-Pd": 8,
+    "Al-Mo": 7,
+    "C": 7,
+    "B-N": 7,
+    "Cr-Si": 6,
+    "Ca-Si": 6,
+    "Ca-O-Ti": 6,
+    "As-Co": 6,
+    "Al-Ni": 6,
+    "Au-Cd": 5,
+    "Al-Au": 5,
+    "Ca-N": 5,
+    "Al-Ca-O-Si": 5,
+    "Al-Ca-O": 5
+  }
+}

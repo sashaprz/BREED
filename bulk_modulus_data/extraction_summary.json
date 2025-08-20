@@ -1,0 +1,13 @@
+{
+  "total_obelix_structures": 443,
+  "successful_matches": 24,
+  "failed_matches": 419,
+  "high_bulk_modulus_materials": 23,
+  "bulk_modulus_stats": {
+    "mean": 66.89825,
+    "std": 35.993287361731305,
+    "min": 19.912,
+    "max": 158.088,
+    "median": 57.361000000000004
+  }
+}
