@@ -26,7 +26,7 @@ from pathlib import Path
 
 # Add paths for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(r'C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE')
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'generator', 'CDVAE'))
 
 # Import torch first
 import torch
@@ -142,7 +142,8 @@ class TrueGeneticAlgorithm:
                  crossover_rate: float = 0.8,
                  max_generations: int = 50,
                  convergence_threshold: int = 15,
-                 output_dir: str = "true_genetic_algo_results"):
+                 output_dir: str = "true_genetic_algo_results",
+                 target_properties: Optional[TargetProperties] = None):
         
         self.population_size = population_size
         self.elite_count = elite_count
@@ -159,8 +160,9 @@ class TrueGeneticAlgorithm:
         self.cif_dir.mkdir(exist_ok=True)
         
         # Initialize TrainedCDVAELoader with final model files
-        weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\final_weights.ckpt"
-        scalers_dir = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE"
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        weights_path = os.path.join(base_dir, "generator", "CDVAE", "final_weights.ckpt")
+        scalers_dir = os.path.join(base_dir, "generator", "CDVAE")
         print("🔧 Initializing TrainedCDVAELoader with final_weights.ckpt...")
         
         if CDVAE_AVAILABLE:
@@ -185,7 +187,17 @@ class TrueGeneticAlgorithm:
             self.cdvae_loader = None
             print("❌ TrainedCDVAELoader not available, using fallback generation")
         
-        self.target_properties = TargetProperties()
+        # Set target properties (user can override defaults)
+        self.target_properties = target_properties if target_properties else TargetProperties()
+        
+        # Print target properties for user confirmation
+        print(f"\n🎯 TARGET PROPERTIES FOR OPTIMIZATION:")
+        print(f"   Ionic Conductivity: {self.target_properties.ionic_conductivity:.2e} S/cm")
+        print(f"   Bandgap: {self.target_properties.bandgap:.2f} eV")
+        print(f"   SEI Score: {self.target_properties.sei_score:.2f}")
+        print(f"   CEI Score: {self.target_properties.cei_score:.2f}")
+        print(f"   Bulk Modulus: {self.target_properties.bulk_modulus:.1f} GPa")
+        print(f"   (Candidates will be optimized to match these targets)")
         self.population: List[GACandidate] = []
         self.pareto_fronts: List[List[GACandidate]] = []
         self.pareto_history: List[List[List[GACandidate]]] = []

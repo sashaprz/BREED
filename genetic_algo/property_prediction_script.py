@@ -107,14 +107,25 @@ def run_finetuned_cgcnn_prediction(checkpoint_path: str, dataset_root: str, cif_
     # Load Normalizer state for denormalization, if available
     normalizer = None
     if 'normalizer' in checkpoint:
-        normalizer = Normalizer(torch.tensor([0.0]))
+        normalizer = Normalizer(torch.tensor([0.0]).to(device))
         normalizer.load_state_dict(checkpoint['normalizer'])
+        # Ensure normalizer tensors are on the correct device
+        for key, value in normalizer.state_dict().items():
+            if torch.is_tensor(value):
+                setattr(normalizer, key, value.to(device))
 
+    # Fix device placement - ensure all tensors are on the same device
+    crystal_atom_idx = input_data[3]
+    if isinstance(crystal_atom_idx, list):
+        crystal_atom_idx = [idx.to(device) if torch.is_tensor(idx) else idx for idx in crystal_atom_idx]
+    elif torch.is_tensor(crystal_atom_idx):
+        crystal_atom_idx = crystal_atom_idx.to(device)
+    
     input_vars = (
         input_data[0].to(device),
         input_data[1].to(device),
         input_data[2].to(device),
-        input_data[3],  # crystal_atom_idx (list of tensors, stays on CPU)
+        crystal_atom_idx,
     )
 
     with torch.no_grad():
@@ -123,7 +134,7 @@ def run_finetuned_cgcnn_prediction(checkpoint_path: str, dataset_root: str, cif_
 
     # Denormalize prediction if normalizer is available
     if normalizer is not None:
-        pred_tensor = torch.tensor([pred])
+        pred_tensor = torch.tensor([pred]).to(device)
         pred_denorm = normalizer.denorm(pred_tensor).item()
     else:
         pred_denorm = pred
@@ -163,7 +174,8 @@ def run_direct_cgcnn_prediction(checkpoint_path: str, cif_file_path: str):
                 writer.writerow([cif_id, '0'])  # Dummy target value
             
             # Copy atom_init.json from the pretrained models directory
-            atom_init_source = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\cgcnn_pretrained\atom_init.json"
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            atom_init_source = os.path.join(base_dir, "env", "property_predictions", "cgcnn_pretrained", "atom_init.json")
             atom_init_dest = os.path.join(temp_dir, 'atom_init.json')
             shutil.copy2(atom_init_source, atom_init_dest)
             
@@ -197,14 +209,25 @@ def run_direct_cgcnn_prediction(checkpoint_path: str, cif_file_path: str):
             # Load Normalizer state for denormalization, if available
             normalizer = None
             if 'normalizer' in checkpoint:
-                normalizer = Normalizer(torch.tensor([0.0]))
+                normalizer = Normalizer(torch.tensor([0.0]).to(device))
                 normalizer.load_state_dict(checkpoint['normalizer'])
+                # Ensure normalizer tensors are on the correct device
+                for key, value in normalizer.state_dict().items():
+                    if torch.is_tensor(value):
+                        setattr(normalizer, key, value.to(device))
 
+            # Fix device placement - ensure all tensors are on the same device
+            crystal_atom_idx = input_data[3]
+            if isinstance(crystal_atom_idx, list):
+                crystal_atom_idx = [idx.to(device) if torch.is_tensor(idx) else idx for idx in crystal_atom_idx]
+            elif torch.is_tensor(crystal_atom_idx):
+                crystal_atom_idx = crystal_atom_idx.to(device)
+            
             input_vars = (
                 input_data[0].to(device),
                 input_data[1].to(device),
                 input_data[2].to(device),
-                input_data[3],  # crystal_atom_idx (list of tensors, stays on CPU)
+                crystal_atom_idx,
             )
 
             with torch.no_grad():
@@ -213,7 +236,7 @@ def run_direct_cgcnn_prediction(checkpoint_path: str, cif_file_path: str):
 
             # Denormalize prediction if normalizer is available
             if normalizer is not None:
-                pred_tensor = torch.tensor([pred])
+                pred_tensor = torch.tensor([pred]).to(device)
                 pred_denorm = normalizer.denorm(pred_tensor).item()
             else:
                 pred_denorm = pred
@@ -319,11 +342,12 @@ def estimate_ionic_conductivity_from_composition(composition_str: str) -> float:
 def predict_single_cif_corrected(cif_file_path: str, verbose: bool = False) -> Dict[str, Any]:
     """Run all predictions exactly as in main_rl.py with bandgap correction"""
     
-    # Configuration paths - CORRECTED: Use exact paths from main_rl.py
-    dataset_root = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\CIF_OBELiX"
-    bandgap_model = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\cgcnn_pretrained\band-gap.pth.tar"
-    bulk_model = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\cgcnn_pretrained\bulk-moduli.pth.tar"
-    finetuned_model = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\checkpoint.pth.tar"
+    # Configuration paths - CORRECTED: Use actual file locations
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    dataset_root = os.path.join(base_dir, "env", "property_predictions", "CIF_OBELiX")
+    bandgap_model = os.path.join(base_dir, "env", "property_predictions", "band-gap.pth.tar")
+    bulk_model = os.path.join(base_dir, "env", "property_predictions", "bulk-moduli.pth.tar")
+    finetuned_model = os.path.join(base_dir, "env", "checkpoint.pth.tar")
     
     results = {
         "composition": extract_composition_from_cif(cif_file_path),
