@@ -73,7 +73,7 @@ class CachedPropertyPredictor:
         return self._dataset, self._cif_filenames
     
     def _load_cgcnn_model_once(self, model_path: str, model_name: str):
-        """Load a CGCNN model ONCE with proper architecture from checkpoint"""
+        """Load a CGCNN model ONCE with proper architecture detected from checkpoint"""
         print(f"🔄 Loading {model_name} model (ONE TIME ONLY)...")
         
         # Ensure dataset is loaded first
@@ -88,27 +88,46 @@ class CachedPropertyPredictor:
         orig_atom_fea_len = input_data[0].shape[-1]
         nbr_fea_len = input_data[1].shape[-1]
         
-        # Use standard architecture (same as property_prediction_script.py)
+        # Detect architecture from checkpoint state_dict
+        state_dict = checkpoint['state_dict']
+        
+        # Detect h_fea_len from conv_to_fc layer
+        h_fea_len = 32  # default for older models
+        if 'conv_to_fc.weight' in state_dict:
+            h_fea_len = state_dict['conv_to_fc.weight'].shape[0]
+        
+        # Detect n_conv from number of conv layers
+        n_conv = 3  # default
+        conv_layers = [k for k in state_dict.keys() if k.startswith('convs.') and 'fc_full.weight' in k]
+        if conv_layers:
+            max_conv_idx = max([int(k.split('.')[1]) for k in conv_layers])
+            n_conv = max_conv_idx + 1
+        
+        # Standard parameters
         atom_fea_len = 64
-        n_conv = 3
-        h_fea_len = 128
         n_h = 1
         
-        model = CrystalGraphConvNet(
-            orig_atom_fea_len=orig_atom_fea_len,
-            nbr_fea_len=nbr_fea_len,
-            atom_fea_len=atom_fea_len,
-            n_conv=n_conv,
-            h_fea_len=h_fea_len,
-            n_h=n_h,
-            classification=False
-        ).to(self._device)
+        print(f"   Detected architecture: h_fea_len={h_fea_len}, n_conv={n_conv}")
         
-        model.load_state_dict(checkpoint['state_dict'])
-        model.eval()
-        
-        print(f"✅ {model_name} model loaded and cached successfully!")
-        return model, checkpoint
+        try:
+            model = CrystalGraphConvNet(
+                orig_atom_fea_len=orig_atom_fea_len,
+                nbr_fea_len=nbr_fea_len,
+                atom_fea_len=atom_fea_len,
+                n_conv=n_conv,
+                h_fea_len=h_fea_len,
+                n_h=n_h,
+                classification=False
+            ).to(self._device)
+            
+            model.load_state_dict(checkpoint['state_dict'])
+            model.eval()
+            print(f"✅ {model_name} model loaded and cached successfully!")
+            return model, checkpoint
+            
+        except Exception as e:
+            print(f"   ❌ Failed to load {model_name} model: {e}")
+            return None, checkpoint
     
     def get_sei_predictor(self):
         """Get SEI predictor (loaded once)"""
@@ -361,73 +380,89 @@ class CachedPropertyPredictor:
             if verbose:
                 print(f"  CEI prediction failed: {e}")
         
-        # Bandgap Prediction (exactly as in property_prediction_script.py + bandgap correction)
+        # Bandgap Prediction (CGCNN model + ML bandgap correction)
         try:
             bandgap_model = self.get_bandgap_model()
-            raw_pbe_bandgap = self.predict_cgcnn_property_cached(bandgap_model, cif_file_path)
-            
-            if raw_pbe_bandgap is not None:
-                # Apply bandgap correction (EXACT same logic as property_prediction_script.py)
-                if BANDGAP_CORRECTION_AVAILABLE and raw_pbe_bandgap != 0.0:
-                    composition_str = results["composition"]
-                    corrected_bandgap = apply_ml_bandgap_correction(raw_pbe_bandgap, composition_str)
-                    
-                    results["bandgap"] = float(corrected_bandgap)
-                    results["bandgap_raw_pbe"] = float(raw_pbe_bandgap)
-                    results["bandgap_correction_applied"] = True
-                    results["correction_method"] = CORRECTION_METHOD
-                else:
-                    results["bandgap"] = raw_pbe_bandgap
-                    results["bandgap_correction_applied"] = False
-                    results["correction_method"] = "none"
+            if bandgap_model is not None:
+                raw_pbe_bandgap = self.predict_cgcnn_property_cached(bandgap_model, cif_file_path)
                 
-                results["prediction_status"]["bandgap"] = "success"
-                if verbose:
-                    if results["bandgap_correction_applied"]:
-                        print(f"  Bandgap (PBE): {raw_pbe_bandgap:.3f} eV")
-                        print(f"  Bandgap (HSE-corrected): {results['bandgap']:.3f} eV")
+                if raw_pbe_bandgap is not None and raw_pbe_bandgap != 0.0:
+                    # Apply ML bandgap correction (PBE → HSE)
+                    if BANDGAP_CORRECTION_AVAILABLE:
+                        composition_str = results["composition"]
+                        corrected_bandgap = apply_ml_bandgap_correction(raw_pbe_bandgap, composition_str)
+                        
+                        results["bandgap"] = float(corrected_bandgap)
+                        results["bandgap_raw_pbe"] = float(raw_pbe_bandgap)
+                        results["bandgap_correction_applied"] = True
+                        results["correction_method"] = CORRECTION_METHOD
+                        
+                        if verbose:
+                            print(f"  Bandgap (PBE): {raw_pbe_bandgap:.3f} eV")
+                            print(f"  Bandgap (HSE-corrected): {results['bandgap']:.3f} eV")
                     else:
-                        print(f"  Bandgap: {results['bandgap']:.3f} eV")
+                        results["bandgap"] = raw_pbe_bandgap
+                        results["bandgap_correction_applied"] = False
+                        results["correction_method"] = "none"
+                        
+                        if verbose:
+                            print(f"  Bandgap: {results['bandgap']:.3f} eV")
+                    
+                    results["prediction_status"]["bandgap"] = "success"
+                else:
+                    if verbose:
+                        print("  Bandgap CGCNN prediction returned 0 or None")
             else:
                 if verbose:
-                    print("  Bandgap prediction failed or no predictions returned")
+                    print("  Bandgap CGCNN model failed to load")
         except Exception as e:
             if verbose:
                 print(f"  Bandgap prediction failed: {e}")
         
-        # Bulk Modulus Prediction (exactly as in property_prediction_script.py)
+        # Bulk Modulus Prediction (CGCNN model)
         try:
             bulk_model = self.get_bulk_model()
-            bulk_pred = self.predict_cgcnn_property_cached(bulk_model, cif_file_path)
-            
-            if bulk_pred is not None:
-                results["bulk_modulus"] = float(bulk_pred)
-                results["prediction_status"]["bulk_modulus"] = "success"
-                if verbose:
-                    print(f"  Bulk Modulus: {results['bulk_modulus']:.1f} GPa")
+            if bulk_model is not None:
+                bulk_pred = self.predict_cgcnn_property_cached(bulk_model, cif_file_path)
+                
+                if bulk_pred is not None and bulk_pred != 0.0:
+                    results["bulk_modulus"] = float(bulk_pred)
+                    results["prediction_status"]["bulk_modulus"] = "success"
+                    if verbose:
+                        print(f"  Bulk Modulus: {results['bulk_modulus']:.1f} GPa")
+                else:
+                    if verbose:
+                        print("  Bulk modulus CGCNN prediction returned 0 or None")
             else:
                 if verbose:
-                    print("  Bulk modulus prediction failed or no predictions returned")
+                    print("  Bulk modulus CGCNN model failed to load")
         except Exception as e:
             if verbose:
                 print(f"  Bulk modulus prediction failed: {e}")
         
-        # Ionic Conductivity Prediction (with improved fallback handling)
+        # Ionic Conductivity Prediction (CGCNN model with fallback)
         try:
             finetuned_model, normalizer = self.get_finetuned_model()
-            ic_pred = self.predict_cgcnn_property_cached(finetuned_model, cif_file_path, normalizer)
-            
-            if ic_pred is not None and ic_pred > 0 and ic_pred < 1.0:  # Reasonable range
-                results["ionic_conductivity"] = float(ic_pred)
-                results["prediction_status"]["ionic_conductivity"] = "success"
-                if verbose:
-                    print(f"  Ionic Conductivity: {results['ionic_conductivity']:.2e} S/cm")
+            if finetuned_model is not None:
+                ic_pred = self.predict_cgcnn_property_cached(finetuned_model, cif_file_path, normalizer)
+                
+                if ic_pred is not None and ic_pred > 0 and ic_pred < 1.0:  # Reasonable range
+                    results["ionic_conductivity"] = float(ic_pred)
+                    results["prediction_status"]["ionic_conductivity"] = "success"
+                    if verbose:
+                        print(f"  Ionic Conductivity: {results['ionic_conductivity']:.2e} S/cm")
+                else:
+                    # Use composition-based estimation as fallback
+                    results["ionic_conductivity"] = self.estimate_ionic_conductivity_from_composition(results["composition"])
+                    results["prediction_status"]["ionic_conductivity"] = "estimated"
+                    if verbose:
+                        print(f"  Ionic conductivity CGCNN prediction failed, using estimation: {results['ionic_conductivity']:.2e} S/cm")
             else:
                 # Use composition-based estimation as fallback
                 results["ionic_conductivity"] = self.estimate_ionic_conductivity_from_composition(results["composition"])
                 results["prediction_status"]["ionic_conductivity"] = "estimated"
                 if verbose:
-                    print(f"  Ionic conductivity prediction failed, using estimation: {results['ionic_conductivity']:.2e} S/cm")
+                    print(f"  Ionic conductivity CGCNN model failed to load, using estimation: {results['ionic_conductivity']:.2e} S/cm")
         except Exception as e:
             # Use composition-based estimation as fallback
             results["ionic_conductivity"] = self.estimate_ionic_conductivity_from_composition(results["composition"])

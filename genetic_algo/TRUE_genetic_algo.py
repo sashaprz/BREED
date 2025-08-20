@@ -48,31 +48,29 @@ except ImportError as e:
     print(f"❌ Failed to import TrainedCDVAELoader: {e}")
     CDVAE_AVAILABLE = False
 
-# Import the CACHED ML predictor - EXACT same logic but with models cached in memory
+# Import the CORRECTED ML predictor that uses main_rl.py architecture (SAME AS FINAL_genetic_algo.py)
 try:
-    from genetic_algo.cached_property_predictor import get_cached_predictor
-    # Get the global cached predictor instance ONCE - models will be loaded and cached
-    _global_predictor = get_cached_predictor()
+    from genetic_algo.property_prediction_script import get_corrected_predictor
+    # Get the global corrected predictor instance ONCE
+    _global_predictor = get_corrected_predictor()
     
     def predict_single_cif(cif_path, verbose=False):
-        """Use the cached predictor - EXACT same logic but NO MODEL RELOADING"""
+        """Use the corrected predictor instance with main_rl.py architecture"""
         return _global_predictor.predict_single_cif(cif_path, verbose=verbose)
     
-    print("🚀 Using CACHED ML predictor - EXACT same bandgap method but models cached in memory!")
-    print("   This eliminates the model reloading bottleneck for massive speed improvement")
-    print("   Same bandgap correction, same model files, same everything - just cached!")
+    print("✅ Using CORRECTED ML predictor with main_rl.py architecture - SEI/CEI should work!")
+    print("   This is the SAME predictor that works in FINAL_genetic_algo.py!")
 except ImportError:
     try:
-        from genetic_algo.property_prediction_script import get_corrected_predictor
-        # Get the global corrected predictor instance ONCE
-        _global_predictor = get_corrected_predictor()
+        from genetic_algo.cached_property_predictor import get_cached_predictor
+        # Get the global cached predictor instance ONCE - models will be loaded and cached
+        _global_predictor = get_cached_predictor()
         
         def predict_single_cif(cif_path, verbose=False):
-            """Use the corrected predictor instance with main_rl.py architecture"""
+            """Use the cached predictor - EXACT same logic but NO MODEL RELOADING"""
             return _global_predictor.predict_single_cif(cif_path, verbose=verbose)
         
-        print("✅ Using CORRECTED ML predictor with main_rl.py architecture - SEI/CEI should work!")
-        print("⚠️  WARNING: This will still reload models - consider using cached_property_predictor")
+        print("⚠️  Using CACHED ML predictor - may have broken CGCNN models")
     except ImportError:
         try:
             from env.main_rl import predict_single_cif
