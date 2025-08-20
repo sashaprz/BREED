@@ -24,16 +24,18 @@ class TrainedCDVAELoader:
     Utility class to load and use the trained Enhanced CDVAE model.
     """
     
-    def __init__(self, checkpoint_path, scalers_dir=None):
+    def __init__(self, checkpoint_path, scalers_dir=None, hparams_path=None):
         """
         Initialize the model loader.
         
         Args:
             checkpoint_path (str): Path to the model checkpoint (.ckpt file)
             scalers_dir (str, optional): Directory containing scaler files
+            hparams_path (str, optional): Path to hyperparameters YAML file
         """
         self.checkpoint_path = Path(checkpoint_path)
         self.scalers_dir = Path(scalers_dir) if scalers_dir else self.checkpoint_path.parent
+        self.hparams_path = Path(hparams_path) if hparams_path else self.scalers_dir / "final_hparams.yaml"
         
         # Verify files exist
         if not self.checkpoint_path.exists():
@@ -42,6 +44,7 @@ class TrainedCDVAELoader:
         self.model = None
         self.lattice_scaler = None
         self.prop_scaler = None
+        self.hparams = None
         
     def load_model(self, device='cuda' if torch.cuda.is_available() else 'cpu'):
         """
@@ -106,25 +109,60 @@ class TrainedCDVAELoader:
                 # Create model with checkpoint hyperparameters
                 import omegaconf
                 
-                # Use hyperparameters from checkpoint if available
-                if 'hyper_parameters' in checkpoint:
+                # Load hyperparameters from final_hparams.yaml if available
+                hparams = None
+                if self.hparams_path.exists():
+                    try:
+                        import yaml
+                        with open(self.hparams_path, 'r') as f:
+                            hparams_dict = yaml.safe_load(f)
+                        hparams = omegaconf.DictConfig(hparams_dict)
+                        print(f"✅ Loaded hyperparameters from {self.hparams_path}")
+                    except Exception as e:
+                        print(f"⚠️  Could not load hyperparameters from {self.hparams_path}: {e}")
+                        hparams = None
+                
+                # Use hyperparameters from checkpoint if YAML not available
+                if hparams is None and 'hyper_parameters' in checkpoint:
                     hparams = omegaconf.DictConfig(checkpoint['hyper_parameters'])
-                else:
-                    # Fallback hparams
+                    print("✅ Using hyperparameters from checkpoint")
+                elif hparams is None:
+                    # Fallback hparams based on final_hparams.yaml structure
                     hparams = omegaconf.DictConfig({
                         'latent_dim': 256,
-                        'hidden_dim': 128,
+                        'hidden_dim': 256,
                         'max_atoms': 20,
-                        'encoder': {'_target_': 'cdvae.pl_modules.gnn.DimeNetPlusPlus'},
-                        'decoder': {'_target_': 'cdvae.pl_modules.decoder.GemNetTDecoder'},
-                        'fc_num_layers': 3,
+                        'encoder': {
+                            '_target_': 'cdvae.pl_modules.gnn.DimeNetPlusPlusWrap',
+                            'hidden_channels': 128,
+                            'num_blocks': 4,
+                            'int_emb_size': 64,
+                            'basis_emb_size': 8,
+                            'out_emb_channels': 256,
+                            'num_spherical': 7,
+                            'num_radial': 6,
+                            'cutoff': 7.0,
+                            'max_num_neighbors': 20,
+                            'envelope_exponent': 5,
+                            'num_before_skip': 1,
+                            'num_after_skip': 2,
+                            'num_output_layers': 3
+                        },
+                        'decoder': {
+                            '_target_': 'cdvae.pl_modules.decoder.GemNetTDecoder',
+                            'hidden_dim': 128,
+                            'max_neighbors': 20,
+                            'radius': 7.0
+                        },
+                        'fc_num_layers': 1,
                         'predict_property': False,
                         'beta': 0.01,
                         'cost_natom': 1.0,
-                        'cost_lattice': 1.0,
-                        'cost_coord': 1.0,
+                        'cost_lattice': 10.0,
+                        'cost_coord': 10.0,
                         'cost_type': 1.0,
                         'cost_composition': 1.0,
+                        'cost_edge': 10.0,
                         'cost_property': 1.0,
                         'data': {'lattice_scale_method': 'scale_length'},
                         'sigma_begin': 10.0,
@@ -132,8 +170,20 @@ class TrainedCDVAELoader:
                         'num_noise_level': 50,
                         'type_sigma_begin': 5.0,
                         'type_sigma_end': 0.01,
-                        'teacher_forcing_max_epoch': 100
+                        'teacher_forcing_max_epoch': 5,
+                        'teacher_forcing_lattice': True,
+                        'max_neighbors': 20,
+                        'radius': 7.0,
+                        'transformer_layers': 2,
+                        'attention_heads': 4,
+                        'cost_natom_enhanced': 2.0,
+                        'beta_start': 0.0,
+                        'beta_end': 0.01,
+                        'beta_warmup_epochs': 10,
+                        'beta_schedule': 'linear',
+                        'kld_capacity': 0.0
                     })
+                    print("⚠️  Using fallback hyperparameters based on final_hparams.yaml")
                 
                 model = EnhancedCDVAE(hparams)
                 
@@ -166,7 +216,7 @@ class TrainedCDVAELoader:
                 expected_missing = [k for k in missing_keys if 'atom_count_predictor' in k]
                 unexpected_missing = [k for k in missing_keys if 'atom_count_predictor' not in k]
                 
-                print(f"✅ Model loaded with version compatibility")
+                print(f"✅ Model loaded with final weights and hyperparameters")
                 print(f"   - Successfully loaded: {len(compatible_state_dict)} layers")
                 print(f"   - Skipped old layers: {len(skipped_old_layers)} layers")
                 print(f"   - New architecture layers (random init): {len(expected_missing)} layers")
@@ -174,9 +224,10 @@ class TrainedCDVAELoader:
                 if unexpected_missing:
                     print(f"   - ⚠️  Unexpectedly missing: {len(unexpected_missing)} layers")
                 
-                print("🔧 The model will use:")
-                print("   - Trained weights for: encoder, decoder, fc_lattice, fc_composition, etc.")
-                print("   - Random initialization for: atom_count_predictor (new transformer architecture)")
+                print("🔧 The model uses:")
+                print("   - Final trained weights for: encoder, decoder, fc_lattice, fc_composition, etc.")
+                print("   - Final hyperparameters from final_hparams.yaml")
+                print("   - Final scalers: final_lattice_scaler.pt, final_prop_scaler.pt")
                 
             except Exception as e2:
                 print(f"❌ Manual loading also failed: {e2}")
@@ -336,8 +387,9 @@ def main():
     Example usage of the trained model.
     """
     # Define paths to your trained model files
-    CHECKPOINT_PATH = "generator/CDVAE/final_cdvae_weights.ckpt"
+    CHECKPOINT_PATH = "generator/CDVAE/final_weights.ckpt"
     SCALERS_DIR = "generator/CDVAE/"
+    HPARAMS_PATH = "generator/CDVAE/final_hparams.yaml"
     
     # Check if files exist
     if not Path(CHECKPOINT_PATH).exists():
@@ -347,7 +399,7 @@ def main():
     
     try:
         # Initialize loader
-        loader = TrainedCDVAELoader(CHECKPOINT_PATH, SCALERS_DIR)
+        loader = TrainedCDVAELoader(CHECKPOINT_PATH, SCALERS_DIR, HPARAMS_PATH)
         
         # Load model
         model = loader.load_model()

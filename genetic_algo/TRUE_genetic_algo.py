@@ -161,9 +161,9 @@ class TrueGeneticAlgorithm:
         self.cif_dir.mkdir(exist_ok=True)
         
         # Initialize TrainedCDVAELoader with final model files
-        weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\final_cdvae_weights.ckpt"
+        weights_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE\final_weights.ckpt"
         scalers_dir = r"C:\Users\Sasha\repos\RL-electrolyte-design\generator\CDVAE"
-        print("🔧 Initializing TrainedCDVAELoader with final_cdvae_weights.ckpt...")
+        print("🔧 Initializing TrainedCDVAELoader with final_weights.ckpt...")
         
         if CDVAE_AVAILABLE:
             try:
