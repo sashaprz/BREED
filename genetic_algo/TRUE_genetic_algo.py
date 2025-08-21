@@ -91,6 +91,15 @@ except ImportError:
             predict_single_cif = predict_single_cif_debug
             print("⚠️  Using DEBUG predictor with realistic random values for testing")
 
+# Import enhanced composition-based bulk modulus predictor
+try:
+    from enhanced_composition_bulk_modulus_predictor import EnhancedCompositionBulkModulusPredictor
+    _enhanced_bulk_predictor = EnhancedCompositionBulkModulusPredictor()
+    print("✅ Enhanced composition-based bulk modulus predictor loaded!")
+except ImportError as e:
+    print(f"⚠️  Enhanced bulk modulus predictor not available: {e}")
+    _enhanced_bulk_predictor = None
+
 
 @dataclass
 class TargetProperties:
@@ -173,9 +182,10 @@ class TrueGeneticAlgorithm:
                 # Override the scaler paths to use the actual file names
                 self.cdvae_loader.hparams_path = scalers_dir / "hparams.yaml"
                 
-                # Load the model
-                self.cdvae_loader.load_model()
-                print("✅ True CDVAE model loaded successfully!")
+                # Load the model on GPU for much faster generation
+                device = 'cuda' if torch.cuda.is_available() else 'cpu'
+                self.cdvae_loader.load_model(device=device)
+                print(f"✅ True CDVAE model loaded successfully on {device}!")
                 
                 # Try to load scalers with correct names
                 try:
@@ -274,7 +284,8 @@ class TrueGeneticAlgorithm:
             
             try:
                 batch_size = min(5, count - len(candidates))
-                structures = self.cdvae_loader.generate_structures(batch_size)
+                # Use fast_mode=True for much faster generation (8 steps vs 15)
+                structures = self.cdvae_loader.generate_structures(batch_size, fast_mode=True)
                 
                 for structure in structures:
                     if len(candidates) >= count:
@@ -533,8 +544,8 @@ class TrueGeneticAlgorithm:
         return str(cif_path)
     
     def evaluate_population(self, candidates: List[GACandidate]) -> None:
-        """Evaluate multi-objective fitness for all candidates using corrected ML predictor"""
-        print(f"🔬 Evaluating properties for {len(candidates)} candidates using corrected ML predictor...")
+        """Evaluate multi-objective fitness for all candidates using corrected ML predictor + enhanced bulk modulus"""
+        print(f"🔬 Evaluating properties for {len(candidates)} candidates using corrected ML predictor + enhanced bulk modulus...")
         
         for i, candidate in enumerate(candidates):
             try:
@@ -550,8 +561,23 @@ class TrueGeneticAlgorithm:
                         'correction_method': results.get('correction_method', 'none'),
                         'sei_score': results.get('sei_score', 0.0),
                         'cei_score': results.get('cei_score', 0.0),
-                        'bulk_modulus': results.get('bulk_modulus', 0.0)
+                        'bulk_modulus': results.get('bulk_modulus', 0.0)  # Will be replaced below
                     }
+                    
+                    # Replace bulk modulus with enhanced composition-based prediction
+                    if _enhanced_bulk_predictor is not None:
+                        try:
+                            enhanced_bulk_modulus = _enhanced_bulk_predictor.predict_bulk_modulus(candidate.cif_path)
+                            # The predictor returns a float directly now
+                            candidate.properties['bulk_modulus'] = enhanced_bulk_modulus
+                            candidate.properties['bulk_modulus_method'] = 'enhanced_composition'
+                            print(f"✅ Enhanced bulk modulus prediction: {enhanced_bulk_modulus:.1f} GPa")
+                        except Exception as e:
+                            print(f"⚠️  Enhanced bulk modulus prediction failed for candidate {i}: {e}")
+                            # Keep original CGCNN prediction as fallback
+                            candidate.properties['bulk_modulus_method'] = 'cgcnn_fallback'
+                    else:
+                        candidate.properties['bulk_modulus_method'] = 'cgcnn_original'
                     
                     # Include raw PBE value if available
                     if 'bandgap_raw_pbe' in results:

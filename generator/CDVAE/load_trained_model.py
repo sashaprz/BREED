@@ -391,18 +391,27 @@ class TrainedCDVAELoader:
         
         if lattice_scaler_path.exists():
             try:
-                # Use the same PyTorch 2.6 compatibility approach as model loading
+                # Use PyTorch version-compatible loading
                 import torch as torch_lib
                 try:
+                    # Try weights_only=True first (PyTorch 2.6+)
                     lattice_scaler = torch_lib.load(lattice_scaler_path, weights_only=True)
                 except Exception as e:
-                    if "StandardScalerTorch" in str(e) or "weights_only" in str(e):
-                        # Use safe globals for StandardScalerTorch
-                        from cdvae.common.data_utils import StandardScalerTorch
-                        with torch_lib.serialization.safe_globals([StandardScalerTorch]):
-                            lattice_scaler = torch_lib.load(lattice_scaler_path, weights_only=True)
+                    if "weights_only" in str(e) or "safe_globals" in str(e) or "StandardScalerTorch" in str(e):
+                        # Check if safe_globals is available (PyTorch 2.6+)
+                        if hasattr(torch_lib.serialization, 'safe_globals'):
+                            try:
+                                from cdvae.common.data_utils import StandardScalerTorch
+                                with torch_lib.serialization.safe_globals([StandardScalerTorch]):
+                                    lattice_scaler = torch_lib.load(lattice_scaler_path, weights_only=True)
+                            except Exception:
+                                # Fallback to weights_only=False
+                                lattice_scaler = torch_lib.load(lattice_scaler_path, weights_only=False)
+                        else:
+                            # PyTorch < 2.6, use weights_only=False
+                            lattice_scaler = torch_lib.load(lattice_scaler_path, weights_only=False)
                     else:
-                        # Fallback to weights_only=False
+                        # Other error, try fallback
                         lattice_scaler = torch_lib.load(lattice_scaler_path, weights_only=False)
                 print("✅ Lattice scaler loaded")
             except Exception as e:
@@ -414,18 +423,27 @@ class TrainedCDVAELoader:
             
         if prop_scaler_path.exists():
             try:
-                # Use the same PyTorch 2.6 compatibility approach as model loading
+                # Use PyTorch version-compatible loading
                 import torch as torch_lib
                 try:
+                    # Try weights_only=True first (PyTorch 2.6+)
                     prop_scaler = torch_lib.load(prop_scaler_path, weights_only=True)
                 except Exception as e:
-                    if "StandardScalerTorch" in str(e) or "weights_only" in str(e):
-                        # Use safe globals for StandardScalerTorch
-                        from cdvae.common.data_utils import StandardScalerTorch
-                        with torch_lib.serialization.safe_globals([StandardScalerTorch]):
-                            prop_scaler = torch_lib.load(prop_scaler_path, weights_only=True)
+                    if "weights_only" in str(e) or "safe_globals" in str(e) or "StandardScalerTorch" in str(e):
+                        # Check if safe_globals is available (PyTorch 2.6+)
+                        if hasattr(torch_lib.serialization, 'safe_globals'):
+                            try:
+                                from cdvae.common.data_utils import StandardScalerTorch
+                                with torch_lib.serialization.safe_globals([StandardScalerTorch]):
+                                    prop_scaler = torch_lib.load(prop_scaler_path, weights_only=True)
+                            except Exception:
+                                # Fallback to weights_only=False
+                                prop_scaler = torch_lib.load(prop_scaler_path, weights_only=False)
+                        else:
+                            # PyTorch < 2.6, use weights_only=False
+                            prop_scaler = torch_lib.load(prop_scaler_path, weights_only=False)
                     else:
-                        # Fallback to weights_only=False
+                        # Other error, try fallback
                         prop_scaler = torch_lib.load(prop_scaler_path, weights_only=False)
                 print("✅ Property scaler loaded")
             except Exception as e:
