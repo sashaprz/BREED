@@ -183,7 +183,8 @@ class TrueGeneticAlgorithm:
                 self.cdvae_loader.hparams_path = scalers_dir / "hparams.yaml"
                 
                 # Load the model on GPU for much faster generation
-                device = 'cuda' if torch.cuda.is_available() else 'cpu'
+                import torch as torch_lib
+                device = 'cuda' if torch_lib.cuda.is_available() else 'cpu'
                 self.cdvae_loader.load_model(device=device)
                 print(f"✅ True CDVAE model loaded successfully on {device}!")
                 
@@ -194,13 +195,11 @@ class TrueGeneticAlgorithm:
                     prop_scaler_path = scalers_dir / "prop_scaler.pt"
                     
                     if lattice_scaler_path.exists():
-                        import torch
-                        self.cdvae_loader.lattice_scaler = torch.load(lattice_scaler_path, weights_only=False)
+                        self.cdvae_loader.lattice_scaler = torch_lib.load(lattice_scaler_path, weights_only=False)
                         print("✅ CDVAE lattice scaler loaded!")
                     
                     if prop_scaler_path.exists():
-                        import torch
-                        self.cdvae_loader.prop_scaler = torch.load(prop_scaler_path, weights_only=False)
+                        self.cdvae_loader.prop_scaler = torch_lib.load(prop_scaler_path, weights_only=False)
                         print("✅ CDVAE property scaler loaded!")
                         
                 except Exception as scaler_error:
@@ -1095,8 +1094,8 @@ def main():
         tournament_size=5,
         mutation_rate=0.15,
         crossover_rate=0.8,
-        max_generations=30,
-        convergence_threshold=10,
+        max_generations=50,
+        convergence_threshold=15,
         output_dir="true_genetic_algo_results"
     )
     
