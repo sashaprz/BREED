@@ -29,6 +29,9 @@ from env.property_predictions.main import Normalizer
 # Import bandgap correction from fully_optimized_predictor
 from fully_optimized_predictor import apply_ml_bandgap_correction, BANDGAP_CORRECTION_AVAILABLE, CORRECTION_METHOD
 
+# Import composition-only ionic conductivity predictor
+from composition_only_ionic_conductivity import predict_ionic_conductivity_from_composition
+
 
 def predict_bulk_modulus_final(cif_file_path: str):
     """
@@ -641,69 +644,9 @@ def extract_composition_from_cif(cif_file_path: str) -> str:
     except:
         return os.path.splitext(os.path.basename(cif_file_path))[0]
 
-def estimate_ionic_conductivity_from_composition(composition_str: str) -> float:
-    """
-    Estimate ionic conductivity based on composition using empirical rules
-    This is a fallback when the ML model fails
-    """
-    import re
-    import random
-    
-    # Parse composition string to extract elements and counts
-    elements = {}
-    
-    # Try to extract elements from composition string
-    pattern = r'([A-Z][a-z]?)(\d*)'
-    matches = re.findall(pattern, composition_str)
-    
-    for element, count in matches:
-        count = int(count) if count else 1
-        elements[element] = count
-    
-    # Base conductivity estimation
-    base_conductivity = 1e-8  # Default low conductivity
-    
-    # Li content factor (most important for solid electrolytes)
-    if 'Li' in elements:
-        li_content = elements['Li']
-        total_atoms = sum(elements.values())
-        li_fraction = li_content / total_atoms if total_atoms > 0 else 0
-        
-        # Higher Li content generally means higher conductivity
-        if li_fraction > 0.3:  # High Li content
-            base_conductivity *= 1000  # 1e-5
-        elif li_fraction > 0.1:  # Medium Li content
-            base_conductivity *= 100   # 1e-6
-        else:  # Low Li content
-            base_conductivity *= 10    # 1e-7
-    
-    # Favorable elements for ionic conductivity
-    favorable_elements = ['P', 'S', 'O', 'F', 'Cl']
-    favorable_count = sum(1 for elem in favorable_elements if elem in elements)
-    
-    if favorable_count >= 2:
-        base_conductivity *= 10  # Multiple favorable elements
-    elif favorable_count == 1:
-        base_conductivity *= 3   # One favorable element
-    
-    # Specific structure types (based on common solid electrolytes)
-    if 'P' in elements and 'S' in elements:  # Sulfide-based (like argyrodites)
-        base_conductivity *= 100
-    elif 'Ti' in elements and 'P' in elements:  # NASICON-type
-        base_conductivity *= 50
-    elif 'La' in elements and 'Zr' in elements:  # Garnet-type
-        base_conductivity *= 20
-    elif 'Al' in elements and 'Ge' in elements:  # LAGP-type
-        base_conductivity *= 30
-    
-    # Add some randomness to avoid identical values
-    random_factor = random.uniform(0.5, 2.0)
-    final_conductivity = base_conductivity * random_factor
-    
-    # Ensure reasonable bounds for solid electrolytes
-    final_conductivity = max(1e-12, min(1e-2, final_conductivity))
-    
-    return final_conductivity
+# REMOVED: estimate_ionic_conductivity_from_composition()
+# Replaced with optimized version in composition_only_ionic_conductivity.py
+# Old CGCNN approach had terrible performance: R² ≈ 0, MAPE > 8 million %
 
 def predict_single_cif_corrected(cif_file_path: str, verbose: bool = False) -> Dict[str, Any]:
     """Run all predictions exactly as in main_rl.py with bandgap correction"""
@@ -814,35 +757,28 @@ def predict_single_cif_corrected(cif_file_path: str, verbose: bool = False) -> D
         if verbose:
             print(f"  Bulk modulus prediction failed: {e}")
     
-    # Ionic Conductivity Prediction (with improved fallback handling)
+    # Ionic Conductivity Prediction (COMPOSITION-ONLY - CGCNN SKIPPED)
+    # CGCNN performance is terrible: R² ≈ 0, MAPE > 8 million %
+    # Direct composition-based prediction is faster and more reliable
     try:
-        finetuned_results = run_finetuned_cgcnn_prediction(finetuned_model, dataset_root, cif_file_path)
-        if finetuned_results is not None and 'predictions' in finetuned_results and len(finetuned_results['predictions']) > 0:
-            ic_value = float(finetuned_results['predictions'][0])
-            # Apply reasonable bounds to ionic conductivity predictions
-            if ic_value > 0 and ic_value < 1.0:  # Reasonable range for solid electrolytes
-                results["ionic_conductivity"] = ic_value
-                results["prediction_status"]["ionic_conductivity"] = "success"
-                if verbose:
-                    print(f"  Ionic Conductivity: {results['ionic_conductivity']:.2e} S/cm")
-            else:
-                # Use composition-based estimation as fallback
-                results["ionic_conductivity"] = estimate_ionic_conductivity_from_composition(results["composition"])
-                results["prediction_status"]["ionic_conductivity"] = "estimated"
-                if verbose:
-                    print(f"  Ionic Conductivity (estimated): {results['ionic_conductivity']:.2e} S/cm")
-        else:
-            # Use composition-based estimation as fallback
-            results["ionic_conductivity"] = estimate_ionic_conductivity_from_composition(results["composition"])
-            results["prediction_status"]["ionic_conductivity"] = "estimated"
-            if verbose:
-                print(f"  Ionic conductivity prediction failed, using estimation: {results['ionic_conductivity']:.2e} S/cm")
-    except Exception as e:
-        # Use composition-based estimation as fallback
-        results["ionic_conductivity"] = estimate_ionic_conductivity_from_composition(results["composition"])
-        results["prediction_status"]["ionic_conductivity"] = "estimated"
+        results["ionic_conductivity"] = predict_ionic_conductivity_from_composition(results["composition"])
+        results["prediction_status"]["ionic_conductivity"] = "composition_based"
+        results["cgcnn_skipped"] = True
+        results["cgcnn_skip_reason"] = "Poor_performance_R2_negative"
+        
         if verbose:
-            print(f"  Ionic conductivity prediction failed ({e}), using estimation: {results['ionic_conductivity']:.2e} S/cm")
+            print(f"  Ionic Conductivity (composition-based): {results['ionic_conductivity']:.2e} S/cm")
+            print(f"  CGCNN skipped due to poor performance (R² ≈ 0)")
+            
+    except Exception as e:
+        # Fallback to a reasonable default if composition parsing fails
+        results["ionic_conductivity"] = 1e-8  # Default low conductivity
+        results["prediction_status"]["ionic_conductivity"] = "default_fallback"
+        results["cgcnn_skipped"] = True
+        results["cgcnn_skip_reason"] = "Poor_performance_R2_negative"
+        
+        if verbose:
+            print(f"  Ionic conductivity composition parsing failed ({e}), using default: {results['ionic_conductivity']:.2e} S/cm")
     
     return results
 

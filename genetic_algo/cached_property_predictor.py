@@ -28,6 +28,9 @@ from env.property_predictions.main import Normalizer
 # Import bandgap correction from fully_optimized_predictor (same logic)
 from genetic_algo.fully_optimized_predictor import apply_ml_bandgap_correction, BANDGAP_CORRECTION_AVAILABLE, CORRECTION_METHOD
 
+# Import composition-only ionic conductivity predictor
+from genetic_algo.composition_only_ionic_conductivity import predict_ionic_conductivity_from_composition
+
 class CachedPropertyPredictor:
     """
     EXACT same prediction logic as property_prediction_script.py but with cached models
@@ -42,12 +45,13 @@ class CachedPropertyPredictor:
         self.finetuned_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\checkpoint.pth.tar"
         
         # Cached models and predictors - loaded ONCE
+        # NOTE: Ionic conductivity CGCNN removed due to poor performance (R² ≈ 0)
         self._sei_predictor = None
         self._cei_predictor = None
         self._bandgap_model = None
         self._bulk_model = None
-        self._finetuned_model = None
-        self._finetuned_normalizer = None
+        # self._finetuned_model = None  # REMOVED - CGCNN ionic conductivity skipped
+        # self._finetuned_normalizer = None  # REMOVED - CGCNN ionic conductivity skipped
         self._device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
         # Dataset cache
@@ -161,20 +165,9 @@ class CachedPropertyPredictor:
             )
         return self._bulk_model
     
-    def get_finetuned_model(self):
-        """Get finetuned ionic conductivity model (loaded once)"""
-        if self._finetuned_model is None:
-            self._finetuned_model, checkpoint = self._load_cgcnn_model_once(
-                self.finetuned_model_path, "Ionic Conductivity"
-            )
-            
-            # Load normalizer if available
-            if 'normalizer' in checkpoint:
-                self._finetuned_normalizer = Normalizer(torch.tensor([0.0]))
-                self._finetuned_normalizer.load_state_dict(checkpoint['normalizer'])
-                print("✅ Normalizer loaded for ionic conductivity model")
-        
-        return self._finetuned_model, self._finetuned_normalizer
+    # REMOVED: get_finetuned_model() - CGCNN ionic conductivity skipped due to poor performance
+    # Original performance: R² ≈ 0, MAPE > 8 million %
+    # Replaced with fast, reliable composition-based prediction
     
     def predict_cgcnn_property_cached(self, model, cif_file_path: str, normalizer=None):
         """
@@ -261,69 +254,8 @@ class CachedPropertyPredictor:
         except:
             return os.path.splitext(os.path.basename(cif_file_path))[0]
     
-    def estimate_ionic_conductivity_from_composition(self, composition_str: str) -> float:
-        """
-        Estimate ionic conductivity based on composition using empirical rules
-        EXACT same logic as property_prediction_script.py
-        """
-        import re
-        import random
-        
-        # Parse composition string to extract elements and counts
-        elements = {}
-        
-        # Try to extract elements from composition string
-        pattern = r'([A-Z][a-z]?)(\d*)'
-        matches = re.findall(pattern, composition_str)
-        
-        for element, count in matches:
-            count = int(count) if count else 1
-            elements[element] = count
-        
-        # Base conductivity estimation
-        base_conductivity = 1e-8  # Default low conductivity
-        
-        # Li content factor (most important for solid electrolytes)
-        if 'Li' in elements:
-            li_content = elements['Li']
-            total_atoms = sum(elements.values())
-            li_fraction = li_content / total_atoms if total_atoms > 0 else 0
-            
-            # Higher Li content generally means higher conductivity
-            if li_fraction > 0.3:  # High Li content
-                base_conductivity *= 1000  # 1e-5
-            elif li_fraction > 0.1:  # Medium Li content
-                base_conductivity *= 100   # 1e-6
-            else:  # Low Li content
-                base_conductivity *= 10    # 1e-7
-        
-        # Favorable elements for ionic conductivity
-        favorable_elements = ['P', 'S', 'O', 'F', 'Cl']
-        favorable_count = sum(1 for elem in favorable_elements if elem in elements)
-        
-        if favorable_count >= 2:
-            base_conductivity *= 10  # Multiple favorable elements
-        elif favorable_count == 1:
-            base_conductivity *= 3   # One favorable element
-        
-        # Specific structure types (based on common solid electrolytes)
-        if 'P' in elements and 'S' in elements:  # Sulfide-based (like argyrodites)
-            base_conductivity *= 100
-        elif 'Ti' in elements and 'P' in elements:  # NASICON-type
-            base_conductivity *= 50
-        elif 'La' in elements and 'Zr' in elements:  # Garnet-type
-            base_conductivity *= 20
-        elif 'Al' in elements and 'Ge' in elements:  # LAGP-type
-            base_conductivity *= 30
-        
-        # Add some randomness to avoid identical values
-        random_factor = random.uniform(0.5, 2.0)
-        final_conductivity = base_conductivity * random_factor
-        
-        # Ensure reasonable bounds for solid electrolytes
-        final_conductivity = max(1e-12, min(1e-2, final_conductivity))
-        
-        return final_conductivity
+    # REMOVED: estimate_ionic_conductivity_from_composition()
+    # Replaced with optimized version in composition_only_ionic_conductivity.py
     
     def predict_single_cif(self, cif_file_path: str, verbose: bool = False) -> Dict[str, Any]:
         """
@@ -440,35 +372,28 @@ class CachedPropertyPredictor:
             if verbose:
                 print(f"  Bulk modulus prediction failed: {e}")
         
-        # Ionic Conductivity Prediction (CGCNN model with fallback)
+        # Ionic Conductivity Prediction (COMPOSITION-ONLY - CGCNN SKIPPED)
+        # CGCNN performance is terrible: R² ≈ 0, MAPE > 8 million %
+        # Direct composition-based prediction is faster and more reliable
         try:
-            finetuned_model, normalizer = self.get_finetuned_model()
-            if finetuned_model is not None:
-                ic_pred = self.predict_cgcnn_property_cached(finetuned_model, cif_file_path, normalizer)
-                
-                if ic_pred is not None and ic_pred > 0 and ic_pred < 1.0:  # Reasonable range
-                    results["ionic_conductivity"] = float(ic_pred)
-                    results["prediction_status"]["ionic_conductivity"] = "success"
-                    if verbose:
-                        print(f"  Ionic Conductivity: {results['ionic_conductivity']:.2e} S/cm")
-                else:
-                    # Use composition-based estimation as fallback
-                    results["ionic_conductivity"] = self.estimate_ionic_conductivity_from_composition(results["composition"])
-                    results["prediction_status"]["ionic_conductivity"] = "estimated"
-                    if verbose:
-                        print(f"  Ionic conductivity CGCNN prediction failed, using estimation: {results['ionic_conductivity']:.2e} S/cm")
-            else:
-                # Use composition-based estimation as fallback
-                results["ionic_conductivity"] = self.estimate_ionic_conductivity_from_composition(results["composition"])
-                results["prediction_status"]["ionic_conductivity"] = "estimated"
-                if verbose:
-                    print(f"  Ionic conductivity CGCNN model failed to load, using estimation: {results['ionic_conductivity']:.2e} S/cm")
-        except Exception as e:
-            # Use composition-based estimation as fallback
-            results["ionic_conductivity"] = self.estimate_ionic_conductivity_from_composition(results["composition"])
-            results["prediction_status"]["ionic_conductivity"] = "estimated"
+            results["ionic_conductivity"] = predict_ionic_conductivity_from_composition(results["composition"])
+            results["prediction_status"]["ionic_conductivity"] = "composition_based"
+            results["cgcnn_skipped"] = True
+            results["cgcnn_skip_reason"] = "Poor_performance_R2_negative"
+            
             if verbose:
-                print(f"  Ionic conductivity prediction failed ({e}), using estimation: {results['ionic_conductivity']:.2e} S/cm")
+                print(f"  Ionic Conductivity (composition-based): {results['ionic_conductivity']:.2e} S/cm")
+                print(f"  CGCNN skipped due to poor performance (R² ≈ 0)")
+                
+        except Exception as e:
+            # Fallback to a reasonable default if composition parsing fails
+            results["ionic_conductivity"] = 1e-8  # Default low conductivity
+            results["prediction_status"]["ionic_conductivity"] = "default_fallback"
+            results["cgcnn_skipped"] = True
+            results["cgcnn_skip_reason"] = "Poor_performance_R2_negative"
+            
+            if verbose:
+                print(f"  Ionic conductivity composition parsing failed ({e}), using default: {results['ionic_conductivity']:.2e} S/cm")
         
         return results
 
