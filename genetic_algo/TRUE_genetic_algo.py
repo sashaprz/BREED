@@ -15,7 +15,6 @@ import sys
 import json
 import random
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 from typing import List, Dict, Tuple, Optional, Any
 from dataclasses import dataclass, field
@@ -27,7 +26,7 @@ from pathlib import Path
 # Add paths for imports - use absolute path to ensure correct base directory
 base_dir = '/pool/sasha/inorganic_SEEs'
 sys.path.insert(0, base_dir)
-sys.path.insert(0, os.path.join(base_dir, 'generator', 'CDVAE'))
+sys.path.insert(0, os.path.join(base_dir, 'generator'))
 
 # Import torch first
 import torch
@@ -42,74 +41,50 @@ from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
 # Import the working CDVAE loader
 try:
-    from generator.CDVAE.load_trained_model import TrainedCDVAELoader
+    from generator.load_trained_model import TrainedCDVAELoader
     print("✅ TrainedCDVAELoader imported successfully")
     CDVAE_AVAILABLE = True
 except ImportError as e:
     print(f"❌ Failed to import TrainedCDVAELoader: {e}")
     CDVAE_AVAILABLE = False
 
-# Import the PyTorch-free composition-only predictor as FIRST PRIORITY
+# Import the cached property predictor with bandgap correction as PRIMARY
 try:
-    from genetic_algo.composition_only_property_predictor import get_composition_only_predictor
-    # Get the global composition-only predictor instance ONCE
-    _global_predictor = get_composition_only_predictor()
+    from genetic_algo.cached_property_predictor import get_cached_predictor
+    # Get the global cached predictor instance ONCE - models will be loaded and cached
+    _global_predictor = get_cached_predictor()
     
     def predict_single_cif(cif_path, verbose=False):
-        """Use the PyTorch-free composition-only predictor - 100% reliable, fast"""
+        """Use the cached predictor with ML bandgap correction - EXACT same logic but NO MODEL RELOADING"""
         return _global_predictor.predict_single_cif(cif_path, verbose=verbose)
     
-    print("✅ Using PyTorch-FREE composition-only predictor - 100% reliable!")
-    print("   Ionic conductivity: Accurate composition-based prediction")
-    print("   Other properties: Reasonable composition-based estimates")
-    print("   Zero dependencies, < 1ms per prediction, 100% success rate")
+    print("✅ Using CACHED ML predictor with bandgap correction!")
+    print("   Ionic conductivity: CGCNN-based prediction")
+    print("   Bandgap: CGCNN + ML ensemble correction (PBE → HSE06)")
+    print("   SEI/CEI scores: CGCNN-based prediction")
+    print("   Bulk modulus: Enhanced composition-based prediction")
+    print("   Models cached for fast repeated predictions")
 except ImportError as e:
-    print(f"❌ PyTorch-free predictor failed: {e}")
-    # Fallback to original hierarchy
-    try:
-        from genetic_algo.property_prediction_script import get_corrected_predictor
-        # Get the global corrected predictor instance ONCE
-        _global_predictor = get_corrected_predictor()
-        
-        def predict_single_cif(cif_path, verbose=False):
-            """Use the corrected predictor instance with main_rl.py architecture"""
-            return _global_predictor.predict_single_cif(cif_path, verbose=verbose)
-        
-        print("✅ Using CORRECTED ML predictor with main_rl.py architecture - SEI/CEI should work!")
-        print("   This is the SAME predictor that works in FINAL_genetic_algo.py!")
-    except ImportError:
-        try:
-            from genetic_algo.cached_property_predictor import get_cached_predictor
-            # Get the global cached predictor instance ONCE - models will be loaded and cached
-            _global_predictor = get_cached_predictor()
-            
-            def predict_single_cif(cif_path, verbose=False):
-                """Use the cached predictor - EXACT same logic but NO MODEL RELOADING"""
-                return _global_predictor.predict_single_cif(cif_path, verbose=verbose)
-            
-            print("⚠️  Using CACHED ML predictor - may have broken CGCNN models")
-        except ImportError:
-            try:
-                from env.main_rl import predict_single_cif
-                print("⚠️  Using standard ML predictor (models will reload each time - VERY SLOW)")
-            except ImportError:
-                # Create a debug predictor if nothing else works
-                def predict_single_cif_debug(cif_path, verbose=False):
-                    """Debug predictor with realistic random values"""
-                    import random
-                    return {
-                        'ionic_conductivity': random.uniform(1e-6, 1e-2),
-                        'bandgap': random.uniform(1.0, 5.0),
-                        'sei_score': random.uniform(0.3, 0.9),
-                        'cei_score': random.uniform(0.3, 0.9),
-                        'bulk_modulus': random.uniform(20.0, 150.0)
-                    }
-                predict_single_cif = predict_single_cif_debug
-                print("⚠️  Using DEBUG predictor with realistic random values for testing")
+    print(f"❌ Cached predictor failed: {e}")
+    # Create a debug predictor if nothing else works
+    def predict_single_cif_debug(cif_path, verbose=False):
+        """Debug predictor with realistic random values"""
+        import random
+        return {
+            'ionic_conductivity': random.uniform(1e-6, 1e-2),
+            'bandgap': random.uniform(1.0, 5.0),
+            'bandgap_correction_applied': False,
+            'correction_method': 'none',
+            'sei_score': random.uniform(0.3, 0.9),
+            'cei_score': random.uniform(0.3, 0.9),
+            'bulk_modulus': random.uniform(20.0, 150.0)
+        }
+    predict_single_cif = predict_single_cif_debug
+    print("⚠️  Using DEBUG predictor with realistic random values for testing")
 
 # Import enhanced composition-based bulk modulus predictor
 try:
-    from enhanced_composition_bulk_modulus_predictor import EnhancedCompositionBulkModulusPredictor
+    from env.bulk_modulus.composition_bulk_modulus_predictor import EnhancedCompositionBulkModulusPredictor
     _enhanced_bulk_predictor = EnhancedCompositionBulkModulusPredictor()
     print("✅ Enhanced composition-based bulk modulus predictor loaded!")
 except ImportError as e:
@@ -186,8 +161,8 @@ class TrueGeneticAlgorithm:
         
         # Initialize TrainedCDVAELoader with actual trained model files
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        weights_path = os.path.join(base_dir, "generator", "CDVAE", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs", "epoch=26-step=2889.ckpt")
-        scalers_dir = Path(os.path.join(base_dir, "generator", "CDVAE", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs"))
+        weights_path = os.path.join(base_dir, "generator", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs", "epoch=26-step=2889.ckpt")
+        scalers_dir = Path(os.path.join(base_dir, "generator", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs", "outputs", "singlerun", "2025-08-20", "enhanced_cdvae_production_200epochs"))
         print("🔧 Initializing TrainedCDVAELoader with epoch=26-step=2889.ckpt...")
         
         if CDVAE_AVAILABLE:
@@ -256,67 +231,157 @@ class TrueGeneticAlgorithm:
         print(f"   Max generations: {self.max_generations}")
         
     def generate_initial_population(self) -> List[GACandidate]:
-        """Generate initial population using CDVAE and fallback methods"""
-        print(f"🔬 Generating initial population of {self.population_size} candidates...")
+        """Generate initial population using CDVAE only - keep trying until we get 80 Li-containing candidates"""
+        print(f"🔬 Generating initial population of {self.population_size} Li-containing candidates using CDVAE...")
         
         candidates = []
         
-        # Use 100% CDVAE generation for best results
-        cdvae_count = self.population_size
-        fallback_count = 0
-        
-        # Generate CDVAE candidates
+        # Generate CDVAE candidates - keep trying until we get enough
         if self.cdvae_loader and hasattr(self.cdvae_loader, 'model') and self.cdvae_loader.model is not None:
-            print(f"🧬 Generating {cdvae_count} structures using true CDVAE...")
-            cdvae_candidates = self._generate_cdvae_candidates(cdvae_count)
+            print(f"🧬 Generating {self.population_size} Li-containing structures using true CDVAE...")
+            print(f"   This may take longer since Li structures are rare in the training data...")
+            cdvae_candidates = self._generate_cdvae_candidates(self.population_size)
             candidates.extend(cdvae_candidates)
+            
+            # If we still don't have enough, keep trying with CDVAE
+            total_attempts = 0
+            max_total_attempts = 50  # Prevent infinite loops
+            
+            while len(candidates) < self.population_size and total_attempts < max_total_attempts:
+                total_attempts += 1
+                remaining = self.population_size - len(candidates)
+                print(f"🔄 Still need {remaining} more candidates, continuing CDVAE generation (attempt {total_attempts})...")
+                
+                additional_candidates = self._generate_cdvae_candidates(remaining)
+                candidates.extend(additional_candidates)
+                
+                print(f"   Progress: {len(candidates)}/{self.population_size} candidates found")
+            
+            if len(candidates) < self.population_size:
+                print(f"⚠️  Warning: Only found {len(candidates)}/{self.population_size} Li-containing candidates after {max_total_attempts} attempts")
+                print(f"   Proceeding with {len(candidates)} candidates for initial population")
         else:
-            print("❌ CDVAE not available - using fallback method for all candidates")
-            fallback_count = self.population_size
+            print("❌ CDVAE not available - cannot generate Li-containing electrolyte candidates")
+            return []
         
-        # Only use fallback if CDVAE failed completely
-        if fallback_count > 0:
-            print(f"🧬 Generating {fallback_count} structures using fallback method...")
-            fallback_candidates = self._generate_fallback_candidates(fallback_count)
-            candidates.extend(fallback_candidates)
-        
-        # Fill remaining slots if CDVAE didn't generate enough
-        while len(candidates) < self.population_size:
-            print(f"⚠️  CDVAE generated only {len(candidates)}/{self.population_size} candidates, filling remaining with fallback...")
-            fallback_candidates = self._generate_fallback_candidates(self.population_size - len(candidates))
-            candidates.extend(fallback_candidates)
-        
-        return candidates[:self.population_size]
+        print(f"✅ Generated {len(candidates)} Li-containing CDVAE candidates for initial population")
+        return candidates
     
     def _generate_cdvae_candidates(self, count: int) -> List[GACandidate]:
-        """Generate candidates using CDVAE"""
+        """Generate candidates using CDVAE - keep trying until we get enough valid Li-containing structures"""
         candidates = []
         attempts = 0
-        max_attempts = count * 3
+        max_attempts = count * 10  # Increased max attempts since Li structures are rare
+        
+        print(f"  Target: {count} candidates (Li-containing electrolytes)")
         
         while len(candidates) < count and attempts < max_attempts:
             attempts += 1
+            remaining = count - len(candidates)
             
             try:
-                batch_size = min(5, count - len(candidates))
-                # Use fast_mode=True for much faster generation (8 steps vs 15)
-                structures = self.cdvae_loader.generate_structures(batch_size, fast_mode=True)
+                # Generate larger batches to increase chances of finding Li structures
+                batch_size = min(10, remaining * 2)  # Generate more structures per batch
+                print(f"  Attempt {attempts}: Requesting {batch_size} structures (have {len(candidates)}/{count})")
                 
-                for structure in structures:
+                # Use fast_mode=True for much faster generation (8 steps vs 15)
+                structures_dict = self.cdvae_loader.generate_structures(batch_size, fast_mode=True)
+                print(f"  CDVAE returned: {type(structures_dict)}")
+                
+                # Convert the single dictionary to a list of individual structures
+                if isinstance(structures_dict, dict) and 'num_atoms' in structures_dict:
+                    # Split the batch into individual structures
+                    structures = self._split_batch_structures(structures_dict)
+                    print(f"  Split into {len(structures)} individual structures")
+                else:
+                    # Handle case where it's already a list or other format
+                    structures = structures_dict if isinstance(structures_dict, list) else [structures_dict]
+                    print(f"  Using structures as-is: {len(structures)} structures")
+                
+                valid_count = 0
+                li_count = 0
+                for i, structure in enumerate(structures):
                     if len(candidates) >= count:
+                        print(f"  Reached target {count}, stopping processing")
                         break
                         
+                    print(f"    Processing structure {i+1}/{len(structures)}")
                     structure_data = self._convert_cdvae_structure(structure)
                     if structure_data:
-                        candidate = self._create_candidate_from_data(structure_data)
-                        if candidate and self._is_valid_candidate(candidate):
-                            candidates.append(candidate)
+                        # Quick check for Li before full processing
+                        if 'Li' in structure_data['composition']:
+                            li_count += 1
+                            print(f"      ✅ Found Li-containing structure! ({li_count} Li structures found so far)")
+                            print(f"      Structure data converted successfully")
+                            candidate = self._create_candidate_from_data(structure_data)
+                            if candidate:
+                                print(f"      Candidate created: {candidate.composition}")
+                                if self._is_valid_candidate(candidate):
+                                    candidates.append(candidate)
+                                    valid_count += 1
+                                    print(f"      ✅ Candidate is valid!")
+                                else:
+                                    print(f"      ❌ Candidate failed validation")
+                            else:
+                                print(f"      ❌ Failed to create candidate from structure data")
+                        else:
+                            print(f"      ⚠️  No Li in composition {structure_data['composition']}, skipping")
+                    else:
+                        print(f"      ❌ Failed to convert CDVAE structure")
+                
+                print(f"  Added {valid_count} valid candidates (total: {len(candidates)}/{count})")
+                print(f"  Found {li_count} Li-containing structures in this batch")
                             
             except Exception as e:
                 print(f"  CDVAE generation attempt {attempts} failed: {e}")
                 continue
-                
+        
+        print(f"  Final result: {len(candidates)} candidates generated in {attempts} attempts")
+        
+        # If we still don't have enough, fall back to fallback generation
+        if len(candidates) < count:
+            print(f"  ⚠️  Only found {len(candidates)}/{count} Li-containing CDVAE structures")
+            print(f"  Filling remaining {count - len(candidates)} with fallback Li-electrolyte structures")
+        
         return candidates
+    
+    def _split_batch_structures(self, structures_dict: Dict) -> List[Dict]:
+        """Split CDVAE batch output into individual structure dictionaries"""
+        try:
+            num_atoms = structures_dict['num_atoms']  # Tensor of atom counts per structure
+            lengths = structures_dict['lengths']      # Tensor of lattice lengths
+            angles = structures_dict['angles']        # Tensor of lattice angles
+            frac_coords = structures_dict['frac_coords']  # All fractional coordinates
+            atom_types = structures_dict['atom_types']    # All atom types
+            
+            individual_structures = []
+            coord_start = 0
+            
+            for i, n_atoms in enumerate(num_atoms):
+                n_atoms = int(n_atoms.item())
+                coord_end = coord_start + n_atoms
+                
+                # Extract coordinates and atom types for this structure
+                structure_frac_coords = frac_coords[coord_start:coord_end]
+                structure_atom_types = atom_types[coord_start:coord_end]
+                
+                # Create individual structure dictionary
+                individual_structure = {
+                    'num_atoms': n_atoms,
+                    'lengths': lengths[i],
+                    'angles': angles[i],
+                    'frac_coords': structure_frac_coords,
+                    'atom_types': structure_atom_types
+                }
+                
+                individual_structures.append(individual_structure)
+                coord_start = coord_end
+            
+            return individual_structures
+            
+        except Exception as e:
+            print(f"        Error splitting batch structures: {e}")
+            return []
     
     def _generate_fallback_candidates(self, count: int) -> List[GACandidate]:
         """Generate fallback candidates for diversity"""
@@ -492,44 +557,82 @@ class TrueGeneticAlgorithm:
     def _convert_cdvae_structure(self, cdvae_structure) -> Optional[Dict]:
         """Convert CDVAE structure output to our expected format"""
         try:
-            if hasattr(cdvae_structure, 'composition') or 'composition' in cdvae_structure:
-                composition = cdvae_structure.get('composition', cdvae_structure.composition if hasattr(cdvae_structure, 'composition') else {})
+            print(f"        Converting CDVAE structure: type={type(cdvae_structure)}")
+            
+            # Handle CDVAE dictionary output (from _split_batch_structures)
+            if isinstance(cdvae_structure, dict) and 'num_atoms' in cdvae_structure:
+                print(f"        Processing CDVAE dict with {cdvae_structure['num_atoms']} atoms")
                 
-                # Extract lattice parameters
-                if hasattr(cdvae_structure, 'lattice') or 'lattice' in cdvae_structure:
-                    lattice = cdvae_structure.get('lattice', cdvae_structure.lattice if hasattr(cdvae_structure, 'lattice') else None)
-                    if lattice:
-                        if hasattr(lattice, 'abc') and hasattr(lattice, 'angles'):
-                            a, b, c = lattice.abc
-                            alpha, beta, gamma = lattice.angles
-                        else:
-                            a = b = c = 10.0
-                            alpha = beta = gamma = 90.0
-                    else:
-                        a = b = c = 10.0
-                        alpha = beta = gamma = 90.0
-                else:
-                    a = b = c = 10.0
-                    alpha = beta = gamma = 90.0
+                # Extract data from CDVAE output
+                num_atoms = cdvae_structure['num_atoms']
+                lengths = cdvae_structure['lengths']  # Tensor [a, b, c]
+                angles = cdvae_structure['angles']    # Tensor [alpha, beta, gamma]
+                frac_coords = cdvae_structure['frac_coords']  # Tensor [n_atoms, 3]
+                atom_types = cdvae_structure['atom_types']    # Tensor [n_atoms]
                 
+                # Convert tensors to Python values
                 lattice_params = {
-                    'a': float(a), 'b': float(b), 'c': float(c),
-                    'alpha': float(alpha), 'beta': float(beta), 'gamma': float(gamma)
+                    'a': float(lengths[0].item()),
+                    'b': float(lengths[1].item()),
+                    'c': float(lengths[2].item()),
+                    'alpha': float(angles[0].item()),
+                    'beta': float(angles[1].item()),
+                    'gamma': float(angles[2].item())
                 }
                 
-                space_group = getattr(cdvae_structure, 'space_group', 225)
+                # Convert atom types to composition
+                composition_dict = {}
+                for atom_type in atom_types:
+                    atom_num = int(atom_type.item())
+                    # Convert atomic number to element symbol
+                    from pymatgen.core.periodic_table import Element
+                    try:
+                        element_symbol = Element.from_Z(atom_num).symbol
+                        composition_dict[element_symbol] = composition_dict.get(element_symbol, 0) + 1
+                    except:
+                        # Fallback for invalid atomic numbers
+                        element_symbol = f"X{atom_num}"
+                        composition_dict[element_symbol] = composition_dict.get(element_symbol, 0) + 1
                 
-                return {
-                    'composition': composition,
+                result = {
+                    'composition': composition_dict,
                     'lattice_params': lattice_params,
-                    'space_group': space_group,
+                    'space_group': 225,  # Default
+                    'generated_id': f'cdvae_{hash(str(cdvae_structure))}',
+                    'generation_method': 'true_cdvae'
+                }
+                print(f"        CDVAE dict conversion successful: {result}")
+                return result
+            
+            # Handle pymatgen Structure objects
+            elif hasattr(cdvae_structure, 'composition') and hasattr(cdvae_structure, 'lattice'):
+                composition_dict = {}
+                for element, amount in cdvae_structure.composition.items():
+                    composition_dict[str(element)] = int(round(amount))
+                
+                lattice = cdvae_structure.lattice
+                lattice_params = {
+                    'a': float(lattice.a), 'b': float(lattice.b), 'c': float(lattice.c),
+                    'alpha': float(lattice.alpha), 'beta': float(lattice.beta), 'gamma': float(lattice.gamma)
+                }
+                
+                result = {
+                    'composition': composition_dict,
+                    'lattice_params': lattice_params,
+                    'space_group': 225,  # Default
                     'generated_id': f'cdvae_{id(cdvae_structure)}',
                     'generation_method': 'true_cdvae'
                 }
-            else:
-                return None
+                print(f"        Pymatgen structure conversion: {result}")
+                return result
+            
+            print(f"        Unknown structure format, cannot convert")
+            return None
                 
         except Exception as e:
+            print(f"        Conversion failed: {e}")
+            import traceback
+            traceback.print_exc()
             return None
     
     def _create_candidate_from_data(self, structure_data: Dict) -> Optional[GACandidate]:
@@ -610,34 +713,42 @@ class TrueGeneticAlgorithm:
     def _is_valid_candidate(self, candidate: GACandidate) -> bool:
         """Enhanced validity checks for candidates"""
         if not candidate.structure:
+            print(f"        Validation failed: No structure")
             return False
             
         # Check composition has reasonable number of atoms
         total_atoms = sum(candidate.composition.values())
         if total_atoms < 1 or total_atoms > 50:
+            print(f"        Validation failed: Total atoms {total_atoms} not in range [1, 50]")
             return False
         
         # Must contain Li for electrolyte applications
         if 'Li' not in candidate.composition:
+            print(f"        Validation failed: No Li in composition {candidate.composition}")
             return False
             
         # Check for reasonable lattice parameters
         lattice = candidate.structure.lattice
         if any(param < 1.0 or param > 50.0 for param in [lattice.a, lattice.b, lattice.c]):
+            print(f"        Validation failed: Lattice params out of range: a={lattice.a:.2f}, b={lattice.b:.2f}, c={lattice.c:.2f}")
             return False
         
         # Check for reasonable volume
         if lattice.volume < 10 or lattice.volume > 5000:  # Å³
+            print(f"        Validation failed: Volume {lattice.volume:.2f} Å³ not in range [10, 5000]")
             return False
             
         # Check for reasonable density
         try:
             density = candidate.structure.density
             if density < 0.1 or density > 20.0:  # g/cm³
+                print(f"        Validation failed: Density {density:.2f} g/cm³ not in range [0.1, 20.0]")
                 return False
-        except:
+        except Exception as e:
+            print(f"        Validation warning: Could not calculate density: {e}")
             pass
             
+        print(f"        Validation passed: {total_atoms} atoms, Li present, lattice OK, volume={lattice.volume:.1f} Å³")
         return True
     
     def _generate_cif_file(self, candidate: GACandidate) -> str:

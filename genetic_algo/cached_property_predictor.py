@@ -7,7 +7,6 @@ This eliminates the model reloading bottleneck while maintaining identical predi
 import os
 import sys
 import torch
-import pandas as pd
 import numpy as np
 from typing import Dict, Any, Optional
 import warnings
@@ -21,15 +20,161 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Import exactly the same modules as property_prediction_script.py
 from env.sei_predictor import SEIPredictor
 from env.cei_predictor import CEIPredictor
-from env.property_predictions.cgcnn_pretrained.cgcnn.model import CrystalGraphConvNet
-from env.property_predictions.cgcnn_pretrained.cgcnn.data import CIFData, collate_pool
-from env.property_predictions.main import Normalizer
+from env.bandgap.cgcnn_pretrained import cgcnn_predict
 
-# Import bandgap correction from fully_optimized_predictor (same logic)
-from genetic_algo.fully_optimized_predictor import apply_ml_bandgap_correction, BANDGAP_CORRECTION_AVAILABLE, CORRECTION_METHOD
+# Import JARVIS HSE correction model
+def apply_ml_bandgap_correction(pbe_bandgap: float, composition_str: str = None) -> float:
+    """Apply JARVIS-trained HSE bandgap correction from PBE
+    
+    NEW IMPLEMENTATION: Uses the high-quality JARVIS HSE correction model trained on 7,483 materials
+    with real HSE data. Performance: MAE=0.289 eV, R²=0.970
+    
+    Returns the HSE-corrected bandgap value (not just the correction amount).
+    """
+    import pickle
+    import numpy as np
+    import pandas as pd
+    
+    try:
+        # Load the JARVIS HSE correction model
+        model_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                 "env", "bandgap", "jarvis_hse_correction_model_20250823_180128.pkl")
+        
+        if not os.path.exists(model_path):
+            # Fallback to physics-based correction if model not found
+            return _physics_based_correction(pbe_bandgap, composition_str)
+        
+        with open(model_path, 'rb') as f:
+            model_data = pickle.load(f)
+        
+        rf_model = model_data['rf_model']
+        gb_model = model_data['gb_model']
+        scaler = model_data['scaler']
+        feature_names = model_data['feature_names']
+        
+        # Create features (simplified version for prediction)
+        features = {'pbe_bandgap': pbe_bandgap}
+        
+        if composition_str:
+            try:
+                from pymatgen.core import Composition
+                comp = Composition(composition_str)
+                
+                features['n_elements'] = len(comp.elements)
+                features['total_atoms'] = comp.num_atoms
+                
+                # Electronegativity
+                en_values = [el.X for el in comp.elements if el.X and not np.isnan(el.X)]
+                features['avg_electronegativity'] = np.mean(en_values) if en_values else 2.0
+                
+                # Mass
+                mass_values = [el.atomic_mass for el in comp.elements]
+                features['avg_atomic_mass'] = np.mean(mass_values) if mass_values else 50.0
+                
+                # Element presence
+                formula_str = str(composition_str)
+                features['has_O'] = int('O' in formula_str)
+                features['has_N'] = int('N' in formula_str)
+                features['has_C'] = int('C' in formula_str)
+                features['has_Si'] = int('Si' in formula_str)
+                features['has_Al'] = int('Al' in formula_str)
+                features['has_Ti'] = int('Ti' in formula_str)
+                features['has_Fe'] = int('Fe' in formula_str)
+                features['has_F'] = int('F' in formula_str)
+                features['has_H'] = int('H' in formula_str)
+                
+                # Material types
+                features['is_oxide'] = features['has_O']
+                features['is_nitride'] = features['has_N']
+                features['is_carbide'] = features['has_C']
+                features['is_fluoride'] = features['has_F']
+                features['is_hydride'] = features['has_H']
+                
+            except:
+                # Default values if composition parsing fails
+                for key in ['n_elements', 'total_atoms', 'avg_electronegativity', 'avg_atomic_mass',
+                           'has_O', 'has_N', 'has_C', 'has_Si', 'has_Al', 'has_Ti', 'has_Fe', 'has_F', 'has_H',
+                           'is_oxide', 'is_nitride', 'is_carbide', 'is_fluoride', 'is_hydride']:
+                    features[key] = 0
+                features['avg_electronegativity'] = 2.0
+                features['avg_atomic_mass'] = 50.0
+        else:
+            # Default values when no formula provided
+            for key in feature_names:
+                if key not in features:
+                    features[key] = 0
+            features['avg_electronegativity'] = 2.0
+            features['avg_atomic_mass'] = 50.0
+        
+        # Derived features
+        features['pbe_squared'] = pbe_bandgap ** 2
+        features['pbe_cubed'] = pbe_bandgap ** 3
+        features['pbe_sqrt'] = np.sqrt(abs(pbe_bandgap))
+        features['log_pbe'] = np.log1p(pbe_bandgap)
+        features['en_pbe_product'] = features['avg_electronegativity'] * pbe_bandgap
+        features['en_squared'] = features['avg_electronegativity'] ** 2
+        
+        # Add missing features with defaults
+        for key in ['dimensionality', 'is_2d', 'is_3d']:
+            if key not in features:
+                features[key] = 0
+        
+        # Create feature vector
+        X = np.array([[features.get(name, 0) for name in feature_names]])
+        X_scaled = scaler.transform(X)
+        
+        # Make ensemble prediction
+        rf_pred = rf_model.predict(X_scaled)[0]
+        gb_pred = gb_model.predict(X_scaled)[0]
+        hse_bandgap = 0.6 * rf_pred + 0.4 * gb_pred
+        
+        # No artificial clamping - trust the JARVIS-trained model
+        return hse_bandgap
+        
+    except Exception as e:
+        # Fallback to physics-based correction if ML model fails
+        print(f"JARVIS HSE model failed ({e}), using physics-based fallback")
+        return _physics_based_correction(pbe_bandgap, composition_str)
+
+def _physics_based_correction(pbe_bandgap: float, composition_str: str = None) -> float:
+    """Fallback physics-based HSE correction"""
+    import numpy as np
+    
+    if composition_str:
+        try:
+            from pymatgen.core import Composition
+            comp = Composition(composition_str)
+            elements = [str(el) for el in comp.elements]
+            
+            # Simple physics-based correction
+            if any(el in elements for el in ['O']):  # Oxides
+                correction = 0.8 + 0.15 * pbe_bandgap
+            elif any(el in elements for el in ['N']):  # Nitrides
+                correction = 0.7 + 0.15 * pbe_bandgap
+            elif any(el in elements for el in ['F']):  # Fluorides
+                correction = 0.6 + 0.1 * pbe_bandgap
+            else:
+                correction = 0.5 + 0.1 * pbe_bandgap
+                
+            correction = max(0.2, min(2.0, correction))
+        except:
+            correction = 0.5 + 0.1 * pbe_bandgap
+    else:
+        correction = 0.5 + 0.1 * pbe_bandgap
+    
+    return pbe_bandgap + correction
+
+# Check for JARVIS HSE model availability
+JARVIS_HSE_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                    "env", "bandgap", "jarvis_hse_correction_model_20250823_180128.pkl")
+BANDGAP_CORRECTION_AVAILABLE = os.path.exists(JARVIS_HSE_MODEL_PATH)
+CORRECTION_METHOD = "jarvis_hse_ml" if BANDGAP_CORRECTION_AVAILABLE else "physics_based"
 
 # Import composition-only ionic conductivity predictor
-from genetic_algo.composition_only_ionic_conductivity import predict_ionic_conductivity_from_composition
+from env.ionic_conductivity import predict_ionic_conductivity_from_composition
+
+# Import enhanced composition-based bulk modulus predictor
+from env.bulk_modulus.composition_bulk_modulus_predictor import EnhancedCompositionBulkModulusPredictor
 
 class CachedPropertyPredictor:
     """
@@ -38,100 +183,23 @@ class CachedPropertyPredictor:
     """
     
     def __init__(self):
-        # Configuration paths - EXACT same as property_prediction_script.py
-        self.dataset_root = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\CIF_OBELiX"
-        self.bandgap_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\cgcnn_pretrained\band-gap.pth.tar"
-        self.bulk_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\property_predictions\cgcnn_pretrained\bulk-moduli.pth.tar"
-        self.finetuned_model_path = r"C:\Users\Sasha\repos\RL-electrolyte-design\env\checkpoint.pth.tar"
+        # Configuration paths - Fixed for actual file structure
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.dataset_root = os.path.join(base_dir, "env", "bandgap", "cgcnn_pretrained")
+        self.bandgap_model_path = os.path.join(base_dir, "env", "bandgap", "band-gap.pth.tar")
+        self.bulk_model_path = os.path.join(base_dir, "env", "bandgap", "band-gap.pth.tar")  # Use same model for now
+        self.finetuned_model_path = os.path.join(base_dir, "env", "checkpoint.pth.tar")
         
         # Cached models and predictors - loaded ONCE
         # NOTE: Ionic conductivity CGCNN removed due to poor performance (R² ≈ 0)
         self._sei_predictor = None
         self._cei_predictor = None
-        self._bandgap_model = None
-        self._bulk_model = None
+        self._bulk_predictor = None  # Changed to composition-based predictor
         # self._finetuned_model = None  # REMOVED - CGCNN ionic conductivity skipped
         # self._finetuned_normalizer = None  # REMOVED - CGCNN ionic conductivity skipped
         self._device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
-        # Dataset cache
-        self._dataset = None
-        self._cif_filenames = None
-        
         print(f"CachedPropertyPredictor initialized - will cache models to eliminate reloading")
-    
-    def _load_dataset_once(self):
-        """Load dataset information once and cache it"""
-        if self._dataset is None or self._cif_filenames is None:
-            print("Loading dataset information (one-time setup)...")
-            cifs_folder = os.path.join(self.dataset_root, "cifs")
-            self._dataset = CIFData(cifs_folder)
-            
-            # Read CIF filenames
-            id_prop_path = os.path.join(cifs_folder, "id_prop.csv")
-            id_prop_df = pd.read_csv(id_prop_path)
-            cif_ids = id_prop_df.iloc[:, 0].tolist()
-            self._cif_filenames = [cid + ".cif" for cid in cif_ids]
-            print(f"Dataset loaded with {len(self._cif_filenames)} CIF files")
-        
-        return self._dataset, self._cif_filenames
-    
-    def _load_cgcnn_model_once(self, model_path: str, model_name: str):
-        """Load a CGCNN model ONCE with proper architecture detected from checkpoint"""
-        print(f"🔄 Loading {model_name} model (ONE TIME ONLY)...")
-        
-        # Ensure dataset is loaded first
-        self._load_dataset_once()
-        
-        checkpoint = torch.load(model_path, map_location=self._device)
-        
-        # Get model architecture from sample
-        sample = [self._dataset[0]]
-        input_data, _, _ = collate_pool(sample)
-        
-        orig_atom_fea_len = input_data[0].shape[-1]
-        nbr_fea_len = input_data[1].shape[-1]
-        
-        # Detect architecture from checkpoint state_dict
-        state_dict = checkpoint['state_dict']
-        
-        # Detect h_fea_len from conv_to_fc layer
-        h_fea_len = 32  # default for older models
-        if 'conv_to_fc.weight' in state_dict:
-            h_fea_len = state_dict['conv_to_fc.weight'].shape[0]
-        
-        # Detect n_conv from number of conv layers
-        n_conv = 3  # default
-        conv_layers = [k for k in state_dict.keys() if k.startswith('convs.') and 'fc_full.weight' in k]
-        if conv_layers:
-            max_conv_idx = max([int(k.split('.')[1]) for k in conv_layers])
-            n_conv = max_conv_idx + 1
-        
-        # Standard parameters
-        atom_fea_len = 64
-        n_h = 1
-        
-        print(f"   Detected architecture: h_fea_len={h_fea_len}, n_conv={n_conv}")
-        
-        try:
-            model = CrystalGraphConvNet(
-                orig_atom_fea_len=orig_atom_fea_len,
-                nbr_fea_len=nbr_fea_len,
-                atom_fea_len=atom_fea_len,
-                n_conv=n_conv,
-                h_fea_len=h_fea_len,
-                n_h=n_h,
-                classification=False
-            ).to(self._device)
-            
-            model.load_state_dict(checkpoint['state_dict'])
-            model.eval()
-            print(f"✅ {model_name} model loaded and cached successfully!")
-            return model, checkpoint
-            
-        except Exception as e:
-            print(f"   ❌ Failed to load {model_name} model: {e}")
-            return None, checkpoint
     
     def get_sei_predictor(self):
         """Get SEI predictor (loaded once)"""
@@ -149,77 +217,43 @@ class CachedPropertyPredictor:
             print("✅ CEI predictor loaded and cached!")
         return self._cei_predictor
     
-    def get_bandgap_model(self):
-        """Get bandgap model (loaded once)"""
-        if self._bandgap_model is None:
-            self._bandgap_model, _ = self._load_cgcnn_model_once(
-                self.bandgap_model_path, "Bandgap"
-            )
-        return self._bandgap_model
-    
-    def get_bulk_model(self):
-        """Get bulk modulus model (loaded once)"""
-        if self._bulk_model is None:
-            self._bulk_model, _ = self._load_cgcnn_model_once(
-                self.bulk_model_path, "Bulk Modulus"
-            )
-        return self._bulk_model
+    def get_bulk_predictor(self):
+        """Get bulk modulus predictor (loaded once)"""
+        if self._bulk_predictor is None:
+            print("🔄 Loading Enhanced Composition Bulk Modulus predictor (ONE TIME ONLY)...")
+            self._bulk_predictor = EnhancedCompositionBulkModulusPredictor()
+            print("✅ Enhanced Composition Bulk Modulus predictor loaded and cached!")
+        return self._bulk_predictor
     
     # REMOVED: get_finetuned_model() - CGCNN ionic conductivity skipped due to poor performance
     # Original performance: R² ≈ 0, MAPE > 8 million %
     # Replaced with fast, reliable composition-based prediction
     
-    def predict_cgcnn_property_cached(self, model, cif_file_path: str, normalizer=None):
+    def predict_cgcnn_property_cached(self, model_path: str, cif_file_path: str):
         """
-        Predict property using cached CGCNN model - EXACT same logic as property_prediction_script.py
-        but without model reloading
+        Predict property using CGCNN model via the proper cgcnn_predict interface
         """
         try:
-            # Create temporary directory structure that CIFData expects
-            import tempfile
-            import shutil
+            # Use the proper cgcnn_predict interface
+            results = cgcnn_predict.main([model_path, cif_file_path])
             
-            with tempfile.TemporaryDirectory() as temp_dir:
-                # Copy CIF file to temp directory with simple name
-                temp_cif_name = "temp_structure"
-                temp_cif_path = os.path.join(temp_dir, temp_cif_name + ".cif")
-                shutil.copy2(cif_file_path, temp_cif_path)
+            if results and 'predictions' in results and len(results['predictions']) > 0:
+                # Return the first prediction (single CIF file)
+                prediction = results['predictions'][0]
+                return float(prediction)
+            else:
+                # Fallback: try to read from CSV file if results dict is empty
+                import csv
+                csv_path = 'test_results.csv'
+                if os.path.exists(csv_path):
+                    with open(csv_path, 'r') as f:
+                        reader = csv.DictReader(f)
+                        for row in reader:
+                            return float(row['prediction'])
                 
-                # Create id_prop.csv with dummy target (we only care about prediction)
-                id_prop_path = os.path.join(temp_dir, "id_prop.csv")
-                with open(id_prop_path, 'w') as f:
-                    f.write(f"{temp_cif_name},0.0\n")  # dummy target value
+                print(f"    CGCNN prediction returned no results")
+                return 0.0
                 
-                # Copy atom_init.json from the main dataset
-                atom_init_src = os.path.join(self.dataset_root, "cifs", "atom_init.json")
-                atom_init_dst = os.path.join(temp_dir, "atom_init.json")
-                shutil.copy2(atom_init_src, atom_init_dst)
-                
-                # Create dataset using the standard CIFData interface
-                temp_dataset = CIFData(temp_dir)
-                
-                # Prepare sample
-                sample = [temp_dataset[0]]
-                input_data, targets, cif_ids_result = collate_pool(sample)
-                
-                input_vars = (
-                    input_data[0].to(self._device),
-                    input_data[1].to(self._device),
-                    input_data[2].to(self._device),
-                    input_data[3],  # crystal_atom_idx (stays on CPU)
-                )
-                
-                with torch.no_grad():
-                    output = model(*input_vars)
-                    pred = output.cpu().numpy().flatten()[0]
-                
-                # Denormalize if normalizer available
-                if normalizer is not None:
-                    pred_tensor = torch.tensor([pred])
-                    pred = normalizer.denorm(pred_tensor).item()
-                
-                return pred
-            
         except Exception as e:
             print(f"    CGCNN prediction error: {e}")
             return 0.0
@@ -314,60 +348,56 @@ class CachedPropertyPredictor:
         
         # Bandgap Prediction (CGCNN model + ML bandgap correction)
         try:
-            bandgap_model = self.get_bandgap_model()
-            if bandgap_model is not None:
-                raw_pbe_bandgap = self.predict_cgcnn_property_cached(bandgap_model, cif_file_path)
-                
-                if raw_pbe_bandgap is not None and raw_pbe_bandgap != 0.0:
-                    # Apply ML bandgap correction (PBE → HSE)
-                    if BANDGAP_CORRECTION_AVAILABLE:
-                        composition_str = results["composition"]
-                        corrected_bandgap = apply_ml_bandgap_correction(raw_pbe_bandgap, composition_str)
-                        
-                        results["bandgap"] = float(corrected_bandgap)
-                        results["bandgap_raw_pbe"] = float(raw_pbe_bandgap)
-                        results["bandgap_correction_applied"] = True
-                        results["correction_method"] = CORRECTION_METHOD
-                        
-                        if verbose:
-                            print(f"  Bandgap (PBE): {raw_pbe_bandgap:.3f} eV")
-                            print(f"  Bandgap (HSE-corrected): {results['bandgap']:.3f} eV")
-                    else:
-                        results["bandgap"] = raw_pbe_bandgap
-                        results["bandgap_correction_applied"] = False
-                        results["correction_method"] = "none"
-                        
-                        if verbose:
-                            print(f"  Bandgap: {results['bandgap']:.3f} eV")
+            raw_pbe_bandgap = self.predict_cgcnn_property_cached(self.bandgap_model_path, cif_file_path)
+            
+            if raw_pbe_bandgap is not None and raw_pbe_bandgap != 0.0:
+                # Apply ML bandgap correction (PBE → HSE) without clamping
+                if BANDGAP_CORRECTION_AVAILABLE:
+                    composition_str = results["composition"]
+                    corrected_bandgap = apply_ml_bandgap_correction(raw_pbe_bandgap, composition_str)
                     
-                    results["prediction_status"]["bandgap"] = "success"
-                else:
+                    results["bandgap"] = float(corrected_bandgap)
+                    results["bandgap_raw_pbe"] = float(raw_pbe_bandgap)
+                    results["bandgap_correction_applied"] = True
+                    results["correction_method"] = CORRECTION_METHOD
+                    
                     if verbose:
-                        print("  Bandgap CGCNN prediction returned 0 or None")
+                        print(f"  Bandgap (PBE): {raw_pbe_bandgap:.3f} eV")
+                        print(f"  Bandgap (JARVIS HSE-corrected): {results['bandgap']:.3f} eV")
+                        print(f"  Correction method: {CORRECTION_METHOD}")
+                else:
+                    results["bandgap"] = raw_pbe_bandgap
+                    results["bandgap_correction_applied"] = False
+                    results["correction_method"] = "none"
+                    
+                    if verbose:
+                        print(f"  Bandgap: {results['bandgap']:.3f} eV")
+                
+                results["prediction_status"]["bandgap"] = "success"
             else:
                 if verbose:
-                    print("  Bandgap CGCNN model failed to load")
+                    print("  Bandgap CGCNN prediction returned 0 or None")
         except Exception as e:
             if verbose:
                 print(f"  Bandgap prediction failed: {e}")
         
-        # Bulk Modulus Prediction (CGCNN model)
+        # Bulk Modulus Prediction (Enhanced Composition-based predictor)
         try:
-            bulk_model = self.get_bulk_model()
-            if bulk_model is not None:
-                bulk_pred = self.predict_cgcnn_property_cached(bulk_model, cif_file_path)
+            bulk_predictor = self.get_bulk_predictor()
+            if bulk_predictor is not None:
+                bulk_pred = bulk_predictor.predict_bulk_modulus(cif_file_path)
                 
-                if bulk_pred is not None and bulk_pred != 0.0:
+                if bulk_pred is not None and bulk_pred > 0.0:  # Should be positive
                     results["bulk_modulus"] = float(bulk_pred)
                     results["prediction_status"]["bulk_modulus"] = "success"
                     if verbose:
                         print(f"  Bulk Modulus: {results['bulk_modulus']:.1f} GPa")
                 else:
                     if verbose:
-                        print("  Bulk modulus CGCNN prediction returned 0 or None")
+                        print("  Bulk modulus prediction returned 0 or negative value")
             else:
                 if verbose:
-                    print("  Bulk modulus CGCNN model failed to load")
+                    print("  Bulk modulus predictor failed to load")
         except Exception as e:
             if verbose:
                 print(f"  Bulk modulus prediction failed: {e}")

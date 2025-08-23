@@ -10,3 +10,5 @@ MODNet
 https://github.com/ppdebreuck/modnet
 
 explain how the bandgap conversion works and why. explain how the sei/cei prediction works. give context on how the ionic conductivity (finetuned) and bulk modulus predictions work
+
+to run - must activate venv
