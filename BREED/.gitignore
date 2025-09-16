@@ -11,13 +11,14 @@ __pycache__
 .Python
 
 # ML Model weights and checkpoints (HUGE FILES!)
+# Note: Specific model files needed for TRUE_genetic_algo.py are allowed below
 *.pth
-*.pth.tar
-*.ckpt
-*.pt
+# *.pth.tar  # Commented out - needed for bandgap model
+# *.ckpt     # Commented out - needed for CDVAE model
+# *.pt       # Commented out - needed for CDVAE scalers
 *.h5
 *.hdf5
-*.pkl
+# *.pkl      # Commented out - needed for ML models
 *.pickle
 *.joblib
 
@@ -59,4 +60,12 @@ wandb/
 # Embedded git repositories (not managed as submodules)
 generator/old/CrystaLLM/
 
-*.yaml
+# *.yaml  # Commented out - needed for CDVAE hparams
+
+# Allow specific model files needed for TRUE_genetic_algo.py
+!env/bandgap/*.pth.tar
+!env/bandgap/*.pkl
+!env/bulk_modulus/*.pkl
+!generator/outputs/**/*.ckpt
+!generator/outputs/**/*.pt
+!generator/outputs/**/*.yaml
