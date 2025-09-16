@@ -1,0 +1,126 @@
+# Core dependencies for RL-electrolyte-design genetic algorithm
+# Based on analysis of BREED/genetic_algo/TRUE_genetic_algo.py
+
+# Core Python packages
+numpy>=1.21.0
+pandas>=1.3.0
+matplotlib>=3.5.0
+scipy>=1.7.0
+scikit-learn>=1.0.0
+joblib>=1.1.0
+
+# PyTorch ecosystem
+torch>=1.12.0
+torchvision>=0.13.0
+torchaudio>=0.12.0
+torch-geometric>=2.1.0
+torch-scatter>=2.0.9
+torch-sparse>=0.6.15
+
+# PyTorch Lightning
+pytorch-lightning>=1.7.0
+
+# Materials science
+pymatgen>=2022.0.0
+spglib>=1.16.0
+
+# Chemistry and crystallography
+ase>=3.22.0
+
+# Configuration and data handling
+omegaconf>=2.2.0
+hydra-core>=1.2.0
+pyyaml>=6.0
+ruamel.yaml>=0.17.0
+
+# Progress bars and utilities
+tqdm>=4.64.0
+p-tqdm>=1.4.0
+
+# Plotting and visualization
+plotly>=5.10.0
+seaborn>=0.11.0
+
+# File handling
+pathlib2>=2.3.0
+pickle5>=0.0.11
+
+# Network analysis
+networkx>=2.8.0
+
+# Additional scientific computing
+sympy>=1.10.0
+uncertainties>=3.1.0
+
+# Data serialization
+orjson>=3.8.0
+
+# Tabular data
+tabulate>=0.9.0
+
+# Color handling
+colorama>=0.4.5
+
+# Font tools
+fonttools>=4.33.0
+
+# File system utilities
+fsspec>=2022.7.0
+
+# Markup and templating
+jinja2>=3.1.0
+markupsafe>=2.1.0
+
+# Solver utilities
+kiwisolver>=1.4.0
+
+# Threading utilities
+threadpoolctl>=3.1.0
+
+# Date utilities
+python-dateutil>=2.8.0
+pytz>=2022.1
+tzdata>=2022.1
+
+# Type extensions
+typing-extensions>=4.3.0
+
+# Web utilities
+requests>=2.28.0
+urllib3>=1.26.0
+certifi>=2022.6.0
+charset-normalizer>=2.1.0
+idna>=3.3
+
+# Packaging
+packaging>=21.3
+
+# Color palettes
+palettable>=3.3.0
+
+# Image processing
+pillow>=9.2.0
+
+# Math libraries
+mpmath>=1.2.0
+
+# Narwhals (data frame compatibility)
+narwhals>=0.5.0
+
+# File locking
+filelock>=3.8.0
+
+# Bibliography parsing
+bibtexparser>=1.4.0
+
+# Monty (pymatgen utility)
+monty>=2022.4.0
+
+# Parsing utilities
+pyparsing>=3.0.0
+
+# Statistical utilities
+six>=1.16.0
+
+# VTK for 3D visualization (optional but useful for crystal structures)
+vtk>=9.2.0
