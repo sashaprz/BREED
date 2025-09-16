@@ -1,0 +1,6 @@
+[submodule "generator/PyXtal"]
+	path = generator/PyXtal
+	url = https://github.com/MaterSim/PyXtal
+[submodule "env/bandgap_2/modnet"]
+	path = env/bandgap_2/modnet
+	url = https://github.com/ppdebreuck/modnet

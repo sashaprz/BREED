@@ -1,0 +1,21 @@
+{
+  "data_file": "bulk_modulus_data/obelix_bulk_modulus_high.csv",
+  "min_bulk_modulus": 20.0,
+  "max_bulk_modulus": 500.0,
+  "train_ratio": 0.7,
+  "val_ratio": 0.15,
+  "test_ratio": 0.15,
+  "batch_size": 16,
+  "learning_rate": 1e-05,
+  "weight_decay": 0.0001,
+  "num_epochs": 100,
+  "patience": 15,
+  "min_lr": 1e-07,
+  "lr_factor": 0.5,
+  "lr_patience": 8,
+  "output_dir": "outputs/bulk_modulus_finetuned",
+  "save_best_only": true,
+  "weighted_loss": true,
+  "high_bm_weight": 2.0,
+  "validation_freq": 5
+}
