@@ -1,14 +1,13 @@
-CGCNN
-https://github.com/txie-93/cgcnn/blob/master/pre-trained/bulk-moduli.pth.tar
+Here's a doc I wrote explaining the details of the algorithm + why I built it :)
 
-Materials Project
+https://www.notion.so/sashaprz/BREED-Battery-Research-via-Evolutionary-Electrolyte-Design-256340b75472806aa0acd1900278998b
 
-CDVAE
-https://github.com/txie-93/cdvae
+A list of the resources I used to build this: 
 
-MODNet
-https://github.com/ppdebreuck/modnet
+CGCNN: https://github.com/txie-93/cgcnn/blob/master/pre-trained/bulk-moduli.pth.tar
+Materials Project: https://next-gen.materialsproject.org/ 
+CDVAE: https://github.com/txie-93/cdvae
+MODNet: https://github.com/ppdebreuck/modnet
 
-explain how the bandgap conversion works and why. explain how the sei/cei prediction works. give context on how the ionic conductivity (finetuned) and bulk modulus predictions work
 
-to run - must activate venv
+btw - to run this, you'll probably need to set up a venv.
